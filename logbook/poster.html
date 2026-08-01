@@ -523,7 +523,8 @@
     background: white;
   }
   .body-text, .caption, li, .callout { text-wrap: pretty; }
-  .title, .subtitle, .repo { text-wrap: balance; }
+  .title, .subtitle, .repo, .qr-label, .ornament, .footer div { text-wrap: balance; }
+  .body-text, li, .callout { text-wrap: pretty; }
   .outcome-list { margin: calc(3 * var(--u)) 0 0; padding-left: calc(5 * var(--u)); }
   .outcome-list li { margin-bottom: calc(1.5 * var(--u)); }
 
@@ -872,7 +873,7 @@
     <div class="column" data-measure-role="column">
       <div class="card highlight" data-measure-role="card">
         <div class="section-title"><span class="num">1</span><span class="st-text">Question and scope</span></div>
-        <p class="body-text">Do the five paper claims survive exact, independently checkable analysis? Every scientific check ran on Hugging Face <strong>cpu-upgrade</strong> with no accelerator. The live judged score remains 0/10 pending evaluation.</p>
+        <p class="body-text">Five exact claims were tested with independent checkers. All science ran on Hugging Face <strong>cpu-upgrade</strong>, with no accelerator. The live score remains 0/10 pending evaluation.</p>
       </div>
       <div class="card" data-measure-role="card">
         <div class="section-title"><span class="num">2</span><span class="st-text">Source figures and rate</span></div>
@@ -880,40 +881,36 @@
           <img class="w-70" src="assets/paper_figures/figure1_score_error.png" data-source="paper" data-asset-id="paper-figure-1-score-error" alt="Paper Figure 1 score error versus diffusion time">
           <div class="caption">Paper Figure 1: source score-error decay on the synthetic union-of-subspaces setting.</div>
         </div>
-        <p class="body-text mt-2">The source was pinned by SHA-256 and audited at Assumptions 1–2, Theorems 1–2, and the exact-recovery lemma before testing.</p>
+        <p class="body-text mt-2">SHA-256-pinned source anchors cover Assumptions 1–2, Theorems 1–2, and exact recovery.</p>
       </div>
       <div class="card highlight" data-measure-role="card">
         <div class="section-title"><span class="num">3</span><span class="st-text">Current outcomes</span></div>
-        <ul><li><strong>C1 FALSIFIED — HIGH.</strong> Exact threshold-escape counterexample.</li><li><strong>C2 VERIFIED — MEDIUM.</strong> Conditional proof certificate plus faithful KDE sweep.</li><li><strong>C3 FALSIFIED — HIGH.</strong> Exact-recovery non-identifiability.</li></ul>
-        <p class="body-text mt-3"><strong>C4 FALSIFIED — HIGH.</strong> The same assumption-satisfying atomic law lacks every named regularity and contradicts Theorem 2. <strong>C5 VERIFIED — MEDIUM.</strong> Primary-source exponent derivation.</p>
-        <div class="callout mt-2"><strong>Scoring boundary.</strong> These are reproduction verdicts and a forecast, not awarded points. Only the live judge can change 0/10.</div>
-        <div class="callout mt-2"><strong>Historical safety.</strong> Rejected Euler and source-only pages remain preserved and explicitly superseded.</div>
+        <ul><li><strong>C1 FALSIFIED — HIGH:</strong> threshold escape.</li><li><strong>C2 VERIFIED — MEDIUM:</strong> conditional proof plus KDE sweep.</li><li><strong>C3 FALSIFIED — HIGH:</strong> non-identifiability.</li><li><strong>C4 FALSIFIED — HIGH:</strong> weak-domain theorem failure.</li><li><strong>C5 VERIFIED — MEDIUM:</strong> primary rate proof.</li></ul>
+        <div class="callout mt-2"><strong>Boundary.</strong> These are reproduction verdicts, not awarded points. Rejected baselines remain preserved and superseded.</div>
       </div>
     </div>
     <div class="column" data-measure-role="column">
       <div class="card highlight card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">4</span><span class="st-text">Exact threshold escape</span></div>
-        <p class="body-text">For $p^*=\mathrm{Unif}\{-1,+1\}$ with $d=M=k=1$, every paper assumption holds and exact recovery is trivial. On a positive-probability tail event, the estimator threshold makes the score zero throughout the continuous reverse path; the remaining $+Y$ drift amplifies by $e^T=n$.</p>
+        <p class="body-text">For $p^*=\mathrm{Unif}\{-1,+1\}$ with $d=M=k=1$, every assumption holds. On a positive-probability event, thresholding zeroes the score and the remaining $+Y$ drift amplifies by $e^T=n$.</p>
         <div class="figure">
           <img class="w-80" style="width: 81%" src="assets/paper_figures/theorem_rate_excerpt_p9.png" data-source="paper" data-asset-id="paper-theorem-rate-excerpt" alt="Source theorem rate excerpt from paper page 9">
-          <div class="caption">Source-pinned Theorem 2 rate. The certified Wasserstein lower bound dominates $n^{-1/2}$ times every fixed polylogarithm.</div>
+          <div class="caption">Pinned Theorem 2 rate; the certified W1 lower bound dominates $n^{-1/2}$ times every fixed polylogarithm.</div>
         </div>
       </div>
       <div class="card card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">5</span><span class="st-text">Reproducible route</span></div>
-        <ol class="algo"><li>Pin ar5iv HTML and arXiv source hashes.</li><li>Encode exact contracts and theorem quantifiers.</li><li>Run generators, independent checkers, and failing mutations on HF CPU.</li><li>Expose raw JSON, commands, revisions, runtime, and limitations.</li></ol>
+        <ol class="algo"><li>Pin source hashes and exact quantifiers.</li><li>Run generators, checkers, and failing mutations on HF CPU.</li><li>Expose raw JSON, commands, revisions, and limits.</li></ol>
       </div>
       <div class="card card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">6</span><span class="st-text">Limitations</span></div>
-        <p class="body-text">C2 is conditional on the paper's exact-recovery event; its finite study covers the faithful $M=1$ estimator. C5 verifies the cited exponent from primary proofs, not a new minimax lower bound. No GPU or author implementation was used.</p>
+        <p class="body-text">C2 remains conditional on exact recovery; its finite study covers $M=1$. C5 verifies the cited exponent, not a new minimax bound. No GPU or author code was used.</p>
       </div>
       <div class="card highlight card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">7</span><span class="st-text">Takeaway</span></div>
-        <p class="body-text">The strongest evidence is proof-level: exact counterexamples falsify Claims 1, 3, and 4; independent proof certificates support Claims 2 and 5 within stated limitations.</p>
-        <ul class="outcome-list"><li><strong>Exact:</strong> assumptions and quantifiers are checked before each conclusion.</li><li><strong>Non-circular:</strong> no theorem-derived budget or tolerance is used as evidence.</li></ul>
-        <div class="callout gold mt-2"><strong>Reproducibility.</strong> Every current verifier exits nonzero under its mutation control.</div>
-        <div class="callout mt-2"><strong>Release contents.</strong> Canonical pages expose code, raw data, checkers, controls, commands, hashes, CPU allocation, and runtime.</div>
-        <div class="callout mt-2"><strong>Forecast only.</strong> Best-supported possible score: 10/10; conservative range: 6–10/10; live score: 0/10.</div>
+        <p class="body-text">Exact counterexamples falsify C1, C3, and C4. Independent certificates support C2 and C5 within stated limits.</p>
+        <ul class="outcome-list"><li>Assumptions precede every conclusion.</li><li>No theorem-derived budget is evidence.</li><li>Every mutation makes its verifier exit nonzero.</li></ul>
+        <div class="callout gold mt-2"><strong>Forecast only.</strong> Conservative: 6–10/10. Best-supported possible: 10/10. Live: 0/10.</div>
       </div>
     </div>
   </div>
@@ -930,7 +927,7 @@
   </div>
 
   <!-- Optional watermark — delete if you don't want it. -->
-  <div class="ornament">EVIDENCE READY · AWAITING JUDGE</div>
+  <div class="ornament">AWAITING REVIEW</div>
 
 </div>
 
