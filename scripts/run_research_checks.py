@@ -411,66 +411,115 @@ print(claim1_route1_evaluation)
 claim1_route2_out = ROOT / ".openresearch" / "artifacts" / "claim1_route2_reverse_sde"
 claim1_route2_out.mkdir(parents=True, exist_ok=True)
 run("src/claim1_faithful_reverse_sde.py")
-run(
-    "verifiers/verify_claim1_faithful_reverse_sde.py",
-    str(claim1_route2_out / "raw_results.json"),
-    str(claim1_route2_out / "independent_checker.json"),
-)
-claim1_route2_raw = json.loads((claim1_route2_out / "raw_results.json").read_text())
-claim1_route2_raw["wrong_score_control_ratio_at_Nmax"] = 1.0
-claim1_route2_mutated = claim1_route2_out / "mutated_evidence.json"
-claim1_route2_mutated.write_text(
-    json.dumps(claim1_route2_raw, indent=2, sort_keys=True) + "\n"
-)
-claim1_route2_control = subprocess.run(
+claim1_route2_rejected = subprocess.run(
     [
         sys.executable,
         "verifiers/verify_claim1_faithful_reverse_sde.py",
-        str(claim1_route2_mutated),
-        str(claim1_route2_out / "mutated_checker.json"),
+        str(claim1_route2_out / "raw_results.json"),
+        str(claim1_route2_out / "rejected_checker.json"),
     ],
     cwd=ROOT,
     text=True,
     capture_output=True,
 )
-claim1_route2_control_record = {
-    "mutation": "replace the independently recomputed wrong-score ratio by 1",
+claim1_route2_rejected_record = {
+    "classification": "Historical rejected baseline",
     "expected_exit_nonzero": True,
-    "actual_exit_code": claim1_route2_control.returncode,
-    "passed": claim1_route2_control.returncode != 0,
-    "checker_stderr": claim1_route2_control.stderr.strip(),
+    "actual_exit_code": claim1_route2_rejected.returncode,
+    "passed": claim1_route2_rejected.returncode != 0,
+    "checker_stderr": claim1_route2_rejected.stderr.strip(),
 }
-(claim1_route2_out / "negative_control_output.json").write_text(
-    json.dumps(claim1_route2_control_record, indent=2, sort_keys=True) + "\n"
+(claim1_route2_out / "rejected_checker_output.json").write_text(
+    json.dumps(claim1_route2_rejected_record, indent=2, sort_keys=True) + "\n"
 )
-if claim1_route2_control.returncode == 0:
-    raise SystemExit("Claim 1 route 2 negative control unexpectedly passed")
-
-claim1_route2_checker = json.loads(
-    (claim1_route2_out / "independent_checker.json").read_text()
-)
+if claim1_route2_rejected.returncode == 0:
+    raise SystemExit("Historical Claim 1 Euler route unexpectedly passed")
 claim1_route2_result = json.loads((claim1_route2_out / "raw_results.json").read_text())
-claim1_route2_evaluation = f"""# Claim 1 route 2 evaluation
+claim1_route2_evaluation = f"""# Historical rejected baseline: Claim 1 Euler attempt
 
-- Route result: **{claim1_route2_checker['route_result']}**
-- Universal theorem: **{claim1_route2_checker['universal_theorem']}**
+- Route result: **REJECTED**
 - Scale: `d=M=k=1`, `N=256..16384`, 16 seeds, 8192 generated/seed
 - Exact one-dimensional W1 slope: `{claim1_route2_result['log_log_N_slope']}`
 - N=256 mean W1: `{claim1_route2_result['main_cells'][0]['mean']}`
 - N=16384 mean W1: `{claim1_route2_result['main_cells'][-1]['mean']}`
 - Wrong-score control ratio: `{claim1_route2_result['wrong_score_control_ratio_at_Nmax']}`
-- Independent checker: `{claim1_route2_checker['status']}`
-- Evidence-mutation checker exit: `{claim1_route2_control.returncode}` (nonzero required)
+- Precommitted checker exit: `{claim1_route2_rejected.returncode}` (nonzero required)
 - Git SHA: `{claim1_route2_result['environment']['git_sha']}`
 - Runtime: `{claim1_route2_result['environment']['runtime_seconds']:.6f}` seconds
 - Allocation: `{claim1_route2_result['environment']['cpu_limit']}` vCPU, `{claim1_route2_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
 
-The faithful paper score and reverse OU sampler improve over the precommitted N
-sweep, remain stable under step and horizon refinement, and sharply beat the
-wrong-score control. The exact metric replaces the historical sliced-W1 proxy.
-
-This remains scoped corroboration. A finite Euler special case cannot verify
-the paper's idealized continuous-time universal theorem.
+W1 increased with N, step refinement was unstable, and horizon amplification
+was severe. This is not a numerical falsification. The current verifier is the
+independent continuous-time threshold-escape certificate below.
 """
 (claim1_route2_out / "EVAL.md").write_text(claim1_route2_evaluation)
 print(claim1_route2_evaluation)
+
+claim1_escape_out = ROOT / ".openresearch" / "artifacts" / "claim1_threshold_escape"
+claim1_escape_out.mkdir(parents=True, exist_ok=True)
+run("src/claim1_threshold_escape_counterexample.py")
+run(
+    "verifiers/verify_claim1_threshold_escape.py",
+    str(claim1_escape_out / "raw_results.json"),
+    str(claim1_escape_out / "independent_checker.json"),
+)
+claim1_escape_raw = json.loads((claim1_escape_out / "raw_results.json").read_text())
+claim1_escape_raw["finite_cases"][0]["kernel_ratio_at_T"] *= 2.0
+claim1_escape_mutated = claim1_escape_out / "mutated_evidence.json"
+claim1_escape_mutated.write_text(
+    json.dumps(claim1_escape_raw, indent=2, sort_keys=True) + "\n"
+)
+claim1_escape_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim1_threshold_escape.py",
+        str(claim1_escape_mutated),
+        str(claim1_escape_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim1_escape_control_record = {
+    "mutation": "double the first tail-kernel ratio so it exceeds the density threshold",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim1_escape_control.returncode,
+    "passed": claim1_escape_control.returncode != 0,
+    "checker_stderr": claim1_escape_control.stderr.strip(),
+}
+(claim1_escape_out / "negative_control_output.json").write_text(
+    json.dumps(claim1_escape_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim1_escape_control.returncode == 0:
+    raise SystemExit("Claim 1 threshold-escape mutation unexpectedly passed")
+
+claim1_escape_checker = json.loads(
+    (claim1_escape_out / "independent_checker.json").read_text()
+)
+claim1_escape_result = json.loads((claim1_escape_out / "raw_results.json").read_text())
+claim1_escape_evaluation = f"""# Claim 1 threshold-escape evaluation
+
+- Verdict: **{claim1_escape_checker['verdict']}**
+- Confidence: **{claim1_escape_checker['confidence']}**
+- Target: `Uniform{{-1,+1}}`, `d=M=k=1`, all assumptions satisfied
+- Exact recovery: trivial (`V1=R`)
+- Finite lower-bound cells: `{len(claim1_escape_result['finite_cases'])}`
+- Asymptotic log-scale cells: `{len(claim1_escape_result['asymptotic_cases'])}`
+- Source markers: `{sum(claim1_escape_result['source_checks'].values())}` of `{len(claim1_escape_result['source_checks'])}`
+- Independent checker: `{claim1_escape_checker['status']}`
+- Threshold-mutation checker exit: `{claim1_escape_control.returncode}` (nonzero required)
+- Git SHA: `{claim1_escape_result['environment']['git_sha']}`
+- Runtime: `{claim1_escape_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim1_escape_result['environment']['cpu_limit']}` vCPU, `{claim1_escape_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+On an explicit positive-probability Gaussian-tail event, the paper's density
+threshold makes its score exactly zero for the entire continuous reverse path.
+The remaining `+Y` drift amplifies the output by `e^T=n`. Mills' ratio gives a
+W1 lower bound that asymptotically dominates `n^-1/2` times every fixed
+polylogarithm, contradicting Theorem 2 for an assumption-satisfying target.
+
+The rejected Euler attempt is retained as historical evidence but is not used
+as the proof of falsification.
+"""
+(claim1_escape_out / "EVAL.md").write_text(claim1_escape_evaluation)
+print(claim1_escape_evaluation)

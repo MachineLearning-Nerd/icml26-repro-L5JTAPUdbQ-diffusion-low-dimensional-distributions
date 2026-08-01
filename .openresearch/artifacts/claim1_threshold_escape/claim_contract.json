@@ -1,0 +1,9 @@
+{
+  "claim": 1,
+  "route": "2b",
+  "target": "Uniform{-1,+1} with d=M=k=1, V1=R, c_p=1, sigma^2=1/log 2",
+  "theorem_quantifier": "for every target satisfying Assumptions 1 and 2 and sufficiently large n",
+  "algorithm": "paper Algorithm 1 and exact paper score estimator, including its KDE density threshold, T=log n, tau=n^-2",
+  "falsification_requirement": "derive a continuous-time W1 lower bound for every training realization that asymptotically exceeds C n^-1/2 (log n)^A for every fixed C and A",
+  "verdict_rule": "FALSIFIED only if all assumptions, exact recovery, threshold persistence, event probability, W1 lower bound, and asymptotic contradiction independently pass"
+}
