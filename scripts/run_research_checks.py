@@ -407,3 +407,70 @@ Claim 1 BLOCKED rather than mislabeling it FALSIFIED.
 """
 (claim1_route1_out / "EVAL.md").write_text(claim1_route1_evaluation)
 print(claim1_route1_evaluation)
+
+claim1_route2_out = ROOT / ".openresearch" / "artifacts" / "claim1_route2_reverse_sde"
+claim1_route2_out.mkdir(parents=True, exist_ok=True)
+run("src/claim1_faithful_reverse_sde.py")
+run(
+    "verifiers/verify_claim1_faithful_reverse_sde.py",
+    str(claim1_route2_out / "raw_results.json"),
+    str(claim1_route2_out / "independent_checker.json"),
+)
+claim1_route2_raw = json.loads((claim1_route2_out / "raw_results.json").read_text())
+claim1_route2_raw["wrong_score_control_ratio_at_Nmax"] = 1.0
+claim1_route2_mutated = claim1_route2_out / "mutated_evidence.json"
+claim1_route2_mutated.write_text(
+    json.dumps(claim1_route2_raw, indent=2, sort_keys=True) + "\n"
+)
+claim1_route2_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim1_faithful_reverse_sde.py",
+        str(claim1_route2_mutated),
+        str(claim1_route2_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim1_route2_control_record = {
+    "mutation": "replace the independently recomputed wrong-score ratio by 1",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim1_route2_control.returncode,
+    "passed": claim1_route2_control.returncode != 0,
+    "checker_stderr": claim1_route2_control.stderr.strip(),
+}
+(claim1_route2_out / "negative_control_output.json").write_text(
+    json.dumps(claim1_route2_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim1_route2_control.returncode == 0:
+    raise SystemExit("Claim 1 route 2 negative control unexpectedly passed")
+
+claim1_route2_checker = json.loads(
+    (claim1_route2_out / "independent_checker.json").read_text()
+)
+claim1_route2_result = json.loads((claim1_route2_out / "raw_results.json").read_text())
+claim1_route2_evaluation = f"""# Claim 1 route 2 evaluation
+
+- Route result: **{claim1_route2_checker['route_result']}**
+- Universal theorem: **{claim1_route2_checker['universal_theorem']}**
+- Scale: `d=M=k=1`, `N=256..16384`, 16 seeds, 8192 generated/seed
+- Exact one-dimensional W1 slope: `{claim1_route2_result['log_log_N_slope']}`
+- N=256 mean W1: `{claim1_route2_result['main_cells'][0]['mean']}`
+- N=16384 mean W1: `{claim1_route2_result['main_cells'][-1]['mean']}`
+- Wrong-score control ratio: `{claim1_route2_result['wrong_score_control_ratio_at_Nmax']}`
+- Independent checker: `{claim1_route2_checker['status']}`
+- Evidence-mutation checker exit: `{claim1_route2_control.returncode}` (nonzero required)
+- Git SHA: `{claim1_route2_result['environment']['git_sha']}`
+- Runtime: `{claim1_route2_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim1_route2_result['environment']['cpu_limit']}` vCPU, `{claim1_route2_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+The faithful paper score and reverse OU sampler improve over the precommitted N
+sweep, remain stable under step and horizon refinement, and sharply beat the
+wrong-score control. The exact metric replaces the historical sliced-W1 proxy.
+
+This remains scoped corroboration. A finite Euler special case cannot verify
+the paper's idealized continuous-time universal theorem.
+"""
+(claim1_route2_out / "EVAL.md").write_text(claim1_route2_evaluation)
+print(claim1_route2_evaluation)
