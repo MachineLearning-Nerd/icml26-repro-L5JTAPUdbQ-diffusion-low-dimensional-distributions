@@ -1,0 +1,60 @@
+{
+  "claim": 4,
+  "verdict": "verified_scoped",
+  "scope": "Pinned-source regularity-scope audit plus finite CPU union-of-subspaces witness; not diffusion-model training.",
+  "source_phrase_hits": {
+    "abstract_no_smoothness": true,
+    "introduction_no_density": true,
+    "prior_lower_bound_is_prior": true
+  },
+  "source_excerpt_sha256": "bea8263bba75d62b720a4065ec5fde33ce11fa4464ecce75308ba7968c701009",
+  "witness": {
+    "ambient_dimension": 2,
+    "subspaces": [
+      "x-axis",
+      "y-axis"
+    ],
+    "intrinsic_dimensions": [
+      1,
+      1
+    ],
+    "atoms": [
+      [
+        -1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "weights": [
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    ],
+    "intersection_origin_mass": 0,
+    "component_masses": [
+      0.5,
+      0.5
+    ],
+    "ambient_density_exists": false,
+    "within_subspace_exp_moment_upper_bound": 1.2840254166877414,
+    "within_subspace_bound_less_than_2": true
+  },
+  "negative_control": {
+    "description": "Adding a positive origin atom violates the paper's zero-intersection-mass condition.",
+    "origin_mass_after_mutation": 0.2,
+    "zero_intersection_mass_passes": false
+  },
+  "conclusion": "The source explicitly removes the named smoothness/log-concavity/density restrictions from its assumptions; the finite singular witness illustrates why those ambient-density assumptions are not required under the stated union-of-subspaces scope."
+}

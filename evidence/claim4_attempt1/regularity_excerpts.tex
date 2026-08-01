@@ -1,0 +1,82 @@
+% abstract.tex
+%!TEX root = main.tex
+\begin{abstract}
+Score-based diffusion models have demonstrated remarkable empirical success in learning high-dimensional distributions, particularly those exhibiting low-dimensional and multi-modal structures. However, theoretical understanding of their statistical efficiency remains limited. Existing theories typically rely on strong regularity assumptions, such as uniformly bounded densities or globally smooth score functions, which fail to capture such intrinsic structures.
+In this work, we study the sample complexity of diffusion models for learning distributions supported on a union of low-dimensional subspaces. Assuming that the data distribution within each subspace is subgaussian, we show that diffusion models require at most the order of $\widetilde{O}(\varepsilon^{-k \vee 2})$ (up to some logarithmic factor) samples to achieve $\varepsilon$ sampling error in 1-Wasserstein distance, where $k$ is the intrinsic dimension.
+This near-optimal convergence rate depends only on the intrinsic dimension and significantly improves upon prior theoretical guarantees that suffer from the curse of dimensionality. Notably, our analysis applies to a broad collection of distributions without imposing smoothness, bounded-density, or log-concavity assumptions.
+Overall, our results show that diffusion models can statistically adapt to intrinsic low-dimensional structure while naturally accommodating multi-modal data, offering a rigorous theoretical justification for their success in complex high-dimensional learning tasks.
+\end{abstract}
+% introduction.tex lines 15-26 and 54-59
+For a broad class of $d$-dimensional distributions with $\beta$-H\"older smooth densities (without assuming smooth scores or log-concave/uniformly-bounded densities), state-of-the-art theory shows that both DDPM \citep{zhang2024minimaxoptimalityscorebaseddiffusion} and DDIM \citep{cai2025minimaxoptimalityprobabilityflow} require on the order of  (up to logarithmic factors)
+\begin{align}\label{eq:sample complexity general}
+\veps^{-\frac{d+2\beta}{\beta}}
+\end{align}
+training samples to generate an output within $\veps$ total variation (TV) distance to the target distribution.
+While this sample complexity is (nearly-)minimax optimal for general smooth-density classes, it suffers from the curse of dimensionality as the ambient dimension $d$ grows. Consequently, such guarantees fail to fully explain the empirical effectiveness of diffusion models in modern high-dimensional applications, suggesting that the worst-case bounds in \eqref{eq:sample complexity general} may be overly pessimistic for structured distributions arising in practice.
+
+To narrow this gap, recent work has explored whether, and in what sense, diffusion models can exploit intrinsic structures underlying the data distributions. 
+However, statistical theory of diffusion models for structured data distributions remains far from complete.
+Existing results in this direction typically focus on distributions supported on a \textit{single} low-dimensional structure, such as a linear subspace or manifold \citep{chen2023scoreapproximationestimationdistribution,tang24a,azangulov2025convergencediffusionmodelsmanifold,yakovlev2025generalization}, a factor model \citep{chen2025diffusion}, or certain dependence structures \citep{fan2025optimalestimationfactorizabledensity}.
+Although these works establish improved sample complexities governed by intrinsic rather than ambient dimension, they require strong assumptions on the data distribution. A prominent example is the requirement for the density to be uniformly bounded away from zero on its support.
+While this condition is standard in the nonparametric statistics literature and technically convenient, it excludes important multi-modal structures with well-separated components, where the density necessarily becomes small, or even vanishes, between modes.
+\end{align*}
+training samples to generate a sample that is $\veps$-close in 1-Wasserstein distance to the target distribution $p^\star$. 
+Importantly, this convergence rate depends only on the intrinsic dimension $k$, rather than the ambient dimension $d$, and matches the minimax optimal rate for learning a $k$-dimensional distribution \citep{chewi2024statisticaloptimaltransport}.
+Moreover, our theory requires only subgaussian tails on each subspace, without imposing any restrictive assumptions on scores or densities. As a result, our framework naturally accommodates multi-modal distributions with well-separated components.
+
+Finally, we emphasize that the kernel-based score estimator developed in this paper is primarily a theoretical proof device, rather than a practical alternative to neural network (NN)-based score estimation. Nevertheless, our results provide an important step toward statistical guarantees for NN score-based diffusion models. 
+% problem_formulation.tex assumptions
+In this section, we introduce the assumptions imposed on the target distribution $p^\star$.
+
+First, to capture low-dimensional, multi-modal structure, we assume that the support of $p^\star$ is contained in a finite union of low-dimensional linear subspaces.
+\begin{assumption}[Union of low-dimensional subspaces]
+    \label{assume:multi-modal}
+    There exist linear subspaces $V_1, V_2, \ldots, V_M \subseteq \mathbb{R}^d$, with dimension $\mathsf{dim}(V_i) = k_i$, such that 
+    \begin{align*}
+        \supp(p^\star) \subseteq \cup_{i=1}^M V_i.
+    \end{align*}
+    Moreover, $p^\star$ assigns zero probability to intersections between different subspaces, i.e.,
+    \begin{align}
+        p^\star(V_i \cap V_j) = 0, \quad \forall i\neq j. \label{eq:separation}
+    \end{align}
+    Finally, each subspace has non-trivial mass:
+    \begin{align}
+        p^\star(V_i) \geq \frac{1}{c_{p}M}, \quad \forall i\in [M]
+    \end{align}
+    for some constant $c_{p}>0$. 
+\end{assumption}
+
+This assumption provides a tractable abstraction for low-dimensional, multi-modal distributions, where different modes may concentrate on different subspaces. Such union-of-subspaces structure has been widely used in the modeling of heterogeneous high-dimensional data \citep{wang2025diffusionmodelslearnlowdimensional} and has also been observed empirically in real-world datasets \citep{brown2022verifying,kamkari2024geometric}.
+
+For each $i\in [M]$, let $p_i^\star \defn p^\star \mid_{V_i}$ denote the restriction of the target distribution $p^\star$ to subspace $V_i$. By Assumption~\ref{assume:multi-modal}, we can decompose the target distribution as $p^\star = \sum_{i=1}^M p_i^\star$. 
+
+
+For each subspace $V_i$, let $A_i \in \mathbb{R}^{d\times k_i}$ be a matrix whose columns form an orthogonal basis of $V_i$: 
+\begin{align*}
+    V_i = \mathsf{span}(\col(A_i)), \quad A_i^{\top}A_i = I_{k_i}.
+\end{align*}
+Denote by $\proj_i:\mathbb{R}^d \rightarrow V_i$ the projection onto $V_i$, given by
+\begin{align*}
+    \proj_i(x) = A_iA_i^{\top}x.
+\end{align*}
+\begin{remark}
+    Our framework can be extended naturally to distributions concentrated near a union of low-dimensional subspaces. In this paper, we focus on the noiseless setting to isolate the essential roles of low-dimensional structure and multi-modality, without introducing the additional technical complications caused by ambient noise. Extensions to noisy settings are discussed in Section~\ref{sec:discussion}.
+\end{remark}
+
+Next, we impose a mild subgaussian assumption on the target distribution within each subspace.
+%
+\begin{assumption}[Subgaussian within each subspace]
+    \label{assump:sub-gaussian target}
+    Let $p_i^\low$ be the normalized push-forward distribution of $p_i^\star$ onto $\mathbb{R}^{k_i}$ under $A_i^{\top}$: 
+    \begin{align}
+        p_i^\low \defn \mathsf{law}(A_i^{\top}Z), \quad Z \sim \frac{p_i^\star}{p^\star(V_i)}. \label{eq:dist in each low-dim}
+    \end{align}
+    We assume that $p_i^\low$ is $\sigma_i$-subgaussian, that is, for any unit vector $\theta \in \mathbb{R}^{k_i}$ with $\|\theta\|_2 = 1$,
+    \begin{align*}
+        \mathbb{E} \bigl[\exp\bigl( (X^{\top}\theta/\sigma_i)^2\bigr)\bigr] \leq 2, \quad X \sim p_i^\low.
+    \end{align*}
+    We denote $\sigma \defn \max_{i\in [M]} \sigma_i$.
+\end{assumption}
+
+The subgaussian assumption is fairly mild in the sense that it subsumes any distribution with bounded support, which covers a wide range of practical data such as image data. 
+

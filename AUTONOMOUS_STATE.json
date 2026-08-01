@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_3_verified_scoped",
-  "next_action": "claim_4_attempt_1_source_assumption_scope_audit",
+  "phase": "claim_4_verified_scoped",
+  "next_action": "claim_5_attempt_1_prior_work_rate_source_audit",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -11,14 +11,15 @@
     "initial_cpu_feasibility_audit",
     "claim_1_attempt_1_theorem_rate_audit",
     "claim_2_attempt_1_score_error_intrinsic_dimension_audit",
-    "claim_3_attempt_1_assumption_source_audit_and_finite_cpu_check"
+    "claim_3_attempt_1_assumption_source_audit_and_finite_cpu_check",
+    "claim_4_attempt_1_regularities_scope_audit"
   ],
   "failed_attempts": [],
   "claim_attempt_counts": {
     "1": 1,
     "2": 1,
     "3": 1,
-    "4": 0,
+    "4": 1,
     "5": 0
   },
   "claim_1_outcome": {
@@ -26,7 +27,7 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T06:41:04.863601+00:00",
+  "last_checkpoint": "2026-08-01T06:43:05.821896+00:00",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -39,5 +40,11 @@
     "scope": "Pinned Assumption 1/source-definition audit plus finite CPU union-of-subspaces construction; not diffusion-model training.",
     "reason": "Source support, zero-intersection-mass, and within-subspace subgaussian conditions match the retained excerpt. A same-tail origin-mass control fails only separation.",
     "evidence": "outputs/claim3_attempt1_audit.md"
+  },
+  "claim_4_outcome": {
+    "verdict": "verified_scoped",
+    "scope": "Pinned-source regularity-scope audit plus finite CPU singular union-of-subspaces witness; not diffusion-model training.",
+    "reason": "The source explicitly removes the named smoothness, log-concavity, bounded-density, and density-lower-bound restrictions; a valid singular witness confirms ambient density is not assumed.",
+    "evidence": "outputs/claim4_attempt1_audit.md"
   }
 }
