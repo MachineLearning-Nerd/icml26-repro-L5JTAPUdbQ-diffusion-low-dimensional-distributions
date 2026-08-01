@@ -207,3 +207,72 @@ final Claim 2 verdict.
 """
 (claim2_out / "EVAL.md").write_text(claim2_evaluation)
 print(claim2_evaluation)
+
+claim2_scaling_out = ROOT / ".openresearch" / "artifacts" / "claim2_component_scaling"
+claim2_scaling_out.mkdir(parents=True, exist_ok=True)
+run("src/claim2_faithful_component_scaling.py")
+run(
+    "verifiers/verify_claim2_component_scaling.py",
+    str(claim2_scaling_out / "raw_results.json"),
+    str(claim2_scaling_out / "independent_checker.json"),
+)
+claim2_scaling_raw = json.loads((claim2_scaling_out / "raw_results.json").read_text())
+for cell in claim2_scaling_raw["cells"]:
+    cell["broken_projector_d48_mse"] = list(cell["seed_mse"])
+claim2_scaling_mutated = claim2_scaling_out / "mutated_evidence.json"
+claim2_scaling_mutated.write_text(
+    json.dumps(claim2_scaling_raw, indent=2, sort_keys=True) + "\n"
+)
+claim2_scaling_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim2_component_scaling.py",
+        str(claim2_scaling_mutated),
+        str(claim2_scaling_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim2_scaling_control_record = {
+    "mutation": "remove ambient error from every d=48 broken-projector control",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim2_scaling_control.returncode,
+    "passed": claim2_scaling_control.returncode != 0,
+    "checker_stderr": claim2_scaling_control.stderr.strip(),
+}
+(claim2_scaling_out / "negative_control_output.json").write_text(
+    json.dumps(claim2_scaling_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim2_scaling_control.returncode == 0:
+    raise SystemExit("Claim 2 scaling negative control unexpectedly passed")
+
+claim2_scaling_checker = json.loads(
+    (claim2_scaling_out / "independent_checker.json").read_text()
+)
+claim2_scaling_result = json.loads((claim2_scaling_out / "raw_results.json").read_text())
+claim2_scaling_evaluation = f"""# Claim 2 component-study evaluation
+
+- Status: **{claim2_scaling_result['status']}**
+- Scope: faithful M=1 component estimator, conditional on exact recovery
+- Complete cells: `{len(claim2_scaling_result['cells'])}`
+- Seeds per cell: `12`
+- Held-out queries per seed: `1024`
+- Log-log MSE slopes by k: `{claim2_scaling_result['log_log_slopes']}`
+- Broken-projector d=48/d=4 ratios: `{claim2_scaling_result['broken_projector_d48_over_d4']}`
+- Independent checker: `{claim2_scaling_checker['status']}`
+- Mutated-control checker exit: `{claim2_scaling_control.returncode}` (nonzero required)
+- Git SHA: `{claim2_scaling_result['environment']['git_sha']}`
+- Runtime: `{claim2_scaling_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim2_scaling_result['environment']['cpu_limit']}` vCPU, `{claim2_scaling_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+The paper's executable low-dimensional KDE estimator shows the precommitted
+decreasing `N` scaling with uncertainty across every intrinsic dimension. Its
+correct normal score cancels ambient error exactly for all scheduled `d`, while
+the omitted-normal control exposes strong ambient growth.
+
+This is scoped corroboration, not a finite proof of Theorem 1. It is combined
+with the independent proof-level structural certificate for the final review.
+"""
+(claim2_scaling_out / "EVAL.md").write_text(claim2_scaling_evaluation)
+print(claim2_scaling_evaluation)
