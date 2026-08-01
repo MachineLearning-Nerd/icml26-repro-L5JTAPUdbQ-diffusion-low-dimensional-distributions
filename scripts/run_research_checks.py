@@ -276,3 +276,67 @@ with the independent proof-level structural certificate for the final review.
 """
 (claim2_scaling_out / "EVAL.md").write_text(claim2_scaling_evaluation)
 print(claim2_scaling_evaluation)
+
+claim4_out = ROOT / ".openresearch" / "artifacts" / "claim4_atomic_weak_regularity"
+claim4_out.mkdir(parents=True, exist_ok=True)
+run("src/claim4_atomic_weak_regularity.py")
+run(
+    "verifiers/verify_claim4_atomic_weak_regularity.py",
+    str(claim4_out / "raw_results.json"),
+    str(claim4_out / "independent_checker.json"),
+)
+claim4_raw = json.loads((claim4_out / "raw_results.json").read_text())
+claim4_raw["assumption_checks"]["zero_intersection_mass"] = False
+claim4_mutated = claim4_out / "mutated_evidence.json"
+claim4_mutated.write_text(json.dumps(claim4_raw, indent=2, sort_keys=True) + "\n")
+claim4_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim4_atomic_weak_regularity.py",
+        str(claim4_mutated),
+        str(claim4_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim4_control_record = {
+    "mutation": "change required zero intersection mass from true to false",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim4_control.returncode,
+    "passed": claim4_control.returncode != 0,
+    "checker_stderr": claim4_control.stderr.strip(),
+}
+(claim4_out / "negative_control_output.json").write_text(
+    json.dumps(claim4_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim4_control.returncode == 0:
+    raise SystemExit("Claim 4 assumption mutation unexpectedly passed")
+
+claim4_checker = json.loads((claim4_out / "independent_checker.json").read_text())
+claim4_result = json.loads((claim4_out / "raw_results.json").read_text())
+claim4_evaluation = f"""# Claim 4 evaluation
+
+- Verdict: **{claim4_result['verdict']}**
+- Confidence: **{claim4_result['confidence']}**
+- Scale: `d=48, M=128, k=3, N_max=50000, E=10000, 20 seeds`
+- Target: bounded atomic UoS distribution with no ambient or intrinsic density
+- Log-log N slope: `{claim4_result['log_log_N_slope']}`
+- Omitted-normal control ratio at N=50000: `{claim4_result['omitted_normal_control_ratio_at_N_50000']}`
+- Independent checker: `{claim4_checker['status']}`
+- Assumption-mutation checker exit: `{claim4_control.returncode}` (nonzero required)
+- Git SHA: `{claim4_result['environment']['git_sha']}`
+- Runtime: `{claim4_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim4_result['environment']['cpu_limit']}` vCPU, `{claim4_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+The exact target satisfies both stated assumptions while having no density,
+nonconvex support, and no Holder, log-concavity, uniform-density, or positive
+density-lower-bound property. The faithful score estimator improves across the
+precommitted N sweep; omitting the known normal score fails strongly.
+
+This is direct full-scale corroboration plus a source dependency certificate.
+It does not repair the separate exact-recovery failure, and the paper leaves
+the regularization constant unspecified; confidence is therefore MEDIUM.
+"""
+(claim4_out / "EVAL.md").write_text(claim4_evaluation)
+print(claim4_evaluation)
