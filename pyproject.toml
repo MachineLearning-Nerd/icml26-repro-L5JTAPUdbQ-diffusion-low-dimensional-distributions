@@ -1,0 +1,12 @@
+[project]
+name = "repro-l5jtapudbq"
+version = "0.1.0"
+description = "Reproduction evidence for arXiv:2605.30153"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "numpy==2.5.1",
+    "pillow==12.3.0",
+    "playwright==1.62.0",
+    "pytest==9.1.1",
+    "trackio==0.34.0",
+]
