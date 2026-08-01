@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "release_remediation_complete_claim5_cai_probability_flow_toy_planned",
-  "next_action": "implement_claim5_cai_algorithm1_reduced_tv_toy_or_checkpoint_source_equation_blocker",
+  "phase": "claim_5_attempt_2_cai_probability_flow_tv_toy_complete_pending_independent_review",
+  "next_action": "independent_review_claim5_direct_cai_tv_toy_then_decide_whether_toy_outcome_is_scoreable",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -18,7 +18,8 @@
     "final_independent_compliance_review_passed",
     "trackio_logbook_published",
     "anonymous_public_readback_complete",
-    "claim_3_independent_d48_dependency_and_concentration_audit"
+    "claim_3_independent_d48_dependency_and_concentration_audit",
+    "claim_5_attempt_2_cai_probability_flow_direct_tv_toy"
   ],
   "failed_attempts": [],
   "claim_attempt_counts": {
@@ -26,14 +27,14 @@
     "2": 2,
     "3": 2,
     "4": 1,
-    "5": 1
+    "5": 2
   },
   "claim_1_outcome": {
     "verdict": "inconclusive",
     "scope": "Full d=48/M=128/k=3 reverse OU Euler/KDE sampling at N through 50k with sliced-W1, step sweep, and wrong-basis control; numerical sampler did not demonstrate convergence and cannot falsify ideal continuous-time theorem.",
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
-  "last_checkpoint": "2026-08-01T22:00:00Z",
+  "last_checkpoint": "2026-08-01T23:00:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -57,9 +58,14 @@
     "mse": 1.8611300606057062
   },
   "claim_5_outcome": {
-    "verdict": "inconclusive",
-    "scope": "Prior-source extraction plus non-scoreable KDE provenance; a source-faithful Cai & Li probability-flow TV toy is planned, not yet executed.",
-    "evidence": "outputs/claim5_attempt1/toy_summary.json"
+    "verdict": "toy_pending_independent_review",
+    "scope": "Direct clean-room reduced Cai & Li Algorithm-1 probability-flow ODE with their KDE, soft threshold, score transform, and DDIM update; d=1..3/n<=2000/K=64 finite TV toy. Primary estimates around 0.5 expose finite numerical instability, not a theorem falsification.",
+    "evidence": [
+      "outputs/claim5_cai_probability_flow_tv_toy/summary.json",
+      "outputs/claim5_cai_probability_flow_tv_toy/results.csv",
+      "outputs/claim5_cai_probability_flow_tv_toy/SHA256SUMS",
+      "outputs/claim5_cai_probability_flow_tv_toy/PROTOCOL.md"
+    ]
   },
   "logbook_assembly": {
     "trackio_version": "0.34.0",

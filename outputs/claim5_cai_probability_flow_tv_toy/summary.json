@@ -1,0 +1,82 @@
+{
+  "kind": "scoreable_toy_candidate",
+  "verdict": "toy_pending_independent_review",
+  "scope": "Reduced local clean-room Cai--Li Algorithm 1 probability-flow ODE. It uses Eqs. p_hat, score-estimate, score-estimator-X and DDIM update, but K=64, d<=3, n<=2000 and empirical TV estimators deviate radically from the theorem asymptotics.",
+  "source_pin": "Cai & Li arXiv:2503.09583 source archive retained at evidence/claim5_attempt1/prior_sources/cai2503.09583.tar.gz; results.tex Eqs. (p_hat), (score-estimate), (soft-thre-defn), (score-estimator-X), Algorithm 1.",
+  "assumptions": "Smooth two-component unit-covariance Gaussian mixture; beta=2 toy; target has subgaussian tails. This is not the paper general Holder class proof.",
+  "deviations": [
+    "K=64 rather than theorem-selected asymptotic K",
+    "finite d=1,2,3 and n<=2000",
+    "grid KDE TV estimator for d=1,2; histogram proxy separately for d=3",
+    "permuting IID KDE training points is intentionally invariant, an implementation invariance check not a destructive performance control"
+  ],
+  "groups": {
+    "d1_n250": {
+      "mean_tv": 0.49999403671932685,
+      "sd_tv": 0.0,
+      "seeds": 5
+    },
+    "d1_n500": {
+      "mean_tv": 0.49989638047513807,
+      "sd_tv": 0.00021836600043331083,
+      "seeds": 5
+    },
+    "d1_n1000": {
+      "mean_tv": 0.49999403671932685,
+      "sd_tv": 0.0,
+      "seeds": 5
+    },
+    "d1_n2000": {
+      "mean_tv": 0.49999403671932685,
+      "sd_tv": 0.0,
+      "seeds": 5
+    },
+    "d2_n250": {
+      "mean_tv": 0.4999904434835746,
+      "sd_tv": 6.206335383118183e-17,
+      "seeds": 5
+    },
+    "d2_n500": {
+      "mean_tv": 0.4999904434835746,
+      "sd_tv": 6.206335383118183e-17,
+      "seeds": 5
+    },
+    "d2_n1000": {
+      "mean_tv": 0.4999904434835746,
+      "sd_tv": 6.206335383118183e-17,
+      "seeds": 5
+    },
+    "d2_n2000": {
+      "mean_tv": 0.4999904434835746,
+      "sd_tv": 6.206335383118183e-17,
+      "seeds": 5
+    },
+    "d3_n250": {
+      "mean_tv": 0.5,
+      "sd_tv": 0.0,
+      "seeds": 5
+    },
+    "d3_n500": {
+      "mean_tv": 0.5,
+      "sd_tv": 0.0,
+      "seeds": 5
+    },
+    "d3_n1000": {
+      "mean_tv": 0.5,
+      "sd_tv": 0.0,
+      "seeds": 5
+    },
+    "d3_n2000": {
+      "mean_tv": 0.5,
+      "sd_tv": 0.0,
+      "seeds": 5
+    }
+  },
+  "elapsed_seconds": 582.4958107471466,
+  "environment": {
+    "python": "3.14.5 (main, May 10 2026, 18:26:20) [GCC 16.1.1 20260430]",
+    "numpy": "2.5.1",
+    "platform": "Linux-7.0.9-arch2-1-x86_64-with-glibc2.43",
+    "device": "local CPU"
+  }
+}
