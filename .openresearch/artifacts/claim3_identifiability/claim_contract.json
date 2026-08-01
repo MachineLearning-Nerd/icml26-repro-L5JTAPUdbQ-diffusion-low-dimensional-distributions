@@ -1,0 +1,10 @@
+{
+  "claim": 3,
+  "claim_text": "The analysis assumes support on a union of M low-dimensional linear subspaces, zero mass on their pairwise intersections, non-trivial component mass, and only subgaussian tails within each subspace.",
+  "paper_dependency_under_test": "Appendix B.1 Lemma 3 asserts that Assumption 1 alone permits exact recovery of every declared subspace with failure probability O(M n^-10) from O(c_p^2 M^2 (k+1) log n) samples.",
+  "domain": "All target distributions satisfying Assumption 1; Assumption 2 is also checked to keep the witness inside the theorem domain.",
+  "quantifiers": "For every such target and sufficiently large n, one data-only algorithm using upper bounds on M and k succeeds with the stated probability.",
+  "falsification_criterion": "Exhibit two distinct valid parameterizations with identical sample laws and disjoint exact-recovery targets, so at least one has success probability at most 1/2 for every n, contradicting a universal O(n^-10) failure bound for sufficiently large n.",
+  "accepted_verdicts": ["FALSIFIED", "BLOCKED"],
+  "non_circularity": "No sample size, tolerance, or budget is selected from the theorem rate; the contradiction holds for every sample size."
+}
