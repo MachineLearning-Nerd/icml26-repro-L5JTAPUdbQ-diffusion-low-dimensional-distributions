@@ -8,7 +8,7 @@
     "icml2026-repro",
     "paper-L5JTAPUdbQ"
   ],
-  "updated_at": "2026-08-01T07:30:26+00:00",
+  "updated_at": "2026-08-01T13:38:03+00:00",
   "root": {
     "slug": "index",
     "title": "Reproduction: Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions",
@@ -63,10 +63,10 @@
     "file": "workspace.json",
     "file_count": 0,
     "total_size": 0,
-    "bucket_id": null
+    "bucket_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions-artifacts"
   },
-  "agent_view_tokens": 2013,
+  "agent_view_tokens": 3823,
   "trace_view_tokens": 10,
   "workspace_view_tokens": 8,
-  "revision": "eaa907c01726787230c7"
+  "revision": "12932424e47e34674821"
 }
