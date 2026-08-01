@@ -340,3 +340,70 @@ the regularization constant unspecified; confidence is therefore MEDIUM.
 """
 (claim4_out / "EVAL.md").write_text(claim4_evaluation)
 print(claim4_evaluation)
+
+claim1_route1_out = ROOT / ".openresearch" / "artifacts" / "claim1_route1_proof_chain"
+claim1_route1_out.mkdir(parents=True, exist_ok=True)
+run("src/claim1_proof_chain_audit.py")
+run(
+    "verifiers/verify_claim1_proof_chain.py",
+    str(claim1_route1_out / "raw_results.json"),
+    str(claim1_route1_out / "independent_checker.json"),
+)
+claim1_route1_raw = json.loads((claim1_route1_out / "raw_results.json").read_text())
+claim1_route1_raw["exponent_cases"][2]["tau_power_in_n"] = "-1/3"
+claim1_route1_mutated = claim1_route1_out / "mutated_evidence.json"
+claim1_route1_mutated.write_text(
+    json.dumps(claim1_route1_raw, indent=2, sort_keys=True) + "\n"
+)
+claim1_route1_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim1_proof_chain.py",
+        str(claim1_route1_mutated),
+        str(claim1_route1_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim1_route1_control_record = {
+    "mutation": "change the k=3 tau exponent from -2/3 to -1/3",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim1_route1_control.returncode,
+    "passed": claim1_route1_control.returncode != 0,
+    "checker_stderr": claim1_route1_control.stderr.strip(),
+}
+(claim1_route1_out / "negative_control_output.json").write_text(
+    json.dumps(claim1_route1_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim1_route1_control.returncode == 0:
+    raise SystemExit("Claim 1 route 1 negative control unexpectedly passed")
+
+claim1_route1_checker = json.loads(
+    (claim1_route1_out / "independent_checker.json").read_text()
+)
+claim1_route1_result = json.loads((claim1_route1_out / "raw_results.json").read_text())
+claim1_route1_evaluation = f"""# Claim 1 route 1 evaluation
+
+- Route status: **{claim1_route1_result['route_status']}**
+- Conditional exponent chain: `{claim1_route1_checker['conditional_exponent_chain']}`
+- Unconditional theorem: `{claim1_route1_checker['unconditional_theorem']}`
+- Exact exponent cases: `{len(claim1_route1_result['exponent_cases'])}`
+- Source markers: `{sum(claim1_route1_result['source_checks'].values())}` of `{len(claim1_route1_result['source_checks'])}`
+- Recovery certificate: `{claim1_route1_result['dependency_audit']['recovery_certificate_verdict']}`
+- Independent checker: `{claim1_route1_checker['status']}`
+- Schedule-mutation checker exit: `{claim1_route1_control.returncode}` (nonzero required)
+- Git SHA: `{claim1_route1_result['environment']['git_sha']}`
+- Runtime: `{claim1_route1_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim1_route1_result['environment']['cpu_limit']}` vCPU, `{claim1_route1_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+Exact arithmetic verifies the paper's displayed `n^(-1/(k vee 2))` exponent
+conditional on the score bound and recovery event. The independently pinned
+external Wasserstein inequality supports the conversion structure.
+
+The unconditional proof invokes the exact-recovery lemma falsified by Claim 3.
+That is a proof failure, not by itself a W1 counterexample, so this route keeps
+Claim 1 BLOCKED rather than mislabeling it FALSIFIED.
+"""
+(claim1_route1_out / "EVAL.md").write_text(claim1_route1_evaluation)
+print(claim1_route1_evaluation)

@@ -1,0 +1,13 @@
+{
+  "claim": 1,
+  "route": 1,
+  "claim_text": "Under Assumptions 1 and 2, for sufficiently large n, Algorithm 1 with n0=C_sc M^2 k log n, N=n-n0, T=log n, and tau=n^(-2/k) has expected W1 error at most C d M^(3/2) n^(-1/(k vee 2)) polylog(n), where C is independent of n,d,M.",
+  "acceptance": [
+    "pin the theorem, proof, and external W1 bridge by source hash",
+    "derive the exponent exactly for every k=1 through 8",
+    "trace the d and M prefactor",
+    "audit every unconditional proof dependency",
+    "do not call a broken proof a theorem falsification"
+  ],
+  "expected_route_outcome": "conditional chain PASS; unconditional theorem BLOCKED if exact recovery remains invalid"
+}
