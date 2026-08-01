@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_5_scoreable_toy_release_gates_complete_pending_final_review",
-  "next_action": "final_independent_release_review_then_republish_existing_space",
+  "phase": "publication_authorized_claim_5_scoreable_toy",
+  "next_action": "publish_existing_space_then_official_validator_and_anonymous_readback",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -35,8 +35,8 @@
     "scope": "Full d=48/M=128/k=3 reverse OU Euler/KDE sampling at N through 50k with sliced-W1, step sweep, and wrong-basis control; numerical sampler did not demonstrate convergence and cannot falsify ideal continuous-time theorem.",
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
-  "last_checkpoint": "2026-08-02T00:10:00Z",
-  "publication_allowed": false,
+  "last_checkpoint": "2026-08-01T13:37:50Z",
+  "publication_allowed": true,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
     "verdict": "inconclusive",
@@ -77,7 +77,7 @@
     "tests": "10 passed",
     "manifest_checks": "passed",
     "poster_gates": "passed: full non-waived Posterly suite at pinned 94d374d72afdc372af226eb745e82af00f07e43f; style rules 4/5 enabled; total-image-area threshold enforced",
-    "publication_allowed": false
+    "publication_allowed": true
   },
   "poster_remediation": {
     "gate_report": "logbook/GATE_REPORT.json",
@@ -119,5 +119,11 @@
     "result": "inconclusive due to controls failing expected degradation",
     "smoke_output": "removed as regenerable transient after successful validation; no required evidence discarded"
   },
-  "claim5_score_path_plan": "outputs/claim5_score_path_plan.md"
+  "claim5_score_path_plan": "outputs/claim5_score_path_plan.md",
+  "final_release_clearance": {
+    "cleared_for": "reviewed Claim 5 only: scoreable 1-point toy; Claims 1-4 remain inconclusive",
+    "score_review": "outputs/L5-final-claim5-score-review.md",
+    "release_review": "outputs/L5-final-release-review.md",
+    "reviewed_head": "4d79a9ee9f29c4b1a8bbaa592365f690a19b92bd"
+  }
 }
