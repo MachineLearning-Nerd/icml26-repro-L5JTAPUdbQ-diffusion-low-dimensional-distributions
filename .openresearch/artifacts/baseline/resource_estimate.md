@@ -15,3 +15,14 @@
 
 Actual allocation, elapsed runtime, terminal status, and computed cost will be
 recorded from the HF job after completion.
+
+## Infrastructure attempt 1
+
+- HF job: `DineshAI/6a6e0aa1a00abefd4b28b8b8`
+- Run: `a1fe10ca-f773-4a4d-8bd3-e41e46877348`
+- Result: setup failure after 21 seconds, before tests or research computation
+- Cause: exact Python 3.14.6 was unavailable in the selected container
+- Cost at listed rate: approximately $0.000175
+- Repair: select the installed Python 3.14 patch while retaining the same
+  Python minor line and unchanged hash-locked dependency graph; print the
+  actual patch and allocated core count in every bootstrap log.
