@@ -63,6 +63,9 @@ independent checker exit `1`.
 - [Proof method](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_intrinsic_score/method.md)
 - [Proof source audit](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_intrinsic_score/source_audit.md)
 - [Proof limitations](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_intrinsic_score/limitations.md)
+- [Proof command and environment](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_intrinsic_score/reproduction.md)
+- [Proof resource estimate](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_intrinsic_score/resource_estimate.md)
+- [Proof evaluation summary](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_intrinsic_score/EVAL.md)
 
 ## Route 2: faithful component-estimator study
 
@@ -97,6 +100,10 @@ stored control made the checker exit `1`.
 - [Numerical method](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_component_scaling/method.md)
 - [Numerical source audit](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_component_scaling/source_audit.md)
 - [Numerical limitations](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_component_scaling/limitations.md)
+- [Numerical claim contract](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_component_scaling/claim_contract.json)
+- [Numerical command and environment](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_component_scaling/reproduction.md)
+- [Numerical resource estimate](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_component_scaling/resource_estimate.md)
+- [Numerical evaluation summary](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim2_component_scaling/EVAL.md)
 
 The executable [proof generator](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/src/claim2_intrinsic_score_certificate.py),
 [proof checker](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/verifiers/verify_claim2_intrinsic_score.py),
@@ -122,12 +129,12 @@ no accelerator. Proof checking took `0.012764` seconds and the KDE study
 `8.878270` seconds. The cumulative job took `58` seconds, approximately
 `$0.000483` at `$0.0005/minute`: run
 `c8c463cd-93c4-4c0a-b4bb-6ef86f02fddb`, HF job
-`DineshAI/6a6e157d6b79c09949c1e687`, Git
+`DineshAI/6a6e157d6b79c09949c1e687`, scientific Git SHA
 `355d19192868f7540a7169b17728349b0478e5af`.
 
-All 31 repository tests and 17 offline manifests passed. The inherited
-historical poster then failed its known style, asset, and measure gates; that
-presentation failure does not change either scientific checker.
+The cumulative release parent passed all 31 repository tests, 17 manifests,
+and all five Posterly gates with zero warnings on HF `cpu-upgrade` (run
+`4b29d0fe-6893-436c-95bb-e9f93fad89cb`).
 
 ## Limitations
 

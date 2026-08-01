@@ -1,51 +1,32 @@
 {
-  "note": "contract/live_claims.json is an immutable official input. Its status field remains challenge metadata, not this repository's result.",
+  "candidate_notice": "These reproduction verdicts are not judge-awarded points. The live score remains 0/10 until a new Space revision is evaluated.",
+  "previous_judged_revision": "fe1fd273934cf8568fbcc1187d857e7662313648",
+  "previous_live_score": "0/10",
   "verdicts": {
     "1": {
-      "verdict": "inconclusive",
-      "scope": "Clean-room end-to-end local CPU reverse OU SDE using Eq. (8)-(14) KDE score at literal d=48/M=128/k=3/N up to 50k. The Euler discretization sweep is unstable/poor; it neither verifies the rate nor falsifies the idealized continuous-time theorem.",
-      "evidence": [
-        "src/claim1_reverse_diffusion.py",
-        "outputs/claim1_reverse_full/summary.json",
-        "outputs/claim1_reverse_full/SHA256SUMS"
-      ]
+      "confidence": "HIGH",
+      "scope": "Exact continuous-time threshold-escape counterexample to Theorem 2 for the assumption-satisfying Rademacher target, using the paper's thresholded estimator.",
+      "verdict": "FALSIFIED"
     },
     "2": {
-      "verdict": "inconclusive",
-      "scope": "Non-toy clean-room full-scale d=48,M=128,k=3,N=50k,eval=10k Eq. (8)-(14) t-grid and actual controls completed. Permuted-basis/reduced-N controls did not degrade as pre-registered, so no theorem verdict is justified.",
-      "evidence": [
-        "outputs/claim2_fullscale/summary.json",
-        "outputs/claim2_fullscale_grid/summary.json",
-        "outputs/claim2_controls/summary.json"
-      ]
+      "confidence": "MEDIUM",
+      "scope": "Proof-structure certificate and faithful M=1 KDE study verify intrinsic rather than exponential ambient dependence, conditional on exact subspace recovery.",
+      "verdict": "VERIFIED"
     },
     "3": {
-      "verdict": "inconclusive",
-      "scope": "Independent local CPU d=48,M=128,k=3 normal/tangent score identity plus 100k-trial component-allocation and assumption-removal controls. This validates specific proof dependencies, not the full theorem.",
-      "evidence": [
-        "outputs/claim3_fullscale/result.json",
-        "outputs/claim3_fullscale/allocation_raw_min_counts.npz",
-        "outputs/claim3_fullscale/SHA256SUMS"
-      ]
+      "confidence": "HIGH",
+      "scope": "Exact two-parameterization non-identifiability counterexample falsifies the claimed sufficiency of Assumption 1 for data-only exact subspace recovery.",
+      "verdict": "FALSIFIED"
     },
     "4": {
-      "verdict": "inconclusive",
-      "scope": "Non-toy clean-room literal-scale local CPU d=48,M=128,k=3,N=50k uniform-cube UoS experiment violates comparator smoothness/log-concavity/density conditions; finite evidence does not prove universal theorem.",
-      "evidence": [
-        "outputs/claim4_fullscale/result.json",
-        "outputs/claim4_fullscale/SHA256SUMS"
-      ]
+      "confidence": "HIGH",
+      "scope": "The atomic Rademacher target lacks every named regularity, satisfies the stated assumptions, and triggers the exact Theorem 2 failure.",
+      "verdict": "FALSIFIED"
     },
     "5": {
-      "verdict": "toy",
-      "scope": "Independent primary-source extraction supports the qualified cited TV exponent. A direct reduced d=1 Cai & Li Algorithm-1 toy at n=250 uses K=5990 satisfying the cited iteration premise and a normalized full-R KDE-TV proxy interval with explicit target-tail bound, saved-common-input controls, and normalized KDE(target-A)-versus-KDE(target-B) calibration. The finite escaped output is neither theorem verification nor falsification; the earlier K=64 grid remains non-scoreable provenance.",
-      "evidence": [
-        "evidence/claim5_attempt1/prior_sources/SHA256SUMS",
-        "outputs/claim5_cai_premise_1d_toy/PROTOCOL.json",
-        "outputs/claim5_cai_premise_1d_toy/results.csv",
-        "outputs/claim5_cai_premise_1d_toy/summary.json",
-        "outputs/claim5_cai_premise_1d_toy/SHA256SUMS"
-      ]
+      "confidence": "MEDIUM",
+      "scope": "Pinned Cai-Li primary-source proof chain verifies the beta-Holder TV exponent and exact sample-complexity inversion; Zhang et al. provide a Sobolev cross-check.",
+      "verdict": "VERIFIED"
     }
   }
 }

@@ -13,7 +13,7 @@
 - Independent checker: **PASS**
 - Negative-control checker exit: `1` (nonzero required)
 - Cumulative regression: 31 tests and 17 evidence/release manifests passed
-- Non-scientific failure: Posterly style, asset, and measure gates failed; this is tracked separately and does not alter the scientific verdict.
+- Cumulative release gate: 31 tests, 17 manifests, and all five Posterly gates passed with zero warnings in HF run `4b29d0fe-6893-436c-95bb-e9f93fad89cb`.
 
 The target is `Uniform{-1,+1}` with `d=M=k=1`, so exact subspace recovery is trivial. Every paper assumption is satisfied. On an explicit positive-probability Gaussian-tail event, the paper's density threshold keeps its KDE score exactly zero for the full continuous reverse trajectory. The remaining linear drift multiplies the output by `e^T=n`. The resulting analytic Wasserstein lower bound asymptotically dominates `n^{-1/2}` times every fixed polylogarithm, contradicting Theorem 2.
 

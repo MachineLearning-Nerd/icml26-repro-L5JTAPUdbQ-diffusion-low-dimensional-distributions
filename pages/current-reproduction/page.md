@@ -34,7 +34,7 @@ baseline**.
 - [Current Claim 3 verifier](#/current-claim-3-identifiability-counterexample)
 - [Current Claim 4 verifier](#/current-claim-4-threshold-falsification)
 - [Current Claim 5 verifier](#/current-claim-5-prior-rate)
-- [Historical rejected baseline](#/historical-rejected-baseline)
+- [Historical rejected baseline](#/index)
 
 ## Evaluator-visible matrix
 

@@ -19,7 +19,7 @@ PROTECTED_REVISION = "fe1fd273934cf8568fbcc1187d857e7662313648"
 MANIFEST = ROOT / ".openresearch/artifacts/baseline/judged_space_manifest.sha256"
 BLOB_PREFIX = f"https://huggingface.co/spaces/{SPACE_ID}/blob/main/"
 USER_AGENT = "Mozilla/5.0 OpenResearch-evaluator-blind-review/1.0"
-TEXT_SUFFIXES = {".json", ".lock", ".md", ".py", ".sh", ".toml", ".txt"}
+TEXT_SUFFIXES = {".json", ".lock", ".md", ".py", ".sh", ".sha256", ".toml", ".txt"}
 REQUIRED_LINK_FILES = {
     "claim_contract.json",
     "source_audit.md",

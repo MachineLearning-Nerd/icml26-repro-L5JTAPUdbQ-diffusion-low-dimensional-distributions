@@ -32,7 +32,7 @@ thresholded estimator, and contradicting every fixed polylogarithmic factor.
 
 ## Assumption audit
 
-Take `p*=Uniform{-1,+1}` in `R), with `d=M=k=1`, `V1=R`,
+Take `p*=Uniform{-1,+1}` in `R`, with `d=M=k=1`, `V1=R`,
 `c_p=1`, and `sigma^2=1/log 2`.
 
 | Requirement | Exact audit |
@@ -110,6 +110,7 @@ the certified log-ratio even against `n^-1/2(log n)^8` is already
 - [Exact command and environment](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim1_threshold_escape/reproduction.md)
 - [Pre-run resource estimate](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim1_threshold_escape/resource_estimate.md)
 - [Limitations](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim1_threshold_escape/limitations.md)
+- [Evaluation summary](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim1_threshold_escape/EVAL.md)
 
 The executable
 [certificate generator](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/src/claim1_threshold_escape_counterexample.py)
@@ -153,9 +154,10 @@ vCPUs, 32,000,000,000 bytes RAM, and no accelerator. The certificate took
 `1d43a6597a1f15ac19fccd6ef080877a9cfd0870`. The calculation is
 deterministic and uses no random seed.
 
-All 31 repository tests and 17 manifests passed. The later poster style,
-asset, and measure gates failed; that presentation issue is being repaired
-separately and does not alter the scientific checker.
+The cumulative release parent passed all 31 repository tests, 17 manifests,
+and Posterly preflight, style, asset, measure, and strict-polish gates with zero
+warnings on HF `cpu-upgrade` (run `4b29d0fe-6893-436c-95bb-e9f93fad89cb`,
+job `DineshAI/6a6e35486b79c09949c1e888`).
 
 ## Limitations
 

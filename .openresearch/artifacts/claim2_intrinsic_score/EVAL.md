@@ -1,5 +1,7 @@
 # Claim 2 proof-certificate evaluation
 
+- Verdict: **VERIFIED** within the theorem's explicit exact-recovery condition
+- Confidence: **MEDIUM**
 - Status: **PROOF_CERTIFICATE_PASS**
 - Scope: Theorem 1 conditional on exact subspace recovery
 - Exact normal/tangent cases: `12`

@@ -1,25 +1,43 @@
+---
+title: "Reproduction: Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions"
+emoji: 🎯
+colorFrom: yellow
+colorTo: red
+sdk: static
+pinned: false
+tags:
+ - trackio
+ - trackio-logbook
+ - open-experiment
+ - icml2026-repro
+ - paper-L5JTAPUdbQ
+---
+
 # Reproduction: Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions
 
-ICML 2026 reproduction for OpenReview `L5JTAPUdbQ`.
+The canonical evaluator entrypoint is [`logbook.json`](logbook.json). Its root
+opens the current cumulative reproduction first; the exact judged 0/10 pages
+remain reachable under **Historical rejected baseline**.
 
-## Scope and verdict provenance
+| Claim | Candidate verdict | Confidence | Current page |
+| --- | --- | --- | --- |
+| 1 | FALSIFIED | HIGH | [threshold escape](#/current-claim-1-threshold-escape) |
+| 2 | VERIFIED | MEDIUM | [intrinsic score structure](#/current-claim-2-intrinsic-score) |
+| 3 | FALSIFIED | HIGH | [recovery non-identifiability](#/current-claim-3-identifiability-counterexample) |
+| 4 | FALSIFIED | HIGH | [weak-domain theorem failure](#/current-claim-4-threshold-falsification) |
+| 5 | VERIFIED | MEDIUM | [prior-rate proof chain](#/current-claim-5-prior-rate) |
 
-`contract/live_claims.json` is an immutable official challenge input. Its `status: unverified` fields are source metadata, not this repository's results. Our separate scoped CPU audit verdicts are in `reproduction_verdicts.json`. They are source/theorem/finite-construction audits, **not** end-to-end diffusion-model training.
+These are candidate reproduction verdicts, not awarded points. The previous
+live judge result remains **0/10** at Space revision
+`fe1fd273934cf8568fbcc1187d857e7662313648` until the judge evaluates a new
+published revision.
 
-## Clean CPU bootstrap
+## Fixed reproduction command
 
-```bash
-./scripts/bootstrap_reproduction.sh
-./.venv/bin/python scripts/validate_release.py
-./scripts/run_full_poster_gates.sh
+```sh
+./scripts/bootstrap_reproduction.sh && ./.venv/bin/python scripts/validate_release.py && ./scripts/run_full_poster_gates.sh
 ```
 
-The source archive and PDF are pinned under `evidence/source/`; hashes are in `evidence/source/SHA256SUMS`.
-
-## Poster gates and trace
-
-`scripts/run_full_poster_gates.sh` pins Posterly at `94d374d72afdc372af226eb745e82af00f07e43f` and runs all style rules plus the real-figure area/provenance gate without disabled rules or a waiver. `logbook/GATE_REPORT.json` is the retained result. No public agent trace is declared or attached in this release; private local traces are intentionally excluded.
-
-## Official validator
-
-See `outputs/official_validator_transcript.log` for the exact downloaded validator URL, target, timestamp, command, and exit status. Re-run the documented command after installing Trackio and configuring an authenticated HF target.
+The environment is pinned by [`pyproject.toml`](pyproject.toml) and
+[`uv.lock`](uv.lock). Every scientific and release-gate run used Hugging Face
+`cpu-upgrade` with no accelerator.

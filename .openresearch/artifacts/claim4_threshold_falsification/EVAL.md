@@ -14,7 +14,7 @@
 - Independent checker: **PASS**
 - Negative-control checker exit: `1` (nonzero required)
 - Cumulative regression: 31 tests and 17 evidence/release manifests passed
-- Non-scientific failure: Posterly style, asset, and measure gates failed; diagnostic repair is tracked in the child experiment.
+- Cumulative release gate: 31 tests, 17 manifests, and all five Posterly gates passed with zero warnings in HF run `4b29d0fe-6893-436c-95bb-e9f93fad89cb`.
 
 The target has no ambient or intrinsic density and is not log-concave, yet it
 satisfies Assumptions 1 and 2. The exact threshold-escape certificate

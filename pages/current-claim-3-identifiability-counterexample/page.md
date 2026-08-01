@@ -6,6 +6,9 @@ This proof-level counterexample falsifies Appendix B.1 Lemma 3's claim that
 Assumption 1 suffices for data-only exact recovery of all declared subspaces.
 That recovery step is used in the paper's Theorem 2 analysis. This is not a
 finite-sample proxy and does not select a sample size from the claimed rate.
+Confidence is **HIGH** because the two valid parameterizations have exactly
+the same observation law and disjoint exact-recovery targets for every sample
+size.
 
 ## Exact claim contract
 
@@ -79,6 +82,7 @@ conditional distribution minimally span its declared subspace.
 - [Exact command and locked environment](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim3_identifiability/reproduction.md)
 - [Pre-run resource estimate](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim3_identifiability/resource_estimate.md)
 - [Limitations](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim3_identifiability/limitations.md)
+- [Evaluation summary](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim3_identifiability/EVAL.md)
 
 The [generator](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/src/claim3_identifiability_counterexample.py)
 and [independent verifier](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/verifiers/verify_claim3_identifiability.py)
@@ -105,14 +109,13 @@ vCPUs and 32,000,000,000 bytes RAM with no accelerator. The scientific check
 took `0.002452` seconds; the whole cumulative job took `42` seconds, costing
 approximately `$0.00035` at `$0.0005/minute`. Run
 `71e51c0f-2023-4b18-bffb-10ed53c8d160`, HF job
-`DineshAI/6a6e0e7d6b79c09949c1e636`, Git
+`DineshAI/6a6e0e7d6b79c09949c1e636`, scientific Git SHA
 `1d40b18820f2da1c593101f7156e9e01dc3d1ef8`, deterministic exact arithmetic,
 no random seed.
 
-All 31 cumulative repository tests and 17 offline manifests passed. The
-inherited historical poster gate then failed its already-known style, asset,
-and measure checks; that later presentation failure does not alter the
-scientific verifier result.
+The cumulative release parent passed all 31 repository tests, 17 manifests,
+and all five Posterly gates with zero warnings on HF `cpu-upgrade` (run
+`4b29d0fe-6893-436c-95bb-e9f93fad89cb`).
 
 ## Limitations
 

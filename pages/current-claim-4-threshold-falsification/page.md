@@ -85,6 +85,9 @@ estimator; it refutes the paper's broad claim about its stated results.
 - [Claim 4 source audit](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim4_threshold_falsification/source_audit.md)
 - [Claim 4 method](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim4_threshold_falsification/method.md)
 - [Claim 4 limitations](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim4_threshold_falsification/limitations.md)
+- [Claim 4 command and environment](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim4_threshold_falsification/reproduction.md)
+- [Claim 4 resource estimate](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim4_threshold_falsification/resource_estimate.md)
+- [Claim 4 evaluation summary](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim4_threshold_falsification/EVAL.md)
 - [Shared theorem raw JSON](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim1_threshold_escape/raw_results.json)
 
 The executable
@@ -117,9 +120,9 @@ vCPUs, 32,000,000,000 bytes RAM, and no accelerator. The Claim 4 route took
 `7075b338d13fd488ec0a556e05fd0954f4e5f712`. The route is deterministic
 and uses no random seed.
 
-All 31 repository tests and 17 manifests passed. The later poster style,
-asset, and measure gates failed; that presentation issue is isolated in the
-next experiment and does not alter this scientific checker.
+The cumulative release parent passed all 31 repository tests, 17 manifests,
+and all five Posterly gates with zero warnings on HF `cpu-upgrade` (run
+`4b29d0fe-6893-436c-95bb-e9f93fad89cb`).
 
 ## Limitations
 

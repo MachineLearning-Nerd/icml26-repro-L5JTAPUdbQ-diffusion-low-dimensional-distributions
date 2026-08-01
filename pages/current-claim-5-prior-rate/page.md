@@ -78,6 +78,7 @@ source used to support the Holder wording.
 - [Exact command and locked environment](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim5_prior_rate/reproduction.md)
 - [Pre-run resource estimate](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim5_prior_rate/resource_estimate.md)
 - [Limitations](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim5_prior_rate/limitations.md)
+- [Evaluation summary](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/.openresearch/artifacts/claim5_prior_rate/EVAL.md)
 
 The [generator](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/src/claim5_primary_proof_chain.py)
 and [independent verifier](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/verifiers/verify_claim5_primary_proof_chain.py)
@@ -104,13 +105,12 @@ vCPUs and 32,000,000,000 bytes RAM with no accelerator. The certificate took
 approximately `$0.000883` at `$0.0005/minute`. Run
 `1bbdfbc1-3ab4-4b24-a50b-55c18405d322`, HF job
 `DineshAI/6a6e11b4a00abefd4b28b92c`, Git
-`c59609443ad89cf114c0875e46fc1f4c08653e28`, deterministic exact arithmetic,
+scientific Git SHA `c59609443ad89cf114c0875e46fc1f4c08653e28`, deterministic exact arithmetic,
 no random seed.
 
-All 31 repository tests and 17 offline manifests passed. The inherited
-historical poster gate then failed its already-known style, asset, and measure
-checks after downloading browser assets; that presentation failure does not
-alter the scientific verifier result.
+The cumulative release parent passed all 31 repository tests, 17 manifests,
+and all five Posterly gates with zero warnings on HF `cpu-upgrade` (run
+`4b29d0fe-6893-436c-95bb-e9f93fad89cb`).
 
 ## Limitations
 

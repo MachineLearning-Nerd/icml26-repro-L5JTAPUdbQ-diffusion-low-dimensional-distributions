@@ -1,6 +1,7 @@
 # Claim 3 evaluation
 
 - Verdict: **FALSIFIED**
+- Confidence: **HIGH**
 - Scope: Appendix B.1 exact-subspace-recovery lemma used by Theorem 2
 - Counterexample observation TV: `0.0`
 - Best simultaneous exact-recovery success probability: `0.5`
