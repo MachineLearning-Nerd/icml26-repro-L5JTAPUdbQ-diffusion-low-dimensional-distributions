@@ -1,0 +1,4 @@
+{
+  "protocol": "full d=48,M=128,k=3,N=50000,eval=10000",
+  "ground_truth": "closed-form score of Gaussian-smoothed uniform-cube mixture"
+}

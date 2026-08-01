@@ -1,0 +1,35 @@
+{
+  "seed": 20261001,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 1.8611300606057062,
+  "seconds": 32.8267867565155,
+  "device": "local CPU numpy float32 streaming",
+  "classification": "non-toy literal paper-scale synthetic protocol",
+  "violations": {
+    "target": "equal-weight uniform intrinsic cubes",
+    "UoS_conditions": {
+      "d": 48,
+      "M": 128,
+      "k": 3,
+      "component_mass": 0.0078125,
+      "mass_lower_bound_1_over_cpM": 0.0078125,
+      "generic_intersection_dimension_upper_bound": 0,
+      "bounded_support_subgaussian": true
+    },
+    "regularity_violations": {
+      "ambient_density_exists": false,
+      "density_lower_bound": false,
+      "boundary_discontinuity_witness": "uniform cube density jumps from 1/(2a)^k inside to 0 outside at every intrinsic boundary",
+      "holder_continuity": false,
+      "global_log_concavity": false,
+      "midpoint_off_union_distance": 0.22634269297122955,
+      "support_gap_density": 0.0
+    }
+  }
+}
+exit=0

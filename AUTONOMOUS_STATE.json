@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_3_independent_dependency_audit_complete",
-  "next_action": "independent_review_claim_3_score_bearing_evidence_then_claim_4_local_protocol",
+  "phase": "claim_4_attempt_1_fullscale_weak_regularities_inconclusive",
+  "next_action": "advance_claim_5_independent_prior_work_derivation_or_comparator",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -33,7 +33,7 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T10:45:00Z",
+  "last_checkpoint": "2026-08-01T18:00:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -51,10 +51,10 @@
     "evidence": "outputs/claim3_fullscale/result.json"
   },
   "claim_4_outcome": {
-    "verdict": "verified_scoped",
-    "scope": "Pinned-source regularity-scope audit plus finite CPU singular union-of-subspaces witness; not diffusion-model training.",
-    "reason": "The source explicitly removes the named smoothness, log-concavity, bounded-density, and density-lower-bound restrictions; a valid singular witness confirms ambient density is not assumed.",
-    "evidence": "outputs/claim4_attempt1_audit.md"
+    "verdict": "inconclusive",
+    "scope": "Full d=48/M=128/k=3/N=50000 clean-room local CPU finite experiment on discontinuous non-log-concave singular UoS uniform-cube target; not a universal theorem proof.",
+    "evidence": "outputs/claim4_fullscale/result.json",
+    "mse": 1.8611300606057062
   },
   "claim_5_outcome": {
     "verdict": "verified_scoped",
