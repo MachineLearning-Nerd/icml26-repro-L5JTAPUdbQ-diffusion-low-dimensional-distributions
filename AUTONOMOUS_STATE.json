@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_2_fullscale_cleanroom_inconclusive",
-  "next_action": "run pre-registered Claim 2 t-grid and controls before independent review",
+  "phase": "claim_2_fullscale_t_grid_checkpoint",
+  "next_action": "run Claim 2 wrong-subspace, reduced-N, and ambient diagnostics; then independent review",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -32,7 +32,7 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T09:00:00Z",
+  "last_checkpoint": "2026-08-01T10:04:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -95,5 +95,20 @@
     "publication_evidence": "outputs/trackio_publish_attempt_20260801T0736Z.log",
     "validator_evidence": "outputs/final_prepublication_validator.log",
     "official_judge_leaderboard_status": "not yet confirmed"
+  },
+  "last_known_git_commit": "49d66a91c70ea60b13dd7f0473093d26efa2fa40",
+  "claim_2_fullscale_checkpoint": {
+    "t_grid": "outputs/claim2_fullscale_grid/summary.json",
+    "complete_cells": [
+      "t=0.1, 20 seeds",
+      "t=0.25, 21 prior exact-compatible seeds",
+      "t=0.5, 20 seeds",
+      "t=1.0, 20 seeds"
+    ],
+    "remaining_controls": [
+      "wrong bases",
+      "N trend",
+      "ambient diagnostic"
+    ]
   }
 }

@@ -1,0 +1,26 @@
+{
+  "paper_protocol": {
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "N": 50000,
+    "eval": 10000,
+    "replicates": 20
+  },
+  "run": {
+    "seed": 20260920,
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "N": 50000,
+    "evaluation_samples": 10000,
+    "t": 1.0,
+    "mse": 0.6021273046563959,
+    "seconds": 32.93409037590027,
+    "backend": "numpy-float32-streaming",
+    "device": "CPU (torch unavailable)",
+    "wrong_bases": false,
+    "classification": "non-toy full-protocol numerical experiment"
+  },
+  "python": "3.14.5"
+}

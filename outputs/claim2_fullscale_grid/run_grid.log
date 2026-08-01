@@ -1,0 +1,960 @@
+START t=0.1 seed=20260901 2026-08-01T08:54:01Z
+{
+  "seed": 20260901,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.239756446018562,
+  "seconds": 132.8329758644104,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260902 2026-08-01T08:56:16Z
+{
+  "seed": 20260902,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.426986261174305,
+  "seconds": 142.20505166053772,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260903 2026-08-01T08:58:40Z
+{
+  "seed": 20260903,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.342353953899323,
+  "seconds": 136.67865085601807,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260904 2026-08-01T09:01:00Z
+{
+  "seed": 20260904,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.426208268612275,
+  "seconds": 132.63643503189087,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260905 2026-08-01T09:03:15Z
+{
+  "seed": 20260905,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.423480577955615,
+  "seconds": 140.09177708625793,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260906 2026-08-01T09:05:39Z
+{
+  "seed": 20260906,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.352074264395318,
+  "seconds": 131.04253673553467,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260907 2026-08-01T09:07:52Z
+{
+  "seed": 20260907,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.446967349240246,
+  "seconds": 131.84849214553833,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260908 2026-08-01T09:10:06Z
+{
+  "seed": 20260908,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.239278264572526,
+  "seconds": 135.14191269874573,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260909 2026-08-01T09:12:23Z
+{
+  "seed": 20260909,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.145058692586744,
+  "seconds": 141.84011316299438,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260910 2026-08-01T09:14:48Z
+{
+  "seed": 20260910,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.31378215682342,
+  "seconds": 134.18351793289185,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260911 2026-08-01T09:17:05Z
+{
+  "seed": 20260911,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.34784750008915,
+  "seconds": 142.95212149620056,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260912 2026-08-01T09:19:32Z
+{
+  "seed": 20260912,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.531125978433035,
+  "seconds": 129.04156017303467,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260913 2026-08-01T09:21:44Z
+{
+  "seed": 20260913,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.396768032209051,
+  "seconds": 143.24651098251343,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260914 2026-08-01T09:24:10Z
+{
+  "seed": 20260914,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.34052055911463,
+  "seconds": 141.92333555221558,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260915 2026-08-01T09:26:33Z
+{
+  "seed": 20260915,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.409832202289305,
+  "seconds": 140.65656280517578,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260916 2026-08-01T09:28:56Z
+{
+  "seed": 20260916,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.284325821770704,
+  "seconds": 124.14213514328003,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260917 2026-08-01T09:31:02Z
+{
+  "seed": 20260917,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.425167904388614,
+  "seconds": 132.6277368068695,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260918 2026-08-01T09:33:17Z
+{
+  "seed": 20260918,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.486721273358627,
+  "seconds": 127.90759491920471,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260919 2026-08-01T09:35:26Z
+{
+  "seed": 20260919,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.524584909847777,
+  "seconds": 122.56327414512634,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.1 seed=20260920 2026-08-01T09:37:31Z
+{
+  "seed": 20260920,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.1,
+  "mse": 10.534101670131463,
+  "seconds": 128.44890069961548,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260901 2026-08-01T09:39:41Z
+{
+  "seed": 20260901,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4743162801554262,
+  "seconds": 32.94607496261597,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260902 2026-08-01T09:40:16Z
+{
+  "seed": 20260902,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.505846871992156,
+  "seconds": 32.97175145149231,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260903 2026-08-01T09:40:51Z
+{
+  "seed": 20260903,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4739120046543446,
+  "seconds": 33.40886378288269,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260904 2026-08-01T09:41:26Z
+{
+  "seed": 20260904,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4865309758716811,
+  "seconds": 33.30861496925354,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260905 2026-08-01T09:42:01Z
+{
+  "seed": 20260905,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.5142043662435891,
+  "seconds": 33.214394330978394,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260906 2026-08-01T09:42:36Z
+{
+  "seed": 20260906,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4684034490535167,
+  "seconds": 33.43973135948181,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260907 2026-08-01T09:43:12Z
+{
+  "seed": 20260907,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4956421854994264,
+  "seconds": 33.23596668243408,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260908 2026-08-01T09:43:47Z
+{
+  "seed": 20260908,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.5148236088835676,
+  "seconds": 32.925922870635986,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260909 2026-08-01T09:44:21Z
+{
+  "seed": 20260909,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4933952079479762,
+  "seconds": 32.95074772834778,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260910 2026-08-01T09:44:56Z
+{
+  "seed": 20260910,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4821518627020587,
+  "seconds": 33.246946573257446,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260911 2026-08-01T09:45:32Z
+{
+  "seed": 20260911,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.499162152559442,
+  "seconds": 32.73349165916443,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260912 2026-08-01T09:46:07Z
+{
+  "seed": 20260912,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4779315306499814,
+  "seconds": 33.227195739746094,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260913 2026-08-01T09:46:42Z
+{
+  "seed": 20260913,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.5156958508826583,
+  "seconds": 33.01353740692139,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260914 2026-08-01T09:47:17Z
+{
+  "seed": 20260914,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.518848287902993,
+  "seconds": 32.748573303222656,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260915 2026-08-01T09:47:51Z
+{
+  "seed": 20260915,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4870748282066688,
+  "seconds": 33.29042863845825,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260916 2026-08-01T09:48:27Z
+{
+  "seed": 20260916,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.4825580940270493,
+  "seconds": 32.922786712646484,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260917 2026-08-01T09:49:02Z
+{
+  "seed": 20260917,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.523869462141608,
+  "seconds": 33.226550579071045,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260918 2026-08-01T09:49:37Z
+{
+  "seed": 20260918,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.516271012491724,
+  "seconds": 33.613248109817505,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260919 2026-08-01T09:50:12Z
+{
+  "seed": 20260919,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.5071373045161136,
+  "seconds": 33.06910681724548,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=0.5 seed=20260920 2026-08-01T09:50:47Z
+{
+  "seed": 20260920,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.5,
+  "mse": 1.5246325338160154,
+  "seconds": 33.44231605529785,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260901 2026-08-01T09:51:23Z
+{
+  "seed": 20260901,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5893754126073036,
+  "seconds": 33.716108083724976,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260902 2026-08-01T09:51:59Z
+{
+  "seed": 20260902,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5860755593629109,
+  "seconds": 32.832364559173584,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260903 2026-08-01T09:52:33Z
+{
+  "seed": 20260903,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.580031039476992,
+  "seconds": 33.236371755599976,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260904 2026-08-01T09:53:08Z
+{
+  "seed": 20260904,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5834927093651296,
+  "seconds": 34.76942324638367,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260905 2026-08-01T09:53:46Z
+{
+  "seed": 20260905,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5879192530305661,
+  "seconds": 33.19667935371399,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260906 2026-08-01T09:54:21Z
+{
+  "seed": 20260906,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5756395684143166,
+  "seconds": 33.19991397857666,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260907 2026-08-01T09:54:56Z
+{
+  "seed": 20260907,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5805165756122481,
+  "seconds": 33.0720112323761,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260908 2026-08-01T09:55:31Z
+{
+  "seed": 20260908,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5971301790358154,
+  "seconds": 32.90058612823486,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260909 2026-08-01T09:56:06Z
+{
+  "seed": 20260909,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.591984321709454,
+  "seconds": 33.31451344490051,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260910 2026-08-01T09:56:41Z
+{
+  "seed": 20260910,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5819398064916315,
+  "seconds": 33.02354454994202,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260911 2026-08-01T09:57:16Z
+{
+  "seed": 20260911,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5852894461996029,
+  "seconds": 33.01592969894409,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260912 2026-08-01T09:57:51Z
+{
+  "seed": 20260912,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5801258495518219,
+  "seconds": 32.50515365600586,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260913 2026-08-01T09:58:26Z
+{
+  "seed": 20260913,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5937076590027854,
+  "seconds": 32.87725758552551,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260914 2026-08-01T09:59:02Z
+{
+  "seed": 20260914,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5967528739409016,
+  "seconds": 32.895859241485596,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260915 2026-08-01T09:59:37Z
+{
+  "seed": 20260915,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5828027940972733,
+  "seconds": 33.14191436767578,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260916 2026-08-01T10:00:12Z
+{
+  "seed": 20260916,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.584009765208425,
+  "seconds": 32.64702248573303,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260917 2026-08-01T10:00:47Z
+{
+  "seed": 20260917,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5974058021202269,
+  "seconds": 32.60667037963867,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260918 2026-08-01T10:01:22Z
+{
+  "seed": 20260918,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5986226405519061,
+  "seconds": 33.1318941116333,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260919 2026-08-01T10:01:56Z
+{
+  "seed": 20260919,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.5882117119665015,
+  "seconds": 33.1724910736084,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START t=1.0 seed=20260920 2026-08-01T10:02:31Z
+{
+  "seed": 20260920,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 1.0,
+  "mse": 0.6021273046563959,
+  "seconds": 32.93409037590027,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
