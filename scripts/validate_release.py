@@ -19,3 +19,4 @@ for manifest in manifests:
     cwd=ROOT if '/' in first else manifest.parent
     subprocess.run(['sha256sum','-c',str(manifest if cwd==ROOT else manifest.name)],cwd=cwd,check=True,stdout=subprocess.DEVNULL)
 print(f'offline release checks passed; {len(manifests)} source/evidence/release manifests verified; posterly full-gate and official-validator commands require documented external tools')
+subprocess.run([str(ROOT/'.venv/bin/python'), str(ROOT/'scripts/evaluator_blind_review.py')], cwd=ROOT, check=True)
