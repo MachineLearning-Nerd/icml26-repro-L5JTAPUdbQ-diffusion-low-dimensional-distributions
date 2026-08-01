@@ -1,0 +1,18 @@
+{
+  "gate": "asset",
+  "status": "FAIL",
+  "checks": [
+    {
+      "id": "paper_fig_count",
+      "severity": "hard",
+      "status": "FAIL",
+      "detail": "only 0 img[data-source=paper]; need >= 2. Pull at least 2 real figures from the paper (or use a human-checkpoint waiver per DESIGN_FINAL \\xa74)."
+    },
+    {
+      "id": "total_fig_area",
+      "severity": "hard",
+      "status": "NOTICE",
+      "detail": "total paper-image area = 0.00% of body; WAIVED via --waive-total-area (pure-theory poster)."
+    }
+  ]
+}

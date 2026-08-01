@@ -15,3 +15,4 @@
 - Claim 5: verified as a scoped pinned-source Equation-1 comparator-rate audit plus finite CPU exponent arithmetic; this is not an independent prior-work theorem reproduction or diffusion training. Evidence: `outputs/claim5_attempt1_audit.md`.
 - Next action: assemble logbook and run local validation.
 - Publication: not started
+- Logbook: fixed-order Trackio pages, pinned executive summary, trace attachment, and official validator are complete. Publication remains blocked: posterly asset/measure/strict-polish gates fail (`logbook/GATE_REPORT.json`); a simple poster draft must be repaired/rebuilt with two source figures and passing layout gates before `poster_embed.html` can be considered release-ready.

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_5_verified_scoped",
-  "next_action": "assemble_logbook_and_run_local_validation",
+  "phase": "logbook_assembled_poster_gate_blocked",
+  "next_action": "repair_posterly_asset_measure_and_strict_polish_gates_then_generate_poster_embed_and_revalidate",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -53,5 +53,14 @@
     "scope": "Pinned-source Equation (1) comparator-rate transcription and finite exponent arithmetic; not an independent prior-work theorem reproduction or diffusion-model training.",
     "reason": "The retained source displays epsilon^(-(d+2 beta)/beta) for beta-Holder smooth-density prior work and identifies ambient-d dependence as a curse; a denominator-mutation negative control fails.",
     "evidence": "outputs/claim5_attempt1_audit.md"
+  },
+  "logbook_assembly": {
+    "trackio_version": "0.34.0",
+    "trace_attached": true,
+    "official_validator": "passed",
+    "tests": "10 passed",
+    "manifest_checks": "passed",
+    "poster_gates": "failed: asset requires two paper figures; measure alignment and strict-polish require layout repair",
+    "publication_allowed": false
   }
 }

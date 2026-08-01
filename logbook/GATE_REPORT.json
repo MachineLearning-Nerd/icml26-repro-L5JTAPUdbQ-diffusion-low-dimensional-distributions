@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "skill": "posterly",
+  "timestamp": "2026-08-01T06:48:43Z",
+  "poster_html": "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
+  "canvas": {
+    "source": "page-rule",
+    "width_cm": 60.96,
+    "height_cm": 91.44,
+    "orientation": "portrait",
+    "source_url": null
+  },
+  "overall": "FAIL",
+  "hard_failures": 3,
+  "warnings": 0,
+  "gates": [
+    {
+      "name": "preflight",
+      "severity": "hard",
+      "status": "PASS",
+      "command": [
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/poster_check.py",
+        "preflight",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html"
+      ],
+      "summary": {
+        "exit_code": 0,
+        "tail": "[preflight] /home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html\n  problems: 0   warnings: 0\n[preflight] PASS"
+      },
+      "artifacts": []
+    },
+    {
+      "name": "style",
+      "severity": "hard",
+      "status": "PASS",
+      "command": [
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/style_check.py",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
+        "--disable",
+        "4,5",
+        "--json",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/style_check.json"
+      ],
+      "summary": {
+        "gate": "style",
+        "status": "PASS",
+        "rules": [
+          {
+            "id": 1,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 2,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 3,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 4,
+            "severity": "hard",
+            "status": "SKIPPED",
+            "detail": "disabled via --disable (rule 4)"
+          },
+          {
+            "id": 5,
+            "severity": "hard",
+            "status": "SKIPPED",
+            "detail": "disabled via --disable (rule 5)"
+          },
+          {
+            "id": 6,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 7,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 8,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 9,
+            "severity": "warn",
+            "status": "PASS",
+            "detail": "9 --fs-* token(s) defined"
+          },
+          {
+            "id": 10,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 11,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          },
+          {
+            "id": 12,
+            "severity": "warn",
+            "status": "PASS",
+            "detail": "dark area = 0.0% of poster (<= 8%)"
+          },
+          {
+            "id": 13,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
+          }
+        ]
+      },
+      "artifacts": [
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/style_check.json"
+      ]
+    },
+    {
+      "name": "asset",
+      "severity": "hard",
+      "status": "FAIL",
+      "command": [
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/asset_check.py",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
+        "--manifest",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/FIGURE_MANIFEST.json",
+        "--waive-total-area",
+        "--json",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/asset_check.json"
+      ],
+      "summary": {
+        "gate": "asset",
+        "status": "FAIL",
+        "checks": [
+          {
+            "id": "paper_fig_count",
+            "severity": "hard",
+            "status": "FAIL",
+            "detail": "only 0 img[data-source=paper]; need >= 2. Pull at least 2 real figures from the paper (or use a human-checkpoint waiver per DESIGN_FINAL \\xa74)."
+          },
+          {
+            "id": "total_fig_area",
+            "severity": "hard",
+            "status": "NOTICE",
+            "detail": "total paper-image area = 0.00% of body; WAIVED via --waive-total-area (pure-theory poster)."
+          }
+        ]
+      },
+      "artifacts": [
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/asset_check.json"
+      ]
+    },
+    {
+      "name": "measure",
+      "severity": "hard",
+      "status": "FAIL",
+      "command": [
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/poster_check.py",
+        "measure",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html"
+      ],
+      "summary": {
+        "exit_code": 1,
+        "tail": "  target col bottom = 3181 px  (footer-strip/footer top 3221 px  - target gap 40 px)\n  col0     3548.44 px -> trim ~367 px\n  col1     3303.77 px -> trim ~122 px\n  Tip: a body paragraph adds/removes ~25 px per wrapped line, a callout ~60-90 px,\n       a small figure ~80-150 px. Prefer trimming the tallest column first.\nFAIL: spread 244.67 >= max 5.0\nFAIL: min gap -327.00 < 30.0\n[measure] FAIL -- alignment gate not met"
+      },
+      "artifacts": []
+    },
+    {
+      "name": "polish",
+      "severity": "hard",
+      "status": "FAIL",
+      "command": [
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/poster_check.py",
+        "polish",
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
+        "--max-card-trailing",
+        "0.15",
+        "--strict"
+      ],
+      "summary": {
+        "exit_code": 1,
+        "tail": "  banner images       : 0\n  warnings            : 5\n  WARN: WIDOW: <p class='body-text'> wraps to a stranded last line that fills only 11% of the typeset width ('CPU.'), a runt (SKILL.md Gate B). Pull a word down -- glue the last two tokens with &nbsp;, or reword so the last line carries more of the measure. Context: '...idence checks formulas, assumptions, and controls on CPU.'.\n  WARN: WIDOW: <p class='body-text'> wraps to a stranded last line that fills only 22% of the typeset width ('sentences.'), a runt (SKILL.md Gate B). Pull a word down -- glue the last two tokens with &nbsp;, or reword so the last line carries more of the measure. Context: 'Scoped source audit: how step 1 works in 1-2 sentences.'.\n  WARN: WIDOW: <p class='body-text'> wraps to a stranded last line that fills only 32% of the typeset width ('of the equation.'), a runt (SKILL.md Gate B). Pull a word down -- glue the last two tokens with &nbsp;, or reword so the last line carries more of the measure. Context: '...ource audit: one-sentence interpretation of the equation.'.\n  WARN: WIDOW: <div class='caption fs-2'> wraps to a stranded last line that fills only 11% of the typeset width ('audit.'), a runt (SKILL.md Gate B). Pull a word down -- glue the last two tokens with &nbsp;, or reword so the last line carries more of the measure. Context: 'Left: Scoped source audit. Right: Scoped source audit.'.\n  WARN: WIDOW: <p class='body-text mt-2 fs-3'> wraps to a stranded last line that fills only 24% of the typeset width ('of the table.'), a runt (SKILL.md Gate B). Pull a word down -- glue the last two tokens with &nbsp;, or reword so the last line carries more of the measure. Context: '...d source audit: one-sentence interpretation of the table.'.\n[polish] FAIL -- --strict and warnings present"
+      },
+      "artifacts": []
+    }
+  ]
+}
