@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "skill": "posterly",
-  "timestamp": "2026-08-01T07:04:11Z",
+  "timestamp": "2026-08-01T07:23:08Z",
   "poster_html": "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
   "canvas": {
     "source": "page-rule",
@@ -13,6 +13,7 @@
   "overall": "PASS",
   "hard_failures": 0,
   "warnings": 0,
+  "soft_advisories": 0,
   "gates": [
     {
       "name": "preflight",
@@ -38,8 +39,6 @@
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/style_check.py",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
-        "--disable",
-        "4,5",
         "--json",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/style_check.json"
       ],
@@ -68,14 +67,14 @@
           {
             "id": 4,
             "severity": "hard",
-            "status": "SKIPPED",
-            "detail": "disabled via --disable (rule 4)"
+            "status": "PASS",
+            "detail": "2 hue cluster(s), all within 22 deg of the palette"
           },
           {
             "id": 5,
             "severity": "hard",
-            "status": "SKIPPED",
-            "detail": "disabled via --disable (rule 5)"
+            "status": "PASS",
+            "detail": "ok"
           },
           {
             "id": 6,
@@ -124,6 +123,12 @@
             "severity": "hard",
             "status": "PASS",
             "detail": "ok"
+          },
+          {
+            "id": 14,
+            "severity": "hard",
+            "status": "PASS",
+            "detail": "ok"
           }
         ]
       },
@@ -141,7 +146,6 @@
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
         "--manifest",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/FIGURE_MANIFEST.json",
-        "--waive-total-area",
         "--json",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/asset_check.json"
       ],
@@ -171,31 +175,31 @@
             "id": "fig_area",
             "severity": "hard",
             "status": "PASS",
-            "detail": "asset paper-figure-1-score-error: 4.70% of poster (>= 1.50%)."
+            "detail": "asset paper-figure-1-score-error: 5.45% of poster (>= 1.50%)."
           },
           {
             "id": "fig_resolution",
             "severity": "hard",
             "status": "PASS",
-            "detail": "asset paper-figure-1-score-error: natural 1680x1480 = 2.58x rendered (652x575); >= 2.0x target."
+            "detail": "asset paper-figure-1-score-error: natural 1680x1480 = 2.39x rendered (702x619); >= 2.0x target."
           },
           {
             "id": "fig_area",
             "severity": "hard",
             "status": "PASS",
-            "detail": "asset paper-theorem-rate-excerpt: 2.45% of poster (>= 1.50%)."
+            "detail": "asset paper-theorem-rate-excerpt: 3.04% of poster (>= 1.50%)."
           },
           {
             "id": "fig_resolution",
             "severity": "hard",
             "status": "PASS",
-            "detail": "asset paper-theorem-rate-excerpt: natural 2000x720 = 2.71x rendered (738x265); >= 2.0x target."
+            "detail": "asset paper-theorem-rate-excerpt: natural 2000x720 = 2.42x rendered (815x297); >= 2.0x target."
           },
           {
             "id": "total_fig_area",
             "severity": "hard",
-            "status": "NOTICE",
-            "detail": "total paper-image area = 10.68% of body; WAIVED via --waive-total-area (pure-theory poster)."
+            "status": "PASS",
+            "detail": "total paper-image area = 12.10% of body (>= 12.00%)."
           }
         ]
       },
@@ -211,32 +215,32 @@
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/poster_check.py",
         "measure",
-        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html"
+        "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
+        "--reset-budget"
       ],
       "summary": {
         "exit_code": 0,
-        "tail": "[measure] viewport = 2304 x 3456 px\n[measure] columns found: 2\n  col0    last-card-bottom =  3131.66 px\n  col1    last-card-bottom =  3131.66 px\n  spread = 0.00 px   (target < 5.0 px)\n  intercard gap in [26.45 (col0), 26.45 (col0)] px   (target [12.0, 50.0])\n  gap -> footer in [37.78, 37.78] px   (target [30.0, 50.0])\n[measure] PASS"
+        "tail": "[measure] viewport = 2304 x 3456 px\n[measure] columns found: 2\n  col0    last-card-bottom =  3183.66 px\n  col1    last-card-bottom =  3183.66 px\n  spread = 0.00 px   (target < 5.0 px)\n  intercard gap in [18.89 (col0), 18.89 (col0)] px   (target [12.0, 50.0])\n  gap -> footer in [37.78, 37.78] px   (target [30.0, 50.0])\n[measure] PASS"
       },
       "artifacts": []
     },
     {
       "name": "polish",
-      "severity": "hard",
+      "severity": "soft",
       "status": "PASS",
       "command": [
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.venv/bin/python",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/.tools/posterly/tools/poster_check.py",
         "polish",
         "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
-        "--max-card-trailing",
-        "0.15",
         "--strict"
       ],
       "summary": {
         "exit_code": 0,
-        "tail": "  cards checked       : 7\n  inner-void cards    : 7\n  beside-text floats  : 0\n  flex/<br> parents   : 0\n  header logos        : 0\n  banner images       : 0\n  warnings            : 0\n[polish] PASS"
+        "tail": "  contrast pairs (<7) : 6\n  case-corrupt runs   : 0\n  beside-text floats  : 0\n  flex/<br> parents   : 0\n  header logos        : 0\n  banner images       : 0\n  warnings            : 0\n[polish] PASS"
       },
-      "artifacts": []
+      "artifacts": [],
+      "advisories": 0
     }
   ]
 }

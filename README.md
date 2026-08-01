@@ -11,13 +11,14 @@ ICML 2026 reproduction for OpenReview `L5JTAPUdbQ`.
 ```bash
 ./scripts/bootstrap_reproduction.sh
 ./.venv/bin/python scripts/validate_release.py
+./scripts/run_full_poster_gates.sh
 ```
 
 The source archive and PDF are pinned under `evidence/source/`; hashes are in `evidence/source/SHA256SUMS`.
 
-## Release limitation
+## Poster gates and trace
 
-The tracked poster gate report used disabled style rules and an image-area waiver. It is retained for provenance but is **not** represented as a full strict release gate. Publication remains blocked until a full non-waived posterly toolchain run is retained. The redacted Pi trace is not committed to the public Git clone; any hosted trace attachment is separately controlled by Trackio.
+`scripts/run_full_poster_gates.sh` pins Posterly at `94d374d72afdc372af226eb745e82af00f07e43f` and runs all style rules plus the real-figure area/provenance gate without disabled rules or a waiver. `logbook/GATE_REPORT.json` is the retained result. The redacted Pi trace is intentionally hosted through Trackio rather than committed to the public Git clone.
 
 ## Official validator
 

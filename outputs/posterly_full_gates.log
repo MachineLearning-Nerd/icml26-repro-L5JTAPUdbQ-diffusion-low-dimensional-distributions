@@ -1,0 +1,12 @@
+From https://github.com/Chenruishuo/posterly
+ * branch            94d374d72afdc372af226eb745e82af00f07e43f -> FETCH_HEAD
+HEAD is now at 94d374d docs(fonts): split opsz-axis faces into text and display static instances
+[run_gates] /home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html
+  canvas: 60.96 x 91.44 cm portrait (source: page-rule)
+  preflight [hard] -> PASS
+  style     [hard] -> PASS
+  asset     [hard] -> PASS
+  measure   [hard] -> PASS
+  polish    [soft] -> PASS
+  overall: PASS   hard_failures: 0   warnings: 0
+[run_gates] report -> /home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/GATE_REPORT.json

@@ -23,14 +23,14 @@
     {
       "id": 4,
       "severity": "hard",
-      "status": "SKIPPED",
-      "detail": "disabled via --disable (rule 4)"
+      "status": "PASS",
+      "detail": "2 hue cluster(s), all within 22 deg of the palette"
     },
     {
       "id": 5,
       "severity": "hard",
-      "status": "SKIPPED",
-      "detail": "disabled via --disable (rule 5)"
+      "status": "PASS",
+      "detail": "ok"
     },
     {
       "id": 6,
@@ -76,6 +76,12 @@
     },
     {
       "id": 13,
+      "severity": "hard",
+      "status": "PASS",
+      "detail": "ok"
+    },
+    {
+      "id": 14,
       "severity": "hard",
       "status": "PASS",
       "detail": "ok"

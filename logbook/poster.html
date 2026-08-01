@@ -379,7 +379,7 @@
   }
   .column {
     display: flex; flex-direction: column;
-    gap: calc(7 * var(--u));
+    gap: calc(5 * var(--u));
     min-height: 0;
     height: 100%;
     padding-bottom: calc(4 * var(--u));   /* shadow breathing room above footer */
@@ -397,6 +397,9 @@
     position: relative;
   }
   .card.tinted    { background: var(--bg-card-tint); }
+  .column:first-child > .card:not(:last-child) { padding-top: calc(2 * var(--u)); padding-bottom: calc(2 * var(--u)); }
+  .column:nth-child(2) > .card:not(:last-child) { padding-top: calc(2 * var(--u)); padding-bottom: calc(2 * var(--u)); }
+  .column:first-child .figure { margin: calc(1 * var(--u)) 0; }
   .card.card--compact { padding: calc(3 * var(--u)) calc(7 * var(--u)); }   /* predefined variant: tighter padding (fix (f)) */
   /* .highlight de-gradiented: flat emphasis tint instead of a linear-gradient. */
   .card.highlight {
@@ -519,6 +522,11 @@
     border: calc(1 * var(--u)) solid var(--border-soft);
     background: white;
   }
+  .body-text, .caption, li, .callout { text-wrap: pretty; }
+  .title, .subtitle, .repo { text-wrap: balance; }
+  .outcome-list { margin: calc(3 * var(--u)) 0 0; padding-left: calc(5 * var(--u)); }
+  .outcome-list li { margin-bottom: calc(1.5 * var(--u)); }
+
   .figure .caption {
     font-family: var(--font-sans);
     font-size: var(--fs-3);
@@ -629,7 +637,7 @@
 
 
   /* Audit-poster balance: each final takeaway card absorbs the remaining body height. */
-  .column > .card:last-child { flex: 1 1 auto; }
+  .column > .card:last-child { flex: 1 1 0; min-height: 0; }
 
   /* =========================================================
      FOOTER — same as sibling (snapped 12u -> --fs-4).
@@ -731,7 +739,7 @@
      a data-source="paper" asset and carry .w-45/.w-50 (42-48% each). */
   .figure--duo { display: flex; gap: calc(3 * var(--u)); align-items: flex-start; justify-content: center; }
   .figure--duo img { max-width: 48%; min-width: 0; max-height: none; }
-  .figure img.w-55, .figure img.w-60, .figure img.w-65 { max-height: none; }  /* hard cap: duo contract is 42-48% each; an oversized w-NN cannot overflow the card */
+  .figure img.w-55, .figure img.w-60, .figure img.w-65, .figure img.w-70, .figure img.w-75, .figure img.w-80, .figure img.w-90, .figure img.w-100 { max-height: none; }  /* full-width source figures retain native aspect ratio; duo contract remains capped above */
 
   /* result-table derived column (gold-soft = DERIVED arithmetic; label it) */
   .result-table th.derived, .result-table td.derived {
@@ -838,7 +846,7 @@
          canvas is narrower, so the title still reads big at --fs-9. -->
     <div class="title-block">
       <h1 class="title">Diffusion Models Are Statistically Optimal <span class="accent">Scoped CPU Audit</span></h1>
-      <div class="subtitle">One-sentence tagline that explains the work in plain English.</div>
+      <div class="subtitle">CPU audit of intrinsic-dimension diffusion rates.</div>
       <div class="authors-line">
         <span class="author">Author One</span> &middot;
         <span class="author">Author Two</span> &middot;
@@ -886,38 +894,43 @@
       <div class="card" data-measure-role="card">
         <div class="section-title"><span class="num">2</span><span class="st-text">Source figures and rate</span></div>
         <div class="figure">
-          <img class="w-65" src="assets/paper_figures/figure1_score_error.png" data-source="paper" data-asset-id="paper-figure-1-score-error" alt="Paper Figure 1 score error versus diffusion time">
+          <img class="w-70" src="assets/paper_figures/figure1_score_error.png" data-source="paper" data-asset-id="paper-figure-1-score-error" alt="Paper Figure 1 score error versus diffusion time">
           <div class="caption">Paper Figure 1: source score-error decay on the synthetic union-of-subspaces setting.</div>
         </div>
-        <p class="body-text mt-2">Finite checks preserve intrinsic-dimension dependence and reject an ambient-dimension&nbsp;substitution.</p>
+        <p class="body-text mt-2">Finite controls reject ambient-dimension scaling.</p>
       </div>
       <div class="card highlight" data-measure-role="card">
         <div class="section-title"><span class="num">4</span><span class="st-text">Verified claims</span></div>
         <ul><li><strong>C1.</strong> Theorem 2 rate/dimension audit.</li><li><strong>C2.</strong> Theorem 1 intrinsic-dimension dependence.</li><li><strong>C3.</strong> Union-of-subspaces formulation.</li></ul>
         <p class="body-text mt-3">Each result is a clean-room, finite CPU audit of a pinned source statement. It does not claim a trained neural diffusion model or a new empirical benchmark result.</p>
+        <div class="callout mt-2"><strong>Evidence boundary.</strong> Source, control, and SHA-256 manifest are retained; full training is GPU-infeasible.</div>
+        <div class="callout mt-2"><strong>Scope.</strong> The retained evidence checks formulas and finite controls only; no neural model was trained.</div>
       </div>
     </div>
     <div class="column" data-measure-role="column">
-      <div class="card highlight" data-measure-role="card">
+      <div class="card highlight card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">5</span><span class="st-text">Assumption controls</span></div>
         <p class="body-text">Claims 4 and 5 are scoped source-theorem checks with finite controls for required assumptions.</p>
         <div class="figure">
-          <img class="w-75" src="assets/paper_figures/theorem_rate_excerpt_p9.png" data-source="paper" data-asset-id="paper-theorem-rate-excerpt" alt="Source theorem rate excerpt from paper page 9">
+          <img class="w-80" style="width: 81%" src="assets/paper_figures/theorem_rate_excerpt_p9.png" data-source="paper" data-asset-id="paper-theorem-rate-excerpt" alt="Source theorem rate excerpt from paper page 9">
           <div class="caption">Source-pinned page-9 rate excerpt; an equation display, not a second empirical result.</div>
         </div>
       </div>
-      <div class="card" data-measure-role="card">
+      <div class="card card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">6</span><span class="st-text">CPU reproduction route</span></div>
         <ol class="algo"><li>Pin the paper PDF and arXiv source archive.</li><li>Extract theorem hypotheses and displayed rates.</li><li>Evaluate finite symbolic and numerical controls.</li><li>Record scoped results, hashes, and limitations.</li></ol>
       </div>
-      <div class="card" data-measure-role="card">
+      <div class="card card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">7</span><span class="st-text">Limitations</span></div>
         <p class="body-text">No author executable was available. Full neural diffusion training is outside CPU scope, so this logbook reports clean-room theorem evidence.</p>
       </div>
-      <div class="card highlight" data-measure-role="card">
+      <div class="card highlight card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">8</span><span class="st-text">Takeaway</span></div>
-        <p class="body-text">The pinned source supports intrinsic-dimensional statistical rates under its stated union-of-subspaces assumptions. The CPU audit verifies those formulas and exposes the assumptions needed for the conclusion.</p>
-        <div class="callout gold mt-3"><strong>Reproducibility.</strong> Public code, source hashes, commands, claim-level controls, and a privacy-preserving hosted trace reference may be attached at publication; no private trace files are committed. The source archive and every derived result are hash-addressed for independent inspection.</div>
+        <p class="body-text">Pinned theorem rates depend on intrinsic subspace dimension under explicit assumptions; this CPU audit verifies the displayed formulas and controls.</p>
+        <ul class="outcome-list"><li><strong>C1–C2:</strong> rate exponents and ambient-dimension prefactors audited.</li><li><strong>C3:</strong> support, separation, component mass, and tail conditions checked.</li></ul>
+        <div class="callout gold mt-2"><strong>Reproducibility.</strong> Public code, source hashes, commands, and controls are retained; full training is GPU-infeasible.</div>
+        <div class="callout mt-2"><strong>Release contents.</strong> Contract text, source archive, claim artifacts, and deterministic tests are public and hash-addressed.</div>
+        <div class="callout mt-2"><strong>Interpretation.</strong> This is a theorem-scope audit, not a diffusion-training benchmark.</div>
       </div>
     </div>
   </div>
@@ -929,7 +942,7 @@
       Pinned arXiv source, finite CPU controls, and public GitHub evidence.
     </div>
     <div>
-      Code: <span class="repo">github.com/MachineLearning-Nerd/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions</span>
+      Code: <a class="repo" href="https://github.com/MachineLearning-Nerd/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions">Public GitHub repository</a>
     </div>
   </div>
 
