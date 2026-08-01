@@ -106,7 +106,7 @@
     "validator_evidence": "outputs/final_prepublication_validator.log",
     "official_judge_leaderboard_status": "not yet confirmed"
   },
-  "last_known_git_commit": "PENDING_COMMIT",
+  "last_known_git_commit": "fd4a28b66ad6c8ef9522537ce7e31fb55e42c420 (Claim 5 evidence commit)",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",
