@@ -1,0 +1,17 @@
+135: We first present the $L^2$ error for the proposed score estimator $\wh s_t$ in (\ref{eq:score estimator}).
+136: The proof can be found in Appendix \ref{pf-of-thm:thm:score estimation error}.
+137: \begin{theorem}
+138:     \label{thm:score estimation error}
+139:     Suppose the target distribution $p^\star$ satisfies Assumptions~\ref{assume:multi-modal} and \ref{assump:sub-gaussian target}.
+140:     Under the event of exact subspace recovery and $t\leq N^{O(1)}$, the $L^2$-error of the score estimator in (\ref{eq:score estimator}) using $N$ samples satisfies
+141:     \begin{align*}
+142:         &\mathbb{E}\big[\|\widehat{s}_t(X)-s_t^\star(X)\|_2^2\big] \\
+143:         & \quad \leq  C_\score \frac{dM^3}{N} \Big( \frac{1}{t}+\frac{\sigma^{k\vee2}}{t^{{(k\vee2)}/2+1}}\Big)  \polylog N 
+144:     \end{align*}
+145:     for some constant $C_\score >0$ independent of $N$, $d$, $M$ and $t$.
+146:     The expectation here is taken over the i.i.d.\ training samples $\{ X^{(i)}\}_{i=1}^N$ used for score estimation and $X \sim p_t$.
+147: \end{theorem}
+148: 
+149: In words, Theorem \ref{thm:score estimation error} shows that the convergence rate of the $L^2$ error (with respect to diffusion time $t$) of the proposed score estimator depends on the intrinsic dimension $k$, rather than the ambient dimension~$d$. 
+150: This yields a substantial improvement over existing rate-optimal score estimation guarantees for general distributions  \citep{wibisono2024optimal,zhang2024minimaxoptimalityscorebaseddiffusion,dou2024optimalscorematchingoptimal,cai2025minimaxoptimalityprobabilityflow},which do not exploit intrinsic low-dimensional data structures and therefore suffer from the curse of dimensionality. 
+151: 

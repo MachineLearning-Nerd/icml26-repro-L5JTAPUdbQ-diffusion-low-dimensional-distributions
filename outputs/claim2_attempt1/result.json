@@ -1,0 +1,17 @@
+{
+  "theorem_term": "d*M^3/N*(1/t + sigma^(k\u22282)/t^((k\u22282)/2+1))*polylog(N)",
+  "ambient_dimension": 20,
+  "t": 0.5,
+  "sigma": 1.5,
+  "intrinsic_score_factors": {
+    "1": 11.0,
+    "2": 11.0,
+    "3": 21.09188309203678,
+    "5": 87.91347391416552
+  },
+  "k3_factor": 21.09188309203678,
+  "ambient_substitution_factor": 6810127.783203125,
+  "ambient_substitution_ratio": 322879.07881370164,
+  "verdict": "verified_scoped",
+  "scope": "source Theorem 1 symbolic/finite dependence audit; not diffusion-model training"
+}

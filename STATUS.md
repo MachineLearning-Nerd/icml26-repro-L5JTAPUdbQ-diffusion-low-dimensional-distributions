@@ -7,8 +7,9 @@
 - Source pin: `evidence/source/arxiv_source.tar` (see SHA256SUMS)
 - Official executable: none found in initial arXiv source audit
 - Compute policy: CPU-only
-- Current phase: claim_1_verified_scoped
-- Claim 1: verified as a scoped pinned-source theorem-rate audit: the epsilon exponent is `k vee 2`, while ambient `d` remains in a linear prefactor. Finite CPU control rejects replacing `k=3` with ambient `d=20`; this is not diffusion-model training. Evidence: `outputs/claim1_attempt1_audit.md`.
-- Claim 2–5: unverified
-- Next action: Claim 2 Attempt 1 — source theorem audit.
+- Current phase: claim_2_verified_scoped
+- Claim 1: verified as a scoped pinned-source theorem-rate audit; the epsilon exponent is `k vee 2`, while ambient `d` remains in a linear prefactor. Evidence: `outputs/claim1_attempt1_audit.md`.
+- Claim 2: verified as a scoped Theorem-1 score-error audit; the displayed nonparametric exponent uses `k vee 2`, while `d` remains linear. An ambient-substitution negative control is rejected. Evidence: `outputs/claim2_attempt1_audit.md`.
+- Claim 3–5: unverified
+- Next action: Claim 3 Attempt 1 — source assumption audit.
 - Publication: not started
