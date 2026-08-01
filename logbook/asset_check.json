@@ -48,7 +48,7 @@
       "id": "total_fig_area",
       "severity": "hard",
       "status": "PASS",
-      "detail": "total paper-image area = 12.10% of body (>= 12.00%)."
+      "detail": "total paper-image area = 12.05% of body (>= 12.00%)."
     }
   ]
 }

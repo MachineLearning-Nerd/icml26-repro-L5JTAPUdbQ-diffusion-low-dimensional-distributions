@@ -1,0 +1,2 @@
+poster_embed_matches_poster_html=true
+executive_embeds_rendered_png=true

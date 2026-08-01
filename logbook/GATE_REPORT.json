@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "skill": "posterly",
-  "timestamp": "2026-08-01T07:23:08Z",
+  "timestamp": "2026-08-01T07:31:10Z",
   "poster_html": "/home/dineshai/Drives/Code/AllCode/ReproduceICML/papers/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/logbook/poster.html",
   "canvas": {
     "source": "page-rule",
@@ -199,7 +199,7 @@
             "id": "total_fig_area",
             "severity": "hard",
             "status": "PASS",
-            "detail": "total paper-image area = 12.10% of body (>= 12.00%)."
+            "detail": "total paper-image area = 12.05% of body (>= 12.00%)."
           }
         ]
       },

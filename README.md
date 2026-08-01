@@ -18,7 +18,7 @@ The source archive and PDF are pinned under `evidence/source/`; hashes are in `e
 
 ## Poster gates and trace
 
-`scripts/run_full_poster_gates.sh` pins Posterly at `94d374d72afdc372af226eb745e82af00f07e43f` and runs all style rules plus the real-figure area/provenance gate without disabled rules or a waiver. `logbook/GATE_REPORT.json` is the retained result. The redacted Pi trace is intentionally hosted through Trackio rather than committed to the public Git clone.
+`scripts/run_full_poster_gates.sh` pins Posterly at `94d374d72afdc372af226eb745e82af00f07e43f` and runs all style rules plus the real-figure area/provenance gate without disabled rules or a waiver. `logbook/GATE_REPORT.json` is the retained result. No public agent trace is declared or attached in this release; private local traces are intentionally excluded.
 
 ## Official validator
 

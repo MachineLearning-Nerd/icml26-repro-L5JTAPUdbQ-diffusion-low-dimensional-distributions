@@ -837,9 +837,9 @@
   <header class="header" data-measure-role="header">
     <!-- LEFT: venue badge. Replace text or swap for an <img> if your venue allows logos. -->
     <div class="venue-badge">
-      <div class="vb-venue">VENUE</div>
-      <div class="vb-year">YEAR</div>
-      <div class="vb-tag">POSTER</div>
+      <div class="vb-venue">ICML</div>
+      <div class="vb-year">2026</div>
+      <div class="vb-tag">REPRO AUDIT</div>
     </div>
 
     <!-- CENTER: title block. Portrait posters are read from closer up, and the
@@ -848,33 +848,16 @@
       <h1 class="title">Diffusion Models Are Statistically Optimal <span class="accent">Scoped CPU Audit</span></h1>
       <div class="subtitle">CPU audit of intrinsic-dimension diffusion rates.</div>
       <div class="authors-line">
-        <span class="author">Author One</span> &middot;
-        <span class="author">Author Two</span> &middot;
-        <span class="author">Author Three<sup>&#9993;</sup></span>
-        <span class="aff">Lab / Department &middot; Institution &middot; City, Country</span>
+        <span class="author">DineshAI</span>
+        <span class="aff">Independent ICML 2026 Reproduction Challenge audit</span>
       </div>
     </div>
 
-    <!-- RIGHT: optional logo + QR. Delete .logo-slot if your venue forbids on-poster logos. -->
+    <!-- RIGHT: public reproduction link. -->
     <div class="right-block">
-      <div class="logo-slot">
-        <!-- Affiliation / lab logo goes here. Brand-colored logos MUST carry
-             data-color-exempt="logo" so style_check exempts them:
-               <img src="assets/logos/lab.png" alt="Lab" data-color-exempt="logo">
-             No logo? Delete this entire <div class="logo-slot"> instead of
-             leaving it empty (an empty slot just adds a stray gap). The .aff
-             text line and the corner .ornament still carry attribution. -->
-      </div>
       <div class="qr-block">
-        <!-- Scoped source audit: replace with your real QR code. The default below is an inline
-             SVG placeholder so the template renders offline. The QR is a
-             monochrome black/white SVG (data-color-exempt="logo" marks it as a
-             non-palette graphic for style_check). Generate a real one with:
-               $ qrencode -o qr.png -s 12 -m 0 "https://your-url"     # apt install qrencode
-               $ python -c "import qrcode; qrcode.make('https://your-url').save('qr.png')"
-             then change src to "assets/qr/qr.png" (export at >= 2x rendered size). -->
-        <img data-color-exempt="logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23fff'/><g fill='%23222'><rect x='4' y='4' width='26' height='26'/><rect x='70' y='4' width='26' height='26'/><rect x='4' y='70' width='26' height='26'/></g><g fill='%23fff'><rect x='10' y='10' width='14' height='14'/><rect x='76' y='10' width='14' height='14'/><rect x='10' y='76' width='14' height='14'/></g><g fill='%23222'><rect x='14' y='14' width='6' height='6'/><rect x='80' y='14' width='6' height='6'/><rect x='14' y='80' width='6' height='6'/><rect x='38' y='10' width='4' height='4'/><rect x='48' y='10' width='4' height='4'/><rect x='58' y='10' width='4' height='4'/><rect x='34' y='34' width='4' height='4'/><rect x='44' y='38' width='4' height='4'/><rect x='54' y='34' width='4' height='4'/><rect x='62' y='40' width='4' height='4'/><rect x='38' y='46' width='4' height='4'/><rect x='50' y='52' width='4' height='4'/><rect x='62' y='56' width='4' height='4'/><rect x='34' y='60' width='4' height='4'/><rect x='44' y='66' width='4' height='4'/><rect x='56' y='62' width='4' height='4'/><rect x='80' y='80' width='4' height='4'/><rect x='88' y='86' width='4' height='4'/></g><text x='50' y='54' text-anchor='middle' font-family='sans-serif' font-size='6' font-weight='bold' fill='%23888'>QR</text></svg>" alt="QR placeholder — replace with your real QR before printing">
-        <div class="qr-label">Paper &amp; Code</div>
+        <img data-color-exempt="logo" src="assets/qr/public_repo.png" alt="QR code linking to the public reproduction repository">
+        <div class="qr-label">Public code &amp; evidence</div>
       </div>
     </div>
   </header>

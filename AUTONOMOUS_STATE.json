@@ -2,7 +2,7 @@
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
   "phase": "publication_ready_for_independent_review",
-  "next_action": "run fresh independent scientific/compliance review, then publish only if no blocker remains",
+  "next_action": "run fresh independent scientific/compliance review; publish only if no blocker remains",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -28,7 +28,7 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T07:23:32.749387+00:00",
+  "last_checkpoint": "2026-08-01T08:00:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -56,7 +56,7 @@
   },
   "logbook_assembly": {
     "trackio_version": "0.34.0",
-    "trace_attached": true,
+    "trace_attached": false,
     "official_validator": "passed",
     "tests": "10 passed",
     "manifest_checks": "passed",
@@ -71,10 +71,11 @@
     "poster_embed": "logbook/poster_embed.html",
     "tests": "outputs/final_test_poster_remediation.log",
     "validator": "outputs/official_validator_full_poster.log",
-    "trace_index": ".trackio/logbook/traces/019fbc12-567c-7718-ba3b-15786eab5af1/index.json",
     "tool_pin": "Chenruishuo/posterly@94d374d72afdc372af226eb745e82af00f07e43f",
     "full_nonwaived_command": "scripts/run_full_poster_gates.sh",
-    "release_validation": "outputs/release_validation_poster_remediation.log"
+    "release_validation": "outputs/release_validation_poster_remediation.log",
+    "trace_status": "No public trace is declared or attached; private local traces were removed from Trackio metadata and remain excluded from release artifacts.",
+    "delivered_artifacts": "logbook/release_artifacts/SHA256SUMS verifies poster.html, poster_embed.html, poster.png, poster.pdf, and Trackio embedded PNG page; output is regenerated from the gated HTML."
   },
   "review_remediation_blockers": []
 }
