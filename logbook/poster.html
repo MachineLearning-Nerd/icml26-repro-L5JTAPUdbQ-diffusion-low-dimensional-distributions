@@ -885,7 +885,7 @@
       </div>
       <div class="card highlight" data-measure-role="card">
         <div class="section-title"><span class="num">3</span><span class="st-text">Current outcomes</span></div>
-        <ul><li><strong>C1 FALSIFIED — HIGH:</strong> threshold escape.</li><li><strong>C2 VERIFIED — MEDIUM:</strong> conditional proof plus KDE sweep.</li><li><strong>C3 FALSIFIED — HIGH:</strong> non-identifiability.</li><li><strong>C4 FALSIFIED — HIGH:</strong> weak-domain theorem failure.</li><li><strong>C5 VERIFIED — MEDIUM:</strong> primary rate proof.</li></ul>
+        <ul><li><strong>C1 FALSIFIED — HIGH:</strong> threshold escape.</li><li><strong>C2 VERIFIED — MEDIUM:</strong> conditional proof plus KDE sweep.</li><li><strong>C3 FALSIFIED — HIGH:</strong> non-identifiability.</li><li><strong>C4 FALSIFIED — HIGH:</strong> weak-domain theorem failure.</li><li><strong>C5 VERIFIED — MEDIUM:</strong> prior rate.</li></ul>
         <div class="callout mt-2"><strong>Boundary.</strong> These are reproduction verdicts, not awarded points. Rejected baselines remain preserved and superseded.</div>
       </div>
     </div>
@@ -900,7 +900,7 @@
       </div>
       <div class="card card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">5</span><span class="st-text">Reproducible route</span></div>
-        <ol class="algo"><li>Pin source hashes and exact quantifiers.</li><li>Run generators, checkers, and failing mutations on HF CPU.</li><li>Expose raw JSON, commands, revisions, and limits.</li></ol>
+        <ol class="algo"><li>Pin source hashes and exact quantifiers.</li><li>Run generators and mutation checks.</li><li>Expose raw JSON, commands, revisions, and limits.</li></ol>
       </div>
       <div class="card card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">6</span><span class="st-text">Limitations</span></div>
@@ -908,8 +908,9 @@
       </div>
       <div class="card highlight card--compact" data-measure-role="card">
         <div class="section-title"><span class="num">7</span><span class="st-text">Takeaway</span></div>
-        <p class="body-text">Exact counterexamples falsify C1, C3, and C4. Independent certificates support C2 and C5 within stated limits.</p>
+        <p class="body-text">Exact counterexamples falsify C1, C3, and C4. Independent certificates support C2 and C5.</p>
         <ul class="outcome-list"><li>Assumptions precede every conclusion.</li><li>No theorem-derived budget is evidence.</li><li>Every mutation makes its verifier exit nonzero.</li></ul>
+        <div class="callout mt-2"><strong>Visible evidence.</strong> Contracts, code, raw JSON, checkers, controls, commands, allocation, and runtime.</div>
         <div class="callout gold mt-2"><strong>Forecast only.</strong> Conservative: 6–10/10. Best-supported possible: 10/10. Live: 0/10.</div>
       </div>
     </div>
