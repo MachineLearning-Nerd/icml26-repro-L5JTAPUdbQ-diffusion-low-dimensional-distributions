@@ -32,8 +32,13 @@
       ]
     },
     "5": {
-      "verdict": "verified_scoped",
-      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+      "verdict": "toy",
+      "scope": "Independent primary-source extraction confirms the cited TV exponent/inversion under their qualifications; executed local reduced full-dimensional KDE-score comparator is toy, not an end-to-end cited DDPM/DDIM theorem reproduction.",
+      "evidence": [
+        "evidence/claim5_attempt1/prior_sources/SHA256SUMS",
+        "outputs/claim5_attempt1/toy_summary.json",
+        "outputs/claim5_attempt1/SHA256SUMS"
+      ]
     }
   }
 }

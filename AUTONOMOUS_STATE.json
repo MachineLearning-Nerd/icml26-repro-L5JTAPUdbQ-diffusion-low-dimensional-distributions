@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_4_attempt_1_fullscale_weak_regularities_inconclusive",
-  "next_action": "advance_claim_5_independent_prior_work_derivation_or_comparator",
+  "phase": "claim_5_attempt_1_prior_theorem_and_toy_comparator_complete",
+  "next_action": "independent_review_claim_5_then_claim_1_reverse_sampler_or_complete_proof_route",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -57,10 +57,9 @@
     "mse": 1.8611300606057062
   },
   "claim_5_outcome": {
-    "verdict": "verified_scoped",
-    "scope": "Pinned-source Equation (1) comparator-rate transcription and finite exponent arithmetic; not an independent prior-work theorem reproduction or diffusion-model training.",
-    "reason": "The retained source displays epsilon^(-(d+2 beta)/beta) for beta-Holder smooth-density prior work and identifies ambient-d dependence as a curse; a denominator-mutation negative control fails.",
-    "evidence": "outputs/claim5_attempt1_audit.md"
+    "verdict": "toy",
+    "scope": "Independent prior theorem extraction plus reduced local KDE comparator; not prior DDPM/DDIM end-to-end reproduction.",
+    "evidence": "outputs/claim5_attempt1/toy_summary.json"
   },
   "logbook_assembly": {
     "trackio_version": "0.34.0",
@@ -100,7 +99,7 @@
     "validator_evidence": "outputs/final_prepublication_validator.log",
     "official_judge_leaderboard_status": "not yet confirmed"
   },
-  "last_known_git_commit": "6f5dca3",
+  "last_known_git_commit": "PENDING_COMMIT",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",

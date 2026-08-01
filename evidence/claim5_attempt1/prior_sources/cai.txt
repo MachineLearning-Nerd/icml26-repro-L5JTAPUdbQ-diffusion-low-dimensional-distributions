@@ -1,0 +1,7346 @@
+Minimax Optimality of the Probability Flow ODE
+for Diffusion Models
+
+arXiv:2503.09583v1 [cs.LG] 12 Mar 2025
+
+Changxiao Cai∗
+
+Gen Li†
+
+March 13, 2025
+Abstract
+Score-based diffusion models have become a foundational paradigm for modern generative modeling,
+demonstrating exceptional capability in generating samples from complex high-dimensional distributions.
+Despite the dominant adoption of probability flow ODE-based samplers in practice due to their superior
+sampling efficiency and precision, rigorous statistical guarantees for these methods have remained elusive
+in the literature. This work develops the first end-to-end theoretical framework for deterministic ODEbased samplers that establishes near-minimax optimal guarantees under mild assumptions on target
+data distributions. Specifically, focusing on subgaussian distributions with β-Hölder smooth densities
+for β ≤ 2, we propose a smooth regularized score estimator that simultaneously controls both the
+L2 score error and the associated mean Jacobian error. Leveraging this estimator within a refined
+convergence analysis of the ODE-based sampling process, we demonstrate that the resulting sampler
+achieves the minimax rate in total variation distance, modulo logarithmic factors. Notably, our theory
+comprehensively accounts for all sources of error in the sampling process and does not require strong
+structural conditions such as density lower bounds or Lipschitz/smooth scores on target distributions,
+thereby covering a broad range of practical data distributions.
+
+Keywords: diffusion model, probability flow ODE, sampling, minimax optimality
+
+Contents
+1 Introduction
+1.1 End-to-end sampling guarantees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.2 This paper . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.3 Other related work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.4 Notation and organization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+2
+3
+4
+5
+5
+
+2 Problem formulation
+2.1 Preliminaries . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2 Assumptions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+6
+6
+8
+
+3 Results
+3.1 Algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.2 Theoretical guarantees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+9
+9
+11
+
+4 Analysis
+12
+4.1 Preparation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+4.2 Step 1: Convergence guarantee . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+4.3 Step 2: Score estimation guarantee . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+4.4 Step 3: Bias in the initial distribution p⋆0 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+4.5 Proof of Theorem 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+Corresponding author: Gen Li.
+∗ Department of Industrial and Operations Engineering, University of Michigan, Ann Arbor, USA; Email: cxcai@umich.edu.
+† Department of Statistics, The Chinese University of Hong Kong, Hong Kong; Email: genli@cuhk.edu.hk.
+
+1
+
+5 Discussion
+
+20
+
+A Proof of theorems
+24
+A.1 Analysis for convergence guarantee (proof of Theorem 2) . . . . . . . . . . . . . . . . . . . . . 24
+A.2 Analysis for score matching (proof of Theorem 3) . . . . . . . . . . . . . . . . . . . . . . . . . 30
+A.3 Analysis for L2 score estimation (proof of Proposition 1) . . . . . . . . . . . . . . . . . . . . . 33
+A.4 Analysis for Jacobian estimation (proof of Proposition 2) . . . . . . . . . . . . . . . . . . . . 36
+A.5 Analysis for bias in the initial distribution p⋆0 (proof of Proposition 3) . . . . . . . . . . . . . 39
+B Proof of lemmas
+B.1 Proof of Lemma 1
+B.2 Proof of Lemma 2
+B.3 Proof of Lemma 3
+B.4 Proof of Lemma 4
+B.5 Proof of Lemma 6
+B.6 Proof of Lemma 7
+B.7 Proof of Lemma 8
+B.8 Proof of Lemma 9
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+C Auxiliary lemmas
+
+1
+
+41
+41
+42
+42
+44
+45
+46
+47
+49
+50
+
+Introduction
+
+Score-based generative models (SGMs), more commonly known as diffusion models (Sohl-Dickstein et al.,
+2015; Song and Ermon, 2019), have rapidly emerged as a cornerstone of contemporary generative modeling—
+a task seeking to create new samples that mirror the training data in distribution. Their exceptional performance spans diverse domains, from image synthesis (Dhariwal and Nichol, 2021; Rombach et al., 2022)
+and natural language processing (Austin et al., 2021; Li et al., 2022) to medical imaging (Song et al., 2021;
+Chung and Ye, 2022) and protein modeling (Trippe et al., 2022; Gruver et al., 2024). We refer readers to
+Yang et al. (2023) for a comprehensive survey of recent methodological advances and practical applications in
+diffusion models, and to Chen et al. (2024a); Tang and Zhao (2024) for an overview of theoretical advances.
+At the core of diffusion models are two complementary processes: a forward process that progressively
+corrupts a sample from the target data distribution with Gaussian noise, and a reverse process that aims
+to reverse the forward process and systematically transforms pure noise back into samples matching the
+target distribution. The realization of such a reverse process relies critically on accurate estimation of the
+(Stein) score function—the gradient of the logarithm of the density—of the distribution of the forward
+process. This estimation step, referred to as score matching (Hyvärinen and Dayan, 2005; Vincent, 2011;
+Song and Ermon, 2019), has proven fundamental to the successes of diffusion models. Historically, drawing
+on classical results regarding the existence of reverse-time stochastic differential equations (SDEs) (Anderson,
+1982; Haussmann and Pardoux, 1986), the reverse processes have often been implemented through the SDE
+framework, as exemplified by the Denoising Diffusion Probabilistic Model (DDPM) (Ho et al., 2020). Yet an
+alternative formulation based on ordinary differential equations (ODE)—often referred to as the probability
+flow ODEs (Song et al., 2020b)—has gained growing prominence for enabling a deterministic sampling process while preserving the same marginal distributions as the reverse SDE. In particular, these ODE-based
+samplers, including those closely related to the Denoising Diffusion Implicit Models (DDIMs) (Song et al.,
+2020a), offer two key compelling advantages:
+• Fast sampling speed. Empirically, ODE-based samplers often require substantially fewer iteration steps
+than their SDE counterparts to produce high-fidelity samples. By discretizing the probability flow
+ODE through numerical methods such as forward Euler or exponential integrators (Lu et al., 2022a;
+Zhang and Chen, 2022; Lu et al., 2022b; Zhao et al., 2024), they can deliver comparable or superior
+quality in as few as 10 steps, whereas SDE-based samplers typically need hundreds or even thousands
+of iterations.
+
+2
+
+• Deterministic dynamic. Since each update is a deterministic function of the previous iterate, ODEbased samplers allow for precise control and reproducibility over the sampling path. This critical feature
+is desirable for image generation and editing tasks that require fine-grained control of the structure
+and content (Meng et al., 2021; Cao et al., 2023; Huang et al., 2024c).
+These benefits have made ODE-based samplers the dominant choice in practical generative modeling, outperforming SDE-based approaches in both speed and flexibility (Ramesh et al., 2022; Rombach et al., 2022).
+Existing theoretical understanding and limitations. Motivated by the striking empirical performance
+of diffusion models, a flurry of recent theoretical works have sought to establish rigorous guarantees for their
+performance. Existing theory, however, typically separates the two essential phases of diffusion modeling:
+(1) score estimation given training data sampled from the target distribution, and (2) sample generation
+based on these estimates. The majority of prior works focuses on the sampling phase, with both SDE-based
+samplers (Lee et al., 2022; Chen et al., 2022, 2023a; Benton et al., 2023; Li and Yan, 2024b) and ODE-based
+samplers (Chen et al., 2023c; Li et al., 2023) known to converge polynomially fast toward distributions whose
+total variation (TV) distance to the target scales proportionally to the score estimation error. These results
+suggest that with accurate score estimates available, diffusion models can, in principle, learn any distribution
+without relying on restrictive conditions like log-concavity or functional inequalities—requirements that often
+limit the scope of classical sampling algorithms like Langevin dynamics.
+From a statistical viewpoint, diffusion models provide an algorithmic framework for sampling from highdimensional distributions. Given data collected from a target distribution, they first estimate the score
+functions along a forward process with carefully chosen learning rates. Subsequently, they use these score
+estimates to iteratively generate new samples from the target distribution. However, existing convergence
+results fail to provide “end-to-end” sampling guarantees. They largely assume the availability of accurate
+score estimations but do not fully investigate whether such estimates can be obtained in practice, let alone
+characterize the score estimation error.
+This leads to a fundamental question: Given training data drawn from a target distribution, can scorebased diffusion models achieve the information-theoretic limit of sampling?
+
+1.1
+
+End-to-end sampling guarantees
+
+Several recent works have begun to bridge this gap for the SDE-based samplers (e.g., DDPM), deriving
+end-to-end sampling guarantees under various distributional settings. Examples include Gaussian mixture models (GMMs) (Shah et al., 2023; Chen et al., 2024b; Gatmiry et al., 2024), subgaussian distributions
+(Wibisono et al., 2024; Cole and Lu, 2024; Li et al., 2024c), and low-dimensional structures (Chen et al.,
+2023b; Tang and Yang, 2024), where researchers have developed specialized score estimators and leveraged
+existing convergence results to derive sample complexity guarantees.
+Notably, some studies have established that DDPM can achieve (near)-minimax optimal performance for
+target distributions with smooth densities. For instance, the seminal work Oko et al. (2023) showed that
+DDPM with score estimates learned using empirical risk minimization via neural networks attains minimaxoptimal rates in both TV and 1-Wasserstein distances (up to some logarithmic factors), assuming the target
+density is Besov-smooth, bounded below by a constant, and supported over a compact set. Under a similar
+setting (except for Hölder smooth densities), Dou et al. (2024) established the sharp minimax rate of score
+estimation, achieved by a combination of kernel smoothing and kernel-based regularized score estimators.
+This further leads to the sharp minimax optimal performance of DDPM, though the approach therein requires
+knowledge of the density lower bound. Wibisono et al. (2024) removed the bounded density assumption,
+focusing instead on subgaussian distributions with Lipschitz/β-Hölder smooth score functions with β ≤ 1.
+Drawing insights from empirical Bayes methodology, the authors introduced a kernel-based score estimator
+that achieves the minimax optimal score estimation. By integrating this estimator with the convergence
+guarantees established in Chen et al. (2022), they derived a sample complexity bound for the entire sampling
+pipeline. Further relaxing the Lipschitz score requirement, Zhang et al. (2024) demonstrated that DDPM
+equipped with a kernel-based truncated score estimator obtains the (near-)minimax rate in TV distance
+for subgaussian distributions with β-Soblev-smooth densities with β ≤ 2. Holk et al. (2024) investigated
+stochastic samplers in reflected diffusion models for constrained generative modeling, and established the
+
+3
+
+(near-)minimax optimality in TV distance for Soblev-smooth densities when using a neural network-based
+score estimator.
+In contrast to these remarkable advances for SDE-based samplers, end-to-end statistical guarantees of
+ODE-based samplers remain lacking in the literature, despite their popularity in practice. A straightforward
+attempt might be to simply reuse the existing DDPM-oriented score estimators for ODE-based samplers.
+Unfortunately, significant obstacles arise in both algorithmic feasibility and theoretical analysis, leaving open
+the question of whether ODE-based methods can achieve the same level of optimality enjoyed by DDPM.
+• Nonsmooth score estimators. Existing score estimators typically employ a “hard thresholding” procedure, resulting in discontinuous or nonsmooth score estimators (Wibisono et al., 2024; Zhang et al.,
+2024; Dou et al., 2024). While these L2 -accurate score estimators can yield rate-optimal sampling when
+coupled with stochastic samplers, their optimality may not extend to ODE-based samplers. Indeed,
+as observed in Li et al. (2024b), an L2 estimation guarantee alone can be insufficient for deterministic
+samplers to obtain non-trivial TV distance bounds due to their deterministic update rule (in fact, the
+TV distance can remain as high as 1). This limitation does not affect stochastic samplers but presents
+a significant challenge for ODE-based methods. To overcome this issue for ODE-based samplers, a key
+requirement for the score estimator is that the estimation error in terms of the corresponding Jacobian
+matrix be controlled as well. This imposes sort of smoothness requirements that the existing score estimators in the literature may violate, potentially undermining the minimax optimality for ODE-based
+samplers.
+• Convergence analysis hurdles. On the theoretical side, existing analysis for statistical guarantees of
+stochastic samplers relies on the Girsanov theorem, which controls the Kullback-Leibler (KL) divergence between the forward process and the backward process with estimated score functions (Oko et al.,
+2023; Zhang et al., 2024; Dou et al., 2024; Holk et al., 2024). However, this approach fails for deterministic ODE-based samplers where the KL divergence can be infinite—rendering Girsanov-based
+techniques inapplicable and necessitating novel analytical frameworks. Moreover, the minimax optimal guarantees established therein rest on the idealized assumption that the backward SDEs with
+estimated scores can be solved accurately. This analysis overlooks the discretization errors introduced
+by practical sampling implementations, without rigorously justifying whether or not such errors would
+compromise the minimax rate. A comprehensive theoretical framework of score-based samplers must
+incorporate these discretization effects to accurately capture the end-to-end sampling performance.
+Therefore, this naturally raises the following question:
+Can the probability flow ODE-based sampler achieve the fundamental statistical limit of sampling?
+
+1.2
+
+This paper
+
+In this work, we provide an affirmative answer by developing the first end-to-end theoretical analysis that
+rigorously establishes minimax-optimal performance guarantees for ODE-based samplers.
+Focusing on d-dimensional subgaussian target distributions with β-Hölder smooth densities for β ≤ 2
+(see Section 2.2 for rigorous definitions), we propose a smooth kernel-based regularized score estimator
+that simultaneously controls the L2 score error and the associated Jacobian error. Building upon a refined
+convergence guarantee that characterizes the discretization error of the ODE-based sampling scheme, we
+show that the TV distance between the sample distribution and the target distribution—using our proposed
+smooth score estimator—achieves the rate
+β
+
+n− d+2β
+
+(up to log factors)
+
+which matches the minimax rate for density estimation (up to some logarithmic factor) (Stone, 1980, 1982;
+Tsybakov, 2009). Since the lower bound for density estimation forms a valid lower bound for sampling,
+our result demonstrates that the probability flow ODE-based samplers can attain (near)-minimax optimal
+performance.
+Notably, this result holds without restrictive assumptions—such as log-concavity, constant density lower
+bounds, or Lipschitz scores—on the target distributions. Moreover, our convergence analysis directly controls
+4
+
+the TV distance, a significant departure from previous DDPM analyses that rely on the Girsanov theorem.
+Our work thus validates both the practical effectiveness and fundamental statistical optimality of ODE-based
+samplers, providing the first rigorous, end-to-end minimax optimal guarantee that simultaneously quantifies
+both discretization and score errors for diffusion models.
+
+1.3
+
+Other related work
+
+Score estimation. One of the earliest works on theoretical guarantees for score estimation in diffusion
+models is by Block et al. (2020), which provided an error bound in terms of the Rademacher complexity
+of the score approximation function class. Subsequent research has focused on neural network-based approaches under diverse distributional assumptions. For instance, Chen et al. (2023b) provided a sample
+complexity bound by assuming the support of the target distribution lies in a low-dimensional linear space,
+and De Bortoli (2022) examined the generalization error in terms of the Wasserstein distance when the target
+distribution is supported on a low-dimensional manifold. Assuming the target is smooth with respect to the
+volume of the low-dimensional manifold, Tang and Yang (2024) established the minimax optimality under
+the Wassertein distance. Cole and Lu (2024) explored score estimation for subgaussian target distributions
+whose log-relative density (with respect to the standard Gaussian measure) can be locally approximated by
+a neural network. Focusing on a mixture of two Gaussians, Cui et al. (2023) established the score estimation error using a two-layer neural network, and Song et al. (2021) derived sample complexity guarantees for
+scores learned via deep neural networks in the context of graphical models. Beyond using neural networks for
+score estimation, Scarvelis et al. (2023) studied smoothing the closed-form score of the empirical distribution
+of the training data, and Li et al. (2024c) investigated the empirical kernel density estimator and analyzed
+the sample complexity under Gaussian or bounded-support settings. Recent works (Gatmiry et al., 2024;
+Chen et al., 2024b) focused on GMMs and introduced a piecewise polynomial regression approach for score
+estimation, providing end-to-end guarantees for learning GMMs.
+Convergence theory. Assuming access to reliable score estimates, early convergence results for SDEbased samplers (with respect to TV distance) either replied on L∞ -accurate estimates (De Bortoli et al.,
+2021; Albergo et al., 2023), or exhibited exponential dependence (De Bortoli, 2022; Block et al., 2020). A
+breakthrough came from Lee et al. (2022), which provided the first polynomial iteration complexity assuming only L2 -accurate score estimates and a log-Sobelev inequality on the target distribution. Subsequent works relaxed this functional inequality condition by requiring Lipschitz scores along the forward process (Chen et al., 2022; Lee et al., 2023) or bounded support/moment conditions on the target distribution
+(Chen et al., 2023a). Notably, under the minimal assumption—only L2 -accurate score estimates and a finite
+moment of the target distribution— Benton et al. (2023) and Li and Yan (2024b) established state-of-the-art
+2
+e
+e
+iteration complexities of O(d/ε
+) in KL divergence and O(d/ε)
+in TV distance, respectively. For ODE-based
+samplers, Chen et al. (2023d) provided the first convergence guarantee, albeit without explicit polynomial
+dependencies and requiring exact score estimates. Chen et al. (2023c) incorporated stochastic corrector
+steps into the ODE-based sampler and attained improved convergence bounds. Assuming access to accurate
+e
+in TV disJacobian estimates of the scores, Li et al. (2024b) established an iteration complexity of O(d/ε)
+tance, In pursuit of improved computational efficiency, various acceleration strategies have been proposed
+based on higher-order discretization of the reverse process (Li and Cai, 2024; Li et al., 2024a; Li and Jiao,
+2024; Wu et al., 2024; Huang et al., 2024b,a; Taheri and Lederer, 2025) or by leveraging low-dimensional
+data structures (Li and Yan, 2024a; Tang and Yang, 2024; Huang et al., 2024d; Potaptchik et al., 2024;
+Liang et al., 2025).
+
+1.4
+
+Notation and organization
+
+Notation. For a, b ∈ R, we denote a ∨ b := max{a, b} and a ∧ b := min{a, b}. For positive integer N > 0,
+let [N ] := {1, · · · , N }. For matrix A, we use kAk to denote the spectral norm. For vector-valued function
+f , we denote by Jf = ∂f
+∂x its Jacobian matrix. For random vector X, we use pX to refer to its distribution
+and probability density function
+for simplicity of notation. For random
+R interchangeably
+R vectors X, Y , let
+pX (x)
+1
+KL(X k Y ) ≡ KL(pX k pY ) = pX (x) log pY (x) dx and TV(X, Y ) ≡ TV(pX , pY ) = 2 |pX (x) − pY (x)| dx
+5
+
+denote the KL divergence and the TV distance, respectively. For probability distributions p, q, we denote
+their convolution by p ∗ q. In addition, let 1{·} denote the indicator function.
+
+For two functions f (n), g(n) > 0, we use f (n) . g(n) or f (n) = O g(n) to
+ mean f (n) ≤ Cg(n) for some
+absolute constant C > 0. Similarly, we write f (n) & g(n) or f (n) = Ω g(n) when f (n) ≥ C ′ g(n) for some
+absolute constant C ′ > 0. We denote f (n) ≍ g(n) or f (n) = Θ g(n) when Cf (n) ≤ g(n) ≤ C ′ f (n) for some
+e
+e
+e denote the respective bounds up to some
+absolute constants C ′ > C > 0. The notations O(·),
+Ω(·),
+and Θ(·)
+logarithmic factors. In addition, we use f (n) = o(g(n)) to denote lim supn→∞ f (n)/g(n) = 0. And we use
+poly(n) to denote a polynomial function of n where the specific degree may vary across different contexts.
+Organization. The paper is structured as follows. Section 2 provides background on SGMs and describes
+our problem formulation. In Section 3, we present our ODE-based sampler and its theoretical guarantees.
+The analysis is provided in Section 4, with comprehensive proofs and technical lemmas postponed to the
+appendix. Finally, Section 5 concludes the paper with a discussion of future research directions.
+
+2
+
+Problem formulation
+
+2.1
+
+Preliminaries
+
+In this section, we provide a brief introduction to score-based diffusion models.
+Forward process. The forward process begins with a sample X0 ∼ p⋆0 distributed according to some
+initial distribution p⋆0 (typically chosen to match or closely approximate the target distribution p⋆ ) and
+progressively adds Gaussian noise via the following Markov chain:
+√
+√
+Xk = αk Xk−1 + 1 − αk Wk , k = 1, 2, . . . , K.
+(1)
+i.i.d.
+
+Here, α1 , . . . , αK ∈ (0, 1) represent the learning rates and W1 , . . . , WK ∼ N (0, Id ) are d-dimensional
+standard Gaussian random vectors independent of (Xk ). Throughout the paper, we use p⋆ to denote the
+target distribution.
+It is important to emphasize that the forward process serves exclusively as a theoretical framework
+for analysis and is not implemented in practice. In this work, we focus on a specific choice of the initial
+distribution:
+p⋆0 = p⋆ ∗ N (0, τ Id )
+
+(2)
+
+for some parameter τ ≥ 0, that is, the convolution of the target distribution p⋆ with a Gaussian distribution
+N (0, τ Id ). This encompasses the case where we begin directly with the target distribution (τ = 0) and the
+cases where we initialize the process with its smoothed approximation (τ > 0).
+Defining the cumulative noise parameters
+α0 := 1
+
+and
+
+αk :=
+
+k
+Y
+
+αi ,
+
+k = 1, 2, . . . , K,
+
+(3)
+
+i=1
+
+one can verify that each Xk can be written as
+p
+
+√
+√
+√
+Xk = αk X0 + 1 − αk Wk′ = αk X0 + (1 − αk )/αk Wk′ ,
+
+(4)
+
+for some d-dimensional standard Gaussian random vector Wk′ ∼ N (0, Id ) independent of X0 . In particular,
+the parameter αk and initial distribution p⋆0 fully determines the distribution of Xk . Notice that if the
+covariance of X0 is equal to Id , then the covariance of Xk remains Id for all k. Hence, the forward process (1)
+is often referred to as variance-preserving (Song et al., 2020b). In particular, when αK is sufficiently small,
+the distribution of XK is approximately normal.
+
+6
+
+The discrete forward process (1) can be interpreted as a time-dicretization of a continuous process
+(Xtsde )t∈[0,T ] , which is the solution to the following SDE:
+p
+1
+dXtsde = − βt Xtsde dt + βt dBt ,
+2
+
+X0sde ∼ p⋆0 ;
+
+(5)
+
+0≤t≤T
+
+where βt : [0, T ] → R is a drift coefficient function and (Bt )t∈[0,T ] is a standard Brownian motion in Rd .
+ODE-based sampling process. Reversing the forward process (1) in time ideally transforms pure Gaussian noise into a sample from the initial distribution p⋆0 , thereby accomplishing generative modeling. The
+realization of such a reverse process relies on knowledge of the score functions {sXk (·)}K
+k=1 of the distributions
+along the forward process (Xk )K
+,
+defined
+as
+follows:
+k=1
+Definition 1 (Score function). For random vector X ∈ Rd with density pX , the score function sX : Rd → Rd
+is defined as the gradient (with respect to x) of log-density of X:
+(6)
+
+sX (x) := ∇ log pX (x).
+
+In practical applications, the score functions of the forward process cannot be directly computed since
+the target density p⋆ is typically unavailable in explicit form or analytically intractable. To overcome this
+fundamental challenge, one can use a training dataset {X (i) }ni=1 collected from the target distribution p⋆ to
+K
+construct a score estimator {b
+sXk (·)}K
+k=1 for the true scores {sXk (·)}k=1 .
+K
+Given a score estimator {b
+sXk (·)}k=1 , an ODE-based sampling process adopts the update rule:
+
+
+1
+1 − αk
+Yk−1 = √
+Yk +
+sbXk (Yk ) ,
+k = K, . . . , 1,
+(7)
+αk
+2
+
+where the learning rates (αk )K
+k=1 are the same as in the forward process (1). Since pXK converges to N (0, Id )
+as αK approaches zero (see (4)), we choose the initialization as YK ∼ N (0, Id ).
+
+Probability flow ODE. The sampling scheme in (7) is fundamentally grounded in the probability flow
+ODE for diffusion models. Indeed, the continuous process (Xtsde )t∈[0,T ] defined by the forward SDE (5),
+which can be interpreted as the continuum limit of the forward process (Xk )K
+k=0 in (1), admits a reversetime process (Ytode )t∈[0,T ] (Song et al., 2020b). In specific, there exists a probability flow ODE such that
+when initialized at Y0ode ∼ pXTsde , the process (Ytode ) driven by this ODE dynamic shares the same marginal
+d
+
+ode
+distributions as (XTsde
+= XTsde
+−t ), that is, Yt
+−t for all t ∈ [0, T ]. The probability flow ODE admits the
+expression:
+
+dYtode =
+
+
+1
+βT −t Ytode + sXTsde−t (Ytode ) dt,
+2
+
+Y0ode ∼ pXTsde ;
+
+0 ≤ t ≤ T.
+
+(8)
+
+where sXtsde = ∇ log pXtsde is the score function of Xtsde in the forward SDE (5). Therefore, the ODE-based
+sampler (7) can be viewed as a time-discretization of (Ytode )t∈[0,T ] governed by the probability flow ODE (8).
+K
+Score estimation reduction. To estimate the score functions {sXk (·)}K
+k=1 of the forward process (Xk )k=1
+in (1), it is often more convenient to consider the following SDE:
+
+dZt = dBt ,
+
+Z 0 ∼ p⋆ ;
+
+t≥0
+
+(9)
+
+where (Bt )t≥0 is a standard Brownian motion in Rd . The solution (Zt )t≥0 , commonly referred to as variance
+exploding process (Song et al., 2020b), satisfies that for any t > 0:
+d
+
+Zt = Z0 +
+
+√
+t Wt′′
+
+(10)
+
+for some d-dimensional standard Gaussian random vector Wt′′ ∼ N (0, Id ) independent of Z0 . The name
+“variance exploding” originates from the fact that the variance Zt increases as t grows.
+7
+
+⋆
+⋆
+Given that the initial distribution of the forward process (Xk )K
+k=0 in (1) is chosen to be p0 = p ∗N (0, τ Id )
+for some τ ≥ 0 in (2), combining the distributional characterization of (Zt )t>0 in (10) with that of the forward
+process (Xk )K
+k=1 in (4) shows
+d √
+
+Xk =
+
+αk Ztk
+
+with tk :=
+
+1 − αk
++ τ,
+αk
+
+k = 1, . . . , K.
+
+(11)
+
+This distributional equivalence further implies the relationships between their score functions and associated
+Jacobian matrices:
+√
+√
+1
+1
+sXk (x) = √ sZtk (x/ αk ) and JsXk (x) =
+JsZt (x/ αk ),
+k
+αk
+αk
+
+k = 1, . . . , K.
+
+(12)
+
+Therefore, score estimation for the forward process (Xk )K
+k=1 can be reduced to estimating the score functions
+{sZt (·)}t>0 of the variance-exploding process (Zt )t>0 . The proof of the above relationship (12) can be found
+in Lemma 12 in Appendix C.
+
+2.2
+
+Assumptions
+
+In this section, we introduce assumptions on the target distribution p⋆ .
+Subgaussian target distribution. First, we assume the target distribution p⋆ is subgaussian. Formally,
+we adopt the definition from Vershynin (2018) as follows.
+Assumption 1 (Subgaussian target). We assume p⋆ is σ-subgaussian distribution over Rd , that is, for any
+unit vector θ ∈ Rd with kθk2 = 1,
+
+
+(13)
+E exp (X ⊤ θ/σ)2 ≤ 2, X ∼ p⋆ .
+
+The subgaussian condition is relatively mild in the sense that it encompasses any distribution with
+bounded support. Moreover, it can be viewed as a generalization of a log-Sobolev condition, which has a long
+history of use in sampling history (Durmus and Moulines, 2019; Vempala and Wibisono, 2019; Raginsky et al.,
+2017; Ma et al., 2019; Yang and Wibisono, 2022; Lee et al., 2022). Indeed, the subgaussian property can be
+derived from the log-Sobolev inequality but not vice versa (Vershynin, 2018).
+Remark 1. Parallel to the subgaussian assumption, another line of works assumes that the target density is
+bounded below by a constant over a compact support (e.g., Oko et al. (2023); Dou et al. (2024)). Although
+this condition accommodates many cases of interest and simplifies analysis, it can exclude multi-modal
+distributions frequently found in real-world applications—where diffusion models have shown particular
+advantages over traditional methods like Langevin dynamics. Indeed, a constant lower-bounded density on
+a compact support implies certain functional inequalities, where Langevin dynamics are provably effective.
+Therefore, we choose to focus on the subgaussian setting, which more closely reflects many practical scenarios.
+Hölder smooth target density. Next, we assume that the density of the target distribution p⋆ belongs
+to the Hölder class with smooth parameter β > 0, as defined in Tsybakov (2009). Let ⌊β⌋ denote the largest
+integer that is strictly smaller than β. For vector x = (x1 , . . . , xd ) ∈ Rd and multi-index s = (s1 , . . . , sd ) ∈
+Pd
+Zd≥0 , we write |s| := i=1 si and xs = xs11 . . . xsdd . The partial derivative with respect to the index s is
+∂ s1 +···+sd
+denoted by ∂ s := ∂x
+s .
+s1
+...∂x d
+1
+
+d
+
+Assumption 2 (Hölder smooth target). There exist β, L > 0 such that the density of the target distribution
+p⋆ is ⌊β⌋-times differentiable and
+β−⌊β⌋
+
+max ∂ s p⋆ (x) − ∂ s p⋆ (x′ ) ≤ L kx − x′ k2
+
+|s|≤⌊β⌋
+
+,
+
+∀x, x′ ∈ Rd .
+
+(14)
+
+This smoothness assumption is standard in nonparametric settings and accommodates a broad range of
+practical distributions.
+
+8
+
+3
+
+Results
+
+In this section, we first present the score estimator and probability flow ODE sampler, followed by the
+statistical guarantees on the sampling performance.
+
+3.1
+
+Algorithm
+
+We sequentially introduce the three critical components of our probability flow ODE-based sampler: the
+learning rate schedule, score estimator, and sampling procedure. The complete procedure is summarized in
+Algorithm 1.
+Learning rates. Let us start with the learning rates that define the forward process (Xk )K
+k=1 and imK
+plement the reverse process (Yk )K
+.
+We
+employ
+a
+learning
+rate
+schedule
+(α
+)
+similar
+to
+that prok k=1
+k=1
+QK
+posed √
+in Li and √
+Cai (2024). In light of αk := k=1 αk and the distribution characterization in (4) that
+Xk = αk X0 + 1 − αk Wk′ with Wk′ ∼ N (0, Id ) independent of X0 , it suffices to specify the learning rates
+through the following recursive relationship on the cumulative noise parameters (αk )K
+k=1 :
+α1 = 1 −
+
+1
+,
+K c0
+
+and
+
+αk = αk−1 −
+
+c1 log K
+αk−1 (1 − αk−1 ),
+K
+
+k = 2, . . . , K,
+
+(15)
+
+where c0 , c1 > 0 are some large constants obeying c1 ≥ 5c0 .
+As shown in Lemma 1, the chosen learning rates ensure that
+αK ≤
+
+1
+K c1 /4
+
+and
+
+1 − αk <
+
+1 − αk
+c1 log K
+1 − αk
+≍
+=
+,
+1 − αk
+1 − αk−1
+K
+
+k = 2, . . . , K.
+
+Remark 2. Our results hold for a broader class of learning rate schedules, provided that they satisfy:
+1 − α1 =
+
+1
+,
+poly(K)
+
+αK =
+
+1
+poly(K)
+
+and
+
+log K
+1 − αk
+≍
+,
+1 − αk
+K
+
+k ≥ 2.
+
+These conditions ensure that 1 − α1 is sufficiently small (so that pX1 closely approximates p⋆0 and p⋆ ) and
+that αK is small (so that pXK is nearly Gaussian), which is achieved by the chosen rate (1 − αk )/(1 − αk ) ≍
+log K/K.
+K
+Score estimator. Given the forward process (Xk )K
+k=1 determined by the above learning rates (αk )k=1 ,
+(i) n
+⋆
+our next step is use the i.i.d. training data {X }i=1 sampled from the target distribution p to estimate
+the score functions {sXk (·)}K
+k=1 of the forward process. In light of the reduction argument in Section 2.1, it
+is equivalent to estimating the scores of the variance-exploding process (Zt )t>0 defined in (9).
+To this end, for each t > 0, we first construct a Gaussian kernel-based density estimator pbt (·) : Rd → R
+for Zt :
+n
+
+pbt (x) :=
+
+1X
+ϕt (X (i) − x),
+n i=1
+
+(16)
+
+where ϕt (·) : Rd → Rd denotes the probability density function of N (0, tId ), i.e.,
+ϕt (x) :=
+
+
+1
+exp −kxk22 /(2t) .
+d/2
+(2πt)
+
+(17)
+
+Using this density estimator, we then define the score estimator sbt (·) : Rd → Rd for Zt as follows:
+sbt (x) :=
+
+
+∇b
+pt (x)
+ψ pbt (x); ηt
+pbt (x)
+
+with
+
+9
+
+ηt :=
+
+log n
+.
+n(2πt)d/2
+
+(18)
+
+Algorithm 1 Probability flow ODE-based sampler
+⋆
+1: Input: training data {X (i) }n
+i=1 sampled from the target distribution p .
+
+2: Set the learning rates {αk }K
+k=1 according to (15).
+3: Construct the score estimator {b
+sXk (·)}K
+k=1 according to (20).
+4: Initialize YK ∼ N (0, Id ).
+5: for k = K, K − 1, . . . , 2 do
+
+
+k
+bXk (Yk ) .
+Yk−1 ← √1αk Yk + 1−α
+2 s
+√
+7: Output: sample Y = Y1 / α1 .
+6:
+
+Here, ψ(· ; η) : [0, ∞) → R is a soft-thresholding function with threshold η, defined as
+
+
+1,
+x ≥ η;
+
+
+x ≤ η/2;
+ψ(x; η) := h0,
+
+i−1
+
+
+1−2(2x/η−1)
+ 1 + exp
+, x ∈ (η/2, η).
+
+(19)
+
+(2x/η−1)(2−2x/η)
+
+K
+We now present the score estimator {b
+sXk (·)}K
+k=1 for the forward process (Xk )k=1 . Given the relationship
+between sXk and sZt shown in (12), we leverage the estimator in (18) to construct sbXk as follows:
+
+√ 
+1 − αk
+1
+with tk :=
++ τ,
+sbXk (x) := √ sbtk x/ αk
+αk
+αk
+
+k = 1, . . . , K,
+
+(20)
+
+where (αk )K
+k=1 are chosen in the learning rate schedule (15) and τ is defined in (2).
+In a nutshell, we propose a smooth regularized score estimator sbt based on a Gaussian kernel-based
+density estimator pbt . Starting with the plug-in estimator pbt /∇b
+pt , we introduce a soft-thresholding procedure
+ψ(b
+pt ; ηt ) with threshold ηt that depends on the sample size n and time parameter t.
+In the regions where the estimated density pbt (and consequently the true density pZt ) is low (with respect
+to the threshold ηt ), the plug-in estimator pbt /∇b
+pt becomes inherently unstable due to small denominators,
+a challenge compounded by limited training data in these sparse regions. To mitigate this issue, we set
+the score estimator sbt to zero in these low-density areas. Conversely, in the high-density regimes, the plugin estimator pbt /∇b
+pt is sufficiently reliable so we use it directly. In the transition regions between these
+extremes, we incorporate a “bump” function ψ that ensures the resulting score estimator maintains the
+necessary smoothness properties.
+To provide some intuition, we note that the plug-in estimator pbt /∇b
+pt represents the score function
+of the empirical distribution of the training data after being diffused by noise. If used directly in the
+reverse process, it would effectively transform the noise back into the empirical distribution. In other words,
+the diffusion model would merely memorize the training data and fail to generalize. This necessity for
+regularization has been recognized in prior works on score estimation for DDPM (Scarvelis et al., 2023;
+Wibisono et al., 2024; Zhang et al., 2024; Dou et al., 2024) and is closely connected to approaches in the
+empirical Bayes literature (Jiang and Zhang, 2009; Saha and Guntuboyina, 2020). However, as discussed in
+Section 1, existing score estimators often exhibit discontinuity and nonsmoothness, and their efficiency could
+deteriorate when employed in the ODE-based deterministic samplers. Our soft-thresholding strategy serves
+as the critical step to ensure the mean Jacobian error remains sufficiently small in addition to the L2 score
+error, thereby leading to robust convergence guarantees.
+Sampling process. Equipped with the score estimators {b
+sXk (·)}K
+k=1 from (20) and learning rate schedK
+ule (αk )k=1 from (15), the probability flow ODE-based sampler iteratively generates samples as follows.
+Initializing YK ∼ N (0, Id ), we compute Yk−1 based on the deterministic mapping in (7):
+
+
+1 − αk
+1
+Yk +
+Yk−1 = √
+sbXk (Yk ) , k = K, . . . , 2,
+αk
+2
+√
+and output Y = Y1 / α1 as the generated sample. It is worth noting that the sampling process is completely deterministic dynamic (except for the random initialization of YK ), that is, (YK−1 , . . . , Y1 ) is purely
+deterministic given YK .
+10
+
+3.2
+
+Theoretical guarantees
+
+In this section, we present the end-to-end sampling guarantee of the proposed ODE-based sampler in Theorem 1. A proof outline is provided in Section 4.
+Theorem 1. Suppose the target distribution p⋆ satisfies Assumption 1 and Assumption 2 with β ≤ 2. If
+2
+we use the score estimator in (20) with τ = n− d+2β and the learning rates in (15) with c0 ≥ 2/β and
+√
+c1 = 5c0 ∨ 12, then the output Y = Y1 / α1 of Algorithm 1 satisfies
+
+
+β
+d+1
+E TV(pY , p⋆ ) ≤ C n− d+2β (log n) 2 log K,
+
+(21)
+
+β
+
+provided the iteration number satisfies K ≥ n d+2β (log K)3 . Here, C = C(d, β, L, σ) > 0 is a constant
+that depends only on the dimension d, smoothness parameters (β, L), and subgaussian parameter σ. The
+i.i.d.
+
+expectation is taken over the training data X (i) ∼ p⋆ , 1 ≤ i ≤ n.
+In summary, Theorem 1 provides a rigorous end-to-end statistical guarantee for ODE-based samplers
+under mild assumptions on the target distributions. Let us discuss the implications of this theorem.
+• (Near-)minimax optimal sampling. Since the minimax rate of density estimation for β-Hölder smooth
+densities scales as n−β/(d+2β) (Stone, 1980, 1982; Tsybakov, 2009) and density estimation forms a valid
+lower bound for sampling, our result establishes the minimax optimality of the probability flow ODEbased sampler up to some logarithmic factors. As far as we know, this is the first result that reveals
+the (near-)minimax optimality of the deterministic score-based sampler.
+• End-to-end theoretical guarantees. Unlike prior works that isolate either the discretization error in the
+practical sampling process (Oko et al., 2023; Zhang et al., 2024; Dou et al., 2024) or score estimation
+error (Chen et al., 2023a, 2022; Benton et al., 2023; Li and Yan, 2024b; Li et al., 2024b), our analysis
+rigorously tracks all sources of errors. This end-to-end guarantee enables a clearer understanding of
+how imperfect score estimates and discretized sampling updates jointly influence the final sampling
+quality, yielding a rigorous and comprehensive characterization of the sampling error.
+• Jacobian estimation guarantees. As a critical step for establishing the above guarantee, our analysis
+quantifies the mean Jacobian error of our proposed score estimator (18), extending beyond the standard
+L2 score estimation guarantees (Oko et al., 2023; Wibisono et al., 2024; Zhang et al., 2024; Dou et al.,
+2024). This characterization ensures that the score estimator not only achieves L2 accuracy but also
+possesses the necessary smoothness properties. Such smoothness is fundamental for controlling the
+discretization errors in the deterministic sampling process and ultimately guarantees the sampling
+performance established in our main theorem.
+• Mild target distribution assumptions. The developed theory does not impose strong structural conditions such as lower-bounded densities or Lipschitz/smooth scores on the target distributions required in
+prior works (e.g., Oko et al. (2023); Wibisono et al. (2024); Dou et al. (2024)). As a result, our analysis
+framework applies to a broader class of real-world distributions—including ones that are multimodal
+or lie on low-dimensional manifolds. This is particularly beneficial for modern applications where those
+restrictive conditions often fail.
+• No need of early stopping. The established sampling guarantee holds as long as the iteration number
+β
+K exceeds n d+2β up to some log factors. This result aligns with the findings of Dou et al. (2024) where
+early stopping techniques are not needed to achieve the (near-)minimax optimal performance.
+• Analysis framework for ODE-based samplers. The theoretical framework we establish provides a foundation for analyzing the performance guarantees of various ODE-based samplers. For instance, it
+can be extended to accommodate higher-order ODE solvers or alternative score estimation strategies,
+leading to improved computational efficiency or statistical accuracy.
+As a final remark, we note that Theorem 1 guarantees optimal convergence rates only for “rough” densities
+with β ≤ 2. According to classical density estimation theory, kernels with negative components are necessary when estimating smoother densities (Tsybakov, 2009), which renders our Gaussian kernel-based score
+11
+
+estimator (18) suboptimal when the forward process is close to the target distribution (i.e., α1 vanishingly
+small). Indeed, the optimal estimation of Hölder scores with higher smoothness remains an open problem
+(Wibisono et al., 2024). Since our primary objective is to demonstrate the achievability of ODE-based samplers attaining near-minimax optimal performance through appropriately regularized score estimation and
+a suitably chosen learning rate schedule, we focus on the case 0 < β ≤ 2 for clarity of presentation. In
+this regime, we can balance the score estimation error against the bias introduced by early stopping—a
+trade-off sufficient to attain the optimal sampling rate. Nevertheless, we expect the algorithmic insights
+presented here can be extended to the β > 2 case by replacing the Gaussian kernel with polynomial kernels
+(Zhang et al., 2024; Dou et al., 2024) and employing suitable regularization to control the Jacobian errors.
+We leave a thorough investigation of this direction to future work.
+
+4
+
+Analysis
+
+In this section, we provide the proof strategy for establishing Theorem 1, structured into three main steps.
+
+4.1
+
+Preparation
+
+Before the technical expositions, we first collect several preliminary facts that will be helpful for the proof.
+Properties of learning rates. We begin by presenting the following lemma that summarizes important
+properties of the learning rates chosen in (15). The proof can be found in Appendix B.1.
+Lemma 1. The learning rates (αk )K
+k=1 chosen in (15) satisfy that for all k ≥ 2:
+c1 log K
+1 − αk
+≤
+,
+1 − αk
+K
+c1 log K
+1 − αk
+≤1+
+,
+1<
+1 − αk−1
+K
+c1 log K
+2c1 log K
+1 − αk
+≤
+<
+,
+K
+αk − αk
+K
+
+(22a)
+
+1 − αk <
+
+(22b)
+(22c)
+
+where c1 is defined in (15). Further, αK satisfies
+αK ≤ K −c1 /4 .
+
+(22d)
+
+our sampler is chosen YK ∼ N (0, Id ) and
+Distance between pXK and pYK . Recall
+√ that the√initializer of
+′
+′
+with WK
+∼ N (0, Id ) independent of X0 .
+that the forward process satisfies XK = αK X0 + 1 − αK WK
+−c1 /4
+In recognition of αK ≤ K
+shown in Lemma 1, the following lemma shows that the distributions of XK
+and YK are sufficiently close. The proof is deferred to Appendix B.2.
+Lemma 2. Suppose the learning rates are chosen according to (15). Then the TV distance between pXK
+and pYK satisfies
+q
+
+
+
+1
+EX0 ∼p⋆0 kX0 k22 .
+(23)
+TV pXK k pYK ≤
+c
+/8
+2K 1
+As a remark, the error bound depends on the initial distribution of X0 ∼ p⋆0 in the forward process (1)
+only through its second moment.
+
+Auxiliary quantities and notation. For clarity of presentation, we introduce the following streamlined
+notation that will facilitate clearer exposition throughout our analysis.
+• To begin with, recall the variance-exploding process (Zt )t>0 introduce in (10). For each t > 0, we
+denote the density, score function, and associated Jacobian matrix of Zt by
+pt (x) := pZt (x),
+
+st (x) := sZt (x),
+12
+
+and
+
+Jt (x) := Jst (x).
+
+(24)
+
+By Tweedie’s formula (Efron, 2011), the score function st (x) takes the form
+st (x) =
+
+
+1 
+E Z0 − Zt | Zt = x .
+t
+
+(25)
+
+The Jacobian matrix Jt (x) can be expressed as
+
+
+1 
+1
+Jt (x) = − Id + 2 E (Z0 − Zt )(Z0 − Zt )⊤ | Zt = x − st (x)st (x)⊤ .
+t
+t
+
+(26)
+
+• Next, recall our density estimator pbt for pt in (16), where ϕt denotes the density of N (0, tId ). Also,
+the i.i.d. training data {X (i) }ni=1 are distributed identically to Z0 ∼ p⋆ . For each t > 0, we define the
+vector-valued functions gbt (·), gt (·) : Rd → Rd as
+n
+
+gbt (x) := ∇b
+pt (x) =
+
+Notice that
+
+1 X (i)
+(X − x)ϕt (X (i) − x);
+nt i=1
+
+
+ 1 
+
+gt (x) := E gbt (x) = E (Z0 − x)ϕt (Z0 − x) .
+t
+
+Z
+ p0 (y)
+1
+1
+gt (x)
+=
+dy
+(y − x)
+exp −ky − xk22 /(2t)
+d/2
+pt (x)
+t Rd
+pt (x)
+(2πt)
+Z
+1
+p0 (y)
+=
+dy
+(y − x)pZt |Z0 (y | x)
+t y∈Rd
+pt (x)
+Z
+1
+=
+(y − x)pZ0 |Zt (y | x) dy
+t Rd
+
+1 
+= E Z0 − x | Zt = x = st (x),
+t
+
+(27a)
+
+(27b)
+
+(27c)
+
+where the second line holds as Zt | Z0 = y ∼ N (y, tId ). In addition, we define the matrix-valued
+b t (·), Ht (·) : Rd → Rd×d for each t > 0:
+functions H
+n
+X
+b t (x) := 1
+(X (i) − x)(X (i) − x)⊤ ϕt (X (i) − x),
+H
+nt2 i=1
+
+
+
+
+
+b t (x) = 1 E (Z0 − x)(Z0 − x)⊤ ϕt (Z0 − x) .
+Ht (x) := E H
+2
+t
+
+Similar to (27c), we also have
+Z
+ p0 (y)
+Ht (x)
+1
+1
+exp −ky − xk22 /(2t)
+= 2
+dy
+(y − x)(y − x)⊤
+pt (x)
+t y∈Rd
+pt (x)
+(2πt)d/2
+Z
+1
+(y − x)(y − x)⊤ pZ0 |Zt (y | x) dy
+= 2
+t y∈Rd
+
+1 
+= 2 E (Z0 − Zt )(Z0 − Zt )⊤ | Zt = x .
+t
+
+(28a)
+
+(28b)
+
+(28c)
+
+Combining (27c) and (28c) with the expression of the Jacobian Jt (x) in (26), we can alternatively
+express it as
+1
+Ht (x)
+1
+Ht (x) gt (x)gt (x)⊤
+Jt (x) = − Id +
+− st (x)st = − Id +
+−
+.
+t
+pt (x)
+t
+pt (x)
+p2t (x)
+• To proceed, for some absolute constant CE > 0 large enough, we define the event
+s
+(
+)
+
+pt (x) log n
+log n
+,
++
+Et (x) := pbt (x) − pt (x) ≤ CE
+n(2πt)d/2
+n(2πt)d/2
+13
+
+(29)
+
+(30)
+
+for all x ∈ Rd and t > 0. Finally, for each t > 0, we denote the set
+
+Ft := x ∈ Rd : pt (x) ≥ cη ηt ,
+
+(31)
+
+with cη := 4CE ∨ 2 and threshold ηt as defined in (18). In short, the
+√ set Ft represents the region where
+the density pt (x) of Zt is not vanishingly small. Note that Zt is σ 2 + t-subgaussian given Z0 ∼ p⋆ is
+σ-subgaussian by Assumption 1.
+Properties of the score estimator sbt for Zt . Finally, let us examine the score estimator sbt (x) for Zt
+defined in (18) and its associated Jacobian Jsbt (x), which exhibit different forms depending on the value of
+pbt (x).
+• For pbt (x) ≥ ηt , the score estimator satisfies sbt (x) = ∇b
+pt (x)/b
+pt (x) with Jacobian Jsbt (x) given by
+b t (x)
+b t (x) ∇b
+H
+1
+H
+pt (x)∇b
+pt (x)⊤
+1
+− sbt (x)b
+st (x)⊤ = − Id +
+−
+.
+Jsbt (x) = − Id +
+t
+pbt (x)
+t
+pbt (x)
+pb2t (x)
+
+• For pbt (x) ≤ ηt /2, both the score estimator and its Jacobian vanish, i.e.,
+sbt (x) = 0
+
+and
+
+Jsbt (x) = 0.
+
+(32a)
+
+(32b)
+
+• For ηt /2 < pbt (x) < ηt , the score estimator becomes sbt (x) = ∇b
+pt (x)/b
+pt (x)ψ(b
+pt (x); ηt ) with Jacobian
+given by
+
+
+b t (x) ∇b
+ ∇b
+
+1
+pt (x)∇b
+pt (x)⊤ ′
+H
+pt (x)∇b
+pt (x)⊤
+Jsbt (x) = − Id +
+ψ
+p
+b
+(x);
+η
++
+−
+ψ pbt (x); ηt .
+(32c)
+t
+t
+2
+t
+pbt (x)
+pbt (x)
+pbt (x)
+
+4.2
+
+Step 1: Convergence guarantee
+
+With the above preparation in place, let us begin the detailed analysis. We first present the convergence
+guarantee for the ODE-based sampling process (7) that relates the sampling error of the generated output
+to the quality of an arbitrary score estimator.
+Let us begin by introducing several quantities that measure the accuracy of a given score estimator. For
+2
+any score estimator {b
+sXk (·)}K
+k=1 , define the L score error and the mean Jacobian error for each k ∈ [K]:
+h
+i
+i
+h
+2
+(33a)
+and εjcb,k := E JsbXk (Xk ) − JsXk (Xk ) ,
+ε2sc,k := E sbXk (Xk ) − sXk (Xk ) 2
+
+where the expectation is over both the training data {X (i) }ni=1 and Xk in the forward process (1). We then
+define the average errors over the K iterations as
+v
+u
+K
+K
+u1 X
+1 X
+(1 − αk )ε2sc,k
+(1 − αk )εjcb,k ,
+εsc := t
+and
+εjcb :=
+(33b)
+K
+K
+k=1
+
+k=1
+
+where (αk )K
+k=1 are determined in the learning rate schedule (15). With the notation in place, we now state
+the following theorem that captures the sampling quality of the ODE-based sampler (7) given an arbitrary
+score estimator. The proof can be found in Appendix A.1.
+Theorem 2. Suppose that the number of iterations satisfies K & d2 (log K)5 and K c2 ≥ EX0 ∼p⋆0 [kX0 k22 ] for
+some absolute constant c2 > 0 and that the learning rates are chosen according to (15) with c1 /8 − c2 /2 ≥ 1.
+−1
+Then for any score estimator {b
+sXk (·)}K
+Id < 0 for all x ∈ Rd and k ∈ [K],
+bXk (x) + (1 − αk )
+k=1 satisfying Js
+the last iterate Y1 in the sampling process (7) satisfies
+√
+ d(log K)4
+
++ εsc d (log K)3/2 + εjcb d log K.
+E TV(pX1 , pY1 ) .
+K
+
+Here, the expectation is taken over the training data {X (i) }ni=1 .
+14
+
+(34)
+
+In essence, Theorem 2 bounds the TV distance between the distribution of Y1 generated by the sampling
+process (7) and that of X1 in the forward process (1). The first term corresponds to the discretization error
+as the sampling process (7) can be interpreted as the time-discreization of the probability flow ODE (8); the
+second term reflects the quality of score matching in terms of the L2 score error and mean Jacobian error.
+e
+The convergence rate O(d/K)
+achieved here is state-of-the-art among all standard score-based samplers
+et al., 2023; Li and Yan, 2024b; Li et al., 2024b). If the iteration
+(including SDE-based samplers)
+(Benton
+√
+number satisfies K = e
+Ω( d/εsc + 1/εjcb ), then the sampling error scales as
+√
+
+e εsc d + εjcb d .
+O
+
+It is crucial to highlight that our convergence theory is established only under a finite second-moment
+condition of the initial distribution p⋆0 of the forward process, and does not require smoothness or functional inequality assumptions. The condition K c2 ≥ E[kX0 k22 ] requires the second moment to be at most
+polynomially large in the iteration number K, which accommodates extremely large second moments as c2
+can be arbitrarily large and K typically increases polynomially with dimension d and sample size n. We
+formulate the condition in terms of K to express our convergence guarantees more concisely. In addition,
+the assumption JsbXk + (1 − αk )−1 Id < 0 guarantees the invertibility of the deterministic mapping in update
+rule (7), serving as an essential component in the analysis for the TV distance bound that aims to control
+the density ratio between X1 and Y1 .
+
+Remark 3. Our convergence theory refines the framework developed in Li et al. (2024b), which directly
+controls the TV distance instead of resorting to technical tools such as the Girsanov theorem. The definitions
+of εsc and εjcb in (33) include extra factors 1 − αk compared to the result in Li et al. (2024b, Theorem 1).
+Furthermore, the additional assumption JsbXk + (1 − αk )−1 Id < 0 ensures the mapping in the sampling
+process is invertible. These critical refinements yield the improved error bound (34) and are fundamental
+to obtaining the minimax rate. Similarly, to establish the minimax optimality for stochastic samplers using
+convergence guarantees developed in Li and Yan (2024b); Li and Cai (2024), the error bounds therein would
+require analogous refinements.
+
+4.3
+
+Step 2: Score estimation guarantee
+
+Equipped with Theorem 2, we now turn to bounding the estimation errors—εsc and εjcb defined in (33)—of
+the proposed score estimator {b
+sXk (·)}K
+k=1 in (20).
+Our main result in this direction is the following theorem, whose proof can be found in Appendix A.2.
+Theorem 3. Assume the target distribution p⋆ satisfies Assumptions 1 and the learning rates are chosen
+sXk (·)}K
+according to (15). Then the score errors εsc and εjcb (cf. (33)) of the score estimator {b
+k=1 constructed
+in (20) satisfy
+
+
+
+C′
+K c0 d/2
+ε2sc . d 1 + σ d τ −d/2 ∧
+(log n)d/2+1 ;
+(35a)
+n
+d log K
+r 
+
+
+
+
+Cd′
+K c0 d/4
+Cd′ σ d −d/2 K c0 d/2
+−d/4
+d/2
+d/4+1
+τ
+∧
+1+σ
+(log n)
++
+τ
+∧
+(log n)d/2+1 ,
+(35b)
+εjcb .
+n
+d log K
+n
+d log K
+√ √
+where Cd′ = (4 2/ π)d . In addition, for all x ∈ Rd and k ∈ [K], the Jacobian JsbXk (x) of the score estimator
+sbXk satisfies
+JsbXk (x) +
+
+1
+Id < 0.
+1 − αk
+
+(36)
+
+In a nutshell, Theorem 3 bounds both the L2 score error εsc and the mean Jacobian error εjcb in terms
+of the iteration number K, training sample size n, dimension d, and subgaussian parameter σ of the target
+distribution p⋆ . In addition, it ensures the positive semidefinite requirement on the Jacobian JsbXk + (1 −
+αk )−1 Id needed in Theorem 2.
+We note that these score estimation guarantees depend on the target distribution solely through the
+subgaussian property (Assumption 1) and are independent of the Hölder smooth condition (Assumption 2).
+15
+
+Indeed, since each distribution pXk in the forward process is obtained by convolving the target distribution
+p⋆ with a Gaussian distribution, it naturally acquires the smoothness properties. Even if the score function
+of p⋆ may not be well-defined or grow unbounded, we can still faithfully estimate the sufficiently regular
+score functions of pXk for k ≥ 1.
+Roadmap for the proof of Theorem 3. Now, we discuss the proof strategy for Theorem 3. Recall the
+d √
+reduction argument in Section 2.1. The distributional relationship Xk = αk Ztk with tk = (1 − αk )/αk + τ
+allows us to focus on establishing estimation guarantees of the score estimators sbt (constructed in (18)) for
+Zt in the variance exploding process (9).
+We first bound the L2 estimation error of sbt for any t > 0 in the following proposition. The proof is
+provided in Appendix A.3.
+Proposition 1. Assume the target distribution p⋆ satisfies Assumption 1. For any t > 0,
+
+h
+i C 1
+σd
+2
+d
++ d/2+1 (log n)d/2+1 ,
+E sbt (Zt ) − st (Zt ) 2 ≤
+n t
+t
+√
+where Cd = (4/ π)d and the expectation is taken over the training data {X (i) }ni=1 and Zt .
+
+(37)
+
+In addition, the distance between the Jacobian matrix of the estimator sbt and that of the true score st
+is also controlled by the following proposition. The detailed proof is deferred to Appendix A.4.
+
+Proposition 2. Assume the target distribution p⋆ satisfies Assumptions 1. For any t > 0,
+
+
+
+h
+i rC 1
+σ d/2
+σd
+Cd 1
+d
+d/4+1
+E Jsbt (Zt ) − Jt (Zt ) .
++ d/4+1 (log n)
++ d/2+1 (log n)d/2+2
++
+n t
+n t
+t
+t
+√
+where Cd = (4/ π)d and the expectation is taken over the training data {X (i) }ni=1 and Zt .
+
+(38)
+
+Propositions 1 and 2 characterize the score estimation errors in terms of the training sample size n, time
+parameter t, dimension d, and subgaussian parameter σ of the target distribution p⋆ . Both the L2 score
+error and the mean Jacobian error decrease as the time parameter t grows. Intuitively, for large t, the
+distribution of Zt approaches a Gaussian N (0, tId ), effectively simplifying the score estimation. While prior
+works (Wibisono et al., 2024; Zhang et al., 2024; Dou et al., 2024) have derived similar L2 score estimation
+guarantees using hard-thresholding kernel-based estimators, our results demonstrates that a kernel-based
+score estimator with soft-thresholding not only achieves comparable L2 error rates but also maintains a similar
+rate for the crucial mean Jacobian error—a property essential to theoretical guarantees for deterministic
+ODE-based samplers in Theorem 2.
+Having established Propositions 1–2 for the variance-exploding process (Zt )t>0 , we can now translate the
+above score error bounds to derive the score estimation guarantees for the forward process (Xk )K
+k=1 . Recall
+the fundamental relationships between score functions and their Jacobians established in (12):
+√
+1
+Jtk (x/ αk ).
+αk
+√
+√
+us to
+Leveraging this with our construction of the
+ score estimator sbXk = sbtk (x/  αk )/ αk in (20) allows
+
+establish a direct correspondence between E kJsbXk (Xk ) − JsXk (Xk )k and E kJsbtk (Zt ) − Jtk (Zt )k . And the
+L2 score error transfers through an analogous mechanism. Combined with the learning-rate schedule (15),
+these results immediately yield the desired error bounds (35), thereby completing the proof of Theorem 3.
+√
+1
+sXk (x) = √ stk (x/ αk )
+αk
+
+and
+
+JsXk (x) =
+
+Remark 4. Prior works on DDPM combine L2 score estimation guarantees with Girsanov’s theorem to
+control the KL divergence between the target distribution and that of the continuous reverse SDE using
+score estimates (Oko et al., 2023; Zhang et al., 2024; Dou et al., 2024). This approach introduces an integral
+RT
+term 1 t−1 dt in the sampling error bound, where T is the end time in the exploding process (Zt )t>0 . To
+prevent this integral from diverging, previous analyses either imposed an upper limit on T (Zhang et al.,
+2024) or used the lower bound assumption on the density to derive a faster error rate t−2 (Dou et al., 2024).
+In contrast, our fine-grained convergence analysis in Theorem 2 and careful choice of learning rates show
+16
+
+that the factor t−1 in the score estimation error does not cause divergence for arbitrarily large T . This
+also highlights the importance of the convergence analysis in establishing theoretical guarantees for diffusion
+models.
+It is worth emphasizing that our score estimation guarantees rely exclusively on Assumption 1—that the
+target distribution p⋆ is subgaussian. As discussed in Section 3, a key direction for future research would be
+investigating whether the smoothness property can be leveraged to replace Gaussian kernels with polynomial
+kernels, potentially achieving optimal score and Jacobian estimation for sufficiently small t (without requiring
+the density lower bound assumption).
+Roadmap for the proof of Proposition 2. To conclude this section, we sketch the main ideas behind
+controlling the Jacobian error of sbt in Proposition 2. A parallel argument can be used to establish the L2
+score error in Proposition 1.
+Recall the sets Et (x) and Ft from (30) and (31), respectively. Let us use them to decompose
+h
+h
+i
+i Z
+E Jsbt (x) − Jt (x) pt (x) dx
+E Jsbt (Zt ) − Jt (Zt ) =
+Rd
+Z
+Z
+h
+i
+h
+i
+
+
+E Jsbt (x) − Jt (x) 1 Et (x) pt (x) dx
+E Jsbt (x) − Jt (x) 1 Et (x) pt (x) dx +
+=
+Fc
+F
+| t
+{z
+} | t
+{z
+}
+:=ξ1
+
+Z
+
+i
+h
+
++
+E Jsbt (x) − Jt (x) 1 Etc (x) pt (x) dx .
+d
+{z
+}
+|R
+
+:=ξ2
+
+:=ξ3
+
+In what follows, we handle the three terms ξ1 , ξ2 , and ξ3 separately.
+• For any x ∈ Ft (high-density region under pt ) such that pt (x) ≥ cη ηt ≥ 2ηt (see (31)), on the
+typical event Et (x), we can show that the density estimator pbt (x) satisfies pbt (x) ≥ pt (x)/2 ≥ ηt . By
+the expressions of Jsbt and Jt in (32a) and (29), respectively, we can bound the Jacobian error by
+decomposing it:
+b t (x) − Ht (x)k |b
+pt (x) − pt (x)| kHt (x)k
+kH
++
++ sbt (x) − st (x) 2 sbt (x) + st (x) 2
+pt (x)
+pt (x)
+pt (x)
+b t (x) − Ht (x)k |b
+kH
+pt (x) − pt (x)| kHt (x)k
+2
+.
++
++ sbt (x) − st (x) 2
+pt (x)
+pt (x)
+pt (x)
+|b
+pt (x) − pt (x)|
+kb
+gt (x) − gt (x)k2
+kst (x)k2 +
+kst (x)k22 .
+(39)
++
+pt (x)
+pt (x)
+
+Jsbt (x) − Jt (x) .
+
+b t defined in (27a) and (28a), respectively. This
+pt and H
+Here, we recall the definitions of gbt := ∇b
+b t , which are established in the following
+suggests we need to control the expected errors of pbt , gbt , and H
+lemma. The proof is provided in Appendix B.3.
+
+Lemma 3. Recall the definitions of gt and Ht in (27a) and (28b), respectively. For all x ∈ Rd , one
+has
+h
+i
+pt (x)
+2
+E pbt (x) − pt (x)
+≤
+;
+(40a)
+n(2πt)d/2
+h
+i
+pt (x)
+2
+,
+(40b)
+E gbt (x) − gt (x) 2 ≤
+n(2πt)d/2 t
+s
+i
+h
+1
+1
+pt (x)
+b t (x) − Ht (x) .
+E H
++
+.
+(40c)
+t n(2πt)d/2
+n(2πt)d/2 t
+
+Moreover, the event Et (x) defined in (30) obeys
+
+
+P Etc (x) . n−10 .
+17
+
+(41)
+
+Remark 5. Since the target density is allowed to be vanishingly small p⋆ (x), the term pt (x) appearing
+on the numerator on the right-hand side of the above bounds is essential to obtaining sharp bounds.
+In addition, both kst (x)k2 and kHt (x)k associated with the true score are well-controlled on the highdensity set Ft . This is formalized by the following lemma; with proof postponed to Appendix B.4.
+Lemma 4. For any x ∈ Ft , one has
+
+r
+
+log n
+,
+t
+log n
+Jt (x) .
+,
+t
+pt (x)
+log n.
+Ht (x) .
+t
+
+kst (x)k2 .
+
+(42a)
+(42b)
+(42c)
+
+Combining Lemmas 3–4 with the fact that the volume of the set Ft is relatively small due to the
+subgaussian property of pt and our choice of the threshold ηt in (18), we can use (39) to show that
+r 
+
+Cd 1
+σ d/2
+ξ1 .
++ d/4+1 (log n)d/4+1
+n t
+t
+√ d
+where Cd = (4/ π) .
+• We proceed to consider the second term ξ2 . By construction, the Jacobian of the score estimator
+satisfies that Jsbt (x) = 0 when pbt (x) ≤ ηt /2 (see (32b)). This allows us to bound
+Z
+Z
+i
+h
+
+Jt (x) pt (x) dx.
+ξ2 ≤
+E kJsbt (x)k1 pbt (x) ≥ ηt /2 pt (x) dx +
+Ftc
+
+Ftc
+
+Next, when pbt ≥ ηt /2, the proposed smooth score estimator sbt (x), which incorporates the softthresholding function ψ(b
+pt ; ηt ), enjoys the desired smoothness property (as characterized in (32a) and
+(32c)). Consequently, the spectral norm of its Jacobian kJsbt k remains well controlled. Hence, one can
+exploit the subgaussian property of pt to upper bound the integral over the low-density region under
+pt . Putting these two observations together, we can derive
+
+
+σd
+Cd
+1 + d/2+1 (log n)d/2+2 .
+ξ2 ≤
+n
+t
+
+• Finally, it can be shown that kJsbt k and kJst k do not blow up significantly. Combining this with
+P(Etc ) . K −10 in (41), we can show that the last term ξ3 is negligible.
+• Summing the respective bounds for ξ1 , ξ2 , and ξ3 completes the proof of Proposition 2.
+
+4.4
+
+Step 3: Bias in the initial distribution p⋆0
+
+Once Theorem 3 is combined with Theorem 2, we immediately obtain a bound on TV(pX1 , pY1 ), or equiv√
+alently, TV(pX1 /√α1 , pY ) since Y = Y1 / α1 is our generated sample. The remaining step is to control
+√
+the TV distance between pX1 /√α1 and the target distribution p⋆ . Recall that X1 / α1 can be writp
+ten as X0 + 1 − α1 /α1 W1′ for some standard Gaussian random vector W1′ ∼ N (0, Id ) independent of
+√
+X0 ∼ p⋆0 = p⋆ ∗ N (0, τ Id ). Because the distribution of X1 / α1 can be arbitrarily close to the initial distribution p⋆0 as the iteration number K increases and α1 approaches zero, the TV distance fundamentally
+depends on the bias in p⋆0 with respect to the target distribution p⋆ . The following proposition formalizes
+this relationship, with the complete proof presented in Appendix A.5.
+Proposition 3. Assume the target distribution p⋆ satisfies Assumptions 1–2. If 0 < 1 − α1 + τ < 1, then
+
+β
+d
+(43)
+TV(pX1 /√α1 , p⋆ ) ≤ C2 (1 − α1 + τ ) 2 ∧1 log 2 1/(1 − α1 + τ )
+
+for some constant C2 > 0 depending only on d, β, L, and σ.
+18
+
+√
+Proposition 3 rigorously justifies that, if 1 − α1 and τ are sufficiently small, the distribution of X1 / α1
+is extremely close to the target distribution p⋆ . In addition, when β ≤ 2, the error bound in (43) becomes
+
+e (1−α1 +τ )β/2 , which allows us to achieve the near-optimal rate in Theorem 1. As a remark, Proposition 3
+O
+is the only component in the proof of Theorem 1 that requires the Hölder smoothness condition on the target
+distribution p⋆ .
+
+4.5
+
+Proof of Theorem 1
+
+Putting all the pieces together in Steps 1–3, we are now ready to prove Theorem 1.
+• Substituting our selected τ = n−2/(d+2β) into Theorem 3, we can characterize the estimation errors εsc
+sXk (·)}K
+and εjcb (defined in (33)) of our proposed score estimator {b
+k=1 in (20):
+c0 d 
+
+
+2β
+d
+d
+K 2
+d
+d
+d+2β
+1+σ n
+(log n) 2 +1 . Cd′ σ d n− d+2β (log n) 2 +1 ,
+∧
+n
+d log K
+
+C′
+ε2sc . d
+
+(44a)
+
+and
+εjcb .
+.
+
+r
+
+c0 d 
+c0 d 
+
+
+
+d
+d
+Cd′
+K 4
+Cd′ σ d
+d
+d
+d
+K 2
++1
+2(d+2β)
+d+2β
+2
+4
+∧
++
+1+σ n
+(log n)
+n
+(log n) 2 +1
+∧
+n
+d log K
+n
+d log K
+
+q
+d
+d
+d
+Cd′ σ 2 n 2(d+2β) (log n) 4 +1 ,
+
+(44b)
+
+for n large enough.
+
+• Next, in order to apply Theorem 2, let us verify its√conditions. First, the subgaussian property of p⋆
+(Assumption 1) implies that p⋆0 = p⋆ ∗ N (0, τ Id ) is σ 2 + τ -subgaussian and E[kX0 k22 ] ≤ d(σ 2 + τ ) ≤
+d(σ 2 + n−2/(d+2β) ). Hence, the requirement on the iteration number K ≥ nβ/(d+2β) (log K)3 ensures
+both K & d2 (log K)5 and K ≥ E[kX0 k22 ] (simply setting c2 = 1) for n large enough. Also, c1 = 5c0 ∨ 12
+chosen in the learning rate schedule satisfies c1 /8 − c2 /2 ≥ 1, and the positive semidefinite requirement
+JsbXk + (1 − αk )−1 Id has been verified in (36) of Theorem 3. Therefore, we can invoke Theorem 2 to
+obtain
+
+
+
+
+E TV(pX1 /√α1 , pY1 /√α1 ) = E TV(pX1 , pY1 )
+3
+d (log K)4 √
++ d εsc (log K) 2 + d εjcb log K
+.
+K
+q
+q
+β
+β
+β
+1
+3
+d
+d
+d
+d
+− d+2β
+. dn
+log K + Cd′ d σ 2 n− d+2β (log n) 4 + 2 (log K) 2 + Cd′ dσ 2 n− d+2β (log n) 4 +1 log K
+β
+
+d
+
+≤ C1 n− d+2β (log n) 4 +1 log K,
+
+(45)
+
+for some constant C1 > 0 depending only on d, β, and σ. Here, the third line holds due to K ≥
+nβ/(d+2β)(log K)3 and (44).
+• In addition, since K ≥ nβ/(d+2β) , 1 − α1 = K −c0 with c0 ≥ 2/β, and τ = n−2/(d+2β) , one has
+2
+
+2
+
+n− d+2β < 1 − α1 + τ ≤ 2n− d+2β < 1
+for n large enough. Applying Proposition 3 with β ≤ 2 yields
+2
+
+TV(pX1 /√α1 , p⋆ ) ≤ C2 2n− d+2β
+β
+
+ β2
+
+d
+d
+β
+β
+2
+d
+log(n d+2β ) 2 ≤ C2 2 2 2/(d + 2β) 2 n− d+2β (log n) 2
+d
+
+. C2 n− d+2β (log n) 2
+
+where the last step holds as x−x ≤ 2 for any x > 0 and β ≤ 2.
+• Finally, applying the triangle inequality to (45) and (46) finishes the proof of Theorem 1.
+
+19
+
+(46)
+
+5
+
+Discussion
+
+In this paper, we have made progress towards understanding the theoretical guarantees of probability flow
+ODE-based sampler. We have developed an end-to-end performance guarantee for ODE-based samplers in
+the context of learning subgaussian distributions with Hölder smooth densities. By combining a smooth
+regularized score estimator with a refined convergence analysis of the ODE-based sampling process, our
+result is the first to prove the near-minimax optimality of ODE-based samplers. Our analysis framework
+not only addresses the challenges of ODE-based samplers but also offers promising insights that could be
+extended to other variants of score-based generative models.
+Our study opens several compelling directions for future research. First, our current sampling error
+bound suffers from the curse of dimensionality and is likely suboptimal with respect to the dependence
+on the logarithmic factors. Future work should investigate refining this dependence on the dimension d,
+possibly by exploiting intrinsic low-dimensional structures underlying the target data. Second, since practical
+implementations typically employ neural network-based score functions through empirical risk minimization,
+exploring the Jacobian estimation guarantees and developing rigorous end-to-end performance guarantees
+for such samplers represents a critical theoretical challenge. Third, extending our theoretical framework
+to encompass broader distribution classes would significantly enhance applicability. Beyond the smoother
+densities (β > 2) previously discussed, it would also be important to consider heavy-tailed and non-smooth
+densities that frequently arise in many real-world applications, which requires novel theoretical approaches
+to handle their distinct analytical challenges.
+
+Acknowledgements
+Gen Li is supported in part by the Chinese University of Hong Kong Direct Grant for Research.
+
+References
+Albergo, M. S., Boffi, N. M., and Vanden-Eijnden, E. (2023). Stochastic interpolants: A unifying framework
+for flows and diffusions. arXiv preprint arXiv:2303.08797.
+Anderson, B. D. (1982). Reverse-time diffusion equation models. Stochastic Processes and their Applications,
+12(3):313–326.
+Austin, J., Johnson, D. D., Ho, J., Tarlow, D., and Van Den Berg, R. (2021). Structured denoising diffusion
+models in discrete state-spaces. Advances in Neural Information Processing Systems, 34:17981–17993.
+Benton, J., De Bortoli, V., Doucet, A., and Deligiannidis, G. (2023). Linear convergence bounds for diffusion
+models via stochastic localization. arXiv preprint arXiv:2308.03686.
+Block, A., Mroueh, Y., and Rakhlin, A. (2020). Generative modeling with denoising auto-encoders and
+langevin sampling. arXiv preprint arXiv:2002.00107.
+Cao, M., Wang, X., Qi, Z., Shan, Y., Qie, X., and Zheng, Y. (2023). Masactrl: Tuning-free mutual selfattention control for consistent image synthesis and editing. In Proceedings of the IEEE/CVF international
+conference on computer vision, pages 22560–22570.
+Chen, H., Lee, H., and Lu, J. (2023a). Improved analysis of score-based generative modeling: User-friendly
+bounds under minimal smoothness assumptions. In International Conference on Machine Learning, pages
+4735–4763. PMLR.
+Chen, M., Huang, K., Zhao, T., and Wang, M. (2023b). Score approximation, estimation and distribution
+recovery of diffusion models on low-dimensional data. In International Conference on Machine Learning,
+pages 4672–4712. PMLR.
+Chen, M., Mei, S., Fan, J., and Wang, M. (2024a). An overview of diffusion models: Applications, guided
+generation, statistical rates and optimization. arXiv preprint arXiv:2404.07771.
+20
+
+Chen, S., Chewi, S., Lee, H., Li, Y., Lu, J., and Salim, A. (2023c). The probability flow ode is provably fast.
+Advances in Neural Information Processing Systems, 36:68552–68575.
+Chen, S., Chewi, S., Li, J., Li, Y., Salim, A., and Zhang, A. R. (2022). Sampling is as easy as learning the
+score: theory for diffusion models with minimal data assumptions. arXiv preprint arXiv:2209.11215.
+Chen, S., Daras, G., and Dimakis, A. (2023d). Restoration-degradation beyond linear diffusions: A nonasymptotic analysis for ddim-type samplers. In International Conference on Machine Learning, pages
+4462–4484. PMLR.
+Chen, S., Kontonis, V., and Shah, K. (2024b). Learning general gaussian mixtures with efficient score
+matching. arXiv preprint arXiv:2404.18893.
+Chung, H. and Ye, J. C. (2022). Score-based diffusion models for accelerated mri. Medical image analysis,
+80:102479.
+Cole, F. and Lu, Y. (2024). Score-based generative models break the curse of dimensionality in learning a
+family of sub-gaussian distributions. In The Twelfth International Conference on Learning Representations.
+Cui, H., Krzakala, F., Vanden-Eijnden, E., and Zdeborová, L. (2023). Analysis of learning a flow-based
+generative model from limited sample complexity. arXiv preprint arXiv:2310.03575.
+De Bortoli, V. (2022). Convergence of denoising diffusion models under the manifold hypothesis. arXiv
+preprint arXiv:2208.05314.
+De Bortoli, V., Thornton, J., Heng, J., and Doucet, A. (2021). Diffusion schrödinger bridge with applications
+to score-based generative modeling. Advances in Neural Information Processing Systems, 34:17695–17709.
+Dhariwal, P. and Nichol, A. (2021). Diffusion models beat gans on image synthesis. Advances in neural
+information processing systems, 34:8780–8794.
+Dou, Z., Kotekal, S., Xu, Z., and Zhou, H. H. (2024). From optimal score matching to optimal sampling.
+arXiv preprint arXiv:2409.07032.
+Durmus, A. and Moulines, É. (2019). High-dimensional Bayesian inference via the unadjusted Langevin
+algorithm. Bernoulli, 25(4A):2854 – 2882.
+Efron, B. (2011). Tweedie’s formula and selection bias. Journal of the American Statistical Association,
+106(496):1602–1614.
+Gatmiry, K., Kelner, J., and Lee, H. (2024). Learning mixtures of gaussians using diffusion models. arXiv
+preprint arXiv:2404.18869.
+Gruver, N., Stanton, S., Frey, N., Rudner, T. G., Hotzel, I., Lafrance-Vanasse, J., Rajpal, A., Cho, K.,
+and Wilson, A. G. (2024). Protein design with guided discrete diffusion. Advances in neural information
+processing systems, 36.
+Haussmann, U. G. and Pardoux, E. (1986). Time reversal of diffusions. The Annals of Probability, pages
+1188–1205.
+Ho, J., Jain, A., and Abbeel, P. (2020). Denoising diffusion probabilistic models. Advances in neural
+information processing systems, 33:6840–6851.
+Holk, A., Strauch, C., and Trottner, L. (2024). Statistical guarantees for denoising reflected diffusion models.
+arXiv preprint arXiv:2411.01563.
+Huang, D. Z., Huang, J., and Lin, Z. (2024a). Convergence analysis of probability flow ODE for score-based
+generative models. arXiv preprint arXiv:2404.09730.
+Huang, X., Zou, D., Dong, H., Zhang, Y., Ma, Y.-A., and Zhang, T. (2024b). Reverse transition kernel: A
+flexible framework to accelerate diffusion inference. arXiv preprint arXiv:2405.16387.
+21
+
+Huang, Y., Huang, J., Liu, Y., Yan, M., Lv, J., Liu, J., Xiong, W., Zhang, H., Chen, S., and Cao, L. (2024c).
+Diffusion model-based image editing: A survey. arXiv preprint arXiv:2402.17525.
+Huang, Z., Wei, Y., and Chen, Y. (2024d). Denoising diffusion probabilistic models are optimally adaptive
+to unknown low dimensionality. arXiv preprint arXiv:2410.18784.
+Hyvärinen, A. and Dayan, P. (2005). Estimation of non-normalized statistical models by score matching.
+Journal of Machine Learning Research, 6(4).
+Jiang, W. and Zhang, C.-H. (2009). General maximum likelihood empirical Bayes estimation of normal
+means. The Annals of Statistics, 37(4):1647 – 1684.
+Lee, H., Lu, J., and Tan, Y. (2022). Convergence for score-based generative modeling with polynomial
+complexity. Advances in Neural Information Processing Systems, 35:22870–22882.
+Lee, H., Lu, J., and Tan, Y. (2023). Convergence of score-based generative modeling for general data
+distributions. In International Conference on Algorithmic Learning Theory, pages 946–985. PMLR.
+Li, G. and Cai, C. (2024). Provable acceleration for diffusion models under minimal assumptions. arXiv
+preprint arXiv:2410.23285.
+Li, G., Huang, Y., Efimov, T., Wei, Y., Chi, Y., and Chen, Y. (2024a). Accelerating convergence of scorebased diffusion models, provably. arXiv preprint arXiv:2403.03852.
+Li, G. and Jiao, Y. (2024). Improved convergence rate for diffusion probabilistic models. arXiv preprint
+arXiv:2410.13738.
+Li, G., Wei, Y., Chen, Y., and Chi, Y. (2023). Towards faster non-asymptotic convergence for diffusion-based
+generative models. arXiv preprint arXiv:2306.09251.
+Li, G., Wei, Y., Chi, Y., and Chen, Y. (2024b). A sharp convergence theory for the probability flow odes of
+diffusion models. arXiv preprint arXiv:2408.02320.
+Li, G. and Yan, Y. (2024a). Adapting to unknown low-dimensional structures in score-based diffusion models.
+arXiv preprint arXiv:2405.14861.
+Li, G. and Yan, Y. (2024b). O(d/T ) convergence theory for diffusion probabilistic models under minimal
+assumptions. arXiv preprint arXiv:2409.18959.
+Li, S., Chen, S., and Li, Q. (2024c). A good score does not lead to a good generative model. arXiv preprint
+arXiv:2401.04856.
+Li, X., Thickstun, J., Gulrajani, I., Liang, P. S., and Hashimoto, T. B. (2022). Diffusion-lm improves
+controllable text generation. Advances in Neural Information Processing Systems, 35:4328–4343.
+Liang, J., Huang, Z., and Chen, Y. (2025). Low-dimensional adaptation of diffusion models: Convergence
+in total variation. arXiv preprint arXiv:2501.12982.
+Lu, C., Zhou, Y., Bao, F., Chen, J., Li, C., and Zhu, J. (2022a). Dpm-solver: A fast ode solver for diffusion
+probabilistic model sampling in around 10 steps. Advances in Neural Information Processing Systems,
+35:5775–5787.
+Lu, C., Zhou, Y., Bao, F., Chen, J., Li, C., and Zhu, J. (2022b). Dpm-solver++: Fast solver for guided
+sampling of diffusion probabilistic models. arXiv preprint arXiv:2211.01095.
+Ma, Y.-A., Chen, Y., Jin, C., Flammarion, N., and Jordan, M. I. (2019). Sampling can be faster than
+optimization. Proceedings of the National Academy of Sciences, 116(42):20881–20885.
+Meng, C., Song, Y., Song, J., Wu, J., Zhu, J.-Y., and Ermon, S. (2021). Sdedit: Image synthesis and editing
+with stochastic differential equations. arXiv preprint arXiv:2108.01073.
+
+22
+
+Oko, K., Akiyama, S., and Suzuki, T. (2023). Diffusion models are minimax optimal distribution estimators.
+In International Conference on Machine Learning, pages 26517–26582. PMLR.
+Potaptchik, P., Azangulov, I., and Deligiannidis, G. (2024). Linear convergence of diffusion models under
+the manifold hypothesis. arXiv preprint arXiv:2410.09046.
+Raginsky, M., Rakhlin, A., and Telgarsky, M. (2017). Non-convex learning via stochastic gradient langevin
+dynamics: a nonasymptotic analysis. In Conference on Learning Theory, pages 1674–1703. PMLR.
+Ramesh, A., Dhariwal, P., Nichol, A., Chu, C., and Chen, M. (2022). Hierarchical text-conditional image
+generation with clip latents. arXiv preprint arXiv:2204.06125, 1(2):3.
+Rombach, R., Blattmann, A., Lorenz, D., Esser, P., and Ommer, B. (2022). High-resolution image synthesis
+with latent diffusion models. In Proceedings of the IEEE/CVF conference on computer vision and pattern
+recognition, pages 10684–10695.
+Saha, S. and Guntuboyina, A. (2020). On the nonparametric maximum likelihood estimator for gaussian
+location mixture densities with application to gaussian denoising. The Annals of Statistics, 48(2):738–762.
+Scarvelis, C., Borde, H. S. d. O., and Solomon, J. (2023). Closed-form diffusion models. arXiv preprint
+arXiv:2310.12395.
+Shah, K., Chen, S., and Klivans, A. (2023). Learning mixtures of gaussians using the ddpm objective.
+Advances in Neural Information Processing Systems, 36:19636–19649.
+Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., and Ganguli, S. (2015). Deep unsupervised learning
+using nonequilibrium thermodynamics. In International conference on machine learning, pages 2256–2265.
+pmlr.
+Song, J., Meng, C., and Ermon, S. (2020a).
+arXiv:2010.02502.
+
+Denoising diffusion implicit models.
+
+arXiv preprint
+
+Song, Y. and Ermon, S. (2019). Generative modeling by estimating gradients of the data distribution.
+Advances in neural information processing systems, 32.
+Song, Y., Shen, L., Xing, L., and Ermon, S. (2021). Solving inverse problems in medical imaging with
+score-based generative models. arXiv preprint arXiv:2111.08005.
+Song, Y., Sohl-Dickstein, J., Kingma, D. P., Kumar, A., Ermon, S., and Poole, B. (2020b). Score-based
+generative modeling through stochastic differential equations. arXiv preprint arXiv:2011.13456.
+Stone, C. J. (1980). Optimal rates of convergence for nonparametric estimators. The annals of Statistics,
+pages 1348–1360.
+Stone, C. J. (1982). Optimal global rates of convergence for nonparametric regression. The annals of
+statistics, pages 1040–1053.
+Taheri, M. and Lederer, J. (2025). Regularization can make diffusion models more efficient. arXiv preprint
+arXiv:2502.09151.
+Tang, R. and Yang, Y. (2024). Adaptivity of diffusion models to manifold structures. In International
+Conference on Artificial Intelligence and Statistics, pages 1648–1656. PMLR.
+Tang, W. and Zhao, H. (2024). Score-based diffusion models via stochastic differential equations–a technical
+tutorial. arXiv preprint arXiv:2402.07487.
+Trippe, B. L., Yim, J., Tischer, D., Baker, D., Broderick, T., Barzilay, R., and Jaakkola, T. (2022). Diffusion probabilistic modeling of protein backbones in 3d for the motif-scaffolding problem. arXiv preprint
+arXiv:2206.04119.
+Tsybakov, A. B. (2009). Introduction to nonparametric estimation, volume 11. Springer.
+23
+
+Vempala, S. and Wibisono, A. (2019). Rapid convergence of the unadjusted langevin algorithm: Isoperimetry
+suffices. Advances in neural information processing systems, 32.
+Vershynin, R. (2018). High-dimensional probability: An introduction with applications in data science, volume 47. Cambridge university press.
+Vincent, P. (2011). A connection between score matching and denoising autoencoders. Neural computation,
+23(7):1661–1674.
+Wibisono, A., Wu, Y., and Yang, K. Y. (2024). Optimal score estimation via empirical bayes smoothing.
+arXiv preprint arXiv:2402.07747.
+Wu, Y., Chen, Y., and Wei, Y. (2024). Stochastic runge-kutta methods: Provable acceleration of diffusion
+models. arXiv preprint arXiv:2410.04760.
+Yang, K. Y. and Wibisono, A. (2022). Convergence of the inexact langevin algorithm and score-based
+generative models in kl divergence. arXiv preprint arXiv:2211.01512.
+Yang, L., Zhang, Z., Song, Y., Hong, S., Xu, R., Zhao, Y., Zhang, W., Cui, B., and Yang, M.-H. (2023).
+Diffusion models: A comprehensive survey of methods and applications. ACM Computing Surveys, 56(4):1–
+39.
+Zhang, K., Yin, H., Liang, F., and Liu, J. (2024). Minimax optimality of score-based diffusion models:
+Beyond the density lower bound assumptions. arXiv preprint arXiv:2402.15602.
+Zhang, Q. and Chen, Y. (2022). Fast sampling of diffusion models with exponential integrator. arXiv preprint
+arXiv:2204.13902.
+Zhao, W., Bai, L., Rao, Y., Zhou, J., and Lu, J. (2024). Unipc: A unified predictor-corrector framework for
+fast sampling of diffusion models. Advances in Neural Information Processing Systems, 36.
+
+A
+
+Proof of theorems
+
+A.1
+
+Analysis for convergence guarantee (proof of Theorem 2)
+
+We prove Theorem 2 using the framework developed in Li et al. (2024b), which directly controls the TV
+distance between pX1 and pY1 .
+For ease of presentation, we begin by introducing some notation. Recall the sampling update rule (7).
+For each k ∈ [K] and x ∈ Rd , define
+φ⋆k (x) := x +
+
+1 − αk
+sXk (x)
+2
+
+and φk (x) := x +
+
+1 − αk
+sbXk (x)
+2
+
+(47)
+
+√
+This allows us to write the update rule Yk−1 = φk (Yk )/ αk . We also let
+θk (x) := −
+
+
+log pXk (x)
+∨ 2c2 + c0 .
+d log K
+
+(48)
+
+In addition, we define the pointwise score error and Jacobian error as
+2
+
+ε2sc,k (x) := sbXk (x) − sXk (x) 2
+
+and εjcb,k (x) := JsbXk (x) − JsXk (x) .
+
+(49)
+
+Finally, for two functions f (K), g(K) > 0, we use f (K) ≪ g(K) to mean f (K) ≤ cg(K) for some absolute
+constant c > 0 that is sufficiently small.
+Now, we begin the proof by recalling that the TV distance can be written as
+
+
+Z
+Z
+
+
+pX1 (y)
+pX1 (y) − pY1 (y) dy =
+TV pX1 , pY1 =
+(50)
+− 1 pY1 (y) dy.
+pY1 (y)
+pX1 (y)>pY1 (y)
+pX1 (y)>pY1 (y)
+24
+
+Hence, to bound this TV distance, it is natural to focus on controlling the ratio pX1 (y)/pY1 (y). For each
+k = 2, 3, . . . , K, the ratio can be expressed as
+√
+p√αk Yk−1 ( αk yk−1 )
+pYk−1 (yk−1 )
+= √
+√
+pXk−1 (yk−1 )
+p αk Xk−1 ( αk yk−1 )
+√
+√
+
+ √
+p√αk Yk−1 ( αk yk−1 )
+p αk Xk−1 ( αk yk−1 ) −1 pYk (yk )
+·
+·
+=
+pYk (yk )
+pXk (yk )
+pXk (yk )
+
+ √
+p αk Xk−1 (φk (yk )) −1 pYk (yk )
+pφk (Yk ) (φk (yk ))
+·
+·
+∀yk−1 , yk ∈ Rd ,
+(51)
+=
+pYk (yk )
+pXk (yk )
+pXk (yk )
+where the last line uses the notation (47). As an important remark, the assumption JsbXk + (1 − αk )−1 Id < 0
+ensures that the mapping φk is invertible.
+The next step is to control the term
+pφk (Yk ) (φk (yk ))
+·
+pYk (yk )
+
+
+ √
+p αk Xk−1 (φk (yk )) −1
+pXk (yk )
+
+for typical yk ∈ Rd . We accomplish this via the following critical lemma, which yields the more refined
+convergence results in Theorem 2 than those in Li et al. (2024b, Theorem 1). The proof is deferred to the
+end of this section.
+Lemma 5. Suppose K & d log3 K.
+exists a function ζk (·) : Rd → R such that for
+p For each 2 ≤ k ≤ K, there
+3/2
+d
+any x ∈ R satisfies θk (x) . 1, θk (x)d(1 − αk )εsc,k (x) log K ≪ K and d(1 − αk )εjcb,k (x) log K ≪ K,
+one has
+
+
+pφk (Yk ) (φk (x)) p√αk Xk−1 φk (x) −1
+pYk (x)
+pX (x)
+ k ⋆
+
+2
+∂φk (x)
+= 1 + ζk (x) + O
+− Id
+∂x
+F
+
+p
+3/2
+d(1 − αk ) εsc,k (x) log K
+d(1 − αk )εjcb,k (x) log K
+d log3 K
+.
+(52)
++O
++
++
+K
+K
+K2
+Moreover, ζk satisfies ζk (x) ≤ 0 and
+
+
+
+h
+i
+2
+∂φ⋆k
+d log3 K
+E ζk (Xk ) . E
+,
+(Xk ) − Id
++
+∂x
+K2
+F
+
+(53)
+
+provided that K & d2 log5 K.
+Using Lemma 5 in place of Li et al. (2024b, Lemma 5), one can repeat the argument for Li et al. (2024b,
+Theorem 1) (see Li et al. (2024b, Section 5)) to complete the proof of Theorem 2. For the sake of clarity, we
+provide a high-level proof sketch below.
+Consider a “typical” sequence (yK , yK−1 , . . . , y1 ) generated by the sampling process (7) from an initialization yK . From (52) in Lemma 5 and the recursion (51), one sees that for each 2 ≤ k ≤ K, typical points
+yk−1 , yk satisfy
+pYk−1 (yk−1 )
+pY (yk )
+≈ k
+,
+pXk−1 (yk−1 )
+pXk (yk )
+by chaining these ratios, one obtains
+pX1 (y1 )
+=
+pY1 (y1 )
+
+
+
+
+K
+K
+X
+2
+∂φ⋆k (yk )
+d log4 K X
+pXK (yK )
+1+O
+,
++
+|ζk (yk )| +
+− Id + SK (yK )
+K
+∂x
+pYK (yK )
+F
+k=2
+
+k=2
+
+25
+
+(54)
+
+where
+SK (yK ) :=
+
+K
+
+log K X p
+d(1 − αk ) log K εsc,k (yk ) + d(1 − αk )εjcb,k (yk ) .
+K
+k=2
+
+In addition, one can show that
+
+
+K
+X
+2
+d log2 K
+∂φ⋆k
+.
+(Xk ) − Id
+.
+E
+∂x
+K
+F
+
+(55)
+
+k=2
+
+Returning to the integral expression for the TV distance in (50), we can split the domain of integration
+into some “typical” set H and its complement. For typical point y1 , we can apply (54) to obtain
+
+
+Z
+pX1 (y1 )
+− 1 pY1 (y1 ) dy1
+pY1 (y1 )
+y1 ∈H
+
+
+Z
+K
+K
+X ∂φ⋆ (yk )
+2
+d log4 K X
+pXK (yK )
+(i)
+k
+O
+=
+|ζk (yk )| +
+pY (yK ) dyK
++
+− Id + SK (yK )
+K
+∂x
+pYK (yK ) K
+F
+′
+yK ∈H
+k=2
+k=2
+
+
+Z
+pXK (yK )
++
+− 1 pYK (yK ) dyK
+pYK (yK )
+yK ∈H′
+ K
+
+Z
+K
+X
+X ∂φ⋆ (yk )
+2
+d log4 K
+k
++
+− Id + SK (yK ) pXK (yK ) dyK
+|ζk (yk )| +
+. TV(pXK , pYK ) +
+K
+∂x
+F
+yK ∈Rd
+k=2
+k=2
+
+
+K
+K
+i X
+(ii)
+2
+d log4 K X h
+1
+∂φ⋆k
+. c /8−c /2 +
+E
++
+E ζk (Xk ) +
+(Xk ) − Id
+2
+K
+∂x
+F
+K 1
+k=2
+k=2
+√
+K
+K
+
+ d log K X
+
+
+d log3/2 K X p
+(1 − αk ) E εsc,k (Xk ) +
+(1 − αk )E εjcb,k (Xk )
++
+K
+K
+k=2
+k=2
+√
+K
+K
+4
+3/2
+(iii) d log K
+
+
+
+ d log K X
+d log K X p
+(1 − αk ) E εsc,k (Xk ) +
+.
++
+(1 − αk )E εjcb,k (Xk ) ,
+K
+K
+K
+k=1
+
+k=1
+
+where (i) is true since the randomness of Y1 is due to YK and we choose set H′ such that {yK ∈ H′ } = {y1 ∈
+H}; (ii) uses Lemma 2 and the condition E[kX0 k22 ] ≤ K c2 ; (iii) uses the condition c1 /8 − c2 /2 ≥ 1 as well as
+(53) and (55). We note that the above expectations are taken over the randomness of (Xk ).
+Meanwhile, one can show that the contribution from remaining atypical points is negligible. Putting
+these two observations together and taking the expectation over the score estimator {b
+sXk }K
+k=1 , we find that
+v
+u
+K
+K
+u1 X
+ d log4 K √
+
+d log K X
++ d log3/2 K t
+(1 − αk )ε2sc,k +
+(1 − αk )εjcb,k
+E TV(pX1 , pY1 ) .
+K
+K
+K
+k=1
+
+k=2
+
+d log K √
++ d εsc log3/2 K + dεjcb log K,
+K
+4
+
+=
+
+where the first step applies Jensen’s inequality, and the last line follows from the definitions of εsc,k and εjcb,k
+in (33). This concludes the proof sketch of Theorem 2.
+Proof of Lemma 5. Fix an arbitrary x ∈ Rd such that θk (x) . 1. Recalling the definition of φk in (47),
+we further define
+
+
+1 − αk
+u := x − φk (x) = x − φ⋆k (x) − φk (x) − φ⋆k (x) = −
+sXk (x) − φk (x) − φ⋆k (x)
+2
+ 1 − αk
+
+√
+1 − αk 
+=
+sbXk (x) − sXk (x) .
+E Xk − αk X0 | Xk = x −
+2(1 − αk )
+2
+26
+
+(56)
+
+Notice that
+
+√
+
+αk Xk−1 satisfies
+p
+p
+ √
+√
+√
+√
+′
+′
+αk Xk−1 = αk
+αk−1 X0 + 1 − αk−1 Wk−1
+= αk X0 + αk − αk Wk−1
+
+′
+where Wk−1
+∼ N (0, Id ) is some d-dimensional standard Gaussian random vector independent of X0 . This
+allows us to express
+
+Z
+
+√
+p√αk Xk−1 φk (x)
+1
+=
+pX (x0 )p√αk −αk W φk (x) − αk x0 dx0
+pXk (x)
+pXk (x) x0 0
+√
+
+2
+Z
+−d/2
+φk (x) − αk x0 2
+1
+=
+exp −
+dx0
+pX (x0 ) 2π(αk − αk )
+pXk (x) x0 0
+2(αk − αk )
+√
+
+2
+Z
+−d/2
+x − αk x0 2
+1
+(i)
+exp −
+=
+pX (x0 ) 2π(αk − αk )
+pXk (x) x0 0
+2(1 − αk )
+
+√
+√
+
+2
+(1 − αk ) x − αk x0 2
+kuk22 − 2u⊤ x − αk x0
+· exp −
+dx0
+−
+2(αk − αk )(1 − αk )
+2(αk − αk )
+√
+√
+
+
+d/2 Z
+
+2
+(1 − αk ) x − αk x0 2
+1 − αk
+kuk22 − 2u⊤ (x − αk x0 )
+(ii)
+dx0 ,
+=
+−
+pX0 |Xk (x0 | x) exp −
+αk − αk
+2(αk − αk )(1 − αk )
+2(αk − αk )
+x0
+(57)
+
+where (i) uses (56) and (ii) holds due to the Bayes rule that
+pX0 |Xk (x0 | x) =
+
+√
+
+
+−d/2
+pX0 (x0 )
+pX0 (x0 )
+kx − αk x0 k22
+.
+pXk |X0 (x | x0 ) =
+2π(1 − αk )
+exp −
+pXk (x)
+pXk (x)
+2(1 − αk )
+
+This suggests we focus on controlling (57). Towards this, let us define the set
+n
+o
+p
+√
+Ectyp := x0 ∈ Rd : x − αk x0 2 ≤ 5c θk (x)d(1 − αk ) log K
+
+(58)
+
+for any integer c ≥ 2. As shown in Li et al. (2024b, Lemma 1), the set Ectyp satisfies
+
+
+P X0 ∈
+/ Ectyp | Xk = x ≤ exp −c2 θk (x)d log K
+
+(59)
+
+h
+i p
+√
+E Xk − αk X0 2 Xk = x . θk (x)d(1 − αk ) log K,
+
+(60)
+
+for all c ≥ 2,
+
+and the vector u defined in (56) satisfies
+
+i
+√
+1 − αk h
+1 − αk
+εsc,k (x) +
+E Xk − αk X0 2 Xk = x
+2
+2(1 − αk )
+6(1 − αk ) p
+1 − αk
+εsc,k (x) +
+θk (x)d(1 − αk ) log K.
+≤
+2
+1 − αk
+
+kuk2 ≤
+
+(61)
+
+For any x0 ∈ Ectyp , one can use (59), (61), and (22) from Lemma 1 to bound
+
+√
+2
+(1 − αk ) x − αk x0 2
+c1 θk (x)d log2 K
+25c2 (1 − αk )θk (x)d log K
+≤ 25c2
+≤
+;
+2(αk − αk )(1 − αk )
+2
+αk − αk
+K
+(1 − αk )2 2
+36(1 − αk )2 θk (x)d log K
+kuk22
+≤
+εsc,k (x) +
+2(αk − αk )
+4(αk − αk )
+(αk − αk )(1 − αk )
+
+2
+36(1 − αk )2 θk (x)d log K
+1 1 − αk
+αk (1 − αk )ε2sc,k (x) +
+≤
+4 αk − αk
+(αk − αk )(1 − αk )
+27
+
+(62a)
+
+c21 (1 − αk )ε2sc,k (x) log2 K
+c21 θk (x)d log3 K
++
+72
+,
+K2
+K2
+√
+√
+kuk2 x − αk x0 2
+u⊤ (x − αk x0 )
+≤
+αk − αk
+αk − αk
+p
+30c(1 − αk )θk (x)d log K
+5c(1 − αk )
+≤
+εsc,k (x) θk (x)d(1 − αk ) log K +
+2(αk − αk )
+αk − αk
+p
+3/2
+c1 θk (x)d(1 − αk ) εsc,k (x) log K
+c1 θk (x)d log2 K
++ 60c
+.
+≤ 5c
+K
+K
+≤
+
+As a result, the following holds for any x0 ∈ Ectyp with c ≥ 2:
+
+
+√
+√
+√
+2
+(1 − αk ) x − αk x0 2
+u⊤ x − αk x0
+u⊤ x − αk x0
+kuk22
+−
+≤
+≤ cθk (x)d,
+−
++
+2(αk − αk )(1 − αk )
+2(αk − αk )
+αk − αk
+αk − αk
+
+(62b)
+
+(62c)
+(62d)
+
+(63)
+
+as long as
+
+√
+3
+p
+10c1 1 − αk εsc,k (x) log 2 K
+and
+K ≥ 120c1 log2 K,
+≤ θk (x)d
+K
+p
+√
+which is satisfied by our condition that c1 1 − αk εsc,k (x) log3/2 K ≪ K θk (x)d and K & d log3 K.
+With the above preparation in place, let us begin to bound the integral over the typical set E2typ . Recalling
+the definition of u in (56), we first write
+√
+√
+
+
+2
+Z
+(1 − αk ) x − αk x0 2
+kuk22 − 2u⊤ (x − αk x0 )
+dx0
+pX0 |Xk (x0 | x) exp −
+−
+2(αk − αk )(1 − αk )
+2(αk − αk )
+x0 ∈E2typ
+
+
+Z
+⊤
+
+√
+1 − αk
+kuk22
+pX0 |Xk (x0 | x) exp −
+=
+sbXk (x) − sXk (x)
+x − αk x0 −
+2(αk − αk )
+2(αk − αk )
+x0 ∈E2typ
+
+
+
+
+
+√
+√
+√
+1 − αk
+2
+(x − αk x0 )⊤ E Xk − αk X0 | Xk = x − x − αk x0 2 dx0 . (64)
+· exp
+2(1 − αk )(αk − αk )
+
+For any x0 ∈ E2typ , using the bounds in (49), (58), and (62b) yields
+
+√
+kuk22
+1 − αk
+sbXk (x) − sXk (x) 2 x − αk x0 2 +
+αk − αk
+αk − αk
+p
+c21 (1 − αk )ε2sc,k (x) log2 K
+1 − αk
+c21 θk (x)d log3 K
+≤
+εsc,k (x) · 10 θk (x)d(1 − αk ) log K +
++
+72
+αk − αk
+K2
+K2
+p
+2
+3/2
+(i) c
+c21 (1 − αk )ε2sc,k (x) log K
+K
+c2 θk (x)d log3 K
+1 θk (x)d(1 − αk ) εsc,k (x) log
+.
++ 1
++
+2
+K
+K
+K2
+p
+(ii)
+θk (x)d(1 − αk ) εsc,k (x) log3/2 K
+θk (x)d log3 K
++
+≍
+K
+K2
+p
+3/2
+3
+d(1 − αk ) εsc,k (x) log K
+d log K
+. 1,
++
+.
+K
+K2
+p
+√
+where (i) uses (22c); (ii) follows from c1 ≍ 1 and the condition that c1 1 − αk εsc,k (x) log3/2 K ≪ K θk (x)d;
+(iii) is true since θk (x) . 1 and K & d log3 K. It follows that
+
+
+⊤
+
+√
+1 − αk
+kuk22
+sbXk (x) − sXk (x)
+x − αk x0 −
+exp −
+2(αk − αk )
+2(αk − αk )
+p
+
+
+3/2
+3
+d(1 − αk ) εsc,k (x) log K
+d log K
+=1+O
+.
+(65)
++
+K
+K2
+Plugging this into (64) allows us to bound the integral over the typical set E2typ :
+√
+√
+
+
+2
+Z
+(1 − αk ) x − αk x0 2
+kuk22 − 2u⊤ (x − αk x0 )
+dx0
+−
+pX0 |Xk (x0 | x) exp −
+2(αk − αk )(1 − αk )
+2(αk − αk )
+x0 ∈E2typ
+28
+
+
+p
+
+d(1 − αk ) εsc,k (x) log3/2 K
+d log3 K
+= 1+O
++
+K
+K2
+
+
+√
+√
+√
+
+2 
+Z
+(1 − αk ) (x − αk x0 )⊤ E Xk − αk X0 | Xk = x − x − αk x0 2
+pX0 |Xk (x0 | x) exp
+dx0 .
+·
+2(1 − αk )(αk − αk )
+x0 ∈E2typ
+(66)
+As for the integral over the complement set of E2typ , we can derive
+
+
+√
+√
+
+2
+(1 − αk ) x − αk x0 2
+kuk22 − 2u⊤ x − αk x0
+dx0
+−
+pX0 |Xk (x0 | x) exp −
+2(αk − αk )(1 − αk )
+2(αk − αk )
+x0 /
+∈E2typ
+∞ Z
+(i) X
+
+pX0 |Xk (x0 | x) exp cθk (x)d dx0
+≤
+
+Z
+
+typ
+typ
+c=3 x0 ∈Ec \Ec−1
+
+
+∞
+∞
+(ii) X
+
+ X
+1 2
+2
+≤
+exp −c θk (x)d log K exp cθk (x)d ≤
+exp − c θk (x)d log K
+2
+c=3
+c=3
+3
+
+
+≤ exp −θk (x)d log K .
+
+d log K
+K2
+
+(67)
+
+where (i) arises from (63); (ii) uses (59); the last line holds as due our choice of θk in (48).
+With (66) and (67) in place, combining them with (57) leads to
+
+
+
+
+ d log2 K 
+p√αk Xk−1 φk (x) (i)
+d(1 − αk )
+exp
+= 1+O
+pXk (x)
+K2
+2(αk − αk )
+√
+√
+
+
+2
+Z
+(1 − αk ) x − αk x0 2
+kuk22 − 2u⊤ (x − αk x0 )
+pX0 |Xk (x0 | x) exp −
+dx0
+·
+−
+2(αk − αk )(1 − αk )
+2(αk − αk )
+x0 ∈E2typ
+√
+
+
+√
+2
+Z
+(1 − αk ) x − αk x0 2
+kuk22 − 2u⊤ (x − αk x0 )
+−
+pX0 |Xk (x0 | x) exp −
+dx0
++ O(1)
+2(αk − αk )(1 − αk )
+2(αk − αk )
+x0 /
+∈E2typ
+p
+
+
+
+
+
+d(1 − αk ) εsc,k (x) log3/2 K
+d(1 − αk )
+d log3 K
+(ii)
+exp
+= 1+O
++
+K2
+K
+2(αk − αk )
+
+√
+√
+√
+
+Z
+(1 − αk ) (x − αk x0 )⊤ E[Xk − αk X0 | Xk = x] − kx − αk x0 k22
+dx0
+pX0 |Xk (x0 | x) exp
+·
+2(1 − αk )(αk − αk )
+x0 ∈E2typ
+
+
+d log3 K
++O
+K2
+p
+
+
+
+
+d(1 − αk ) εsc,k log3/2 K
+d(1 − αk )
+d log3 K
+(iii)
++
+exp
+= O
++
+K2
+K
+2(αk − αk )
+
+√
+√
+√
+
+Z
+⊤
+(1 − αk ) (x − αk x0 ) E[Xk − αk X0 | Xk = x] − kx − αk x0 k22
+dx0
+pX0 |Xk (x0 | x) exp
+·
+2(1 − αk )(αk − αk )
+x0 ∈E2typ
+p
+
+
+
+
+d(1 − αk ) εsc,k log3/2 K
+d(1 − αk )
+d log3 K
+(iv)
++ exp
+= O
++
+K2
+K
+2(αk − αk )
+
+√
+√
+√
+
+Z
+⊤
+(1 − αk ) (x − αk x0 ) E[Xk − αk X0 | Xk = x] − kx − αk x0 k22
+·
+pX0 |Xk (x0 | x) exp
+dx0 ,
+2(1 − αk )(αk − αk )
+x0 ∈Rd
+(68)
+Here, (i) holds as one can use (15) and (22) to derive
+
+
+1 − αk
+αk − αk
+
+d/2
+
+=
+
+
+
+d/2 
+
+ d log2 K 
+d(1 − αk )
+1 − αk
+. 1;
+exp
+1+
+= 1+O
+αk − αk
+K2
+2(αk − αk )
+29
+
+(ii) applies the bounds (66) and (67); (iii) holds as the integral in (ii) is O(1) since for any x ∈ E2typ with
+θt (x) . 1, we can use Lemma 1, (58), and (60) to obtain
+√
+2
+(1 − αk ) x − αk x0 2
+d log2 K
+(1 − αk )d log K
+.
+.
+= o(1);
+(1 − αk )(αk − αk )
+αk − αk
+K
+√
+√
+(1 − αk ) x − αk x0 2 E[Xk − αk X0 | Xk = x] 2
+d log2 K
+(1 − αk )d log K
+.
+.
+= o(1);
+(1 − αk )(αk − αk )
+αk − αk
+K
+
+(iv) is true because we can use a similar argument as in (67) to obtain
+
+
+√
+√
+√
+
+Z
+(1 − αk ) (x − αk x0 )⊤ E[x − αk X0 | Xk = x] − kx − αk x0 k22
+pX0 |Xk (x0 | x) exp
+dx0
+2(αk − αk )(1 − αk )
+x0 /
+∈E2typ
+ d log3 K
+.
+. exp −θk (x)d log K .
+K2
+
+With (68) in place, we can repeat the remaining steps in the proof of Li et al. (2024b, Lemma 5) to
+obtain the desired bound:
+
+
+pφk (Yk ) (φk (x)) p√αk Xk−1 φk (x) −1
+pYk (x)
+pXk (x)
+p
+
+
+2
+d(1 − αk ) εsc,k (x) log3/2 K
+∂φ⋆k (x)
+d(1 − αk )εjcb,k (x) d log3 K
+= 1 + ζk (x) + O
+− Id +
++
++
+∂x
+K
+K
+K2
+F
+p
+
+
+2
+d(1 − αk ) εsc,k (x) log3/2 K
+∂φ⋆k (x)
+d(1 − αk )εjcb,k (x) log K
+d log3 K
+= 1 + ζk (x) + O
+− Id +
++
++
+.
+∂x
+K
+K
+K2
+F
+Here, the last step arises from
+(1 − αk )εjcb,k (x) =
+where we use (22a) from Lemma 1.
+
+A.2
+
+log K
+1 − αk
+(1 − αk )εjcb,k (x) .
+(1 − αk )εjcb,k (x)
+1 − αk
+K
+
+Analysis for score matching (proof of Theorem 3)
+
+Before delving into the details, we remind readers of several notation. For Zt introduced in (9), we denote
+its score function as st (x) := sZt (x) and the associated Jacobian matrix as Jt (x) := Jst (x) (see (24)). In
+addition, we recall tk := (1 − αk )/αk + τ in (20).
+Now, we begin with Claim (35a). By Theorem 1, one can derive
+h
+i
+2
+ε2sc,k = E sbXk (Xk ) − sXk (Xk ) 2
+h
+i
+√
+√
+√
+√
+(i)
+2
+= E sbtk (Xk / αk )/ αk − stk (Xk / αk )/ αk 2
+h
+i
+(ii) 1
+2
+E sbtk (Ztk ) − stk (Ztk ) 2
+=
+αk
+
+
+(iii) C
+d 1
+−d/2
+1 + σ d tk
+(log n)d/2+1
+.
+n αk tk
+
+
+
+d/2 
+(iv) C ′
+1
+αk
+1 + σ d τ −d/2 ∧
+(log n)d/2+1 .
+≤ d
+n 1 − αk
+1 − αk
+√ √
+where we Cd′ = 2d/2 Cd = (4 2/ π)d . Here, (i) holds due to the construction in (20) that sbXk (x) :=
+√
+√
+√
+√
+d √
+sbtk (x/ αk )/ αk and sXk (x) = stk (x/ αk )/ αk ; (ii) arises from Xk = αk Ztk ; (iii) invokes (37) in
+Theorem 1; (iv) arises from tk ≥ (1 − αk )/αk and 2tk ≥ (1 − αk )/αk ∨ τ . Consequently, we arrive at
+
+
+d/2 
+K
+K 
+1 X
+αk
+C′
+1 X
+(log n)d/2+1 .
+(69)
+(1 − αk )ε2sc,k . d 1 + σ d τ −d/2 ∧
+εsc =
+K
+n
+K
+1 − αk
+k=1
+
+k=1
+
+30
+
+d/2
+PK
+This suggests we need to bound the sum k=1 αk /(1 − αk )
+.
+To this end, let k0 := max{1 ≤ k ≤ K : αk ≥ 1/2}, which is well-defined since α1 = 1 − K −c0 ≥ 1/2
+for K large enough. Notice that αk /(1 − αk ) is decreasing in k, since x 7→ x/(1 − x) in increasing in x for
+d/2
+x ∈ (0, 1) and αk is decreasing in k. This implies that αk /(1 − αk )
+< 1 for all k > k0 . We can then
+derive
+d/2
+d/2
+k0 
+K 
+K
+1 X
+1 X
+1 X
+αk
+αk
+≤
++
+1
+K
+1 − αk
+K
+1 − αk
+K
+k=1
+
+k=k0 +1
+
+k=1
+
+
+d/2
+k0
+X
+1
+αk−1 − αk
+αk
++1
+c1 log K
+αk−1 (1 − αk−1 ) 1 − αk
+k=2
+
+d/2
+k0
+X
+(ii)
+
+1
+αk
+1
+2
+≤
++
+αk−1 − αk + 1
+d/2
+c1 log K
+αk (1 − αk ) 1 − αk
+K(1 − α1 )
+k=2
+
+(i)
+
+=
+
+1
+K
+
+
+
+α1
+1 − α1
+
+d/2
+
++
+
+k
+
+=
+
+d/2−1
+
+0
+X
+
+αk
+2
+1
++
+αk−1 − αk + 1
+d/2
+d/2+1
+c1 log K
+K(1 − α1 )
+(1 − αk )
+
+(70)
+
+k=2
+
+where (i) arises from our choice of the learning rates in (15) that αk−1 − αk = αk−1 (1 − αk−1 )c1 log K/K;
+(ii) arises from α1 = α1 < 1 and (22) in Lemma 1 that αk−1 (1 − αk−1 ) ≥ αk (1 − αk )/2.
+Notice that for all d ≥ 1, x 7→ xd/2−1 /(1 − x)d/2+1 is increasing in x for x ∈ [1/2, 1). Combining this with
+the fact that αk is decreasing in k and αk ≥ 1/2 for all 1 ≤ k ≤ k0 , we can use the integral approximation
+to bound
+k0
+X
+
+d/2−1
+
+
+αk
+αk−1 − αk ≤
+d/2+1
+(1 − αk )
+k=2
+
+
+d/2 α1
+xd/2−1
+1
+x
+2
+2
+≤
+dx =
+.
+d/2+1
+d 1−x
+d (1 − α1 )d/2
+αk0 (1 − x)
+
+Z α1
+
+αk0
+
+Substituting this into (70) gives
+d/2
+K 
+1
+1
+1 X
+αk
+4
+K c0 d/2
+,
+≤
++
+.
+K
+1 − αk
+c1 d log K (1 − α1 )d/2
+d log K
+K(1 − α1 )d/2
+
+(71)
+
+k=1
+
+where the last step holds since 1 − α1 = K −c0 and K & d log K. Putting (69) and (71) together yields
+ε2sc =
+
+
+
+
+K
+C′
+K c0 d/2
+1 X
++ 1 (log n)d/2+1 .
+(1 − αk )ε2sc,k . d 1 + σ d τ −d/2 ∧
+K
+n
+d log K
+k=1
+
+This establishes Claim (35a).
+Let us proceed to consider Claim (35b). Similar to the above analysis, we first invoke Theorem 2 to
+obtain
+h
+i
+εjcb,k := E JsbXk (Xk ) − JsXk (Xk )
+h
+i
+√
+√
+(i)
+= E Jsbtk (Xk / αk )/αk − Jtk (Xk / αk )/αk
+h
+i
+(ii) 1
+E Jsbtk (Ztk ) − Jtk (Ztk )
+=
+αk
+r
+
+(iii)
+Cd 1 
+Cd 1 d −d/2
+−d/4
+≤
+1 + σ d/4 tk
+(log n)d/4+1 +
+σ tk (log n)d/2+2
+n αk tk
+n αk tk
+r
+
+
+
+d/4 
+(iv)
+Cd′
+1
+αk
+−d/4
+d/2
+τ
+∧
+1+σ
+(log n)d/4+1
+≤
+n 1 − αk
+1 − αk
+
+
+d/2 
+C ′ σd
+αk
++ d
+τ −d/2 ∧
+(log n)d/2+2 .
+n 1 − αk
+1 − αk
+31
+
+√
+d √
+Here, (i) is true since JsXk (x) = Jtk (x/ αk )/αk ; (ii) arises from Xk = αk Ztk ; (iii) applies (38) in Theorem 2; (iv) follows from tk ≥ (1 − αk )/αk and 2tk ≥ (1 − αk )/αk ∨ τ . We can then bound
+K
+
+1 X
+εjcb =
+(1 − αk )εjcb,k ≤
+K
+k=1
+
+r
+
+
+
+d/4 
+K 
+Cd′
+1 X
+αk
+1 + σ d/2 τ −d/4 ∧
+(log n)d/4+1
+n
+K
+1 − αk
+k=1
+
+d/2 
+
+K
+′ d
+Cd σ
+αk
+1 X
+−d/2
++
+τ
+∧
+(log n)d/2+2
+n
+K
+1 − αk
+
+(72)
+
+k=1
+
+Applying the same argument for (71), we can bound
+
+d/4 (i) k
+d/4
+K 
+0
+X
+1 X
+1
+αk
+αk
+≤
++1
+K
+1 − αk
+K 1 − αk
+k=1
+
+k=1
+
+
+d/4
+k0
+X
+1
+αk−1 − αk
+αk
+2
+1
++1
++
+≤
+K (1 − α1 )d/4
+c1 log K
+αk (1 − αk ) 1 − αk
+k=2
+Z α1
+(iii)
+2
+1
+xd/4−1
++
+dx + 1
+≤
+c1 log K αk0 (1 − x)d/4+1
+K(1 − α1 )d/4
+(ii)
+
+≤
+
+1
+8
+1
++
++1
+d/4
+c1 d log K (1 − α1 )d/4
+K(1 − α1 )
+
+(iv) K c0 d/4
+
+.
+
+d log K
+
+(73)
+
+,
+
+where (i) holds as αk /(1 − αk ) is decreasing in k; (ii) holds since our learning rate schedule ensures that
+α1 < 1, αk−1 − αk = αk−1 (1 − αk−1 )c1 log K/K, and αk−1 (1 − αk−1 ) ≥ αk (1 − αk )/2; (iii) is true since
+x 7→ xd/4−1 /(1 − x)d/4+1 is increasing in x for x ∈ [1/2, 1) and αk ≥ 1/2 for all 1 ≤ k ≤ k0 ; (iv) holds since
+1 − α1 = K −c0 and K & d log K. Putting(73) and (71) collectively into (72) yields
+K
+
+1 X
+(1 − αk )εjcb,k
+K
+k=1
+r 
+
+
+
+
+Cd′
+K c0 d/4
+C ′ σ d −d/2 K c0 d/2
+.
+1 + σ d/2 τ −d/4 ∧
+(log n)d/4+1 + d
+τ
+∧
+(log n)d/2+1 ,
+n
+d log K
+n
+d log K
+
+εjcb :=
+
+as claimed in (35b).
+√
+√
+Finally, let us prove Claim (36). Recalling sbXk (x) := sbtk (x/ αk )/ αk and tk = (1 − αk )/αk + τ , we
+have
+
+
+√
+√
+1
+1
+1
+1
+1
+JsbXk (x) +
+Jsbtk (x/ αk ) +
+Id =
+Jsb (x/ αk ) +
+Id =
+Id
+1 − αk
+αk tk
+1 − αk
+αk
+tk − τ
+
+
+√
+1
+1
+Jsbtk (x/ αk ) + Id .
+≥
+αk
+tk
+Thus, it suffices to show that Jsbt (x) + 1t Id < 0 for all x ∈ Rd and t > 0.
+Pn
+Examining the expression of Jsbt (x) in (32) and recognizing pbt (x) = n−1 i=1 ϕt (X (i) − x), we know that
+n
+(i)
+b t (x) ∇b
+− x)
+pt (x)∇b
+pt (x)⊤
+1X 1
+H
+(i)
+(i)
+⊤ ϕt (X
+(X
+−
+x)(X
+−
+x)
+−
+=
+2
+pbt (x)
+pbt (x)
+n i=1 t2
+pbt (x)
+ X
+ X
+⊤
+n
+n
+1 (i)
+1 (i)
+1
+1
+ϕt (X (i) − x)
+ϕt (X (i) − x)
+,
+(X − x)
+(X − x)
+−
+n i=1 t
+pbt (x)
+n i=1 t
+pbt (x)
+
+which is a covariance matrix. Therefore, we obtain
+
+32
+
+• When pbt (x) ≥ ηt , (32a) confirms that Jsbt (x) + 1t Id < 0.
+
+• When pbt (x) ≤ ηt /2, the claim follows directly from (32b).
+
+• When ηt /2 < pbt (x) < ηt , since 0 < ψ(x; η) < 1 and ψ ′ (x; η) > 0 for all x, (32c) ensures Jsbt (x)+ 1t Id < 0.
+
+A.3
+
+Analysis for L2 score estimation (proof of Proposition 1)
+
+Recall the definitions of Et (x) and Ft in (30) and (31), respectively. We first show that for any x ∈ Ft , on
+the event Et (x), the score estimator sbt (x) defined in (18) satisfies
+sbt (x) =
+
+gbt (x)
+.
+pbt (x)
+
+(74)
+
+√
+Indeed, for any x ∈ Ft , since we set cη = 4CE ∨ 2 ≥ 2CE (1 + 1/ cη ), it is straightforward to verify that
+s
+
+
+log n
+pt (x) log n
+cη log n
+≥ 2CE
++
+.
+pt (x) ≥
+n(2πt)d/2
+n(2πt)d/2
+n(2πt)d/2
+
+Thus, one has
+pbt (x) ≥ pt (x) − CE
+
+
+
+log n
++
+n(2πt)d/2
+
+s
+
+pt (x) log n
+n(2πt)d/2
+
+
+
+≥
+
+log n
+1
+pt (x) ≥
+= ηt ,
+2
+n(2πt)d/2
+
+where the last step holds as cη ≥ 2. This proves the claim in (74).
+Now, given the expression of sbt (x), we can then decompose
+h
+i
+h
+i Z
+2
+2
+E sbt (x) − st (x) 2 pt (x) dx
+E sbt (Zt ) − st (Zt ) 2 =
+Rd
+Z
+Z
+h
+i
+h
+i
+2 
+2 
+E sbt (x) − st (x) 2 1 Et (x) pt (x) dx +
+E sbt (x) − st (x) 2 1 Et (x) pt (x) dx
+=
+F
+Fc
+| t
+{z
+} | t
+{z
+}
+=:χ1
+
+Z
+
+(75)
+
+=:χ2
+
+h
+i
+2 
+E sbt (x) − st (x) 2 1 Etc (x) pt (x) dx .
++
+d
+|R
+{z
+}
+
+(76)
+
+=:χ3
+
+In what follows, we shall bound χ1 , χ2 , and χ3 individually.
+Step 1: bounding χ1 . To control the term χ1 , we first present the following lemma that characterizes
+the mean L2 error of sbt (x) on the event Et (x).
+Lemma 6. For any x ∈ Ft ,
+
+h
+i
+2 
+E sbt (x) − st (x) 2 1 Et (x) .
+
+1
+n(2πt)d/2
+
+
+
+
+1
+1
++ kst (x)k22
+.
+t
+pt (x)
+
+(77)
+
+Proof. See Appendix B.5.
+
+Taken together with the bound on kst (x)k2 in (42a) from Lemma 4, this leads to
+
+Z 
+1
+1
+log n
+1
+2
++
+ks
+(x)k
+|Ft |.
+χ1 .
+t
+2 dx .
+d/2
+d/2
+t
+t
+n(2πt)
+n(2πt)
+Ft
+Next, we present the following lemma, demonstrating that the volume of the set Ft is small when Zt is
+subgaussian.
+
+33
+
+Lemma 7. The set Ft defined in (31) satisfies
+|Ft | ≤ (32)d/2 (td/2 + σ d )(log n)d/2 .
+
+(78)
+
+Proof. See Appendix B.6.
+As a consequence, we conclude
+χ1 .
+
+
+
+16
+π
+
+d/2 
+
+σd
+1
+1 + d/2+1 (log n)d/2+1 .
+n
+t
+
+(79)
+
+Step 2: Bounding χ2 . We first apply the Cauchy-Schwartz inequality to obtain
+Z  h
+i
+
+2
+E sbt (x) 2 + kst (x)k22 pt (x) dx
+χ2 .
+Fc
+
+=
+
+Z t
+
+|
+
+Ftc
+
+Z
+h
+i
+2 
+E sbt (x) 2 1 pbt (x) ≥ ηt /2 pt (x) dx +
+{z
+
+}
+
+=:(I)
+
+|
+
+Ftc
+
+kst (x)k22 pt (x) dx .
+{z
+
+=:(II)
+
+}
+
+where the last step holds due to our construction of sbt (x) in (18) that sbt (x) = 0 when pbt (x) ≤ ηt /2.
+Let us begin with the term (I). In view of our choice of sbt (x) in (18) and 0 < ψ < 1, we know that when
+pbt (x) > ηt /2,
+sbt (x) 2 ≤
+
+It follows that for any x ∈ Ftc , one has
+
+2
+1
+gbt (x) 2 .
+kb
+gt (x)k2 ≤
+pbt (x)
+ηt
+
+(80)
+
+h
+i
+
+1 
+2 
+E sbt (x) 2 1 pbt (x) ≥ ηt /2 . 2 E kb
+gt (x)k22
+ηt
+
+(i) 1  
+
+. 2 E kb
+gt (x) − gt (x)k22 + kgt (x)k22
+ηt
+
+
+(ii) 1
+pt (x)
+2
+2
++ pt (x)kst (x)k2
+≤ 2
+ηt n(2πt)d/2 t
+
+
+(iii) 1
+cη ηt
+2
+2
+≤ 2
++
+(c
+η
+)
+ks
+(x)k
+η t
+t
+2
+ηt n(2πt)d/2 t
+d/2
+(iv) cη n(2πt)
+
+=
+
+(v)
+
+≍
+
+log n
+
+1
++ c2η kst (x)k22
+n(2πt)d/2 t
+
+1
++ kst (x)k22 ,
+t log n
+
+(81)
+
+where (i) uses the triangle inequality; (ii) arises from (40b) in Lemma 3 and gt (x) = pt (x)st (x); (iii) is true
+since pt (x) < cη ηt on Ftc ; (iv) follows from our choice of ηt in (18); (v) holds as cη > 0 is some absolute
+constant.
+Combined with the term (II), this gives
+Z
+Z
+1
+χ2 . (I) + (II) .
+pt (x) dx +
+kst (x)k22 pt (x) dx.
+t log n Ftc
+Ftc
+This suggests we need to control the expectations over the set Ftc where the density of pt is vanishingly
+small, which is accomplished by the following lemma.
+Lemma 8. Recall
+Ftc :=
+
+
+
+x ∈ Rd : pt (x) <
+34
+
+
+cη log n
+.
+n(2πt)d/2
+
+One has
+
+
+d/2 
+
+σd
+1
+pt (x) dx .
+1 + d/2 (log n)d/2+1 ,
+n
+t
+Ftc
+
+ d/2 
+Z
+1 1
+σd
+16
++ d/2+1 (log n)d/2+2 ,
+kst (x)k22 pt (x) dx .
+π
+n t
+t
+Ftc
+
+ d/2 
+Z
+1 1
+σd
+16
++ d/2+1 (log n)d/2+2 ,
+Jt (x) pt (x) dx .
+π
+n t
+t
+Ftc
+Z
+
+16
+π
+
+(82a)
+(82b)
+(82c)
+
+Proof. See Appendix B.7.
+Therefore, we can use (82a)–(82b) in Lemma 8 to bound
+
+
+ d/2 
+
+ d/2
+σd
+1 1
+1 1
+σd
+16
+16
+d/2+1
+1 + d/2 (log n)
++ d/2+1 (log n)d/2+2
++
+χ2 .
+π
+t log n n
+π
+n t
+t
+t
+ d/2 
+
+1
+16
+σd
+1 + d/2+1 (log n)d/2+2 .
+≍
+π
+n
+t
+
+(83)
+
+Step 3: Bounding χ3 . Applying the Cauchy-Schwartz inequality yields
+Z q
+Z
+h
+i
+q
+
+
+2  c
+E kb
+st (x) − st (x)k42 P E c (x) pt (x) dx
+E sbt (x) − st (x) 2 1 E (x) pt (x) dx ≤
+d
+d
+R
+R
+Z q
+
+
+
+1
+. 5
+(84)
+E kb
+st (x)k42 + kst (x)k22 pt (x) dx
+n Rd
+√
+√
+√
+where the last step uses (41) in Lemma 3 and a + b ≤ a + b for any a, b ≥ 0. Hence, it remains to
+control the two integrals.
+st (x)k2 ≤ 2 kb
+gt(x)k2 /ηt , it suffices to
+Regarding the first term involving sbt (x), in light of (80) that kb
+control kb
+gt (x)k2 . Recalling the expression of gbt (x) in (27a), one can bound
+n
+
+gbt (x) 2 =
+
+1 X
+(Xi − x)ϕt (Xi − x)
+nt i=1
+2
+
+≤ max
+
+1
+
+(Xi − x)ϕt (Xi − x) 2
+
+
+
+1
+1
+2
+≤ sup kxk2
+exp
+−kxk
+/
+(2t)
+2
+t x∈Rd
+(2πt)d/2
+1
+√ .
+= √
+e (2πt)d/2 t
+i∈[n] t
+
+(85)
+
+Plugging the value of ηt into (85) gives
+
+thereby leading to
+
+sbt (x) 2 ≤
+
+n
+1
+n(2πt)d/2
+2
+√ ≤√
+,
+gbt (x) 2 .
+ηt
+log n (2πt)d/2 t
+t log n
+
+Z
+
+Rd
+
+q 
+
+E kb
+st (x)k42 pt (x) dx .
+
+n2
+.
+t log2 n
+
+Turning to the second term, applying (127) from Lemma 11 allows us to bound
+Z
+d
+kst (x)k22 pt (x) dx . ,
+t
+d
+R
+Therefore, combining (87) and (88) reveals that
+
+
+d
+1
+n2
+d
+χ3 . 5
+. 3 .
++
+n t log2 n
+t
+n t
+35
+
+(86)
+
+(87)
+
+(88)
+
+(89)
+
+Step 4: Combining bounds for χ1 , χ2 , χ3 . To finish up, substituting the bounds (79), (83), and (89)
+into (76) yields
+Z
+h
+i
+2
+E sbt (x) − st (x) 2 pt (x) dx
+Rd
+
+
+
+
+ d/2 
+
+d/2 
+d
+16
+1 1
+1 1
+σd
+σd
++ d/2+1 (log n)d/2+1 +
++ d/2+1 (log n)d/2+2 + 3
+n t
+π
+n t
+n t
+t
+t
+
+ d/2 
+16
+1 1
+σd
++ d/2+1 (log n)d/2+2 .
+≍
+π
+n t
+t
+.
+
+16
+π
+
+This concludes the proof of Proposition 1.
+
+A.4
+
+Analysis for Jacobian estimation (proof of Proposition 2)
+
+Similar to the proof of Proposition 1 in Appendix A.3, we first decompose
+h
+i
+h
+i Z
+E Jsbt (x) − Jst (x) pt (x) dx
+E Jsbt (Zt ) − Jst (Zt ) =
+Rd
+Z
+Z
+h
+i
+h
+i
+
+
+E Jsbt (x) − Jst (x) 1 Et (x) pt (x) dx +
+=
+E Jsbt (x) − Jst (x) 1 Et (x) pt (x) dx
+F
+Fc
+| t
+{z
+} | t
+{z
+}
+:=ξ1
+
+Z
+
+:=ξ2
+
+h
+i
+
+E Jsbt (x) − Jst (x) 1 Etc (x) pt (x) dx .
++
+d
+{z
+}
+|R
+
+(90)
+
+:=ξ3
+
+As a result, it suffices to control these three quantities individually.
+Step 1: Bounding ξ1 . To bound ξ1 , we begin by presenting Lemma 9, which characterizes the spectral
+norm of the Jacobian estimation error Jsbt (x) conditional on Et (x).
+Lemma 9. For any x ∈ Ft , one has
+
+
+
+h
+i
+
+1 kHt (x)k
+1
+1
+E Jsbt (x) − Jst (x) 1 Et (x) . p
+.
++
++ kst (x)k22 p
+d/2
+t
+p
+(x)
+p
+t
+n(2πt)
+t (x)
+
+(91)
+
+Proof. See Appendix B.8.
+It follows that
+1
+
+ξ1 . p
+n(2πt)d/2
+
+Z
+
+Ft
+
+
+
+
+Z p
+p
+1 kHt (x)k
+1
+log n
+1
+2
+pt (x) dx . √
+pt (x) dx.
++
++ kst (x)k2
+t
+pt (x)
+n (2πt)d/4 t
+Ft
+
+where we use (42) in Lemma 4 in the last line.
+Further, applying the Cauchy-Schwartz inequality yields
+Z
+
+Ft
+
+p
+pt (x) dx ≤
+
+Z
+
+Ft
+
+1/2
+p
+p
+|Ft | ≤ |Ft | ≤ (32)d/4 td/4 + σ d/2 )(log n)d/4
+pt (x) dx
+
+√
+√
+√
+where the last step uses (78) in Lemma 7 and a + b ≤ a + b for any a, b > 0.
+Taking the two bounds collectively results in
+1
+log n
+1
+· (32)d/4 td/4 + σ d/2 )(log n)d/4 =
+ξ1 . √
+d/4
+t
+n (2πt)
+
+36
+
+
+
+16
+π
+
+d/4
+
+
+
+1 1
+σ d/2
+√
++ d/4+1 (log n)d/4+1 .
+n t
+t
+
+(92)
+
+Step 2: Bounding ξ2 . As shown in (32), when pbt (x) ≤ ηt /2, one has sbt (x) = 0 and Jsbt (x) = 0. Hence,
+we can use the triangle inequality to decompose
+Z 
+
+
+
+E kJsbt (x) + kJst (x)k pt (x) dx
+ξ2 ≤
+Fc
+
+=
+
+Z t
+
+|
+
+Ftc
+
+Z
+i
+h
+
+E kJsbt (x)k1 pbt (x) ≥ ηt /2 pt (x) dx +
+{z
+
+}
+
+=:(I)
+
+|
+
+Ftc
+
+kJst (x)k pt (x) dx .
+{z
+
+=:(II)
+
+}
+
+We start with the term (I) and focus on the event {b
+pt (x) ≥ ηt /2}. Recall the expression of the Jacobian
+Jsbt (x) of sbt (x) in (32). When ηt /2 ≤ pbt (x) ≤ ηt , one has
+Jsbt (x) =
+
+
+
+
+b t (x) gbt (x)b
+
+ gbt (x)b
+1
+gt (x)⊤
+H
+gt (x)⊤
+− Id +
+ψ pbt (x); ηt + ψ ′ pbt (x); ηt
+−
+.
+2
+t
+pbt (x)
+pbt (x)
+pbt (x)
+
+It is straightforward to compute
+
+ψ (x; η) = exp
+′
+
+1 − 2(2x/η − 1)
+(2x/η − 1)(2 − 2x/η)
+
+
+
+1 + exp
+
+1 − 2(2x/η − 1)
+(2x/η − 1)(2 − 2x/η)
+
+−2
+
+2(2x/η)2 − 6(2x/η) + 5 2
+· ,
+(2x/η − 1)2 (2 − 2x/η)2 η
+
+and
+max |ψ ′ (x; η)| = ψ ′ (3η/4; η) = 4/η.
+
+η/2<x<η
+
+Combined with maxη/2<x<η |ψ(x; η)| ≤ 1, this gives
+b t (x) gbt (x)b
+1
+gt (x)⊤
+4 gbt (x)b
+H
+gt (x)⊤
+Jsbt (x) ≤ − Id +
++
+−
+2
+t
+pbt (x)
+pbt (x)
+ηt
+pbt (x)
+
+≤
+
+12
+1
+2 b
+2
+Ht (x) + 2 gbt (x) 2 ,
++
+t
+ηt
+ηt
+
+(93)
+
+where the last step holds as pbt (x) ≥ ηt /2. Clearly, the above bound also holds when pbt (x) ≥ ηt .
+As a result, we can use the triangle inequality to obtain
+
+
+Z 
+Z 
+1
+1
+1
+1 b
+1 b
+2
+(I) .
+Ht (x) + 2 gbt (x) 2 pt (x) dx .
+Ht (x) + kst (x)k22 pt (x) dx
++
++
+t
+ηt
+ηt
+t
+ηt
+Ftc
+Ftc
+
+b t , we can apply the triangle to bound
+where the last step arises from (81). Regarding the term involving H
+i
+i
+1 h b
+1
+1 h b
+E Ht (x) ≤ E H
++ kHt (x)k
+t (x) − Ht (x)
+ηt
+ηt
+ηt
+s
+
+
+(i) 1
+1
+pt (x)
+pt (x) kHt (x)k
+1
++
++
+.
+ηt n(2πt)d/2 t
+t n(2πt)d/2
+ηt
+pt (x)
+
+
+r
+(ii) 1
+1
+cη ηt
+cη ηt kHt (x)k
+1
++
++
+≤
+ηt n(2πt)d/2 t
+t n(2πt)d/2
+ηt pt (x)
+s
+
+
+(iii) n(2πt)d/2
+1
+kHt (x)k
+1
+1
+log n
++
++
+.
+log n
+t n(2πt)d/2 n(2πt)d/2
+pt (x)
+n(2πt)d/2 t
+1
+kHt (x)k
+≍ √
++
+pt (x)
+t log n
+
+where (i) uses (40c) in Lemma 3; (ii) pt (x) ≤ cη ηt on the set Ftc ; (iii) plugs in the values of ηt in (18). Thus,
+we find that
+
+Z 
+1 kHt (x)k
+(94)
+(I) .
++
++ kst (x)k22 pt (x) dx
+t
+pt (x)
+Ftc
+37
+
+Combined with the term (II), we arrive at
+
+
+Z 
+Z 
+1 kHt (x)k
+1
+2
+2
+ξ2 .
++
++ kst (x)k2 + kJt (x)k pt (x) dx ≍
++ kst (x)k2 + kJt (x)k pt (x) dx
+t
+pt (x)
+t
+Ftc
+Ftc
+where the last step holds due to (29) and the triangle inequality that
+1
+kHt (x)k
+≤ Jst (x) + + kst (x)k22 .
+pt (x)
+t
+As a final step, invoking (82) in Lemma 8 leads to
+ d/2 
+
+ d/2 
+
+1 1
+1 1
+σd
+σd
+16
+16
++ d/2+1 (log n)d/2 +
++ d/2+1 (log n)d/2+2
+ξ2 .
+π
+n t
+π
+n t
+t
+t
+
+ d/2 
+d
+1 1
+σ
+16
++ d/2+1 (log n)d/2+2 .
+≍
+π
+n t
+t
+
+(95)
+
+Step 3: Bounding ξ3 . It remains to control the quantity ξ3 . We can first use the Cauchy-Schwartz
+inequality to bound
+Z q
+Z q
+
+q
+
+
+
+
+E kJsbt (x) − Jst (x)k2 P E c (x) pt (x) dx . n−5
+E kJsbt (x)k2 + kJst (x)k pt (x) dx,
+ξ3 ≤
+Rd
+
+Rd
+
+√
+√
+√
+where the last step uses (41), the AM-GM inequality, and a + b ≤ a + b for any a, b ≥ 0.
+As shown in (93), we can bound
+Jsbt (x) .
+
+1
+1 b
+1
+2
+Ht (x) + 2 gbt (x) 2
++
+t
+ηt
+ηt
+
+(i) 1
+
+.
+
+t
+
+(ii) 1
+
++
+
+1
+1
+1
+1
++
+ηt (2πt)d/2 t ηt2 (2πt)d t
+
++
+
+1
+n(2πt)d/2
+n2 (2πt)d
+1
++
+log n (2πt)d/2 t
+log2 n (2πt)d t
+
+≍
+
+t
+
+≍
+
+n2
+,
+t log2 n
+
+where (i) uses (106) and (85); (ii) arises from the choice of ηt in (18). Hence, we find that
+Z q
+
+
+n2
+.
+E kJsbt (x)k2 pt (x) dx .
+t
+Rd
+Additionally, we know from Lemma 11 that
+Z
+d
+Jst (x) pt (x) dx . ,
+t
+d
+R
+
+Consequently, putting the above two bounds collectively gives
+
+
+1 n2
+d
+d
+ξ3 . 5
+. 3 .
++
+n
+t
+t
+n t
+
+(96)
+
+Step 4: Combining bounds for ξ1 , ξ2 , ξ3 . To sum up, plugging (92), (95), and (96) into (90) leads to
+Z
+h
+i
+E Jsbt (x) − Jst (x) pt (x) dx ≤ ξ1 + ξ2 + ξ3
+Rd
+
+
+
+
+
+ d/2 
+
+1 1
+1 1
+σ d/2
+σd
+d
+16
+√
++ d/4+1 (log n)d/4+1 +
++ d/2+1 (log n)d/2+2 + 3
+π
+n t
+n t
+n t
+t
+t
+
+
+ d/2 
+
+ d/4
+d/2
+d
+1 1
+1 1
+σ
+σ
+16
+16
+√
++ d/4+1 (log n)d/4+1 +
++ d/2+1 (log n)d/2+2
+≍
+π
+n t
+π
+n t
+t
+t
+
+.
+
+16
+π
+
+d/4
+
+This finishes the proof of Proposition 2.
+
+38
+
+A.5
+
+Analysis for bias in the initial distribution p⋆0 (proof of Proposition 3)
+
+Recall that Z0 ∼ p0 , Zt ∼ pt , and X0 ∼ p⋆0 = p⋆ ∗ N (0, τ Id ). We will establish a stronger result than Claim
+(43): for any 0 < t < 1,
+d/2
+β
+TV(p⋆ , pt ) ≤ e
+Ct 2 ∧1 log(1/t)
+
+(97)
+
+e > 0 that depends only on d, β, L, and σ.
+for some constant C
+d √
+Suppose (97) holds. As X1 = α1 Zt1 with t1 = (1 − α1 )/α1 + τ ≍ 1 − α1 + τ < 1, (97) immediately
+gives the advertised result in (43).
+Hence, the remainder of this section focuses on proving (97). To this end, we define
+p
+p
+Ry := βt log(1/t) and Rx := 2(σ ∨ 1) β log(1/t).
+(98)
+
+Notice that Rx ≥ 2Ry since t ≤ 1. Recognizing pt is the convolution of the target distribution p⋆ with
+N (0, tId ), we can decompose the TV distance:
+Z
+Z
+1
+⋆
+⋆
+p⋆ (x) − (p⋆ ∗ ϕt )(x) dx
+p (x) − pt (x) dx =
+TV(p , pt ) =
+2 x∈Rd
+x∈Rd
+Z
+Z
+
+1
+=
+p⋆ (x) − p⋆ (x − y) ϕt (y) dy dx
+2 x∈Rd y∈Rd
+Z
+Z
+
+1
+p⋆ (x) − p⋆ (x − y) ϕt (y) dy dx
+≤
+2 kxk∞ ≤Rx y∈Rd
+|
+{z
+}
++
+
++
+
+1
+2
+1
+2
+
+Z
+
+|
+
+kxk∞ >Rx
+
+kyk∞ >Ry
+
+Z
+
+|
+
+ϕt (y)
+
+=:(I)
+
+Z
+
+ϕt (y)
+
+{z
+
+=:(II)
+
+Z
+
+kxk∞ >Rx
+
+kyk∞ ≤Ry
+
+p⋆ (x) − p⋆ (x − y) dx dy
+
+{z
+
+}
+
+p⋆ (x) − p⋆ (x − y) dx dy
+
+=:(III)
+
+In what follows, we will control (I), (II), and (III) separately.
+
+}
+
+• We begin with term (I). Recall the multi-index notation in Assumption 2 and ϕt is the density of
+N (0, tId ). Since p⋆ is β-Hölder-smooth, we can use Taylor’s theorem to expand p⋆ (x + y) around x up
+to order ⌊β⌋:
+X
+
+p⋆ (x + y) = p⋆ (x) +
+
+1≤|s|≤⌊β⌋
+
+1 s ⋆
+∂ p (x)y s + R(x, y)
+s!
+
+where the remainder term satisfies |R(x, y)| ≤ LCd,β kykβ2 for some constant Cd,β > 0 depending on d
+and β. Hence, we can bound
+Z
+Z
+
+
+⋆
+⋆
+p (x) − p (x − y) ϕt (y) dy =
+p⋆ (x + y) − p⋆ (x) ϕt (y) dy
+y∈Rd
+y∈Rd
+Z
+
+Z
+X
+1 s ⋆
+s
+y ϕt (y) dy + LCd,β O
+∂ p (x)
+kykβ2 ϕt (y) dy
+=
+s!
+Rd
+Rd
+1≤|s|≤⌊β⌋
+
+where the first step
+√ uses the symmetry of ϕt . Using the standard Gaussian property and the change
+of variable z = y/ t, one has:
+Z
+
+s
+
+y ϕt (y) dy = t
+Rd
+
+|s|/2
+
+Z
+
+Rd
+
+39
+
+d
+Y
+
+i=1
+
+zisi ϕ1 (z) dz ≤ Cs t|s|/2
+
+for some constant Cs depending on s if |s| is even, and the integral is zero for odd |s|. Similarly, the
+standard Gaussian property tells us
+Z
+Z
+Γ( d+β
+2 ) β/2
+kykβ2 ϕt (y) dy = tβ/2
+kzkβ2 ϕ1 (z) dz = 2β/2
+t .
+d
+Γ( 2 )
+Rd
+Rd
+Combining the above observations with t < 1 gives us
+Z
+
+p⋆ (x) − p⋆ (x − y) ϕt (y) dy ≤ Cd,β,L tβ/2∧1 ,
+y∈Rd
+
+for some constant Cd,β,L > 0 depending on d, β, and L. It follows that
+
+(II) ≤ (2Rx )d Cd,β,L tβ/2∧1 ≤ Cd,β,L,σ tβ/2∧1 logd/2 (1/t),
+
+(99)
+
+for some constant Cσ,d,β,L > 0 depending on d, β, L, and σ.
+• We proceed to control term (II). Since p⋆ is a density, we have
+Z
+Z
+Z
+
+⋆
+⋆
+ϕt (y)
+(II) ≤
+p (x) + p (x − y) dx dy ≤ 2
+kyk∞ >Ry
+
+x∈Rd
+
+ϕt (y) dy = 2P
+
+kyk∞ >Ry
+
+n√
+o
+t kW k∞ > Ry ,
+
+p
+√
+where W ∼ N (0, Id ) is a standard Gaussian random vector in Rd . Given Ry / t = β log(1/t), we
+know from the union bound and standard Gaussian tail bound that
+d
+o X
+n
+p
+p
+
+P |Wi | > β log(1/t) ≤ 2dtβ/2 .
+(II) ≤ P kW k∞ > β log(1/t) ≤
+
+(100)
+
+i=1
+
+• Turning to (III), for any x, y satisfying kxk∞ > Rx and kyk∞ ≤ Ry , we know from Rx ≥ 2Ry that
+kxk∞ > 2kyk∞ . Applying the triangle inequality yields
+kx − yk∞ ≥ kxk∞ − kyk∞ ≥ kxk∞ /2 > Rx /2.
+This allows us to bound
+Z
+Z
+Z
+p⋆ (x − y) dx
+p⋆ (x) dx +
+p⋆ (x) − p⋆ (x − y) dx ≤
+kxk∞ >Rx
+kxk∞ >Rx
+kxk∞ >Rx
+Z
+Z
+p⋆ (x − y) dx
+p⋆ (x) dx +
+≤
+kxk∞ >Rx
+
+kx−yk∞ >Rx /2
+
+
+≤ 2 P kZ0 k∞ > Rx /2
+d
+n
+o
+(i) X
+p
+P |Z0⊤ ei | > σ β log(1/t)
+≤2
+i=1
+
+(ii)
+
+≤ 2dtβ/2
+
+where (i) holds due to the choice of Rx ; (ii) holds as Z0 and {Z0⊤ ei }i∈[d] are σ-subguassian. It follows
+that
+Z
+β/2
+(III) ≤ 2dt
+ϕt (y) dy ≤ 2dtβ/2 .
+(101)
+kyk∞ ≤Ry
+
+• To finish up, combining the bounds (99)–(101) yields the claim in (97):
+d/2
+
+e β/2∧1 log(1/t) d/2 .
+TV(p⋆ , pt ) . Cd,β,L,σ tβ/2∧1 log(1/t)
++ dtβ/2 ≤ Ct
+
+e > 0 depending on d, β, L, and σ.
+for some constant C
+40
+
+B
+
+Proof of lemmas
+
+B.1
+
+Proof of Lemma 1
+
+Before beginning the proof, we note that the update rule (15) implies that
+1 − αk
+c1 log K
+αk−1 − αk
+=
+=
+.
+1 − αk−1
+αk−1 − αk
+K
+• Let us begin with Claim (22b). Recall the definition αk =
+we have
+1<
+
+Qk
+
+i=1 αi ∈ (0, 1).
+
+(102)
+By the update rule (15),
+
+c1 log K
+1 − αk
+αk−1 − αk
+c1 log K
+=1+
+=1+
+,
+αk−1 < 1 +
+1 − αk−1
+1 − αk−1
+K
+K
+
+where the first inequality and the last step holds due to αk ∈ (0, 1) and thus αk =
+decreasing in k.
+
+Qk
+
+i=1 αi ∈ (0, 1) is
+
+• Given the above observation, we further know that for all k ≥ 2:
+1 − αk ≤
+
+1 − αk 1 − αk−1
+1 − αk
+c1 log K
+1
+1 − αk
+=
+<
+=
+≤ ,
+1 − αk
+1 − αk−1 1 − αk
+1 − αk−1
+K
+2
+
+where the last step holds as long as K is large enough. This proves Claim (22a).
+• In addition, we have
+1 − αk
+1 1 − αk
+1 c1 log K
+=
+=
+.
+αk − αk
+αk 1 − αk−1
+αk
+K
+As 1/2 < αk ≤ 1, we obtain
+c1 log K
+2c1 log K
+1 − αk
+≤
+≤
+K
+αk − αk
+K
+as claimed in (22c).
+• Finally, let us consider Claim (22d). We first claim that αk ≤ 1/2 for all k ≥ K/2 + 1. Let us prove
+it by contradiction. Assume the statement is false, that is, there exists some k ≥ K/2 + 1 such that
+αk > 1/2. Given αk is decreasing in k, this implies that αk > 1/2 for all 1 ≤ k ≤ K/2 + 1. In view of
+the update rule (15), we can deduce that for all 1 ≤ k ≤ K/2,
+
+
+
+
+c1 log K
+c1 log K
+> (1 − αk ) 1 +
+.
+1 − αk+1 = (1 − αk ) 1 + αk
+K
+2K
+As 1 − α1 = 1 − α1 = K −c0 , this implies
+
+K/2
+ 2K c1 log K
+
+c1 log K
+c1 log K c1 log K 4
+−c0
+1 − αK/2+1 > (1 − α1 ) 1 +
+1+
+=K
+2K
+2K
+c1 log K
+
+(i)
+(ii)
+1
+1
+= K −c0 +c1 log 5/4 > ,
+≥ K −c0 1 +
+4
+2
+where (i) holds as (1 + 1/x)x is increasing in x for x > 0 and 2K/(c1 log K) > 4 for K large enough;
+(ii) holds as long as c1 ≥ 5c0 . This leads to a contradiction. Thus, we know that αk ≤ 1/2 for all
+k ≥ K/2 + 1. Combined with the update rule (15), this means that for all k ≥ K/2:
+
+
+
+
+c1 log K
+c1 log K
+αk+1 = αk 1 − (1 − αk )
+≤ αk 1 −
+.
+K
+2K
+41
+
+Therefore, we arrive at the claim that
+
+K/2−1
+
+ 2K c1 log K
+1
+c1 log K
+1
+c1 log K c1 log K 4
+2
+αK ≤ αK/2+1 1 −
+≤ c /4 ,
+1−
+≤
+c
+log
+K
+1
+2K
+2K
+K 1
+1 − 2K
+where the last step holds due to αK/2+1 ≤ 1/2, (c1 log K)/K ≤ 1/2, and (1 − 1/x)x ≤ exp(−1) for
+x > 1.
+
+B.2
+
+Proof of Lemma 2
+
+Let√us first control the KL divergence between pXK and pYK . Recall that YK ∼ N (0, Id ) and XK ∼
+N ( αK x0 , (1 − αK )Id ) given X0 = x0 . We can derive
+h
+i
+ (i)
+KL pXK k pYK ≤ EX0 ∼p⋆0 KL pXK (· | X0 ) k pYK (·)
+h
+i
+√
+(ii) 1
+2
+= E d(1 − αK ) − d +
+αK X0 2 − d log(1 − αK )
+2
+(iii) 1
+
+
+ (iv) 1 
+≤ αK E kX0 k22 ≤ E kX0 k22 K −c1 /4 ,
+2
+2
+
+where (i) uses the convexity of the KL divergence; (ii) applies the KL divergence formula for Gaussian
+distributions; (iii) is true as the chosen learning rate ensures that αK ≤ K −c1 /4 ≤ 1/2 for K large enough
+and log(1 − x) ≥ −x for all x ∈ [0, 1/2]; (iv) uses αK ≤ K −c1 /4 again. Hence, it follows from Pinsker’s
+inequality that
+r
+ 1q 
+
+
+1
+E kX0 k22 K −c1 /8 .
+KL pXK k pYK ≤
+TV pXK , pYK ≤
+2
+2
+
+B.3
+
+Proof of Lemma 3
+d
+
+Recall that the training data satisfy X (i) = Z0 ∼ p0 = p⋆ and the density estimator pbt (x) is defined in (16):
+n
+
+pbt (x) :=
+
+1X
+ϕt (X (i) − x)
+n i=1
+
+Estimation error of pbt .
+
+
+E ϕt (Z0 − x) =
+
+with
+
+ϕt (x) :=
+
+
+1
+exp −x2 /(2t) .
+d/2
+(2πt)
+
+Notice that
+Z
+
+y∈Rd
+
+ϕt (y − x)p0 (y) dy =
+
+Z
+
+y∈Rd
+
+ϕt (x − y)p0 (y) dy = (ϕt ∗ p0 )(x) = pt (x).
+
+This means that
+
+pbt (x) − pt (x) =
+
+n
+
+
+1X
+ϕt (X (i) − x) − E ϕt (X (i) − x)
+n i=1
+
+is a sum of i.i.d. zero-mean random variables. The variance of pbt (x) can be bounded by
+
+
+1 
+Var pbt (x) ≤ E ϕ2t (Z0 − x)
+nZ
+
+1
+1
+exp −kx − yk22 /t p0 (y) dy
+=
+d
+n y∈Rd (2πt)
+Z
+
+1
+1
+2
+exp
+−kx
+−
+yk
+/(2t)
+p0 (y) dy
+≤
+2
+n(2πt)d/2 y∈Rd (2πt)d/2
+1
+=
+(ϕt ∗ p0 )(x)
+n(2πt)d/2
+42
+
+=
+
+pt (x)
+.
+n(2πt)d/2
+
+(103)
+
+This proves Claim (40a).
+Furthermore, we can apply the triangle inequality to get
+2
+1
+2
+ϕt (X (i) − x) − E[ϕt (X (i) − x)] ≤ sup ϕt (x) = sup
+n x∈Rd
+n x∈Rd
+i∈[n] n
+2
+=
+.
+n(2πt)d/2
+
+max
+
+
+
+
+
+1
+2
+exp
+−kxk
+/(2t)
+2
+(2πt)d/2
+
+Combining this with (103), we can invoke the Bernstein inequality to obtain
+s
+(
+
+)
+log n
+pt (x) log n
+P pbt (x) − pt (x) > CE
+. n−10
++
+n(2πt)d/2
+n(2πt)d/2
+as long as CE > 0 is large enough. This proves Claim (41).
+Estimation error of gbt . Notice that
+gbt (x) − gt (x) =
+
+n
+
+
+1 X  (i)
+(X − x)ϕt (X (i) − x) − E (Z0 − x)ϕt (Z0 − x)
+nt i=1
+
+is a sum of independent zero-mean random vectors. This allows us to derive
+h
+i
+
+ 2i
+1 h
+2
+E gbt (x) − gt (x) 2 = 2 E (X (i) − x)ϕt (X (i) − x) − E (Z0 − x)ϕt (Z0 − x) 2
+nt 
+
+h
+i
+
+ 2
+1
+2
+= 2 E (X (i) − x)ϕt (X (i) − x) 2 − E (Z0 − x)ϕt (Z0 − x)
+nt
+2
+i
+1 h
+2
+≤ 2 E (Z0 − x)ϕt (Z0 − x) 2
+nt
+i
+1 h
+2
+= 2 E Z0 − x 2 ϕ2t (Z0 − x) .
+nt
+
+It is straightforward to calculate
+h
+i
+E kZ0 − xk22 ϕ2t (Z0 − x) =
+
+Z
+
+
+1
+1
+ky − xk22
+exp −ky − xk22 /t p0 (y) dy
+d/2
+(2πt)
+Rd t
+Z
+(i)
+
+1
+t
+exp −ky − xk22 /(2t) p0 (y) dy
+≤
+d/2
+d/2
+(2πt)
+Rd (2πt)
+t
+(ϕt ∗ p0 )(x)
+=
+(2πt)d/2
+t
+=
+pt (x),
+(2πt)d/2
+t
+(2πt)d/2
+
+(104)
+
+(105)
+
+where (i) holds as x ≤ exp(x/2) for any x ≥ 0. Combining (104) and (105) establishes Claim (40b).
+bt .
+Estimation error of H
+
+n 
+X
+
+b t (x) − Ht (x) = 1
+H
+n i=1
+
+Note that
+
+1
+1 
+(i)
+(i)
+⊤
+(i)
+⊤
+(X
+−
+x)(X
+−
+x)
+ϕ
+(X
+−
+x)
+−
+E
+(Z
+−
+x)(Z
+−
+x)
+ϕ
+(Z
+−
+x)
+t
+0
+0
+t
+0
+t2
+t2
+
+is a sum of i.i.d. zero-mean random matrices. Straightforward calculation shows that
+max
+
+1
+1
+1 1
+(X (i) − x)(X (i) − x)⊤ ϕt (X (i) − x) − Ht (x) ≤ 2 max kX (i) − xk22 ϕt (X (i) − x) +
+Ht (x)
+t2
+nt i∈[n]
+n
+
+i∈[n] n
+
+43
+
+(i)
+
+≤
+
+=
+
+n
+o
+1
+2
+sup kyk22 exp −kyk22 /(2t)
+2
+d/2
+nt (2πt)
+y∈Rd
+
+1
+4
+=: B,
+e n(2πt)d/2 t
+
+(106)
+
+where (i) is true since Ht (x) = t−2 E[(Z0 − x)(Z0 − x)⊤ ϕt (Z0 − x)]. In addition, we have
+n
+h
+X
+ (i)
+2 i
+1
+(i)
+(i)
+⊤
+(i)
+(i)
+⊤
+(i)
+E
+(X
+−
+x)(X
+−
+x)
+ϕ
+(X
+−
+x)
+−
+E
+(X
+−
+x)(X
+−
+x)
+ϕ
+(X
+−
+x)
+t
+t
+n2 t4 i=1
+
+n
+h
+X
+2 i
+1
+(i)
+(i)
+⊤
+(i)
+E
+(X
+−
+x)(X
+−
+x)
+ϕ
+(X
+−
+x)
+t
+n2 t4 i=1
+i
+1 h
+= 4 E kZ0 − xk42 ϕ2t (Z0 − x)
+nt Z
+
+1
+1
+1
+ky − xk42
+exp −ky − xk22 /t p0 (y) dy
+= 2
+nt Rd t2
+(2πt)d
+Z
+(ii) 3
+
+1
+1
+≤
+exp −ky − xk22 /(2t) p0 (y) dy
+2
+d/2
+d/2
+nt (2πt)
+Rd (2πt)
+3
+(ϕt ∗ p0 )(x)
+=
+n(2πt)d/2 t2
+3pt (x)
+=
+=: V.
+n(2πt)d/2 t2
+
+
+Here, (i) is true as E (X − E[X])2 4 E[X 2 ]; (ii) uses x2 ≤ 3 exp(x/2) for any x ≥ 0. Invoking the matrix
+Bernstein inequality gives that for any a > 0:
+
+ 2
+
+n
+o
+b t (x) − Ht (x) > a ≤ 2 exp − 3 min a , a
+.
+P H
+8
+V B
+(i)
+
+≤
+
+Finally, we can invoke Lemma 10 in Appendix C to get
+
+as claimed in (40c).
+
+B.4
+
+h
+i
+√
+b t (x) − Ht (x) . B + V .
+E H
+
+1
++
+n(2πt)d/2 t
+
+s
+
+pt (x)
+,
+n(2πt)d/2 t2
+
+Proof of Lemma 4
+
+The upper bound for the ℓ2 norm of the score function st (x) has been previously established in Jiang and Zhang
+(2009); Saha and Guntuboyina (2020). For the sake of completeness and to ensure our analysis is selfcontained, we present a derivation of this bound below.
+In light of the expression of the score function in (25), one can derive
+
+1 
+E kZ0 − xk22 | Zt = x
+2
+t
+h
+i
+(i) 2
+
+≤ log E exp kZ0 − xk22 /(2t) | Zt = x
+t
+1
+(ii) 2
+.
+= log
+t
+(2πt)d/2 pt (x)
+
+kst (x)k22 ≤
+
+Here, (i) holds due to the concavity of x 7→ log x and Jensen’s inequality; (ii) holds as
+pZ0 |Zt (y | x) =
+
+ p0 (y)
+1
+exp −ky − xk22 /(2t)
+d/2
+pt (x)
+(2πt)
+44
+
+(107)
+
+and hence
+Z
+
+
+
+E exp kZ0 − xk22 /(2t) | Zt = x =
+
+y∈Rd
+
+
+exp ky − xk22 /(2t) pZ0 |Zt (y | x) dy =
+
+1
+.
+(2πt)d/2 pt (x)
+
+
+Therefore, for any x such that pt (x) ≥ cη ηt = cη log n/ n(2πt)d/2 , one has
+kst (x)k22 ≤
+
+n
+2 log n
+2
+log
+≤
+,
+t
+cη log n
+t
+
+where the last step holds as long as cη ≥ 2 and n > 1. This proves Claim (42a).
+Next, let us consider the spectral norm of Ht . By the expression in (28c), we can bound
+ 2
+1
+1 
+1
+Ht (x) ≤ 2 E kZ0 − xk22 | Zt = x ≤ log
+.
+d/2
+pt (x)
+t
+t
+(2πt) pt (x)
+
+(108)
+
+Applying the same argument as above, we conclude that for any x such that pt (x) ≥ cη ηt ,
+Ht (x) .
+
+pt (x) log n
+t
+
+provided cη ≥ 2. This establishes Claim (42c)
+Finally, let us consider the spectral norm of the Jacobian Jt . In view of the expression in (29), we know
+from (107) and (108) that
+Jt (x) ≤
+
+1
+1 4
+1 1
+1
+Ht (x) + kst (x)k22 ≤ + log
++ 2
+.
+t
+t pt (x)
+t
+t
+(2πt)d/2 pt (x)
+
+(109)
+
+Therefore, for any x such that pt (x) ≥ cη ηt , one has
+Jt (x) ≤
+
+log n
+1 log n
++
+≍
+.
+t
+t
+t
+
+as long as cη ≥ 2. Thus, we prove Claim (42b).
+
+B.5
+
+Proof of Lemma 6
+
+Fix an arbitrary x ∈ Ft . As shown in (74), on the event Et (x), the score estimator becomes sbt (x) =
+gbt (x)/b
+pt (x). We can then use the triangle inequality to bound
+gbt (x)
+gt (x)
+gbt (x) − gt (x) pt (x) − pbt (x) gt (x)
+−
++
+=
+pbt (x) pt (x) 2
+pbt (x)
+pbt (x)
+pt (x) 2
+1
+1
+gbt (x) − gt (x) 2 +
+pbt (x) − pt (x) kst (x)k2
+≤
+pbt (x)
+pbt (x)
+1
+1
+gbt (x) − gt (x) 2 +
+pbt (x) − pt (x) kst (x)k2 ,
+.
+pt (x)
+pt (x)
+
+sbt (x) − st (x) 2 =
+
+where the last step holds as pbt (x) ≥ pt (x)/2 on the event Et (x).
+Regarding the first term, we can use (40b) in Lemma 3 to bound
+h
+i
+1
+1
+1
+2
+E
+≤
+.
+b
+g
+(x)
+−
+g
+(x)
+t
+t
+2
+2
+d/2
+pt (x)
+tpt (x)
+n(2πt)
+
+As for the second term, applying (40a) in Lemma 3 yields that
+i
+h
+1
+1
+kst (x)k22
+2
+p
+b
+(x)
+−
+p
+(x)
+kst (x)k22 ≤
+E
+.
+t
+t
+2
+d/2
+pt (x)
+pt (x)
+n(2πt)
+
+Consequently, putting the two bounds above into (110) leads to
+
+
+h
+i
+1
+1
+1
+2 
+2
++
+ks
+(x)k
+,
+E sbt (x) − st (x) 2 1 Et (x) .
+t
+2
+pt (x)
+n(2πt)d/2 t
+
+as claimed in (77).
+
+45
+
+(110)
+
+B.6
+
+Proof of Lemma 7
+
+log n
+Recall ηt := (2πt)
+d/2 n . Denote B := 2
+
+p
+(σ 2 + t) log n. We claim that
+
+
+
+Ft = x ∈ Rd : pt (x) ≥ cη ηt ⊂ x ∈ Rd : kxk∞ ≤ B .
+
+(111)
+
+Suppose Claim (111) holds. Then it follows immediately that
+
+|Ft | ≤ (2B)d ≤ 4d (t + σ 2 )d/2 (log n)d/2 ≤ (32)d/2 (td/2 + σ d )(log n)d/2 .
+where the last line holds since (x + y)d/2 ≤ 2d/2 (xd/2 + y d/2 ) for any d ≥ 1 and x, y > 0.
+Therefore, the remainder of the proof focuses on establishing Claim (111), which we prove by contradiction. Suppose there exists some z ∈ Rd such that pt (z) ≥ cη ηt and kzk∞ > B. Without loss of generality,
+(i)
+(1)
+(d)
+we assume |z1 | > B. For notational convenience, Let Zt denote the i-th coordinate of Zt = (Zt , . . . , Zt )
+(i)
+(i)
+and pt denote the density of the marginal distribution of Zt . Note that
+pt (z) =
+
+Z
+
+p0 (y)
+
+y∈Rd
+
+d 
+Y
+
+i=1
+
+
+
+1
+2
+√
+exp −(zi − yi ) /(2t) dy
+2πt
+
+Z
+
+1
+(−1)
+2
+exp
+−(z
+−
+y
+)
+/(2t)
+p0 (y2 . . . , yd | y1 ) dy2 . . . dyd dy1
+1
+1
+d−1
+(2πt)(d−1)/2 y1 ∈R
+2πt
+(y2 ,...,yd )∈R
+Z
+
+1
+1
+1
+(1)
+(1)
+2
+p (z1 ).
+p (y1 ) √
+=
+exp −(z1 − y1 ) /(2t) dy1 =
+(2πt)(d−1)/2 y1 ∈R 0
+(2πt)(d−1)/2 t
+2πt
+
+≤
+
+1
+
+Z
+
+(1)
+
+p0 (y1 ) √
+
+This implies that
+
+cη log n
+(1)
+pt (z1 ) ≥ (2πt)(d−1)/2 pt (z) ≥ √
+.
+2πt n
+Now, we choose R :=
+
+cη
+
+(112)
+
+√
+
+t log n
+. For any y1 ∈ R such that |y1 − z1 | ≤ R, one has
+2n
+
+√
+p
+(i)
+cη t log n (ii) p 2
+≥ 2(σ + t) log n,
+|y1 | ≥ |z1 | − |y1 − z1 | > B − R = 2 (σ 2 + t) log n −
+2n
+
+(113)
+
+(1)
+
+where (i) arises from the assumption; (ii) is true as long as n ≥ cη . Define the function ϕt (x) : R → R by
+
+(1)
+ϕt (x) := (2πt)−1/2 exp −x2 /(2t) . We can derive
+(1)
+
+(1)
+
+Z
+
+
+
+(1)
+(1)
+(1)
+ϕt (y1 − x1 ) − ϕt (z1 − x1 ) p0 (x1 ) dx1
+x1 ∈R
+Z
+(1)
+(1)
+(1)
+≤ sup ϕt (y1 − x1 ) − ϕt (z1 − x1 )
+p0 (x1 ) dx1
+
+pt (y1 ) − pt (z1 ) =
+
+x1 ∈R
+
+R
+
+d (1)
+ϕ (x1 )
+dx1 t
+
+≤ |y1 − z1 | sup
+
+x1 ∈R
+
+n
+o
+R 1
+sup |x1 | exp −x21 /(2t)
+=√
+2πt t x1 ∈R
+√
+cη log n
+R
+(1)
+= √
+≤ pt (z1 ),
+≤√
+2π t
+2 2πt n
+
+(114)
+
+where the last line holds due to the choice of R and (112). This implies that for any y1 ∈ R such that
+|y1 − z1 | ≤ R:
+(1)
+
+pt (z1 ) ≥
+
+1 (1)
+p (y1 ).
+2 t
+
+46
+
+(115)
+
+√
+√
+(1)
+Since Z0 is σ-subgaussian, we know that Zt is σ 2 + t-subgaussian and Zt = Zt⊤ e1 is σ 2 + tsubgaussian. Hence, we can use the definition in Assumption 1 to deduce
+ 2 
+ 2 
+Z
+Z
+y
+y
+(1)
+(1)
+exp 2 1
+pt (y1 ) dy1 ≥
+pt (y1 ) dy1
+exp 2 1
+2≥
+σ
++
+t
+σ
++
+t
+y1 : |y1 −z1 |≤R
+y1 ∈R
+
+
+(i)
+(B − R)2 1 (1)
+≥ 2R exp
+p (z1 )
+σ2 + t
+2 t
+√
+(ii)
+(iii) c
+c2η
+η t log n 2 cη log n
+(1)
+= √ log3/2 n,
+n √
+≥ Rn2 pt (z1 ) ≥
+2n
+n 2πt
+2 2π
+where (i) uses (113) and (115); (ii) arises from (113); (iii) follows from R =
+to contradiction for n large enough, and thus proves Claim (111).
+
+B.7
+
+cη
+
+√
+
+t log n
+and (112). This leads
+2n
+
+Proof of Lemma 8
+
+p
+
+Proof of Claim (82a). Set B := x ∈ Rd : x − E[Zt ] ∞ ≤ B with B := 2 (σ 2 + t) log n.
+
+
+
+/B
+P pt (Zt ) < cη ηt = P pt (Zt ) < cη ηt , Zt ∈ B + P pt (Zt ) < cη ηt , Zt ∈
+
+
+≤ P pt (Zt ) < cη ηt , Zt ∈ B + P Zt ∈
+/B .
+
+Notice that
+Z
+
+
+1 pt (x) < cη ηt pt (x) dx ≤ cη ηt |B|
+P pt (Zt ) < cη ηt , Zt ∈ B =
+B
+
+ d/2
+1 (σ 2 + t)d/2
+8
+(log n)d/2+1
+≤ 4d cη ηt (σ 2 + t)d/2 (log n)d/2 = cη
+π
+n
+td/2
+
+ 16 d/2 1 
+σd
+1 + d/2 (log n)d/2+1 ,
+(116)
+.
+π
+n
+t
+
+log n
+d/2
+where we use cη ≍ 1, ηt = n(2πt)
+≤ 2d/2 (xd/2 + y d/2 ) for any d ≥ 1 and x, y > 0.
+d/2 and (x + y)
+√
+(i)
+In addition, since Zt := Zt⊤ ei is σ 2 + t-subgaussian for all i ∈ [d], applying the union bound gives
+
+
+d
+n
+o
+X
+(i)
+(i)
+P Zt − E[Zt ] > B ≤ 2d exp −
+P Zt ∈
+/B ≤
+
+
+i=1
+
+B2
+2(σ 2 + t)
+
+
+
+≤
+
+2d
+.
+n2
+
+(117)
+
+Collecting these two bounds together yields
+
+
+ 16 d/2 1 
+ 16 d/2 1 
+
+σd
+σd
+d
+1 + d/2 (log n)d/2+1 + 2 ≍
+1 + d/2 (log n)d/2+1 .
+P pt (Zt ) < cη ηt .
+π
+n
+n
+π
+n
+t
+t
+Proof of Claim (82b). Claim (82b) can be established an approach similar to that developed in Wibisono et al.
+(2024, Lemma 5). For the sake of clarity and
+p completeness, we present the full proof below. Recall
+B := x ∈ Rd : x − E[Zt ] ∞ ≤ B with B := 4 (σ 2 + t) log n. We can derive
+i
+h
+
+E kst (Zt )k22 1 pt (Zt ) < cη ηt
+i
+i
+h
+h
+
+
+
+
+/B
+= E kst (Zt )k22 1 pt (Zt ) < cη ηt 1 Zt ∈ B + E kst (Zt )k22 1 pt (Zt ) < cη ηt 1 Zt ∈
+i
+i
+h
+h
+
+
+
+/B .
+≤ E kst (Zt )k22 1 pt (Zt ) < cη ηt 1 Zt ∈ B + E kst (Zt )k22 1 Zt ∈
+c log n
+
+η
+d/2
+pt (x) ≤ (cη log n)/n ≤ 1/e for n large enough. Thus, we
+When pt (x) < cη ηt = n(2πt)
+d/2 , one has (2πt)
+can bound
+i Z 
+h
+
+
+1 pt (x) < cη ηt kst (x)k22 pt (x) dx
+E kst (Zt )k22 1 pt (Zt ) < cη ηt 1 Zt ∈ B =
+
+B
+
+47
+
+(i) Z
+
+
+1
+1
+dx
+1 pt (x) < cη ηt pt (x) log
+d/2 p (x)
+t
+(2πt)
+t
+B
+Z
+(ii)
+
+1
+1
+1 pt (x) < cη ηt cη ηt log
+≤
+dx
+d/2
+t
+(2πt) cη ηt
+B
+.
+
+(iii) c η |B|
+η t
+
+log n
+t
+
+
+ 
+(iv) 16 d/2 1
+σd
+≍
+1 + d/2 (log n)d/2+2
+π
+nt
+t
+.
+
+(118)
+
+Here, (i) uses (107) from Lemma 4; (ii) holds as x 7→ x log(1/x) is increasing on (0, 1/e); (iii) holds
+(2πt)d/2 cη ηt = (cη log n)/n; (iv) arises from (116).
+Meanwhile, we can apply the Cauchy-Schwartz inequality to bound the second term as
+√
+i q 
+h
+p
+
+d3/2
+d d
+2
+4
+=
+,
+(119)
+E kst (Zt )k2 1 Zt ∈
+/ B ≤ E kst (Zt )k2 P{Zt ∈
+/ B} .
+t n
+nt
+where we use (127) in Lemma 11 and (117).
+Combining (118) and (119) gives
+
+
+h
+i  16 d/2 1 
+
+σd
+d3/2
+1 + d/2 (log n)d/2+2 +
+E kst (Zt )k22 1 pt (Zt ) < cη ηt .
+π
+nt
+nt
+t
+
+ 16 d/2 1 
+d
+σ
+≍
+1 + d/2 (log n)d/2+2 .
+π
+nt
+t
+
+This finishes the proof of (82b).
+
+Proof of Claim (82c). We first decompose
+i
+h
+
+E Jt (Zt ) 1 pt (Zt ) < cη ηt
+i
+i
+h
+h
+
+
+
+
+= E Jt (Zt ) 1 pt (Zt ) < cη ηt 1 Zt ∈ B + E Jt (Zt ) 1 pt (Zt ) < cη ηt 1 Zt ∈
+/B
+i
+h
+i
+h
+
+
+
+≤ E Jt (Zt ) 1 pt (Zt ) < cη ηt 1 Zt ∈ B + E Jt (Zt ) 1 Zt ∈
+/B .
+By (109), we can derive
+
+Jt (Zt ) ≤
+
+1 4
+5
+1
+1
+≤ log
+,
++ log
+t
+t
+t
+(2πt)d/2 pt (x)
+(2πt)d/2 pt (x)
+
+(120)
+
+where the last step is true true because (2πt)d/2 pt (x) ≤ (cη log n)/n ≤ 1/e when pt (x) < cη ηt and n is
+sufficiently large. Hence, applying the same argument for (118), one can derive
+i Z 
+h
+
+
+1 pt (x) < cη ηt Jt (x) pt (x) dx
+E Jt (Zt ) 1 pt (Zt ) < cη ηt 1 Zt ∈ B =
+ZB
+
+1
+1
+.
+1 pt (x) < cη ηt pt (x) log
+dx
+d/2 p (x)
+t
+(2πt)
+t
+B
+
+
+ 16 d/2 1
+σd
+1 + d/2 (log n)d/2+1 ,
+(121)
+.
+π
+nt
+t
+where the last step follows from (118).
+In addition, invoking the Cauchy-Schwartz inequality leads to
+√
+i q 
+h
+
+p
+d3/2
+d d
+2
+=
+/ B ≤ E kJt (Zt )k
+E Jt (Zt ) 1 Zt ∈
+P{Zt ∈
+/ B} .
+t n
+nt
+where the second inequality results from (128) in Lemma 11 and (117).
+Putting (121) and (122) finishes the proof of Claim (82c).
+48
+
+(122)
+
+B.8
+
+Proof of Lemma 9
+
+Fix an arbitrary x ∈ Ft . As shown in the proof of Theorem 1 in Appendix A.3, on the event Et (x), one has
+pbt (x) ≥ pt /2 > ηt (see (75)). Hence, as shown in (32a), the score estimator equals sbt (x) = gbt (x)/b
+pt (x) and
+the Jacobian of sbt (x) is equal to
+b t (x)
+b t (x) gbt (x)b
+1
+H
+1
+H
+gt (x)⊤
+Jsbt (x) = − Id +
+− sbt (x)b
+st (x)⊤ = − Id +
+−
+.
+t
+pbt (x)
+t
+pbt (x)
+pb2t (x)
+
+Combining this with the expression of Jt (x) in (29), one can express
+
+b t (x)
+1
+H
+Jsbt (x) − Jt (x) = − Id +
+− sbt (x)b
+st (x)⊤ − Jt (x)
+t
+pbt (x)
+b t (x) Ht (x)
+H
+−
++ sbt (x)b
+st (x)⊤ − st (x)st (x)⊤
+=
+pbt (x)
+pt (x)
+b t (x) − Ht (x) pt (x) − pbt (x) Ht (x)
+
+
+H
++
++ sbt (x) − st (x) sbt (x) + st (x)
+=
+pbt (x)
+pbt (x)
+pt (x) |
+{z
+}
+{z
+} |
+{z
+}
+|
+=:θ3
+=:θ1
+
+(123)
+
+=:θ2
+
+In what follows, we control the spectral norms of θ1 , θ2 , and θ3 individually.
+• We start with the term θ1 .
+i (i)
+h
+
+E kθ1 k1 Et (x) ≤
+
+(ii)
+
+.
+
+i
+h
+2
+b t (x) − Ht (x)
+E H
+pt (x)
+
+1
+1
+1
+1
+p
++p
+d/2
+n(2πt)d/2 tpt (x)
+t pt (x)
+n(2πt)
+
+1
+1
+p
+≍ p
+d/2
+t pt (x)
+n(2πt)
+
+(iii)
+
+(124)
+
+where (i) is true since pbt (x) ≥ pt (x)/2; (ii) applies (40c) in Lemma 3; (iii) holds as n(2πt)d/2 pt (x) < 1
+when x ∈ Ft .
+
+• Next, let us consider the term θ2 , which can be bounded by
+
+i (i) 2 kH (x)k q 
+h
+
+ (ii) kHt (x)k
+t
+E kθ2 k1 Et (x) ≤
+E |b
+pt (x) − pt (x)|2 .
+2
+pt (x)
+p2t (x)
+
+s
+
+1
+kHt (x)k
+=p
+,
+3/2
+d/2
+n(2πt)
+pt (x)
+
+pt (x)
+n(2πt)d/2
+(125)
+
+where (i) holds due to pbt (x) ≥ pt (x)/2 and Jensen’s inequality; (ii) arises from (40a) in Lemma 3.
+
+• It remains to control θ3 . Applying the triangle inequality shows that
+
+
+kθ3 k ≤ sbt (x) − st (x) 2 sbt (x) − st (x) 2 + 2kst (x)k2
+2
+
+. sbt (x) − st (x) 2 + sbt (x) − st (x) 2 st (x) 2 .
+
+Thus, one can bound
+i
+h
+i
+h
+i
+h
+
+
+2 
+E kθ3 k1 Et (x) . E sbt (x) − st (x) 2 1 Et (x) + E sbt (x) − st (x) 2 1 Et (x) kst (x)k2
+i
+i r h
+(i) h
+2 
+2 
+. E sbt (x) − st (x) 2 1 Et (x) + E sbt (x) − st (x) 2 1 Et (x) kst (x)k2
+49
+
+1
+1
+kst (x)k22
+1
++
+n(2πt)d/2 tpt (x) n(2πt)d/2 pt (x)
+1
+kst (x)k2
+kst (x)k22
+1
+p
+p
++p
++p
+n(2πt)d/2 tpt (x)
+n(2πt)d/2 pt (x)
+
+(ii)
+
+.
+
+(iii)
+
+≍
+
+kst (x)k2
+kst (x)k22
+1
+1
+1
+1
+p
+p
++p
++p
+.
+d/2
+tpt (x)
+n(2πt)
+n(2πt)d/2 tpt (x)
+n(2πt)d/2 pt (x)
+
+(126)
+
+Here, (i) uses the Cauchy-Schwartz inequality; (ii) invokes (77) in Lemma 6; (iii) is true because
+n(2πt)d/2 pt (x) < 1 when x ∈ Ft .
+• Taking (124), (125), and (126) collectively, we conclude that
+i
+h
+i
+h
+
+ 
+E kJsbt (x) − Jt (x)k1 Et (x) ≤ E kθ1 k + kθ2 k + kθ3 k 1 Et (x)
+1
+kHt (x)k
+1
+1
+p
+. p
++p
+n(2πt)d/2 t pt (x)
+n(2πt)d/2 p3/2
+t (x)
+
+kst (x)k2
+kst (x)k22
+1
+1
+1
+1
+p
+p
+p
+p
++
++
+n(2πt)d/2 tpt (x)
+n(2πt)d/2 tpt (x)
+n(2πt)d/2 pt (x)
+
+
+1
+1
+kHt (x)k kst (x)k22
+p
+≍ p
++ p
++ 3/2
+pt (x)
+n(2πt)d/2 t pt (x)
+pt (x)
++
+
+where the last step uses the fact that n(2πt)d/2 pt (x) < 1 when x ∈ Ft and the AM-GM inequality that
+√ kst (x)k2
+1
+kst (x)k22
+p
++ p
+≥ 2p
+.
+t pt (x)
+pt (x)
+tpt (x)
+
+This finishes the proof of Lemma 9.
+
+C
+
+Auxiliary lemmas
+
+Lemma 10. Suppose a random variable X satisfies
+
+
+
+3 t2
+t
+P{|X| > t} ≤ 2 exp −
+.
+∧
+8 V
+B
+
+ 
+Then the expectation E |X| can be bounded by
+  √
+E |X| . V + B.
+
+Proof. Denote c = 3/8. We can use the expectation formula for a nonnegative random variable to write
+
+  2
+Z ∞
+Z ∞
+t
+t
+dt
+∧
+E[|X|] =
+P{|X| > t} dt .
+exp −c
+V
+B
+0
+0
+Z ∞
+Z V /B
+
+
+exp −ct/B dt.
+exp −ct2 /V dt +
+=
+V /B
+
+0
+
+For the first integral, we can derive
+r Z √cV /B
+r Z ∞
+r √
+Z V /B
+
+
+
+V
+V
+V π √
+2
+2
+2
+. V.
+exp −ct /V dt =
+exp −u du ≤
+exp −u du =
+c 0
+c 0
+c 2
+0
+For the second integral, straightforward calculation yields
+Z ∞
+Z
+Z
+B ∞
+B
+B ∞
+. B.
+exp(−u) du ≤
+exp(−u) du =
+exp(−ct/B) dt =
+c cV /B 2
+c 0
+c
+V /B
+Combining the two bounds gives the desired bound.
+50
+
+√
+Lemma 11. Given a random vector Z0 in Rd , consider Zt = Z0 + t W where W ∼ N (0, Id ) is a standard
+Gaussian random vector in Rd that is independent of Z0 . Let st (x) := ∇ log pZt (x) denote the score function
+of Zt and let Jt (x) denote the Jacobian of st (x). Then for any integer p ≥ 1, one has
+ p/2
+h
+i
+d
+p
+,
+(127)
+E st (Zt ) 2 ≤ Cp
+t
+
+
+p
+h
+i
+d
+p
+E Jt (Zt )
+≤ Cp′
+,
+(128)
+t
+
+where Cp , Cp′ > 0 are some constants that only depend on p.
+
+Proof. Let us start with Claim (127). Recall the expression of st (x) in (25), we have
+h
+i
+h
+h 
+i
+i
+p (i) 1
+p (ii) 1
+E st (Zt ) 2 = p E E[Zt − Z0 | Zt ] 2 ≤ p E E kZt − Z0 kp2 | Zt ]
+t
+t
+ p/2
+(iv)
+
+
+d
+(iii) 1
+,
+= p E kZt − Z0 kp2 ≤ Cp
+t
+t
+
+for some constant Cp > 0 that only depends on p. Here, (i) uses the expression of st in (25); (ii) is due
+to the convexity of x 7→ kxkp2 and Jensen’s inequality; (iii) holds due to the tower property; (iv) is due to
+Zt − Z0 ∼ N (0, tId ) and the standard Gaussian property (see Li and Cai (2024, Lemma 8)). This proves
+Claim (127).
+Next, we move on to consider Claim (128). Recalling the expression of Jt (x) in (26), we have
+"
+p #
+h
+i
+1 
+1
+p
+⊤
+2
++ 2 E (Zt − Z0 )(Zt − Z0 ) | Zt ] + kst (x)k2
+E Jt (Zt )
+≤E
+t
+t
+
+i
+i
+h
+1 h 
+1
+p
+2p
+⊤
+p−1
++ 2p E E (Zt − Z0 )(Zt − Z0 ) | Zt ]
++ E kst (x)k2
+≤3
+tp
+t
+Similarly to the above derivation, we can bound
+h 
+i
+h
+i
+p
+2p
+E E (Zt − Z0 )(Zt − Z0 )⊤ | Zt ]
+≤ E Zt − Z0 2 ≤ C2p (td)p
+
+where (i) holds due to the convexity of x 7→ kxkp2 , Jensen’s inequality, and the tower property; (ii) uses the
+fact that Zt − Z0 ∼ N (0, tId ) and the standard Gaussian property. Combined with (127), we conclude that
+ p !
+p
+i
+h
+d
+(td)p
+1
+p
+′ d
+p−1
+≤
+C
+(
++
+C
++
+C
+≤3
+E Jst (Zt )
+.
+2p 2p
+2p
+p
+tp
+t
+t
+t
+
+for some constant Cp′ that only depends on p. This completes the proof of Claim (128).
+d
+
+Lemma 12. Let X, Z be random vectors in Rd and a ∈ R be a constant. Suppose X = aZ. Then their score
+functions and Jacobian matrices satisfy
+1
+sZ (x/a),
+a
+1
+JsX (x) = 2 JsZ (x/a).
+a
+sX (x) =
+
+Proof. Straightforward computation shows that pX (x) = pZ (x/a)/|a|d . This gives
+sX (x) = ∇ log pX (x) = ∇ log
+which further leads to
+JsX (x) =
+
+pZ (x/a)
+1
+= ∇ log pZ (x/a) = sZ (x/a),
+|a|d
+a
+
+∂ sZ (x/a)
+1
+∂
+sX (x) =
+= 2 JsZ (x/a).
+∂x
+∂x
+a
+a
+
+51
+
+
