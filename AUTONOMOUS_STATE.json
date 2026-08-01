@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "publication_authorized_claim_5_scoreable_toy",
-  "next_action": "publish_existing_space_then_official_validator_and_anonymous_readback",
+  "phase": "publication_queued_hf_rate_limit",
+  "next_action": "do_not_retry_before_2026-08-02T09:38:38Z; check_existing_space_then_republish_and_readback",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -35,7 +35,7 @@
     "scope": "Full d=48/M=128/k=3 reverse OU Euler/KDE sampling at N through 50k with sliced-W1, step sweep, and wrong-basis control; numerical sampler did not demonstrate convergence and cannot falsify ideal continuous-time theorem.",
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
-  "last_checkpoint": "2026-08-01T13:37:50Z",
+  "last_checkpoint": "2026-08-01T13:38:38Z",
   "publication_allowed": true,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -95,7 +95,7 @@
   },
   "review_remediation_blockers": [],
   "publication": {
-    "status": "published_public_readback_complete",
+    "status": "publication_queued_hf_quota_or_rate_limit",
     "space_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
     "space_url": "https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
     "rendered_url": "https://dineshai-repro-l5jtapudbq-diffusion-low-dimensio-bc85f6d.static.hf.space/",
@@ -106,7 +106,10 @@
     "readback_evidence": "outputs/public_readback_final_20260801T0737Z.log",
     "publication_evidence": "outputs/trackio_publish_attempt_20260801T0736Z.log",
     "validator_evidence": "outputs/final_prepublication_validator.log",
-    "official_judge_leaderboard_status": "not yet confirmed"
+    "official_judge_leaderboard_status": "not yet confirmed",
+    "queue_recorded_at_utc": "2026-08-01T13:38:38Z",
+    "retry_not_before_utc": "2026-08-02T09:38:38Z",
+    "last_publish_error": "HF 429 api/space-creation limit; Retry after 64 seconds; about 20 hours for space creation; request Root=1-6a6df6bb-0fe04a095365b08421db79ef"
   },
   "last_known_git_commit": "b2b7983f537c416078d509f63de717cfe6664751 (reviewed Claim 5 toy adoption/evidence gate commit)",
   "claim_2_fullscale_checkpoint": {
