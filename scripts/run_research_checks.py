@@ -64,7 +64,7 @@ evaluation = f"""# Claim 3 evaluation
 - Mutated-evidence checker exit: `{control.returncode}` (nonzero required)
 - Git SHA: `{result['environment']['git_sha']}`
 - Runtime: `{result['environment']['runtime_seconds']:.6f}` seconds
-- Allocation: `{result['environment']['cpu_limit']} vCPU, `{result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+- Allocation: `{result['environment']['cpu_limit']}` vCPU, `{result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
 
 The same bounded distribution satisfies the paper's stated assumptions under
 two distinct declared two-dimensional subspaces. Its entire sample law is

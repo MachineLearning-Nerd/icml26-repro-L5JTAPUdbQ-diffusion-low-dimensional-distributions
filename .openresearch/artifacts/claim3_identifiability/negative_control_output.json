@@ -1,0 +1,7 @@
+{
+  "actual_exit_code": 1,
+  "checker_stderr": "reported observation TV is not exactly zero",
+  "expected_exit_nonzero": true,
+  "mutation": "replace exact observation TV=0 with TV=0.25",
+  "passed": true
+}

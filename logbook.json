@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "title": "Reproduction: Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions",
+  "emoji": "🎯",
+  "space_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
+  "paper": null,
+  "tags": [
+    "icml2026-repro",
+    "paper-L5JTAPUdbQ"
+  ],
+  "updated_at": "2026-08-01T15:22:05+00:00",
+  "root": {
+    "slug": "current-reproduction",
+    "title": "Current reproduction evidence",
+    "file": "pages/current-reproduction/page.md",
+    "children": [
+      {
+        "slug": "current-claim-3-identifiability-counterexample",
+        "title": "Current Claim 3: exact-recovery counterexample",
+        "file": "pages/current-claim-3-identifiability-counterexample/page.md",
+        "children": []
+      },
+      {
+        "slug": "historical-rejected-baseline",
+        "title": "Historical rejected baseline",
+        "file": "pages/index.md",
+        "children": [
+          {
+            "slug": "executive-summary",
+            "title": "Executive summary",
+            "file": "pages/executive-summary/page.md",
+            "children": []
+          },
+          {
+            "slug": "claim-1-intrinsic-dimension-sample-rate",
+            "title": "Claim 1: intrinsic-dimension sample rate",
+            "file": "pages/claim-1-intrinsic-dimension-sample-rate/page.md",
+            "children": []
+          },
+          {
+            "slug": "claim-2-intrinsic-score-error-rate",
+            "title": "Claim 2: intrinsic score-error rate",
+            "file": "pages/claim-2-intrinsic-score-error-rate/page.md",
+            "children": []
+          },
+          {
+            "slug": "claim-3-union-of-subspaces-assumption",
+            "title": "Claim 3: union-of-subspaces assumption",
+            "file": "pages/claim-3-union-of-subspaces-assumption/page.md",
+            "children": []
+          },
+          {
+            "slug": "claim-4-weak-regularity-assumptions",
+            "title": "Claim 4: weak regularity assumptions",
+            "file": "pages/claim-4-weak-regularity-assumptions/page.md",
+            "children": []
+          },
+          {
+            "slug": "claim-5-prior-ambient-dimensional-comparator",
+            "title": "Claim 5: prior ambient-dimensional comparator",
+            "file": "pages/claim-5-prior-ambient-dimensional-comparator/page.md",
+            "children": []
+          },
+          {
+            "slug": "conclusion",
+            "title": "Conclusion",
+            "file": "pages/conclusion/page.md",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "agent_view_tokens": 4096,
+  "revision": "1785597725000000000"
+}
