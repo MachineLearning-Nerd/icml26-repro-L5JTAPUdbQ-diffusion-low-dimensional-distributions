@@ -1,0 +1,51 @@
+
+First, to capture low-dimensional, multi-modal structure, we assume that the support of $p^\star$ is contained in a finite union of low-dimensional linear subspaces.
+\begin{assumption}[Union of low-dimensional subspaces]
+    \label{assume:multi-modal}
+    There exist linear subspaces $V_1, V_2, \ldots, V_M \subseteq \mathbb{R}^d$, with dimension $\mathsf{dim}(V_i) = k_i$, such that 
+    \begin{align*}
+        \supp(p^\star) \subseteq \cup_{i=1}^M V_i.
+    \end{align*}
+    Moreover, $p^\star$ assigns zero probability to intersections between different subspaces, i.e.,
+    \begin{align}
+        p^\star(V_i \cap V_j) = 0, \quad \forall i\neq j. \label{eq:separation}
+    \end{align}
+    Finally, each subspace has non-trivial mass:
+    \begin{align}
+        p^\star(V_i) \geq \frac{1}{c_{p}M}, \quad \forall i\in [M]
+    \end{align}
+    for some constant $c_{p}>0$. 
+\end{assumption}
+
+This assumption provides a tractable abstraction for low-dimensional, multi-modal distributions, where different modes may concentrate on different subspaces. Such union-of-subspaces structure has been widely used in the modeling of heterogeneous high-dimensional data \citep{wang2025diffusionmodelslearnlowdimensional} and has also been observed empirically in real-world datasets \citep{brown2022verifying,kamkari2024geometric}.
+
+For each $i\in [M]$, let $p_i^\star \defn p^\star \mid_{V_i}$ denote the restriction of the target distribution $p^\star$ to subspace $V_i$. By Assumption~\ref{assume:multi-modal}, we can decompose the target distribution as $p^\star = \sum_{i=1}^M p_i^\star$. 
+
+
+For each subspace $V_i$, let $A_i \in \mathbb{R}^{d\times k_i}$ be a matrix whose columns form an orthogonal basis of $V_i$: 
+\begin{align*}
+    V_i = \mathsf{span}(\col(A_i)), \quad A_i^{\top}A_i = I_{k_i}.
+\end{align*}
+Denote by $\proj_i:\mathbb{R}^d \rightarrow V_i$ the projection onto $V_i$, given by
+\begin{align*}
+    \proj_i(x) = A_iA_i^{\top}x.
+\end{align*}
+\begin{remark}
+    Our framework can be extended naturally to distributions concentrated near a union of low-dimensional subspaces. In this paper, we focus on the noiseless setting to isolate the essential roles of low-dimensional structure and multi-modality, without introducing the additional technical complications caused by ambient noise. Extensions to noisy settings are discussed in Section~\ref{sec:discussion}.
+\end{remark}
+
+Next, we impose a mild subgaussian assumption on the target distribution within each subspace.
+%
+\begin{assumption}[Subgaussian within each subspace]
+    \label{assump:sub-gaussian target}
+    Let $p_i^\low$ be the normalized push-forward distribution of $p_i^\star$ onto $\mathbb{R}^{k_i}$ under $A_i^{\top}$: 
+    \begin{align}
+        p_i^\low \defn \mathsf{law}(A_i^{\top}Z), \quad Z \sim \frac{p_i^\star}{p^\star(V_i)}. \label{eq:dist in each low-dim}
+    \end{align}
+    We assume that $p_i^\low$ is $\sigma_i$-subgaussian, that is, for any unit vector $\theta \in \mathbb{R}^{k_i}$ with $\|\theta\|_2 = 1$,
+    \begin{align*}
+        \mathbb{E} \bigl[\exp\bigl( (X^{\top}\theta/\sigma_i)^2\bigr)\bigr] \leq 2, \quad X \sim p_i^\low.
+    \end{align*}
+    We denote $\sigma \defn \max_{i\in [M]} \sigma_i$.
+\end{assumption}
+
