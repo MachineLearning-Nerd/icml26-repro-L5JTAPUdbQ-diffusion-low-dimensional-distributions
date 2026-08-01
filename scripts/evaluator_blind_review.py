@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-import shutil
+import subprocess
 import sys
 import tempfile
 import time
@@ -96,11 +96,25 @@ def draft_overlay_paths() -> list[str]:
     return sorted(paths)
 
 
+def committed_bytes(relative: str) -> bytes:
+    completed = subprocess.run(
+        ["git", "show", f"HEAD:{relative}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+    )
+    return completed.stdout
+
+
 def release_overlay_paths() -> list[str]:
     allowlist = ROOT / "release/HF_TEXT_ALLOWLIST.txt"
     if not allowlist.exists():
         return draft_overlay_paths()
-    paths = [line.strip() for line in allowlist.read_text().splitlines() if line.strip()]
+    paths = [
+        line.strip()
+        for line in committed_bytes("release/HF_TEXT_ALLOWLIST.txt").decode().splitlines()
+        if line.strip()
+    ]
     if paths != sorted(set(paths)):
         raise ValueError("release allowlist must be sorted and unique")
     return paths
@@ -108,6 +122,14 @@ def release_overlay_paths() -> list[str]:
 
 def assemble_candidate(directory: Path, overlay_paths: list[str]) -> tuple[dict, dict]:
     protected = protected_entries()
+    protected_paths = {relative for _, relative in protected}
+    mutable_protected_paths = {"README.md", "logbook.json"}
+    forbidden_overlaps = protected_paths.intersection(overlay_paths) - mutable_protected_paths
+    if forbidden_overlaps:
+        raise ValueError(
+            "candidate overlay would modify protected historical files: "
+            + ", ".join(sorted(forbidden_overlaps))
+        )
     for expected, relative in protected:
         data = download_protected_file(relative)
         actual = hashlib.sha256(data).hexdigest()
@@ -124,10 +146,11 @@ def assemble_candidate(directory: Path, overlay_paths: list[str]) -> tuple[dict,
             raise FileNotFoundError(f"allowlisted file is absent: {relative}")
         if source.suffix not in TEXT_SUFFIXES and source.name not in {"README.md", "uv.lock"}:
             raise ValueError(f"non-text upload path: {relative}")
-        source.read_bytes().decode("utf-8")
+        data = committed_bytes(relative)
+        data.decode("utf-8")
         destination = directory / safe_relative_path(relative)
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source, destination)
+        destination.write_bytes(data)
 
     candidate_book = json.loads((directory / "logbook.json").read_text())
     return protected_book, candidate_book
@@ -355,6 +378,7 @@ def main() -> int:
         result = BlindReviewer(candidate, protected_book, candidate_book).run(overlay_paths)
     print("# Evaluator-blind candidate review")
     print(json.dumps(result, indent=2, sort_keys=True))
+    print("EVALUATOR_REVIEW_JSON=" + json.dumps(result, sort_keys=True))
     return 0 if result["status"] == "PASS" else 1
 
 
