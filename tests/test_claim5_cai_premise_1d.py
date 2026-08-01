@@ -17,3 +17,12 @@ def test_paired_order_invariance():
  # shorter K here is solely an order-invariance unit test; production uses k_min.
  a=c.flow(train,init,100,True); b=c.flow(train[::-1],init,100,True)
  assert np.allclose(a,b,rtol=1e-11,atol=1e-11)
+
+def test_actual_normalized_target_a_vs_b_kde_calibration():
+ rng=np.random.default_rng(12); a=c.sample_target(rng,128); b=c.sample_target(rng,128)
+ r=c.kde_pair_tv_proxy_interval(a,b,2049)
+ assert 0 <= r['targetAB_tv_proxy_lower'] <= r['targetAB_tv_proxy_upper'] <= 1.000001
+ assert r['targetAB_tail_bound'] < 1e-8
+ # A strongly shifted second sample must be distinguished rather than silently clipped.
+ escaped=c.kde_pair_tv_proxy_interval(a,b+100,2049)
+ assert escaped['targetAB_tv_proxy_lower'] > .99

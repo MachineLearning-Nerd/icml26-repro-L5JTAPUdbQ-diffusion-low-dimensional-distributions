@@ -2,5 +2,5 @@
   "scope": "Reduced d=1 finite Cai--Li Algorithm-1 toy; not a theorem verification/falsification.",
   "source_premise": "K >= n^(beta/(d+2beta)) (log K)^3, beta=2,d=1; K computed per n.",
   "metric": "Normalized full-R Gaussian-KDE TV proxy interval. Fixed target-tail-certified [-12,12] overlap quadrature bounds omitted target overlap; the KDE is analytically normalized.",
-  "controls": "Threshold/unthresholded and reversed-order KDE runs share saved initial Y_K; target A/B calibration uses independent samples; translated sample tests tail accounting."
+  "controls": "Threshold/unthresholded and reversed-order KDE runs share saved initial Y_K; target A/B calibration is normalized KDE(A)-versus-KDE(B) overlap with a certified KDE-tail bound; translated sample tests tail accounting."
 }

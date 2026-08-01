@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_5_attempt_3_premise_compliant_1d_cai_toy_pending_independent_review",
-  "next_action": "independent_review_claim5_premise_compliant_1d_cai_toy_scoreability",
+  "phase": "claim_5_scoreable_toy_release_gates_complete_pending_final_review",
+  "next_action": "final_independent_release_review_then_republish_existing_space",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -35,7 +35,7 @@
     "scope": "Full d=48/M=128/k=3 reverse OU Euler/KDE sampling at N through 50k with sliced-W1, step sweep, and wrong-basis control; numerical sampler did not demonstrate convergence and cannot falsify ideal continuous-time theorem.",
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
-  "last_checkpoint": "2026-08-01T23:20:00Z",
+  "last_checkpoint": "2026-08-02T00:00:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -59,13 +59,15 @@
     "mse": 1.8611300606057062
   },
   "claim_5_outcome": {
-    "verdict": "toy_pending_independent_review",
-    "scope": "Reduced local d=1 Cai & Li Algorithm-1 probability-flow toy at n=250, beta=2 and K=5990 satisfying the cited K premise; normalized full-R KDE-TV proxy interval with tail bound and paired controls. Finite escape is neither theorem verification nor falsification. The prior K=64 grid remains non-scoreable provenance.",
+    "verdict": "toy",
+    "scope": "Reviewed scoreable 1-point reduced local d=1 Cai & Li Algorithm-1 probability-flow toy at n=250, beta=2, K=5990 satisfying the cited K premise. It uses a normalized full-R KDE-TV proxy interval, paired controls, and normalized KDE(target-A)-versus-KDE(target-B) calibration. The finite escaped output is neither theorem verification nor falsification; prior K=64 data remain non-scoreable provenance.",
     "evidence": [
+      "evidence/claim5_attempt1/prior_sources/SHA256SUMS",
       "outputs/claim5_cai_premise_1d_toy/PROTOCOL.json",
       "outputs/claim5_cai_premise_1d_toy/results.csv",
       "outputs/claim5_cai_premise_1d_toy/summary.json",
-      "outputs/claim5_cai_premise_1d_toy/SHA256SUMS"
+      "outputs/claim5_cai_premise_1d_toy/SHA256SUMS",
+      "outputs/L5-claim5-premise-toy-review.md"
     ]
   },
   "logbook_assembly": {

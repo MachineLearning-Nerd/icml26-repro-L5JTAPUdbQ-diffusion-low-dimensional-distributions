@@ -78,14 +78,7 @@ def kde_tail(x,h,B):
     return float(np.mean((1-ncdf((B-x)/h))+ncdf((-B-x)/h)))
 
 def tv_proxy_interval(x,grid_n=8193):
-    """Normalized full-R KDE-vs-target TV proxy interval via overlap.
-
-    Both the Gaussian KDE and analytic target are normalized on R.  TV is
-    1-integral(min(p,q)); integrate overlap on a fixed target-tail-certified
-    interval and bound only the omitted *target* overlap.  This avoids the
-    catastrophic coarse-grid error caused by expanding a quadrature grid to
-    escaped generated samples.
-    """
+    """Normalized full-R KDE-vs-analytic-target TV proxy interval via overlap."""
     h=silverman(x); B=12.0; g=np.linspace(-B,B,grid_n)
     overlap=float(np.trapezoid(np.minimum(kde(x,g,h),target_pdf(g)),g)); tt=target_tail(B)
     lo=max(0.,1-overlap-tt); hi=min(1.,1-overlap)
@@ -93,28 +86,43 @@ def tv_proxy_interval(x,grid_n=8193):
     lo2=max(0.,1-overlap2-tt)
     return dict(kde_bandwidth=h,bound_B=B,kde_normalized_analytic=True,target_tail=tt,tv_proxy_lower=lo,tv_proxy_upper=hi,resolution_abs_delta=abs(lo-lo2))
 
+def kde_pair_tv_proxy_interval(a,b,grid_n=8193):
+    """Normalized full-R KDE(A)-versus-KDE(B) TV proxy interval.
+
+    Both KDEs are normalized on R. On [-B,B], omitted overlap is at most the
+    smaller KDE tail, yielding a certified interval for the KDE-to-KDE TV.
+    """
+    ha,hb=silverman(a),silverman(b); B=12.0; g=np.linspace(-B,B,grid_n)
+    overlap=float(np.trapezoid(np.minimum(kde(a,g,ha),kde(b,g,hb)),g))
+    tail_bound=min(kde_tail(a,ha,B),kde_tail(b,hb,B))
+    lo=max(0.,1-overlap-tail_bound); hi=min(1.,1-overlap)
+    g2=np.linspace(-B,B,4097)
+    overlap2=float(np.trapezoid(np.minimum(kde(a,g2,ha),kde(b,g2,hb)),g2))
+    lo2=max(0.,1-overlap2-tail_bound)
+    return dict(targetAB_kde_bandwidth_A=ha,targetAB_kde_bandwidth_B=hb,targetAB_bound_B=B,targetAB_tail_bound=tail_bound,targetAB_tv_proxy_lower=lo,targetAB_tv_proxy_upper=hi,targetAB_resolution_abs_delta=abs(lo-lo2))
+
 def run(seed,n,generated):
     K=k_min(n); rng=np.random.default_rng(seed); train=sample_target(rng,n); init=rng.normal(size=generated)
     out=flow(train,init,K,True); un=flow(train,init,K,False); perm=flow(train,init,K,True) # overwritten below to retain exact common init
     perm=flow(train[::-1].copy(),init,K,True)
     a=sample_target(np.random.default_rng(seed+100000),generated); b=sample_target(np.random.default_rng(seed+200000),generated)
-    r=tv_proxy_interval(out); cal=tv_proxy_interval(a); cal2=tv_proxy_interval(b)
+    r=tv_proxy_interval(out); cal=kde_pair_tv_proxy_interval(a,b)
     # Translation test protects against the old truncated-grid 0.5 failure mode.
     esc=tv_proxy_interval(a+100.)
     return dict(seed=seed,n=n,K=K,K_rhs=n**(2/5)*math.log(K)**3,K_premise_met=bool(K>=n**.4*math.log(K)**3),generated=generated,
                 paired_permutation_max_abs=float(np.max(np.abs(out-perm))),paired_threshold_mean_abs=float(np.mean(np.abs(out-un))),
-                calibration_targetA_targetB_lower=cal['tv_proxy_lower'],calibration_targetB_lower=cal2['tv_proxy_lower'],escaped_lower=esc['tv_proxy_lower'],**r), dict(train=train,initial=init,thresholded=out,unthresholded=un,permuted=perm,target_a=a,target_b=b)
+                escaped_lower=esc['tv_proxy_lower'],**cal,**r), dict(train=train,initial=init,thresholded=out,unthresholded=un,permuted=perm,target_a=a,target_b=b)
 
 def main(a):
     out=a.out; out.mkdir(parents=True,exist_ok=True); rows=[]; started=time.time()
-    protocol={'scope':'Reduced d=1 finite Cai--Li Algorithm-1 toy; not a theorem verification/falsification.','source_premise':'K >= n^(beta/(d+2beta)) (log K)^3, beta=2,d=1; K computed per n.','metric':'Normalized full-R Gaussian-KDE TV proxy interval. Fixed target-tail-certified [-12,12] overlap quadrature bounds omitted target overlap; the KDE is analytically normalized.','controls':'Threshold/unthresholded and reversed-order KDE runs share saved initial Y_K; target A/B calibration uses independent samples; translated sample tests tail accounting.'}
+    protocol={'scope':'Reduced d=1 finite Cai--Li Algorithm-1 toy; not a theorem verification/falsification.','source_premise':'K >= n^(beta/(d+2beta)) (log K)^3, beta=2,d=1; K computed per n.','metric':'Normalized full-R Gaussian-KDE TV proxy interval. Fixed target-tail-certified [-12,12] overlap quadrature bounds omitted target overlap; the KDE is analytically normalized.','controls':'Threshold/unthresholded and reversed-order KDE runs share saved initial Y_K; target A/B calibration is normalized KDE(A)-versus-KDE(B) overlap with a certified KDE-tail bound; translated sample tests tail accounting.'}
     (out/'PROTOCOL.json').write_text(json.dumps(protocol,indent=2)+'\n')
     for seed in a.seeds:
         t=time.time(); row,raw=run(seed,a.n,a.generated); row['runtime_seconds']=time.time()-t; rows.append(row)
         np.savez_compressed(out/f'seed{seed}.npz',**raw)
     with (out/'results.csv').open('w',newline='') as f:
         w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
-    summary={'verdict':'toy_pending_independent_review','scope':protocol['scope'],'protocol':protocol,'n':a.n,'seeds':a.seeds,'mean_tv_proxy_lower':float(np.mean([r['tv_proxy_lower'] for r in rows])),'mean_tv_proxy_upper':float(np.mean([r['tv_proxy_upper'] for r in rows])),'max_tail_bound':float(max(r['target_tail'] for r in rows)),'max_permutation_error':float(max(r['paired_permutation_max_abs'] for r in rows)),'min_escaped_lower':float(min(r['escaped_lower'] for r in rows)),'elapsed_seconds':time.time()-started,'environment':{'python':sys.version,'numpy':np.__version__,'platform':platform.platform(),'device':'local CPU'}}
+    summary={'verdict':'toy','scope':protocol['scope'],'protocol':protocol,'n':a.n,'seeds':a.seeds,'mean_tv_proxy_lower':float(np.mean([r['tv_proxy_lower'] for r in rows])),'mean_tv_proxy_upper':float(np.mean([r['tv_proxy_upper'] for r in rows])),'max_tail_bound':float(max(r['target_tail'] for r in rows)),'max_permutation_error':float(max(r['paired_permutation_max_abs'] for r in rows)),'min_escaped_lower':float(min(r['escaped_lower'] for r in rows)),'elapsed_seconds':time.time()-started,'environment':{'python':sys.version,'numpy':np.__version__,'platform':platform.platform(),'device':'local CPU'}}
     (out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--n',type=int,default=250);p.add_argument('--generated',type=int,default=128);p.add_argument('--seeds',type=int,nargs='+',default=[20261201,20261202,20261203]);main(p.parse_args())

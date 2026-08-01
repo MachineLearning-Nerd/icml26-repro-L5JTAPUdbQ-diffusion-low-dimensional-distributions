@@ -37,8 +37,8 @@
       ]
     },
     "5": {
-      "verdict": "toy_pending_independent_review",
-      "scope": "Independent primary-source extraction supports the qualified cited TV exponent. A direct reduced d=1 Cai & Li Algorithm-1 toy at n=250 uses K=5990 satisfying the cited iteration premise and a normalized full-R KDE-TV proxy interval with explicit target-tail bound, saved-common-input controls, and target-vs-target calibration. The finite escaped output is neither theorem verification nor falsification; the earlier K=64 grid remains non-scoreable provenance.",
+      "verdict": "toy",
+      "scope": "Independent primary-source extraction supports the qualified cited TV exponent. A direct reduced d=1 Cai & Li Algorithm-1 toy at n=250 uses K=5990 satisfying the cited iteration premise and a normalized full-R KDE-TV proxy interval with explicit target-tail bound, saved-common-input controls, and normalized KDE(target-A)-versus-KDE(target-B) calibration. The finite escaped output is neither theorem verification nor falsification; the earlier K=64 grid remains non-scoreable provenance.",
       "evidence": [
         "evidence/claim5_attempt1/prior_sources/SHA256SUMS",
         "outputs/claim5_cai_premise_1d_toy/PROTOCOL.json",

@@ -3,9 +3,9 @@
 
 ---
 <!-- trackio-cell
-{"type": "markdown", "id": "cell_bcf490afbe86", "created_at": "2026-08-01T06:47:50+00:00", "title": "Outcome: inconclusive; non-scoreable toy provenance retained"}
+{"type": "markdown", "id": "cell_bcf490afbe86", "created_at": "2026-08-01T06:47:50+00:00", "title": "Outcome: scoreable 1-point toy; not theorem verification/falsification"}
 -->
-## Outcome: inconclusive; non-scoreable toy provenance retained
+## Outcome: scoreable 1-point toy; not theorem verification/falsification
 
 **Exact live claim:** Prior work requiring beta-Holder smooth densities achieves only `epsilon^(-(d+2 beta)/beta)` sample complexity, exhibiting a curse of dimensionality that this paper's bound avoids.
 
@@ -24,10 +24,10 @@ A clean-room, full-dimensional Gaussian-mixture KDE-score diagnostic was execute
 
 No full claim verification or falsification is asserted.
 
-### Direct Cai--Li probability-flow toy: premise-compliant 1-D rerun (pending independent score review)
+### Direct Cai--Li probability-flow toy: scoreable premise-compliant 1-D result
 
 The earlier `K=64` broad grid is retained only as **non-scoreable provenance**: it violated the cited iteration premise and used truncated metrics. The new clean-room toy is a narrow `d=1`, `n=250`, three-seed execution of Cai & Li's actual probability-flow procedure: Gaussian KDE `p_hat`, the paper's `eta_t` soft threshold, forward-score transform, and Algorithm-1/DDIM reverse update. It uses `beta=2`, `tau=n^(-2/5)`, `c0=2`, `c1=12`, and the smallest integer `K=5,990` satisfying the pinned theorem premise `K >= n^(beta/(d+2beta)) (log K)^3`.
 
-Its metric is **not called exact TV**. It is a normalized full-real-line Gaussian-KDE TV-proxy interval computed by overlap with the analytic target on a fixed `[-12,12]` target-tail-certified interval; the omitted target overlap is bounded and resolution sensitivity is retained. Thresholded, unthresholded, and reversed-training-order runs use the identical saved initial `Y_K`; the permutation implementation check is exact. A genuine independent target-A/target-B calibration and a translated-sample tail-accounting control are retained. The finite result has a near-one TV-proxy interval because the method output escaped the target scale; that finite observation is neither a verification nor a falsification of the asymptotic theorem.
+Its metric is **not called exact TV**. It is a normalized full-real-line Gaussian-KDE TV-proxy interval computed by overlap with the analytic target on a fixed `[-12,12]` target-tail-certified interval; the omitted target overlap is bounded and resolution sensitivity is retained. Thresholded, unthresholded, and reversed-training-order runs use the identical saved initial `Y_K`; the permutation implementation check is exact. A genuine normalized KDE(target-A)-versus-KDE(target-B) calibration (with a certified KDE-tail bound) and a translated-sample tail-accounting control are retained. The finite result has a near-one TV-proxy interval because the method output escaped the target scale; that finite observation is neither a verification nor a falsification of the asymptotic theorem.
 
-It remains `toy_pending_independent_review`. See `src/claim5_cai_premise_1d_toy.py`, `outputs/claim5_cai_premise_1d_toy/PROTOCOL.json`, `results.csv`, raw `*.npz`, and `SHA256SUMS`.
+Independent review found this corrected finite direct-method result eligible as a **1-point toy**, while retaining the strict limitation that it is not theorem verification/falsification. See `src/claim5_cai_premise_1d_toy.py`, `outputs/claim5_cai_premise_1d_toy/PROTOCOL.json`, `results.csv`, raw `*.npz`, and `SHA256SUMS`.

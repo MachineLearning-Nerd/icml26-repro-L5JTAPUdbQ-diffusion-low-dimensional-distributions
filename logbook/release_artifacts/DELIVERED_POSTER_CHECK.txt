@@ -1,2 +1,2 @@
 poster_embed_matches_poster_html=true
-executive_summary_embeds_current_poster_png=true
+executive_summary_embeds_poster_png=true
