@@ -27,6 +27,12 @@
         "children": []
       },
       {
+        "slug": "current-claim-2-intrinsic-score",
+        "title": "Current Claim 2: intrinsic score-estimation dependence",
+        "file": "pages/current-claim-2-intrinsic-score/page.md",
+        "children": []
+      },
+      {
         "slug": "historical-rejected-baseline",
         "title": "Historical rejected baseline",
         "file": "pages/index.md",

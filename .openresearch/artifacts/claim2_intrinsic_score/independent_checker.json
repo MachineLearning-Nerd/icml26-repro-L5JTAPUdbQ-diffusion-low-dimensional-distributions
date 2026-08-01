@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "ambient_constant_independence": true,
+    "dependency_trace": true,
+    "exact_theorem_contract": true,
+    "intrinsic_lemma_factor": true,
+    "normal_tangent_identity": true,
+    "pinned_source": true,
+    "twelve_exact_dimension_cases": true
+  },
+  "claim": 2,
+  "scope": "Theorem 1 conditional on exact subspace recovery",
+  "status": "PASS"
+}
+

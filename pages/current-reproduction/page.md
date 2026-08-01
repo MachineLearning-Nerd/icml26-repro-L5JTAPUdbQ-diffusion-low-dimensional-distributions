@@ -10,12 +10,14 @@ previous live judged score remains **0/10** at Hugging Face revision
 | --- | --- | --- | --- |
 | Claim 3 | FALSIFIED | HIGH | [Exact-recovery identifiability counterexample](#/current-claim-3-identifiability-counterexample) |
 | Claim 5 | VERIFIED | MEDIUM | [Primary-source proof-chain certificate](#/current-claim-5-prior-rate) |
-| Claims 1, 2, 4 | Research in progress | LOW | No release verdict yet |
+| Claim 2 | VERIFIED | MEDIUM | [Conditional proof certificate and faithful KDE study](#/current-claim-2-intrinsic-score) |
+| Claims 1, 4 | Research in progress | LOW | No release verdict yet |
 
 ## Navigation
 
 - [Current Claim 3 verifier](#/current-claim-3-identifiability-counterexample)
 - [Current Claim 5 verifier](#/current-claim-5-prior-rate)
+- [Current Claim 2 verifier](#/current-claim-2-intrinsic-score)
 - [Historical rejected baseline](#/historical-rejected-baseline)
 
 The historical pages remain reachable and unchanged. They are superseded as
