@@ -21,6 +21,12 @@
         "children": []
       },
       {
+        "slug": "current-claim-5-prior-rate",
+        "title": "Current Claim 5: prior ambient-dimensional rate",
+        "file": "pages/current-claim-5-prior-rate/page.md",
+        "children": []
+      },
+      {
         "slug": "historical-rejected-baseline",
         "title": "Historical rejected baseline",
         "file": "pages/index.md",

@@ -9,11 +9,13 @@ previous live judged score remains **0/10** at Hugging Face revision
 | Claim | Status | Confidence | Current evidence |
 | --- | --- | --- | --- |
 | Claim 3 | FALSIFIED | HIGH | [Exact-recovery identifiability counterexample](#/current-claim-3-identifiability-counterexample) |
-| Claims 1, 2, 4, 5 | Research in progress | LOW | No release verdict yet |
+| Claim 5 | VERIFIED | MEDIUM | [Primary-source proof-chain certificate](#/current-claim-5-prior-rate) |
+| Claims 1, 2, 4 | Research in progress | LOW | No release verdict yet |
 
 ## Navigation
 
 - [Current Claim 3 verifier](#/current-claim-3-identifiability-counterexample)
+- [Current Claim 5 verifier](#/current-claim-5-prior-rate)
 - [Historical rejected baseline](#/historical-rejected-baseline)
 
 The historical pages remain reachable and unchanged. They are superseded as
