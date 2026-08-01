@@ -1,0 +1,7 @@
+{
+  "actual_exit_code": 1,
+  "checker_stderr": "the witness does not lack every named regularity",
+  "expected_exit_nonzero": true,
+  "mutation": "mark the Rademacher target as log-concave",
+  "passed": true
+}

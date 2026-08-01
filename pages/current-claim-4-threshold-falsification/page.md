@@ -107,11 +107,19 @@ Locked environment: Python `3.14.2`, NumPy `2.5.1`, one repository
 `.venv`, `pyproject.toml` and `uv.lock`, materialized with
 `uv sync --frozen` in `ghcr.io/astral-sh/uv:python3.14-bookworm`.
 
-The pre-run estimate is 1 useful core. The selected HF flavor is
-`cpu-upgrade`, expected to allocate 8 vCPUs, 32 GB RAM, and no accelerator.
-The exact scientific Git SHA, allocation, route runtime, complete job runtime,
-and cost are regenerated into the linked raw JSON and EVAL record by the
-cumulative HF run.
+The estimate was 1 useful core. HF `cpu-upgrade` allocated 8 cgroup-limited
+vCPUs, 32,000,000,000 bytes RAM, and no accelerator. The Claim 4 route took
+`0.009269` seconds; OpenResearch run
+`70f5d228-5ef0-45d6-8938-f6c442eba1d4`, HF job
+`DineshAI/6a6e278e6b79c09949c1e76b`, took `382` seconds total
+(`376` running) and cost approximately `$0.0032` at
+`$0.0005/minute`. Scientific Git SHA:
+`7075b338d13fd488ec0a556e05fd0954f4e5f712`. The route is deterministic
+and uses no random seed.
+
+All 31 repository tests and 17 manifests passed. The later poster style,
+asset, and measure gates failed; that presentation issue is isolated in the
+next experiment and does not alter this scientific checker.
 
 ## Limitations
 
