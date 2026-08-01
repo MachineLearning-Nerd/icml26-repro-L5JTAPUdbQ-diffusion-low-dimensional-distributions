@@ -1,0 +1,22 @@
+{
+  "seed": 20260911,
+  "N": 50000,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "generated_samples": 128,
+  "sliced_w1": 78.41400909423828,
+  "target_split_sliced_w1": 0.07089585065841675,
+  "ratio_to_mc_floor": 1106.0451121751084,
+  "seconds": 3.052086353302002,
+  "wrong_bases": false,
+  "backend": "numpy-float32-streaming CPU",
+  "device": "local CPU",
+  "classification": "non-toy full-paper d/M/k/N cell",
+  "schedule": {
+    "T": 10.819778284410283,
+    "tau": 0.0007368062997280776,
+    "steps": 4,
+    "dt": 2.704760369527639
+  }
+}

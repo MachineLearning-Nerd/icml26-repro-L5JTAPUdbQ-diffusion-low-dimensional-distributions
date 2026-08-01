@@ -1,0 +1,36 @@
+{
+  "seed": 20260912,
+  "N": 50000,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "generated_samples": 128,
+  "sliced_w1": 1843.828857421875,
+  "target_split_sliced_w1": 0.08395887166261673,
+  "ratio_to_mc_floor": 21961.096199948726,
+  "seconds": 12.510404586791992,
+  "wrong_bases": false,
+  "backend": "numpy-float32-streaming CPU",
+  "device": "local CPU",
+  "classification": "non-toy full-paper d/M/k/N cell",
+  "schedule": {
+    "T": 10.819778284410283,
+    "tau": 0.0007368062997280776,
+    "steps": 16,
+    "dt": 0.6761900923819097
+  },
+  "command": {
+    "n": 50000,
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "seed": 20260912,
+    "generated": 128,
+    "steps": 16,
+    "qbatch": 16,
+    "projections": 64,
+    "wrong_bases": false,
+    "out": "outputs/claim1_reverse_full"
+  },
+  "python": "3.14.5"
+}

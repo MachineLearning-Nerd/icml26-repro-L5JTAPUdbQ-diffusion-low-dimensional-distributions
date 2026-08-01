@@ -1,0 +1,36 @@
+{
+  "seed": 20260911,
+  "N": 25000,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "generated_samples": 128,
+  "sliced_w1": 1204.8651123046875,
+  "target_split_sliced_w1": 0.07940391451120377,
+  "ratio_to_mc_floor": 15173.8754911722,
+  "seconds": 7.374424457550049,
+  "wrong_bases": false,
+  "backend": "numpy-float32-streaming CPU",
+  "device": "local CPU",
+  "classification": "reduced end-to-end toy",
+  "schedule": {
+    "T": 10.126631103850338,
+    "tau": 0.0011696070952851468,
+    "steps": 16,
+    "dt": 0.6328413435471908
+  },
+  "command": {
+    "n": 25000,
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "seed": 20260911,
+    "generated": 128,
+    "steps": 16,
+    "qbatch": 16,
+    "projections": 64,
+    "wrong_bases": false,
+    "out": "outputs/claim1_reverse_full"
+  },
+  "python": "3.14.5"
+}

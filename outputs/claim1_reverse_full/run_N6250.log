@@ -1,0 +1,22 @@
+{
+  "seed": 20260911,
+  "N": 6250,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "generated_samples": 128,
+  "sliced_w1": 526.44580078125,
+  "target_split_sliced_w1": 0.08745381236076355,
+  "ratio_to_mc_floor": 6019.700989244028,
+  "seconds": 3.495382308959961,
+  "wrong_bases": false,
+  "backend": "numpy-float32-streaming CPU",
+  "device": "local CPU",
+  "classification": "reduced end-to-end toy",
+  "schedule": {
+    "T": 8.740336742730447,
+    "tau": 0.00294722519891231,
+    "steps": 16,
+    "dt": 0.5460868448457209
+  }
+}

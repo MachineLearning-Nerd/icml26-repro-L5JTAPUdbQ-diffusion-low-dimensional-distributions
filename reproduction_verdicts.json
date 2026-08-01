@@ -2,8 +2,13 @@
   "note": "contract/live_claims.json is an immutable official input. Its status field remains challenge metadata, not this repository's result.",
   "verdicts": {
     "1": {
-      "verdict": "verified_scoped",
-      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+      "verdict": "inconclusive",
+      "scope": "Clean-room end-to-end local CPU reverse OU SDE using Eq. (8)-(14) KDE score at literal d=48/M=128/k=3/N up to 50k. The Euler discretization sweep is unstable/poor; it neither verifies the rate nor falsifies the idealized continuous-time theorem.",
+      "evidence": [
+        "src/claim1_reverse_diffusion.py",
+        "outputs/claim1_reverse_full/summary.json",
+        "outputs/claim1_reverse_full/SHA256SUMS"
+      ]
     },
     "2": {
       "verdict": "inconclusive",

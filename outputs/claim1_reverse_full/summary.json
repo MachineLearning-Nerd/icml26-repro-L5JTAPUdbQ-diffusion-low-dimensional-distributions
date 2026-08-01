@@ -1,0 +1,27 @@
+{
+  "protocol": {
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "N_values": [
+      6250,
+      12500,
+      25000,
+      50000
+    ],
+    "T": "log N",
+    "tau": "N^(-2/k)",
+    "sampler": "Euler-Maruyama reverse OU SDE with Eq. (8)-(14) clean-room KDE score",
+    "metric": "64-projection sliced W1 plus held-out target-split floor"
+  },
+  "rows": 9,
+  "full_N50000_steps16_seeds": [
+    20260911,
+    20260912,
+    20260913
+  ],
+  "full_N50000_steps16_mean_sliced_w1": 1818.1228434244792,
+  "full_N50000_steps16_sd_sliced_w1": 25.607508642073757,
+  "full_N50000_steps16_mean_ratio_to_target_split_floor": 23798.801032935728,
+  "interpretation": "The full-scale Euler implementation is numerically unstable/poor and does not demonstrate convergence. This finite practical-sampler failure cannot falsify Theorem 2 because the paper proves an idealized continuous-time process and explicitly defers discretization error."
+}
