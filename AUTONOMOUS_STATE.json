@@ -35,7 +35,7 @@
     "scope": "Full d=48/M=128/k=3 reverse OU Euler/KDE sampling at N through 50k with sliced-W1, step sweep, and wrong-basis control; numerical sampler did not demonstrate convergence and cannot falsify ideal continuous-time theorem.",
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
-  "last_checkpoint": "2026-08-02T00:00:00Z",
+  "last_checkpoint": "2026-08-02T00:10:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -108,7 +108,7 @@
     "validator_evidence": "outputs/final_prepublication_validator.log",
     "official_judge_leaderboard_status": "not yet confirmed"
   },
-  "last_known_git_commit": "fd4a28b66ad6c8ef9522537ce7e31fb55e42c420 (Claim 5 evidence commit)",
+  "last_known_git_commit": "b2b7983f537c416078d509f63de717cfe6664751 (reviewed Claim 5 toy adoption/evidence gate commit)",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",
