@@ -41,3 +41,11 @@ published revision.
 The environment is pinned by [`pyproject.toml`](pyproject.toml) and
 [`uv.lock`](uv.lock). Every scientific and release-gate run used Hugging Face
 `cpu-upgrade` with no accelerator.
+
+## Release audit
+
+- [Release report](release/RELEASE_REPORT.md)
+- [Evaluator-blind review](release/EVALUATOR_RED_TEAM.md)
+- [Visibility matrix](release/VISIBILITY_MATRIX.md)
+- [Exact text allowlist](release/HF_TEXT_ALLOWLIST.txt)
+- [SHA-256 manifest](release/HF_TEXT_MANIFEST.sha256)

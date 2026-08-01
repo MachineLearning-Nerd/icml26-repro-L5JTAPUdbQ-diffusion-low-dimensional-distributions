@@ -48,3 +48,14 @@ baseline**.
 
 The current verifier is always the first linked page. The rejected Euler route
 and the old source-only pages remain reachable but are explicitly superseded.
+
+## Release audit
+
+- [Final release report](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/RELEASE_REPORT.md)
+- [Evaluator-blind review record](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/EVALUATOR_RED_TEAM.md)
+- [Exact reviewer JSON, including every opened file](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/EVALUATOR_RED_TEAM.json)
+- [Standalone visibility matrix](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/VISIBILITY_MATRIX.md)
+- [Poster gate record](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/POSTER_GATE.json)
+- [Campaign command ledger](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/COMMANDS.md)
+- [Exact HF text allowlist](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/HF_TEXT_ALLOWLIST.txt)
+- [SHA-256 upload manifest](https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions/blob/main/release/HF_TEXT_MANIFEST.sha256)

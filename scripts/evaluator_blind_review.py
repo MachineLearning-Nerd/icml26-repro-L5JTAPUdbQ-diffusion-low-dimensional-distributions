@@ -51,9 +51,9 @@ def protected_entries() -> list[tuple[str, str]]:
     return entries
 
 
-def download_protected_file(relative: str) -> bytes:
+def download_revision_file(revision: str, relative: str) -> bytes:
     quoted = urllib.parse.quote(relative, safe="/")
-    url = f"https://huggingface.co/spaces/{SPACE_ID}/resolve/{PROTECTED_REVISION}/{quoted}"
+    url = f"https://huggingface.co/spaces/{SPACE_ID}/resolve/{revision}/{quoted}"
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     last_error: Exception | None = None
     for attempt in range(3):
@@ -65,6 +65,10 @@ def download_protected_file(relative: str) -> bytes:
             if attempt < 2:
                 time.sleep(1)
     raise RuntimeError(f"could not download protected file {relative}: {last_error}")
+
+
+def download_protected_file(relative: str) -> bytes:
+    return download_revision_file(PROTECTED_REVISION, relative)
 
 
 def draft_overlay_paths() -> list[str]:
@@ -129,7 +133,19 @@ def release_overlay_paths() -> list[str]:
     return paths
 
 
-def assemble_candidate(directory: Path, overlay_paths: list[str]) -> tuple[dict, dict]:
+def published_overlay_paths(revision: str) -> list[str]:
+    data = download_revision_file(revision, "release/HF_TEXT_ALLOWLIST.txt")
+    paths = [line.strip() for line in data.decode().splitlines() if line.strip()]
+    if paths != sorted(set(paths)):
+        raise ValueError("published release allowlist must be sorted and unique")
+    return paths
+
+
+def assemble_candidate(
+    directory: Path,
+    overlay_paths: list[str],
+    published_revision: str | None = None,
+) -> tuple[dict, dict]:
     protected = protected_entries()
     protected_paths = {relative for _, relative in protected}
     mutable_protected_paths = {"README.md", "logbook.json"}
@@ -139,25 +155,35 @@ def assemble_candidate(directory: Path, overlay_paths: list[str]) -> tuple[dict,
             "candidate overlay would modify protected historical files: "
             + ", ".join(sorted(forbidden_overlaps))
         )
+    protected_book = json.loads(download_protected_file("logbook.json").decode())
     for expected, relative in protected:
-        data = download_protected_file(relative)
-        actual = hashlib.sha256(data).hexdigest()
-        if actual != expected:
-            raise ValueError(f"protected hash mismatch for {relative}: {actual}")
+        if published_revision:
+            data = download_revision_file(published_revision, relative)
+            actual = hashlib.sha256(data).hexdigest()
+            if relative not in mutable_protected_paths and actual != expected:
+                raise ValueError(f"published protected hash mismatch for {relative}: {actual}")
+        else:
+            data = download_protected_file(relative)
+            actual = hashlib.sha256(data).hexdigest()
+            if actual != expected:
+                raise ValueError(f"protected hash mismatch for {relative}: {actual}")
         destination = directory / safe_relative_path(relative)
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(data)
 
-    protected_book = json.loads((directory / "logbook.json").read_text())
     for relative in overlay_paths:
-        source = ROOT / safe_relative_path(relative)
-        if not source.is_file():
-            raise FileNotFoundError(f"allowlisted file is absent: {relative}")
-        if source.suffix not in TEXT_SUFFIXES and source.name not in {"README.md", "uv.lock"}:
+        relative_path = safe_relative_path(relative)
+        if relative_path.suffix not in TEXT_SUFFIXES and relative_path.name not in {"README.md", "uv.lock"}:
             raise ValueError(f"non-text upload path: {relative}")
-        data = committed_bytes(relative)
+        if published_revision:
+            data = download_revision_file(published_revision, relative)
+        else:
+            source = ROOT / relative_path
+            if not source.is_file():
+                raise FileNotFoundError(f"allowlisted file is absent: {relative}")
+            data = committed_bytes(relative)
         data.decode("utf-8")
-        destination = directory / safe_relative_path(relative)
+        destination = directory / relative_path
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(data)
 
@@ -360,6 +386,53 @@ class BlindReviewer:
         if matrix_header not in root_page:
             self.issue("visibility.matrix", "canonical visibility matrix is missing")
 
+        root_links = set(self.linked_candidate_paths(root_page))
+        required_release_links = {
+            "release/COMMANDS.md",
+            "release/EVALUATOR_RED_TEAM.json",
+            "release/EVALUATOR_RED_TEAM.md",
+            "release/HF_TEXT_ALLOWLIST.txt",
+            "release/HF_TEXT_MANIFEST.sha256",
+            "release/POSTER_GATE.json",
+            "release/RELEASE_REPORT.md",
+            "release/VISIBILITY_MATRIX.md",
+        }
+        for missing in sorted(required_release_links - root_links):
+            self.issue("release.navigation", f"canonical page does not link {missing}")
+        for linked in sorted(root_links):
+            self.open_bytes(linked)
+
+        report = self.open_text("release/RELEASE_REPORT.md")
+        required_report_phrases = (
+            "Previous live judged score: `0/10`",
+            "Conservative projected score range",
+            "Best-supported possible new score",
+            "forecast only; not a judge result",
+            "## Exact publication action",
+        )
+        for phrase in required_report_phrases:
+            if phrase not in report:
+                self.issue("release.report", f"release report is missing {phrase!r}")
+
+        try:
+            red_team = json.loads(self.open_text("release/EVALUATOR_RED_TEAM.json"))
+            rounds = red_team.get("rounds", [])
+            if len(rounds) != 2:
+                self.issue("release.red_team", "expected exactly two recorded pre-publication rounds")
+            elif rounds[0]["review"]["status"] != "FAIL" or rounds[1]["review"]["status"] != "PASS":
+                self.issue("release.red_team", "expected recorded FAIL then PASS reviewer sequence")
+            elif rounds[1]["review"]["issues"]:
+                self.issue("release.red_team", "recorded passing round still has issues")
+        except (json.JSONDecodeError, KeyError, TypeError) as error:
+            self.issue("release.red_team", f"invalid evaluator red-team record: {error}")
+
+        try:
+            poster = json.loads(self.open_text("release/POSTER_GATE.json"))
+            if poster.get("status") != "PASS" or poster.get("warnings") != 0:
+                self.issue("release.poster", "poster record is not PASS with zero warnings")
+        except json.JSONDecodeError as error:
+            self.issue("release.poster", f"invalid poster record: {error}")
+
         for claim_number, node in enumerate(current_children, start=1):
             self.review_claim_page(claim_number, node["file"])
 
@@ -380,11 +453,24 @@ class BlindReviewer:
 
 
 def main() -> int:
-    overlay_paths = release_overlay_paths()
+    published_revision_path = ROOT / "release/PUBLISHED_REVISION.txt"
+    if published_revision_path.exists():
+        published_revision = published_revision_path.read_text().strip()
+        if not re.fullmatch(r"[0-9a-f]{40}", published_revision):
+            raise ValueError("published revision must be a 40-character lowercase Git OID")
+        overlay_paths = published_overlay_paths(published_revision)
+        candidate_source = f"exact published revision {published_revision}"
+    else:
+        published_revision = None
+        overlay_paths = release_overlay_paths()
+        candidate_source = "fresh protected download plus committed repository text overlay"
     with tempfile.TemporaryDirectory(prefix="l5jtapudbq-candidate-") as temporary:
         candidate = Path(temporary)
-        protected_book, candidate_book = assemble_candidate(candidate, overlay_paths)
+        protected_book, candidate_book = assemble_candidate(
+            candidate, overlay_paths, published_revision
+        )
         result = BlindReviewer(candidate, protected_book, candidate_book).run(overlay_paths)
+    result["candidate_source"] = candidate_source
     print("# Evaluator-blind candidate review")
     print(json.dumps(result, indent=2, sort_keys=True))
     print("EVALUATOR_REVIEW_JSON=" + json.dumps(result, sort_keys=True))
