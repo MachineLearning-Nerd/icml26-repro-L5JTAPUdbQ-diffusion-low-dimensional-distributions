@@ -3,9 +3,9 @@
 
 ---
 <!-- trackio-cell
-{"type": "markdown", "id": "cell_bcf490afbe86", "created_at": "2026-08-01T06:47:50+00:00", "title": "Outcome: toy (independent prior-theorem rate check plus reduced empirical comparator)"}
+{"type": "markdown", "id": "cell_bcf490afbe86", "created_at": "2026-08-01T06:47:50+00:00", "title": "Outcome: inconclusive; non-scoreable toy provenance retained"}
 -->
-## Outcome: toy (independent prior-theorem rate check plus reduced empirical comparator)
+## Outcome: inconclusive; non-scoreable toy provenance retained
 
 **Exact live claim:** Prior work requiring beta-Holder smooth densities achieves only `epsilon^(-(d+2 beta)/beta)` sample complexity, exhibiting a curse of dimensionality that this paper's bound avoids.
 
@@ -20,6 +20,6 @@ Independently solving `n^(-beta/(d+2 beta)) = epsilon` gives `n = epsilon^(-(d+2
 
 ### Executed reduced comparator
 
-A clean-room, full-dimensional Gaussian-mixture KDE-score diagnostic was executed locally for `d={2,4,6}`, `n={500,1000,2000}`, three seeds, and held-out analytic-score MSE. It is **toy** evidence: it is not either cited paper's end-to-end DDPM/DDIM sampler and cannot verify their universal TV theorems. The implementation has a finite-difference score check and raw per-seed CSV/JSON artifacts. Evidence and hashes: `src/claim5_prior_work_comparator.py`, `outputs/claim5_attempt1/toy_summary.json`, `outputs/claim5_attempt1/SHA256SUMS`.
+A clean-room, full-dimensional Gaussian-mixture KDE-score diagnostic was executed locally for `d={2,4,6}`, `n={500,1000,2000}`, three seeds, and held-out analytic-score MSE. It is retained as **non-scoreable toy provenance**: it is not either cited paper's end-to-end DDPM/DDIM sampler and cannot verify their universal TV theorems. The implementation has a finite-difference score check and raw per-seed CSV/JSON artifacts. Evidence and hashes: `src/claim5_prior_work_comparator.py`, `outputs/claim5_attempt1/toy_summary.json`, `outputs/claim5_attempt1/SHA256SUMS`.
 
-No full claim verification or falsification is asserted.
+No full claim verification, falsification, or scoreable toy outcome is asserted.

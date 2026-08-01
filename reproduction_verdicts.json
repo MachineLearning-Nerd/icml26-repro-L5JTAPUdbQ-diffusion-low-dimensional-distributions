@@ -37,8 +37,8 @@
       ]
     },
     "5": {
-      "verdict": "toy",
-      "scope": "Independent primary-source extraction confirms the cited TV exponent/inversion under their qualifications; executed local reduced full-dimensional KDE-score comparator is toy, not an end-to-end cited DDPM/DDIM theorem reproduction.",
+      "verdict": "inconclusive",
+      "scope": "Independent primary-source extraction confirms the cited TV exponent/inversion under their qualifications; retained reduced full-dimensional KDE-score comparator is non-scoreable toy provenance, not an end-to-end cited DDPM/DDIM theorem/TV-rate reproduction.",
       "evidence": [
         "evidence/claim5_attempt1/prior_sources/SHA256SUMS",
         "outputs/claim5_attempt1/toy_summary.json",

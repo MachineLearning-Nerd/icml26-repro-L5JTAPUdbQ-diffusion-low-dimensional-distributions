@@ -1,0 +1,11 @@
+{
+  "status": "pre_execution_protocol",
+  "source": "Cai & Li arXiv:2503.09583 Algorithm 1 / equations (18)-(20)",
+  "target": "bounded smooth two-component Gaussian mixture; dimensions [1, 2, 3]; beta=2",
+  "train_n": [250, 500, 1000, 2000],
+  "seeds": [20261101, 20261102, 20261103, 20261104, 20261105],
+  "metric": "grid/quadrature total variation in d=1,2; common-random-number Monte-Carlo L1 density proxy in d=3, reported separately",
+  "sampler": "Cai & Li probability-flow ODE Algorithm 1: Gaussian-kernel density estimator, equation (19) soft threshold, equation (20) score transform, and discrete update",
+  "controls": ["unthresholded plug-in score", "permuted training sample", "target-vs-target TV floor"],
+  "decision": "toy only: report a reduced-scale empirical TV/sample-size/dimension trend, never claim the asymptotic theorem; retain all sample/config/result hashes"
+}

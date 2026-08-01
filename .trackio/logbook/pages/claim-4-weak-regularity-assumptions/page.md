@@ -12,6 +12,6 @@ The independently derived closed-form score of the Gaussian-smoothed uniform-cub
 
 - Code: `src/claim4_fullscale_weak_regularities.py`
 - Raw score arrays / result / configuration / run log: `outputs/claim4_fullscale/`
-- Integrity: `sha256sum -c outputs/claim4_fullscale/SHA256SUMS`
+- Integrity: `(cd outputs/claim4_fullscale && sha256sum -c SHA256SUMS)`
 - Tests: `tests/test_claim4_fullscale_weak_regularities.py`
 - Resources: local CPU NumPy float32 streaming; 32.83 seconds estimator time; no HF compute.

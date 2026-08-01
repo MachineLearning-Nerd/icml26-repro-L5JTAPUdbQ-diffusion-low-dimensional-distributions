@@ -22,6 +22,6 @@
   ],
   "full_N50000_steps16_mean_sliced_w1": 1818.1228434244792,
   "full_N50000_steps16_sd_sliced_w1": 25.607508642073757,
-  "full_N50000_steps16_mean_ratio_to_target_split_floor": 23798.801032935728,
+  "full_N50000_steps16_mean_ratio_to_target_split_floor": 23798.80103293573,
   "interpretation": "The full-scale Euler implementation is numerically unstable/poor and does not demonstrate convergence. This finite practical-sampler failure cannot falsify Theorem 2 because the paper proves an idealized continuous-time process and explicitly defers discretization error."
 }
