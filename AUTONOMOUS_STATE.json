@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "publication_ready_for_independent_review",
-  "next_action": "run fresh independent scientific/compliance review; publish only if no blocker remains",
+  "phase": "published_public_readback_complete",
+  "next_action": "monitor official judge/leaderboard status; do not rerun terminal scoped claim audits",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -13,7 +13,11 @@
     "claim_2_attempt_1_score_error_intrinsic_dimension_audit",
     "claim_3_attempt_1_assumption_source_audit_and_finite_cpu_check",
     "claim_4_attempt_1_regularities_scope_audit",
-    "claim_5_attempt_1_prior_work_rate_audit"
+    "claim_5_attempt_1_prior_work_rate_audit",
+    "final_independent_scientific_review_passed",
+    "final_independent_compliance_review_passed",
+    "trackio_logbook_published",
+    "anonymous_public_readback_complete"
   ],
   "failed_attempts": [],
   "claim_attempt_counts": {
@@ -28,7 +32,7 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T08:00:00Z",
+  "last_checkpoint": "2026-08-01T07:37:52Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -77,5 +81,19 @@
     "trace_status": "No public trace is declared or attached; private local traces were removed from Trackio metadata and remain excluded from release artifacts.",
     "delivered_artifacts": "logbook/release_artifacts/SHA256SUMS verifies poster.html, poster_embed.html, poster.png, poster.pdf, and Trackio embedded PNG page; output is regenerated from the gated HTML."
   },
-  "review_remediation_blockers": []
+  "review_remediation_blockers": [],
+  "publication": {
+    "status": "published_public_readback_complete",
+    "space_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
+    "space_url": "https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
+    "rendered_url": "https://dineshai-repro-l5jtapudbq-diffusion-low-dimensio-bc85f6d.static.hf.space/",
+    "space_revision": "1785569789803468494",
+    "space_git_sha": "fe1fd273934cf8568fbcc1187d857e7662313648",
+    "published_at_utc": "2026-08-01T07:36:33Z",
+    "readback_at_utc": "2026-08-01T07:37:52Z",
+    "readback_evidence": "outputs/public_readback_final_20260801T0737Z.log",
+    "publication_evidence": "outputs/trackio_publish_attempt_20260801T0736Z.log",
+    "validator_evidence": "outputs/final_prepublication_validator.log",
+    "official_judge_leaderboard_status": "not yet confirmed"
+  }
 }

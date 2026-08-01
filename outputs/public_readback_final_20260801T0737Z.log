@@ -1,0 +1,19 @@
+/ HTTP=200 bytes=1999 sha256=2a52bebbbc800d90f3b9a5ca2338367c3fc1c411adc005143e64f930ea507cfe
+/logbook.json HTTP=200 bytes=2120 sha256=293678c9ad2c8e7f10144a6bdceaad6793db0c4d7ab5faef04ba8f022e3695d1
+/pages/index.md HTTP=200 bytes=655 sha256=b9fbd469c8139e851070172343bf3b19d2ee452abac906be9f65094fb93d9b99
+/pages/executive-summary/page.md HTTP=200 bytes=459203 sha256=afbd6a559c07b726b37ab4738becfbbeed07af075d7237739948eedc72f212d4
+/pages/claim-1-intrinsic-dimension-sample-rate/page.md HTTP=200 bytes=1045 sha256=f7cd822a139fa34b95a4b3d12aa1b28b198acc92b26b53159eba7751f9815814
+/pages/claim-2-intrinsic-score-error-rate/page.md HTTP=200 bytes=635 sha256=95c9d6c466708570b63a445d82fd0df09d49d4fd6bbc735396742da8b9a24210
+/pages/claim-3-union-of-subspaces-assumption/page.md HTTP=200 bytes=758 sha256=62be5e5abffd27dac05b2a2ab688f6f9dd288135abd4f249bf14738752c1f6dd
+/pages/claim-4-weak-regularity-assumptions/page.md HTTP=200 bytes=657 sha256=9b4580b0f5a4551f5b39ff5cbd3e5eb3e04f5d569a0726dfa7a1c7769e8a537a
+/pages/claim-5-prior-ambient-dimensional-comparator/page.md HTTP=200 bytes=707 sha256=1344aca6aa692e560714f7ac151bc3b561d66a2c664e6b8b18c8a717bf3354c0
+/pages/conclusion/page.md HTTP=200 bytes=958 sha256=be59b26b9cac3774a0a5814de8d4ebfa5ba82513a3fb48993ff0bcae0bcfe32e
+UTC= 2026-08-01T07:37:52.271756+00:00
+SPACE_HOST= https://dineshai-repro-l5jtapudbq-diffusion-low-dimensio-bc85f6d.static.hf.space
+REVISION= 1785569789803468494
+TAGS_OK=paper-L5JTAPUdbQ
+PAGE_ORDER_OK= executive-summary -> claim-1-intrinsic-dimension-sample-rate -> claim-2-intrinsic-score-error-rate -> claim-3-union-of-subspaces-assumption -> claim-4-weak-regularity-assumptions -> claim-5-prior-ambient-dimensional-comparator -> conclusion
+CLAIM_PAGES_RENDER_SOURCE_OK=all seven page markdown files returned HTTP 200
+DELIVERED_POSTER_OK=executive summary contains embedded PNG data URI
+GITHUB_AND_SOURCE_LINKS_OK=true
+NO_UNSUPPORTED_TRACE_ASSERTION_OK=true (published manifest traces key absent)
