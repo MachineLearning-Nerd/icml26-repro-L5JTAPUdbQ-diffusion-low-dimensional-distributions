@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "openreview_id": "L5JTAPUdbQ",
+  "phase": "source_pinned_claim_1_setup",
+  "next_action": "claim_1_attempt_1_theorem_rate_audit_and_cpu_sanity_check",
+  "active_run_ids": [],
+  "completed_milestones": ["live_duplicate_gate", "live_contract_saved", "primary_source_pinned", "initial_cpu_feasibility_audit"],
+  "failed_attempts": [],
+  "claim_attempt_counts": {"1": 0, "2": 0, "3": 0, "4": 0, "5": 0},
+  "last_checkpoint": "2026-08-01T06:30:39Z",
+  "publication_allowed": false,
+  "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted."
+}

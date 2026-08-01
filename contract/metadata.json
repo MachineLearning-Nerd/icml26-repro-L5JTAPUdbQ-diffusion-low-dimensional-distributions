@@ -1,0 +1,33 @@
+{
+  "orid": "L5JTAPUdbQ",
+  "submission_number": 2510,
+  "title": "Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions",
+  "area": "Theory",
+  "subarea": "Learning Theory",
+  "openreview": "https://openreview.net/forum?id=L5JTAPUdbQ",
+  "arxiv": "2605.30153",
+  "claims": [
+    {
+      "text": "Theorem 2 proves diffusion models require O~(\u03b5^-(k\u22282)) samples to achieve \u03b5-accuracy in 1-Wasserstein distance, where k is the intrinsic (subspace) dimension rather than the ambient dimension d (Section 3.2, Theorem 2).",
+      "status": "unverified"
+    },
+    {
+      "text": "Theorem 1 bounds the score estimation L2 error in terms of the intrinsic dimension k, avoiding the exponential dependence on ambient dimension d found in prior analyses (Section 3.2, Theorem 1).",
+      "status": "unverified"
+    },
+    {
+      "text": "The analysis assumes the target distribution's support lies in a union of M low-dimensional linear subspaces with zero probability mass on their intersections, and requires only subgaussian tails within each subspace (Section 2.2, Assumption 1).",
+      "status": "unverified"
+    },
+    {
+      "text": "The results dispense with smoothness (e.g., H\u00f6lder continuity), log-concavity, uniform density bounds, and density lower-bound assumptions required by prior sample-complexity analyses (Section 2.2).",
+      "status": "unverified"
+    },
+    {
+      "text": "Prior work requiring \u03b2-H\u00f6lder smooth densities achieves only \u03b5^-(d+2\u03b2)/\u03b2 sample complexity, exhibiting a curse of dimensionality that the paper's bound avoids (Section 1, Equation 1).",
+      "status": "unverified"
+    }
+  ],
+  "claim_count": 5,
+  "max_points": 10
+}
