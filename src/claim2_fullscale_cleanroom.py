@@ -56,14 +56,16 @@ def estimate(x,train,labels,A,t,qbatch=32):
   out.append(ans)
  return np.concatenate(out)
 def main():
- p=argparse.ArgumentParser();p.add_argument('--n',type=int,default=50000);p.add_argument('--eval',type=int,default=10000);p.add_argument('--seed',type=int,default=20260801);p.add_argument('--t',type=float,default=.25);p.add_argument('--d',type=int,default=48);p.add_argument('--M',type=int,default=128);p.add_argument('--k',type=int,default=3);p.add_argument('--wrong-bases',action='store_true');p.add_argument('--out',default='outputs/claim2_fullscale');p.add_argument('--benchmark',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--n',type=int,default=50000);p.add_argument('--eval',type=int,default=10000);p.add_argument('--seed',type=int,default=20260801);p.add_argument('--t',type=float,default=.25);p.add_argument('--d',type=int,default=48);p.add_argument('--M',type=int,default=128);p.add_argument('--k',type=int,default=3);p.add_argument('--wrong-bases',action='store_true');p.add_argument('--ambient-basis',action='store_true');p.add_argument('--out',default='outputs/claim2_fullscale');p.add_argument('--benchmark',action='store_true');a=p.parse_args()
  d,M,k=a.d,a.M,a.k; r=np.random.default_rng(a.seed); A,means,w=make_target(a.seed,d,M,k); train,lab=sample(r,A,means,w,a.n); x,_=sample(r,A,means,w,a.eval,a.t)
  # A deterministic permutation breaks the recovered-subspace correspondence while preserving all data.
  estimator_A=A[np.random.default_rng(a.seed+991).permutation(M)] if a.wrong_bases else A
+ if a.ambient_basis:
+  estimator_A=np.broadcast_to(np.eye(d,dtype='float32'),(M,d,d)).copy()
  tic=time.time(); est=estimate(x,train,lab,estimator_A,a.t); sec=time.time()-tic; truth=exact_score(x,A,means,w,a.t); mse=float(np.mean((est-truth)**2));
  o=ROOT/a.out; o.mkdir(parents=True,exist_ok=True); tag=f'seed{a.seed}_N{a.n}_E{a.eval}_t{a.t}'
  np.savez_compressed(o/(tag+'.npz'),estimate=est,truth=truth,labels=lab)
- rec={'seed':a.seed,'d':d,'M':M,'k':k,'N':a.n,'evaluation_samples':a.eval,'t':a.t,'mse':mse,'seconds':sec,'backend':'numpy-float32-streaming','device':'CPU (torch unavailable)', 'wrong_bases':a.wrong_bases, 'classification':'non-toy full-protocol numerical experiment' if (a.n==50000 and a.eval==10000 and d==48 and M==128 and k==3) else 'diagnostic: deviates from paper full protocol'}
+ rec={'seed':a.seed,'d':d,'M':M,'k':k,'N':a.n,'evaluation_samples':a.eval,'t':a.t,'mse':mse,'seconds':sec,'backend':'numpy-float32-streaming','device':'CPU (torch unavailable)', 'wrong_bases':a.wrong_bases, 'ambient_basis':a.ambient_basis, 'classification':'non-toy full-protocol numerical experiment' if (a.n==50000 and a.eval==10000 and d==48 and M==128 and k==3) else 'diagnostic: deviates from paper full protocol'}
  with open(o/'results.csv','a',newline='') as f: csv.DictWriter(f,fieldnames=rec.keys()).writeheader() if f.tell()==0 else None; csv.DictWriter(f,fieldnames=rec.keys()).writerow(rec)
  (o/'config.json').write_text(json.dumps({'paper_protocol':{'d':48,'M':128,'k':3,'N':50000,'eval':10000,'replicates':20},'run':rec,'python':platform.python_version()},indent=2)+'\n'); print(json.dumps(rec,indent=2))
 if __name__=='__main__': main()

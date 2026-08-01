@@ -1,0 +1,61 @@
+seed,d,M,k,N,evaluation_samples,t,mse,seconds,backend,device,wrong_bases,ambient_basis,classification
+20261001,48,128,3,50000,10000,0.25,3.0659936935057606,35.25004053115845,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261002,48,128,3,50000,10000,0.25,3.0627861428084966,35.26336073875427,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261003,48,128,3,50000,10000,0.25,3.062442887426562,34.58588099479675,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261004,48,128,3,50000,10000,0.25,3.0905892779304684,33.66194558143616,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261005,48,128,3,50000,10000,0.25,3.049348658226864,33.49384331703186,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261006,48,128,3,50000,10000,0.25,3.0928560255724853,33.40661573410034,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261007,48,128,3,50000,10000,0.25,3.1277346225051255,33.39214062690735,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261008,48,128,3,50000,10000,0.25,3.0782476109389263,33.881301164627075,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261009,48,128,3,50000,10000,0.25,3.1169030345649777,34.00888419151306,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261010,48,128,3,50000,10000,0.25,3.0662927523023855,33.6457040309906,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261011,48,128,3,50000,10000,0.25,3.092687702774755,33.68186402320862,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261012,48,128,3,50000,10000,0.25,3.07844291177629,33.94338870048523,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261013,48,128,3,50000,10000,0.25,3.0664280967500845,33.73395299911499,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261014,48,128,3,50000,10000,0.25,3.0568046236183917,33.63429117202759,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261015,48,128,3,50000,10000,0.25,3.0680162367947497,34.23043727874756,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261016,48,128,3,50000,10000,0.25,3.1056896034435826,33.966825008392334,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261017,48,128,3,50000,10000,0.25,3.026753167699854,33.416415214538574,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261018,48,128,3,50000,10000,0.25,3.1085751240120465,33.77162837982178,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261019,48,128,3,50000,10000,0.25,3.0807894425096873,33.433401346206665,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261020,48,128,3,50000,10000,0.25,3.1105005605052716,33.837549924850464,numpy-float32-streaming,CPU (torch unavailable),True,False,non-toy full-protocol numerical experiment
+20261101,48,128,3,6250,10000,0.25,3.0917643521654368,10.312557220458984,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261102,48,128,3,6250,10000,0.25,3.0318931984012316,9.994255304336548,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261103,48,128,3,6250,10000,0.25,3.0298157259425373,10.422128438949585,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261104,48,128,3,6250,10000,0.25,3.1580302545201526,10.802657127380371,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261105,48,128,3,6250,10000,0.25,3.070320250097285,10.354946613311768,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261106,48,128,3,6250,10000,0.25,3.0752786107730277,10.837341785430908,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261107,48,128,3,6250,10000,0.25,3.043659677840851,10.73736310005188,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261108,48,128,3,6250,10000,0.25,3.0263546695449874,10.613554000854492,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261109,48,128,3,6250,10000,0.25,3.0391675146596637,10.240953922271729,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261110,48,128,3,6250,10000,0.25,3.034641699784035,10.245209693908691,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261101,48,128,3,12500,10000,0.25,3.422505828057582,15.102639436721802,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261102,48,128,3,12500,10000,0.25,3.3645586652282997,14.121778964996338,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261103,48,128,3,12500,10000,0.25,3.337999973986616,15.884974479675293,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261104,48,128,3,12500,10000,0.25,3.4214337784679465,16.27794313430786,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261105,48,128,3,12500,10000,0.25,3.3539192963422733,14.997701406478882,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261106,48,128,3,12500,10000,0.25,3.353464823496597,15.072794675827026,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261107,48,128,3,12500,10000,0.25,3.339039267458652,15.108227968215942,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261108,48,128,3,12500,10000,0.25,3.339788193219133,14.933883428573608,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261109,48,128,3,12500,10000,0.25,3.3280960682908423,14.366735696792603,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261110,48,128,3,12500,10000,0.25,3.358647830615027,14.332204103469849,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261101,48,128,3,25000,10000,0.25,3.6004041180021416,25.387948274612427,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261102,48,128,3,25000,10000,0.25,3.5272791545298423,25.16895031929016,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261103,48,128,3,25000,10000,0.25,3.523935436559325,27.122299194335938,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261104,48,128,3,25000,10000,0.25,3.5872545683836536,29.303824424743652,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261105,48,128,3,25000,10000,0.25,3.539874367474676,28.484305381774902,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261106,48,128,3,25000,10000,0.25,3.567686644212667,27.70434284210205,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261107,48,128,3,25000,10000,0.25,3.556368651426981,24.990694046020508,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261108,48,128,3,25000,10000,0.25,3.55539055084975,24.60438084602356,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261109,48,128,3,25000,10000,0.25,3.5155085365008274,23.054144859313965,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261110,48,128,3,25000,10000,0.25,3.5371281109560573,22.735384941101074,numpy-float32-streaming,CPU (torch unavailable),False,False,diagnostic: deviates from paper full protocol
+20261201,48,128,3,50000,10000,0.25,3.6509834144979236,498.866397857666,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261202,48,128,3,50000,10000,0.25,3.662127952385818,898.4626486301422,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261203,48,128,3,50000,10000,0.25,3.6482186906451473,1478.5847430229187,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261204,48,128,3,50000,10000,0.25,3.6508562142210925,1045.1235401630402,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261205,48,128,3,50000,10000,0.25,3.645535901670984,424.822705745697,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261206,48,128,3,50000,10000,0.25,3.6425489356986818,399.5777997970581,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261207,48,128,3,50000,10000,0.25,3.6503647195222806,400.6241602897644,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261208,48,128,3,50000,10000,0.25,3.6432433435022658,402.96001839637756,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261209,48,128,3,50000,10000,0.25,3.6456211472117475,510.5873007774353,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment
+20261210,48,128,3,50000,10000,0.25,3.6503791312449487,447.8384442329407,numpy-float32-streaming,CPU (torch unavailable),False,True,non-toy full-protocol numerical experiment

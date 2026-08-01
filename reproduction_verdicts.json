@@ -7,8 +7,12 @@
     },
     "2": {
       "verdict": "inconclusive",
-      "scope": "Full-scale clean-room Eq. (8)-(14) score experiment at one t=0.25 cell (d=48,M=128,k=3,N=50k, 10k heldout, 21 datasets); required t-grid and controls pending.",
-      "evidence": "outputs/claim2_fullscale/summary.json"
+      "scope": "Non-toy clean-room full-scale d=48,M=128,k=3,N=50k,eval=10k Eq. (8)-(14) t-grid and actual controls completed. Permuted-basis/reduced-N controls did not degrade as pre-registered, so no theorem verdict is justified.",
+      "evidence": [
+        "outputs/claim2_fullscale/summary.json",
+        "outputs/claim2_fullscale_grid/summary.json",
+        "outputs/claim2_controls/summary.json"
+      ]
     },
     "3": {
       "verdict": "verified_scoped",

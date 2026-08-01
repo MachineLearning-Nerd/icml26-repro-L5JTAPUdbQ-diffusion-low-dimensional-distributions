@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_2_fullscale_t_grid_checkpoint",
-  "next_action": "run Claim 2 wrong-subspace, reduced-N, and ambient diagnostics; then independent review",
+  "phase": "claim_2_fullscale_controls_inconclusive",
+  "next_action": "independent review of Claim 2 full-scale implementation/control discrepancy; do not publish",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -32,13 +32,17 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T10:04:00Z",
+  "last_checkpoint": "2026-08-01T12:18:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
     "verdict": "inconclusive",
-    "scope": "One full protocol time cell only; no t-grid or controls yet",
-    "evidence": "outputs/claim2_fullscale/summary.json"
+    "scope": "Clean-room full-scale d=48,M=128,k=3,N=50k,eval=10k score-MSE grid plus required controls; controls contradicted expected degradation and cannot verify/falsify Theorem 1.",
+    "evidence": [
+      "outputs/claim2_fullscale/summary.json",
+      "outputs/claim2_fullscale_grid/summary.json",
+      "outputs/claim2_controls/summary.json"
+    ]
   },
   "claim_3_outcome": {
     "verdict": "verified_scoped",
@@ -98,17 +102,13 @@
   },
   "last_known_git_commit": "49d66a91c70ea60b13dd7f0473093d26efa2fa40",
   "claim_2_fullscale_checkpoint": {
-    "t_grid": "outputs/claim2_fullscale_grid/summary.json",
-    "complete_cells": [
-      "t=0.1, 20 seeds",
-      "t=0.25, 21 prior exact-compatible seeds",
-      "t=0.5, 20 seeds",
-      "t=1.0, 20 seeds"
+    "completed": [
+      "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",
+      "wrong-basis 20-run full control",
+      "N=6250/12500/25000 10-run controls",
+      "ambient-basis 10-run full diagnostic"
     ],
-    "remaining_controls": [
-      "wrong bases",
-      "N trend",
-      "ambient diagnostic"
-    ]
+    "result": "inconclusive due to controls failing expected degradation",
+    "smoke_output": "removed as regenerable transient after successful validation; no required evidence discarded"
   }
 }

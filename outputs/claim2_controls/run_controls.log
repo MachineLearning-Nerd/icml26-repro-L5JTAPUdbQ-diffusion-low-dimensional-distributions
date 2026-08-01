@@ -1,0 +1,1020 @@
+START wrong-bases seed=20261001 2026-08-01T10:06:48Z
+{
+  "seed": 20261001,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0659936935057606,
+  "seconds": 35.25004053115845,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261002 2026-08-01T10:07:26Z
+{
+  "seed": 20261002,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0627861428084966,
+  "seconds": 35.26336073875427,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261003 2026-08-01T10:08:04Z
+{
+  "seed": 20261003,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.062442887426562,
+  "seconds": 34.58588099479675,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261004 2026-08-01T10:08:40Z
+{
+  "seed": 20261004,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0905892779304684,
+  "seconds": 33.66194558143616,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261005 2026-08-01T10:09:16Z
+{
+  "seed": 20261005,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.049348658226864,
+  "seconds": 33.49384331703186,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261006 2026-08-01T10:09:52Z
+{
+  "seed": 20261006,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0928560255724853,
+  "seconds": 33.40661573410034,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261007 2026-08-01T10:10:27Z
+{
+  "seed": 20261007,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.1277346225051255,
+  "seconds": 33.39214062690735,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261008 2026-08-01T10:11:02Z
+{
+  "seed": 20261008,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0782476109389263,
+  "seconds": 33.881301164627075,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261009 2026-08-01T10:11:38Z
+{
+  "seed": 20261009,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.1169030345649777,
+  "seconds": 34.00888419151306,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261010 2026-08-01T10:12:14Z
+{
+  "seed": 20261010,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0662927523023855,
+  "seconds": 33.6457040309906,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261011 2026-08-01T10:12:50Z
+{
+  "seed": 20261011,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.092687702774755,
+  "seconds": 33.68186402320862,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261012 2026-08-01T10:13:25Z
+{
+  "seed": 20261012,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.07844291177629,
+  "seconds": 33.94338870048523,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261013 2026-08-01T10:14:01Z
+{
+  "seed": 20261013,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0664280967500845,
+  "seconds": 33.73395299911499,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261014 2026-08-01T10:14:36Z
+{
+  "seed": 20261014,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0568046236183917,
+  "seconds": 33.63429117202759,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261015 2026-08-01T10:15:12Z
+{
+  "seed": 20261015,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0680162367947497,
+  "seconds": 34.23043727874756,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261016 2026-08-01T10:15:49Z
+{
+  "seed": 20261016,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.1056896034435826,
+  "seconds": 33.966825008392334,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261017 2026-08-01T10:16:24Z
+{
+  "seed": 20261017,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.026753167699854,
+  "seconds": 33.416415214538574,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261018 2026-08-01T10:17:00Z
+{
+  "seed": 20261018,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.1085751240120465,
+  "seconds": 33.77162837982178,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261019 2026-08-01T10:17:35Z
+{
+  "seed": 20261019,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0807894425096873,
+  "seconds": 33.433401346206665,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START wrong-bases seed=20261020 2026-08-01T10:18:11Z
+{
+  "seed": 20261020,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.1105005605052716,
+  "seconds": 33.837549924850464,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": true,
+  "ambient_basis": false,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START N=6250 seed=20261101 2026-08-01T10:18:46Z
+{
+  "seed": 20261101,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0917643521654368,
+  "seconds": 10.312557220458984,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261102 2026-08-01T10:18:58Z
+{
+  "seed": 20261102,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0318931984012316,
+  "seconds": 9.994255304336548,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261103 2026-08-01T10:19:10Z
+{
+  "seed": 20261103,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0298157259425373,
+  "seconds": 10.422128438949585,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261104 2026-08-01T10:19:22Z
+{
+  "seed": 20261104,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.1580302545201526,
+  "seconds": 10.802657127380371,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261105 2026-08-01T10:19:35Z
+{
+  "seed": 20261105,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.070320250097285,
+  "seconds": 10.354946613311768,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261106 2026-08-01T10:19:47Z
+{
+  "seed": 20261106,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0752786107730277,
+  "seconds": 10.837341785430908,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261107 2026-08-01T10:20:00Z
+{
+  "seed": 20261107,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.043659677840851,
+  "seconds": 10.73736310005188,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261108 2026-08-01T10:20:13Z
+{
+  "seed": 20261108,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0263546695449874,
+  "seconds": 10.613554000854492,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261109 2026-08-01T10:20:25Z
+{
+  "seed": 20261109,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.0391675146596637,
+  "seconds": 10.240953922271729,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=6250 seed=20261110 2026-08-01T10:20:37Z
+{
+  "seed": 20261110,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 6250,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.034641699784035,
+  "seconds": 10.245209693908691,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261101 2026-08-01T10:20:49Z
+{
+  "seed": 20261101,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.422505828057582,
+  "seconds": 15.102639436721802,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261102 2026-08-01T10:21:06Z
+{
+  "seed": 20261102,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.3645586652282997,
+  "seconds": 14.121778964996338,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261103 2026-08-01T10:21:22Z
+{
+  "seed": 20261103,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.337999973986616,
+  "seconds": 15.884974479675293,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261104 2026-08-01T10:21:40Z
+{
+  "seed": 20261104,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.4214337784679465,
+  "seconds": 16.27794313430786,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261105 2026-08-01T10:21:58Z
+{
+  "seed": 20261105,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.3539192963422733,
+  "seconds": 14.997701406478882,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261106 2026-08-01T10:22:15Z
+{
+  "seed": 20261106,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.353464823496597,
+  "seconds": 15.072794675827026,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261107 2026-08-01T10:22:32Z
+{
+  "seed": 20261107,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.339039267458652,
+  "seconds": 15.108227968215942,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261108 2026-08-01T10:22:49Z
+{
+  "seed": 20261108,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.339788193219133,
+  "seconds": 14.933883428573608,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261109 2026-08-01T10:23:05Z
+{
+  "seed": 20261109,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.3280960682908423,
+  "seconds": 14.366735696792603,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=12500 seed=20261110 2026-08-01T10:23:21Z
+{
+  "seed": 20261110,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 12500,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.358647830615027,
+  "seconds": 14.332204103469849,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261101 2026-08-01T10:23:37Z
+{
+  "seed": 20261101,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6004041180021416,
+  "seconds": 25.387948274612427,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261102 2026-08-01T10:24:05Z
+{
+  "seed": 20261102,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.5272791545298423,
+  "seconds": 25.16895031929016,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261103 2026-08-01T10:24:32Z
+{
+  "seed": 20261103,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.523935436559325,
+  "seconds": 27.122299194335938,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261104 2026-08-01T10:25:01Z
+{
+  "seed": 20261104,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.5872545683836536,
+  "seconds": 29.303824424743652,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261105 2026-08-01T10:25:34Z
+{
+  "seed": 20261105,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.539874367474676,
+  "seconds": 28.484305381774902,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261106 2026-08-01T10:26:05Z
+{
+  "seed": 20261106,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.567686644212667,
+  "seconds": 27.70434284210205,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261107 2026-08-01T10:26:35Z
+{
+  "seed": 20261107,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.556368651426981,
+  "seconds": 24.990694046020508,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261108 2026-08-01T10:27:01Z
+{
+  "seed": 20261108,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.55539055084975,
+  "seconds": 24.60438084602356,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261109 2026-08-01T10:27:28Z
+{
+  "seed": 20261109,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.5155085365008274,
+  "seconds": 23.054144859313965,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START N=25000 seed=20261110 2026-08-01T10:27:53Z
+{
+  "seed": 20261110,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 25000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.5371281109560573,
+  "seconds": 22.735384941101074,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": false,
+  "classification": "diagnostic: deviates from paper full protocol"
+}
+START ambient-basis seed=20261201 2026-08-01T10:28:18Z
+{
+  "seed": 20261201,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6509834144979236,
+  "seconds": 498.866397857666,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261202 2026-08-01T10:36:38Z
+{
+  "seed": 20261202,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.662127952385818,
+  "seconds": 898.4626486301422,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261203 2026-08-01T10:51:42Z
+{
+  "seed": 20261203,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6482186906451473,
+  "seconds": 1478.5847430229187,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261204 2026-08-01T11:16:27Z
+{
+  "seed": 20261204,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6508562142210925,
+  "seconds": 1045.1235401630402,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261205 2026-08-01T11:33:54Z
+{
+  "seed": 20261205,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.645535901670984,
+  "seconds": 424.822705745697,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261206 2026-08-01T11:41:00Z
+{
+  "seed": 20261206,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6425489356986818,
+  "seconds": 399.5777997970581,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261207 2026-08-01T11:47:41Z
+{
+  "seed": 20261207,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6503647195222806,
+  "seconds": 400.6241602897644,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261208 2026-08-01T11:54:24Z
+{
+  "seed": 20261208,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6432433435022658,
+  "seconds": 402.96001839637756,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261209 2026-08-01T12:01:08Z
+{
+  "seed": 20261209,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6456211472117475,
+  "seconds": 510.5873007774353,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
+START ambient-basis seed=20261210 2026-08-01T12:09:41Z
+{
+  "seed": 20261210,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6503791312449487,
+  "seconds": 447.8384442329407,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "wrong_bases": false,
+  "ambient_basis": true,
+  "classification": "non-toy full-protocol numerical experiment"
+}
