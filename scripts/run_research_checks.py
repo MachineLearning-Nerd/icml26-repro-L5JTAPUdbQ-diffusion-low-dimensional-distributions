@@ -315,9 +315,9 @@ if claim4_control.returncode == 0:
 
 claim4_checker = json.loads((claim4_out / "independent_checker.json").read_text())
 claim4_result = json.loads((claim4_out / "raw_results.json").read_text())
-claim4_evaluation = f"""# Claim 4 evaluation
+claim4_evaluation = f"""# Prior finite corroboration (superseded): Claim 4
 
-- Verdict: **{claim4_result['verdict']}**
+- Route verdict: **{claim4_result['verdict']}**
 - Confidence: **{claim4_result['confidence']}**
 - Scale: `d=48, M=128, k=3, N_max=50000, E=10000, 20 seeds`
 - Target: bounded atomic UoS distribution with no ambient or intrinsic density
@@ -336,7 +336,8 @@ precommitted N sweep; omitting the known normal score fails strongly.
 
 This is direct full-scale corroboration plus a source dependency certificate.
 It does not repair the separate exact-recovery failure, and the paper leaves
-the regularization constant unspecified; confidence is therefore MEDIUM.
+the regularization constant unspecified. The current Claim 4 verifier is the
+exact threshold-escape falsification generated after Claim 1 below.
 """
 (claim4_out / "EVAL.md").write_text(claim4_evaluation)
 print(claim4_evaluation)
@@ -523,3 +524,79 @@ as the proof of falsification.
 """
 (claim1_escape_out / "EVAL.md").write_text(claim1_escape_evaluation)
 print(claim1_escape_evaluation)
+
+claim4_falsification_out = (
+    ROOT / ".openresearch" / "artifacts" / "claim4_threshold_falsification"
+)
+claim4_falsification_out.mkdir(parents=True, exist_ok=True)
+run("src/claim4_threshold_falsification.py")
+run(
+    "verifiers/verify_claim4_threshold_falsification.py",
+    str(claim4_falsification_out / "raw_results.json"),
+    str(claim1_escape_out / "raw_results.json"),
+    str(claim4_falsification_out / "independent_checker.json"),
+)
+claim4_falsification_raw = json.loads(
+    (claim4_falsification_out / "raw_results.json").read_text()
+)
+claim4_falsification_raw["regularity_audit"]["not_log_concave"] = False
+claim4_falsification_mutated = claim4_falsification_out / "mutated_evidence.json"
+claim4_falsification_mutated.write_text(
+    json.dumps(claim4_falsification_raw, indent=2, sort_keys=True) + "\n"
+)
+claim4_falsification_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim4_threshold_falsification.py",
+        str(claim4_falsification_mutated),
+        str(claim1_escape_out / "raw_results.json"),
+        str(claim4_falsification_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim4_falsification_control_record = {
+    "mutation": "mark the Rademacher target as log-concave",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim4_falsification_control.returncode,
+    "passed": claim4_falsification_control.returncode != 0,
+    "checker_stderr": claim4_falsification_control.stderr.strip(),
+}
+(claim4_falsification_out / "negative_control_output.json").write_text(
+    json.dumps(claim4_falsification_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim4_falsification_control.returncode == 0:
+    raise SystemExit("Claim 4 regularity mutation unexpectedly passed")
+
+claim4_falsification_checker = json.loads(
+    (claim4_falsification_out / "independent_checker.json").read_text()
+)
+claim4_falsification_result = json.loads(
+    (claim4_falsification_out / "raw_results.json").read_text()
+)
+claim4_falsification_evaluation = f"""# Claim 4 threshold-falsification evaluation
+
+- Verdict: **{claim4_falsification_checker['verdict']}**
+- Confidence: **{claim4_falsification_checker['confidence']}**
+- Target: `Uniform{{-1,+1}}`, `d=M=k=1`, all assumptions satisfied
+- Named regularities absent: `7` of `7`
+- Linked exact result failure: Theorem 2 continuous-time threshold escape
+- Independent checker: `{claim4_falsification_checker['status']}`
+- Regularity-mutation checker exit: `{claim4_falsification_control.returncode}` (nonzero required)
+- Git SHA: `{claim4_falsification_result['environment']['git_sha']}`
+- Runtime: `{claim4_falsification_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim4_falsification_result['environment']['cpu_limit']}` vCPU, `{claim4_falsification_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+The target has no ambient or intrinsic density and is not log-concave, yet it
+satisfies Assumptions 1 and 2. The exact paper estimator contradicts Theorem 2
+on this target. Therefore the broad claim that the results hold over the
+stated weak-regularity domain is false as stated.
+
+The earlier paper-scale atomic experiment is preserved as prior finite
+corroboration and is not the current verifier.
+"""
+(claim4_falsification_out / "EVAL.md").write_text(
+    claim4_falsification_evaluation
+)
+print(claim4_falsification_evaluation)

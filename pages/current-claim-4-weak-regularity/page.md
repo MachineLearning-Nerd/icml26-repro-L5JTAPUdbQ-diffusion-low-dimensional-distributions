@@ -1,11 +1,12 @@
-# Claim 4: results without density regularity
+# Prior finite corroboration (superseded): Claim 4
 
-## Reviewer verdict: VERIFIED
+## Route verdict: VERIFIED; not the current Claim 4 verdict
 
-A direct paper-scale experiment and source dependency certificate verify the
-claim at **MEDIUM** confidence. The target satisfies both paper assumptions but
-has no density at all, making smoothness, log-concavity, uniform density bounds,
-and positive density lower bounds unavailable rather than approximately met.
+This finite paper-scale experiment corroborated the estimator on one atomic
+target at **MEDIUM** confidence. It is preserved, but it is not the current
+Claim 4 verifier. The exact
+[threshold-escape counterexample](#/current-claim-4-threshold-falsification)
+supersedes it and gives the current **FALSIFIED, HIGH** verdict.
 
 ## Exact claim contract
 

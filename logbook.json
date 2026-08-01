@@ -8,23 +8,24 @@
     "icml2026-repro",
     "paper-L5JTAPUdbQ"
   ],
-  "updated_at": "2026-08-01T15:22:05+00:00",
+  "updated_at": "2026-08-01T17:02:56+00:00",
   "root": {
     "slug": "current-reproduction",
     "title": "Current reproduction evidence",
     "file": "pages/current-reproduction/page.md",
     "children": [
       {
-        "slug": "current-claim-3-identifiability-counterexample",
-        "title": "Current Claim 3: exact-recovery counterexample",
-        "file": "pages/current-claim-3-identifiability-counterexample/page.md",
-        "children": []
-      },
-      {
-        "slug": "current-claim-5-prior-rate",
-        "title": "Current Claim 5: prior ambient-dimensional rate",
-        "file": "pages/current-claim-5-prior-rate/page.md",
-        "children": []
+        "slug": "current-claim-1-threshold-escape",
+        "title": "Current Claim 1: exact threshold-escape counterexample",
+        "file": "pages/current-claim-1-threshold-escape/page.md",
+        "children": [
+          {
+            "slug": "historical-claim-1-euler",
+            "title": "Historical rejected baseline",
+            "file": "pages/historical-claim-1-euler/page.md",
+            "children": []
+          }
+        ]
       },
       {
         "slug": "current-claim-2-intrinsic-score",
@@ -33,9 +34,28 @@
         "children": []
       },
       {
-        "slug": "current-claim-4-weak-regularity",
-        "title": "Current Claim 4: results without density regularity",
-        "file": "pages/current-claim-4-weak-regularity/page.md",
+        "slug": "current-claim-3-identifiability-counterexample",
+        "title": "Current Claim 3: exact-recovery counterexample",
+        "file": "pages/current-claim-3-identifiability-counterexample/page.md",
+        "children": []
+      },
+      {
+        "slug": "current-claim-4-threshold-falsification",
+        "title": "Current Claim 4: weak-domain theorem counterexample",
+        "file": "pages/current-claim-4-threshold-falsification/page.md",
+        "children": [
+          {
+            "slug": "current-claim-4-weak-regularity",
+            "title": "Prior finite corroboration (superseded)",
+            "file": "pages/current-claim-4-weak-regularity/page.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "slug": "current-claim-5-prior-rate",
+        "title": "Current Claim 5: prior ambient-dimensional rate",
+        "file": "pages/current-claim-5-prior-rate/page.md",
         "children": []
       },
       {
@@ -90,5 +110,5 @@
     ]
   },
   "agent_view_tokens": 4096,
-  "revision": "1785597725000000000"
+  "revision": "1785603776000000000"
 }
