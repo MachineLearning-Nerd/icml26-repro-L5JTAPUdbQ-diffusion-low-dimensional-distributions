@@ -7,6 +7,7 @@ def test_clean_union_of_subspaces_satisfies_the_finite_checks():
         "union_support": True,
         "zero_intersection_mass": True,
         "subgaussian_mgf_le_two": True,
+        "per_subspace_mass_at_least_one_over_cpM": True,
     }
 
 

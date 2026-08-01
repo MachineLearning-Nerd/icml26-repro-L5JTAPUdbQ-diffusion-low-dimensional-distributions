@@ -1,0 +1,3 @@
+# CPU audit dependencies, intentionally minimal and version-pinned.
+pytest==8.4.2
+trackio==0.34.0

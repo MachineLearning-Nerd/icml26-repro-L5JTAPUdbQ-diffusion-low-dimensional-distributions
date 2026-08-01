@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "independent_review_ready",
-  "next_action": "run_fresh_independent_scientific_and_publication_compliance_review_before_publish",
+  "phase": "publication_blocked_release_gate_remediation",
+  "next_action": "obtain and run full non-waived posterly gate toolchain, then rerun independent review",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -72,5 +72,8 @@
     "tests": "outputs/final_test_poster_remediation.log",
     "validator": "outputs/official_validator_poster_remediation.log",
     "trace_index": ".trackio/logbook/traces/019fbc12-567c-7718-ba3b-15786eab5af1/index.json"
-  }
+  },
+  "review_remediation_blockers": [
+    "posterly strict rules 4/5 were disabled and total-image area was waived; no challenge-approved waiver is retained"
+  ]
 }

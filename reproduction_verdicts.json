@@ -1,0 +1,25 @@
+{
+  "note": "contract/live_claims.json is an immutable official input. Its status field remains challenge metadata, not this repository's result.",
+  "verdicts": {
+    "1": {
+      "verdict": "verified_scoped",
+      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+    },
+    "2": {
+      "verdict": "verified_scoped",
+      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+    },
+    "3": {
+      "verdict": "verified_scoped",
+      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+    },
+    "4": {
+      "verdict": "verified_scoped",
+      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+    },
+    "5": {
+      "verdict": "verified_scoped",
+      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+    }
+  }
+}

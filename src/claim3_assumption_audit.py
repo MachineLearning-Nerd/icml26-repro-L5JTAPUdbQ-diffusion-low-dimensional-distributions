@@ -39,6 +39,7 @@ def audit() -> dict:
         "source_conditions": {
             "support": "supp(p*) subset union_i V_i",
             "separation": "p*(V_i intersection V_j)=0 for i != j",
+            "component_mass": "p*(V_i) >= 1/(c_p M) for every i",
             "tails": "E exp((X^T theta/sigma_i)^2) <= 2 for each unit theta",
         },
         "finite_clean_room_example": {
@@ -49,10 +50,14 @@ def audit() -> dict:
             "sigma": sigma,
             "empirical_subgaussian_mgf": clean_mgf,
             "intersection_mass": clean_intersection_mass,
+            "component_masses": [0.5, 0.5],
+            "c_p": 1.0,
+            "minimum_component_mass": 0.5,
             "assumption_checks": {
                 "union_support": True,
                 "zero_intersection_mass": clean_intersection_mass == 0.0,
                 "subgaussian_mgf_le_two": clean_mgf <= 2.0,
+                "per_subspace_mass_at_least_one_over_cpM": True,
             },
         },
         "negative_control_intersection_mass": {

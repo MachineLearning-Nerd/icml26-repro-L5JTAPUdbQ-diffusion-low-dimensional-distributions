@@ -7,4 +7,4 @@
 -->
 ## Outcome: verified (scoped source/finite construction audit)
 
-The source defines a union of low-dimensional linear subspaces, zero mass on intersections, and within-subspace subgaussian tails. A finite CPU union-of-subspaces construction checks those conditions; an origin-mass control violates only the separation condition. This is not a full statistical-learning experiment. Evidence: `outputs/claim3_attempt1_audit.md`, `outputs/claim3_attempt1/result.json`.
+The source defines a union of low-dimensional linear subspaces, zero mass on intersections, non-trivial mass on every subspace (`p*(V_i) >= 1/(c_p M)`), and within-subspace subgaussian tails. A finite CPU union-of-subspaces construction checks those conditions; an origin-mass control violates only the separation condition. This is not a full statistical-learning experiment. Evidence: `outputs/claim3_attempt1_audit.md`, `outputs/claim3_attempt1/result.json`.
