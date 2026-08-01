@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_2_fullscale_controls_inconclusive",
-  "next_action": "independent review of Claim 2 full-scale implementation/control discrepancy; do not publish",
+  "phase": "claim_3_independent_dependency_audit_complete",
+  "next_action": "independent_review_claim_3_score_bearing_evidence_then_claim_4_local_protocol",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -17,13 +17,14 @@
     "final_independent_scientific_review_passed",
     "final_independent_compliance_review_passed",
     "trackio_logbook_published",
-    "anonymous_public_readback_complete"
+    "anonymous_public_readback_complete",
+    "claim_3_independent_d48_dependency_and_concentration_audit"
   ],
   "failed_attempts": [],
   "claim_attempt_counts": {
     "1": 1,
     "2": 2,
-    "3": 1,
+    "3": 2,
     "4": 1,
     "5": 1
   },
@@ -32,7 +33,7 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T12:18:00Z",
+  "last_checkpoint": "2026-08-01T10:45:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -45,10 +46,9 @@
     ]
   },
   "claim_3_outcome": {
-    "verdict": "verified_scoped",
-    "scope": "Pinned Assumption 1/source-definition audit plus finite CPU union-of-subspaces construction; not diffusion-model training.",
-    "reason": "Source support, zero-intersection-mass, and within-subspace subgaussian conditions match the retained excerpt. A same-tail origin-mass control fails only separation.",
-    "evidence": "outputs/claim3_attempt1_audit.md"
+    "verdict": "inconclusive",
+    "scope": "Independent d=48/M=128/k=3 score-decomposition identity and 100k-trial allocation/assumption controls; not full theorem proof",
+    "evidence": "outputs/claim3_fullscale/result.json"
   },
   "claim_4_outcome": {
     "verdict": "verified_scoped",
@@ -100,7 +100,7 @@
     "validator_evidence": "outputs/final_prepublication_validator.log",
     "official_judge_leaderboard_status": "not yet confirmed"
   },
-  "last_known_git_commit": "49d66a91c70ea60b13dd7f0473093d26efa2fa40",
+  "last_known_git_commit": "PENDING_COMMIT",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",

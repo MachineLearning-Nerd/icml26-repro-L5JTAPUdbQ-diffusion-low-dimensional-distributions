@@ -15,8 +15,13 @@
       ]
     },
     "3": {
-      "verdict": "verified_scoped",
-      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+      "verdict": "inconclusive",
+      "scope": "Independent local CPU d=48,M=128,k=3 normal/tangent score identity plus 100k-trial component-allocation and assumption-removal controls. This validates specific proof dependencies, not the full theorem.",
+      "evidence": [
+        "outputs/claim3_fullscale/result.json",
+        "outputs/claim3_fullscale/allocation_raw_min_counts.npz",
+        "outputs/claim3_fullscale/SHA256SUMS"
+      ]
     },
     "4": {
       "verdict": "verified_scoped",

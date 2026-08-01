@@ -1,0 +1,91 @@
+{
+  "protocol": "independent local CPU Claim 3 dependency and identity audit",
+  "source_dependency_map": {
+    "component_mass_to_count_event": "pf-of-theorems.tex:4-17; pf-of-lemmas.tex:95-104",
+    "zero_intersection_to_labeling": "pf-of-lemmas.tex:85-93",
+    "subgaussian_to_tail_bound": "Auxiliary_lemmas.tex:3-12; pf-of-theorems.tex:102",
+    "normal_tangent_score": "Results.tex:37-61"
+  },
+  "allocation_derivation": "For Ni~Bin(N,pi), pi>=1/(cp M), Chernoff P[Ni < N/(2cpM)] <= exp(-N/(8cpM)); union bound gives M exp(-N/(8cpM)).",
+  "score_identity": {
+    "seed": 20260830,
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "n_eval": 4096,
+    "t": 0.25,
+    "max_abs_score_identity_error": 1.1238240792670481e-14,
+    "mean_abs_score_identity_error": 3.390019278074295e-15,
+    "posterior_row_sum_max_error": 4.107825191113079e-15,
+    "generic_subspace_intersection_dimension_upper_bound": 0
+  },
+  "allocation_grid": [
+    {
+      "M": 8,
+      "N": 800,
+      "c_p": 1.0,
+      "trials": 100000,
+      "threshold": 50.0,
+      "observed_event_failure_rate": 0.0,
+      "chernoff_union_upper_bound": 2.9813225376629368e-05,
+      "mean_min_component_count": 86.00901
+    },
+    {
+      "M": 32,
+      "N": 6400,
+      "c_p": 1.0,
+      "trials": 100000,
+      "threshold": 100.0,
+      "observed_event_failure_rate": 0.0,
+      "chernoff_union_upper_bound": 4.4441420367884867e-10,
+      "mean_min_component_count": 171.30896
+    },
+    {
+      "M": 128,
+      "N": 51200,
+      "c_p": 1.0,
+      "trials": 100000,
+      "threshold": 200.0,
+      "observed_event_failure_rate": 0.0,
+      "chernoff_union_upper_bound": 2.4687998053938148e-20,
+      "mean_min_component_count": 349.13762
+    },
+    {
+      "M": 128,
+      "N": 50000,
+      "c_p": 1.0,
+      "trials": 100000,
+      "threshold": 195.3125,
+      "observed_event_failure_rate": 1.0,
+      "chernoff_union_upper_bound": "not_applicable_mass_assumption_violated",
+      "mean_min_component_count": 4.98953,
+      "control": "vanishing_component_mass"
+    }
+  ],
+  "assumption_removal_controls": {
+    "positive_intersection_atom_control": {
+      "n": 100000,
+      "atom_probability": 0.1,
+      "observed_intersection_mass": 0.10112,
+      "ambiguous_labels_at_origin": 10112,
+      "zero_intersection_condition": false
+    },
+    "heavy_tail_control": {
+      "n": 100000,
+      "distribution": "Student-t(df=3)",
+      "sigma_probe": 2.5,
+      "normal_reference_empirical_mgf": 1.2152987736756666,
+      "student_t_empirical_mgf": 6.269239767640635e+220,
+      "subgaussian_condition_certified": false,
+      "note": "Student-t(df=3) has no finite exponential-square moment; finite sample statistic is diagnostic only."
+    }
+  },
+  "environment": {
+    "python": "3.14.5 (main, May 10 2026, 18:26:20) [GCC 16.1.1 20260430]",
+    "numpy": "2.5.1",
+    "platform": "Linux-7.0.9-arch2-1-x86_64-with-glibc2.43",
+    "runtime_seconds": 7.899121522903442
+  },
+  "verdict": "inconclusive",
+  "scope": "Non-toy d=48/M=128/k=3 executable identities and 100k-trial concentration checks independently support specific proof dependencies, but do not independently prove the entire theorem."
+}

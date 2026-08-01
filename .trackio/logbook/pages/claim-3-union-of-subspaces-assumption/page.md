@@ -3,8 +3,12 @@
 
 ---
 <!-- trackio-cell
-{"type": "markdown", "id": "cell_cf89b262e2bb", "created_at": "2026-08-01T06:47:49+00:00", "title": "Outcome: verified (scoped source/finite construction audit)"}
+{"type": "markdown", "id": "cell_cf89b262e2bb", "created_at": "2026-08-01T06:47:49+00:00", "title": "Outcome: inconclusive after independent d=48 proof-dependency tests"}
 -->
-## Outcome: verified (scoped source/finite construction audit)
+## Outcome: inconclusive after independent d=48 proof-dependency tests
 
-The source defines a union of low-dimensional linear subspaces, zero mass on intersections, non-trivial mass on every subspace (`p*(V_i) >= 1/(c_p M)`), and within-subspace subgaussian tails. A finite CPU union-of-subspaces construction checks those conditions; an origin-mass control violates only the separation condition. This is not a full statistical-learning experiment. Evidence: `outputs/claim3_attempt1_audit.md`, `outputs/claim3_attempt1/result.json`.
+The original source audit is superseded for scoring by an independent local-CPU dependency experiment (`src/claim3_non_toy_dependency_audit.py`). It derives the component-count event independently: for `N_i~Bin(N,p_i)` and `p_i >= 1/(c_p M)`, Chernoff plus a union bound gives `P[min_i N_i < N/(2c_pM)] <= M exp(-N/(8c_pM))`. In 100,000 allocation draws per cell, the event did not fail for `(M,N)=(8,800),(32,6400),(128,51200)`; a vanishing-mass control failed in 100% of draws (mean minimum count 4.99 versus threshold 195.31).
+
+For a clean-room `d=48,M=128,k=3` Gaussian union-of-subspaces mixture, the independently assembled analytic mixture score and normal/tangent decomposition agree on 4,096 held-out smoothed points to maximum norm error `1.13e-14`. The audit maps count, separation, tail, and decomposition uses to the pinned proof files. Positive intersection mass produces 10,112 ambiguous labels in 100,000 samples; a Student-t(3) tail control has an empirical exponential-square diagnostic `6.27e220` versus `1.22` for a Gaussian reference.
+
+This is substantive evidence about necessary proof dependencies, but it does **not** independently prove the complete theorem or diffusion-learning guarantee. Verdict remains **inconclusive**, not verified. Evidence: `outputs/claim3_fullscale/result.json`, `outputs/claim3_fullscale/allocation_raw_min_counts.npz`, `outputs/claim3_fullscale/run.log`, and SHA-256 manifest.
