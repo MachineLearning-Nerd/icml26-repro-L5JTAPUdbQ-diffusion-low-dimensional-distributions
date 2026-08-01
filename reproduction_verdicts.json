@@ -24,8 +24,12 @@
       ]
     },
     "4": {
-      "verdict": "verified_scoped",
-      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+      "verdict": "inconclusive",
+      "scope": "Non-toy clean-room literal-scale local CPU d=48,M=128,k=3,N=50k uniform-cube UoS experiment violates comparator smoothness/log-concavity/density conditions; finite evidence does not prove universal theorem.",
+      "evidence": [
+        "outputs/claim4_fullscale/result.json",
+        "outputs/claim4_fullscale/SHA256SUMS"
+      ]
     },
     "5": {
       "verdict": "verified_scoped",
