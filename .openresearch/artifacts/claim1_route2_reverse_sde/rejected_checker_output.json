@@ -1,0 +1,7 @@
+{
+  "actual_exit_code": 1,
+  "checker_stderr": "precommitted W1 scaling range failed",
+  "classification": "Historical rejected baseline",
+  "expected_exit_nonzero": true,
+  "passed": true
+}

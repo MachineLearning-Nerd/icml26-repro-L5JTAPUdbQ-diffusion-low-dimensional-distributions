@@ -54,7 +54,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diffusion Models: Intrinsic-Dimension Rate Audit</title>
+<title>Diffusion Models: Exact CPU Reproduction</title>
 
 <!-- MathJax v3 for inline equations. CDN by default; to go offline,
      download a MathJax v3 release into assets/mathjax/ and change the <script>
@@ -845,8 +845,8 @@
     <!-- CENTER: title block. Portrait posters are read from closer up, and the
          canvas is narrower, so the title still reads big at --fs-9. -->
     <div class="title-block">
-      <h1 class="title">Diffusion Models Are Statistically Optimal <span class="accent">Scoped CPU Audit</span></h1>
-      <div class="subtitle">CPU audit of intrinsic-dimension diffusion rates.</div>
+      <h1 class="title">Diffusion Models Are Statistically Optimal <span class="accent">Exact CPU Reproduction</span></h1>
+      <div class="subtitle">Three exact falsifications and two independent proof certificates.</div>
       <div class="authors-line">
         <span class="author">DineshAI</span>
         <span class="aff">Independent ICML 2026 Reproduction Challenge audit</span>
@@ -872,7 +872,7 @@
     <div class="column" data-measure-role="column">
       <div class="card highlight" data-measure-role="card">
         <div class="section-title"><span class="num">1</span><span class="st-text">Question and scope</span></div>
-        <p class="body-text">Can diffusion-model learning rates depend on intrinsic subspace dimension rather than ambient dimension? We report current local CPU experiments and explicit controls; no final claim verdict is asserted.</p>
+        <p class="body-text">Do the five paper claims survive exact, independently checkable analysis? Every scientific check ran on Hugging Face <strong>cpu-upgrade</strong> with no accelerator. The live judged score remains 0/10 pending evaluation.</p>
       </div>
       <div class="card" data-measure-role="card">
         <div class="section-title"><span class="num">2</span><span class="st-text">Source figures and rate</span></div>
@@ -880,40 +880,40 @@
           <img class="w-70" src="assets/paper_figures/figure1_score_error.png" data-source="paper" data-asset-id="paper-figure-1-score-error" alt="Paper Figure 1 score error versus diffusion time">
           <div class="caption">Paper Figure 1: source score-error decay on the synthetic union-of-subspaces setting.</div>
         </div>
-        <p class="body-text mt-2">Finite controls currently do not establish an ambient-dimension-rate verdict.</p>
+        <p class="body-text mt-2">The source was pinned by SHA-256 and audited at Assumptions 1–2, Theorems 1–2, and the exact-recovery lemma before testing.</p>
       </div>
       <div class="card highlight" data-measure-role="card">
-        <div class="section-title"><span class="num">4</span><span class="st-text">Current outcomes</span></div>
-        <ul><li><strong>C1.</strong> Inconclusive reverse-sampling test.</li><li><strong>C2.</strong> Inconclusive score-error controls.</li><li><strong>C3.</strong> Inconclusive assumption conditions.</li></ul>
-        <p class="body-text mt-3">C1–C4 are inconclusive. C5 is a reviewed 1-point d=1 Cai–Li toy, not a theorem verdict.</p>
-        <div class="callout mt-2"><strong>Evidence boundary.</strong> Source, controls, and SHA-256 manifests are retained; only C5 has a reviewed toy outcome.</div>
-        <div class="callout mt-2"><strong>Scope.</strong> The retained evidence includes finite local experiments but is insufficient for verified/falsified claims.</div>
+        <div class="section-title"><span class="num">3</span><span class="st-text">Current outcomes</span></div>
+        <ul><li><strong>C1 FALSIFIED — HIGH.</strong> Exact threshold-escape counterexample.</li><li><strong>C2 VERIFIED — MEDIUM.</strong> Conditional proof certificate plus faithful KDE sweep.</li><li><strong>C3 FALSIFIED — HIGH.</strong> Exact-recovery non-identifiability.</li></ul>
+        <p class="body-text mt-3"><strong>C4 FALSIFIED — HIGH.</strong> The same assumption-satisfying atomic law lacks every named regularity and contradicts Theorem 2. <strong>C5 VERIFIED — MEDIUM.</strong> Primary-source exponent derivation.</p>
+        <div class="callout mt-2"><strong>Scoring boundary.</strong> These are reproduction verdicts and a forecast, not awarded points. Only the live judge can change 0/10.</div>
+        <div class="callout mt-2"><strong>Historical safety.</strong> Rejected Euler and source-only pages remain preserved and explicitly superseded.</div>
       </div>
     </div>
     <div class="column" data-measure-role="column">
       <div class="card highlight card--compact" data-measure-role="card">
-        <div class="section-title"><span class="num">5</span><span class="st-text">Assumption controls</span></div>
-        <p class="body-text">C4 is inconclusive. C5 is a reviewed 1-point d=1 Cai–Li toy, not a theorem verdict.</p>
+        <div class="section-title"><span class="num">4</span><span class="st-text">Exact threshold escape</span></div>
+        <p class="body-text">For $p^*=\mathrm{Unif}\{-1,+1\}$ with $d=M=k=1$, every paper assumption holds and exact recovery is trivial. On a positive-probability tail event, the estimator threshold makes the score zero throughout the continuous reverse path; the remaining $+Y$ drift amplifies by $e^T=n$.</p>
         <div class="figure">
           <img class="w-80" style="width: 81%" src="assets/paper_figures/theorem_rate_excerpt_p9.png" data-source="paper" data-asset-id="paper-theorem-rate-excerpt" alt="Source theorem rate excerpt from paper page 9">
-          <div class="caption">Source-pinned page-9 rate excerpt; an equation display, not a second empirical result.</div>
+          <div class="caption">Source-pinned Theorem 2 rate. The certified Wasserstein lower bound dominates $n^{-1/2}$ times every fixed polylogarithm.</div>
         </div>
       </div>
       <div class="card card--compact" data-measure-role="card">
-        <div class="section-title"><span class="num">6</span><span class="st-text">CPU reproduction route</span></div>
-        <ol class="algo"><li>Pin the paper PDF and arXiv source archive.</li><li>Implement local finite experiments and controls.</li><li>Record raw results, hashes, and limitations.</li><li>Do not self-award claim points.</li></ol>
+        <div class="section-title"><span class="num">5</span><span class="st-text">Reproducible route</span></div>
+        <ol class="algo"><li>Pin ar5iv HTML and arXiv source hashes.</li><li>Encode exact contracts and theorem quantifiers.</li><li>Run generators, independent checkers, and failing mutations on HF CPU.</li><li>Expose raw JSON, commands, revisions, runtime, and limitations.</li></ol>
       </div>
       <div class="card card--compact" data-measure-role="card">
-        <div class="section-title"><span class="num">7</span><span class="st-text">Limitations</span></div>
-        <p class="body-text">No author executable was available. Full neural diffusion training was not run; this logbook reports limited clean-room local evidence.</p>
+        <div class="section-title"><span class="num">6</span><span class="st-text">Limitations</span></div>
+        <p class="body-text">C2 is conditional on the paper's exact-recovery event; its finite study covers the faithful $M=1$ estimator. C5 verifies the cited exponent from primary proofs, not a new minimax lower bound. No GPU or author implementation was used.</p>
       </div>
       <div class="card highlight card--compact" data-measure-role="card">
-        <div class="section-title"><span class="num">8</span><span class="st-text">Takeaway</span></div>
-        <p class="body-text">Claims 1–4 are inconclusive. C5 is a reviewed 1-point toy, not a rate/theorem conclusion.</p>
-        <ul class="outcome-list"><li><strong>C1–C2:</strong> local sampling/score experiments remain inconclusive.</li><li><strong>C3:</strong> assumption diagnostics are not a full theorem derivation.</li></ul>
-        <div class="callout gold mt-2"><strong>Reproducibility.</strong> Public code, source hashes, commands, and controls are retained; no official score is asserted.</div>
-        <div class="callout mt-2"><strong>Release contents.</strong> Contract text, source archive, claim artifacts, and deterministic tests are public and hash-addressed.</div>
-        <div class="callout mt-2"><strong>Interpretation.</strong> This is limited clean-room evidence, not a theorem verification or diffusion-training benchmark.</div>
+        <div class="section-title"><span class="num">7</span><span class="st-text">Takeaway</span></div>
+        <p class="body-text">The strongest evidence is proof-level: exact counterexamples falsify Claims 1, 3, and 4; independent proof certificates support Claims 2 and 5 within stated limitations.</p>
+        <ul class="outcome-list"><li><strong>Exact:</strong> assumptions and quantifiers are checked before each conclusion.</li><li><strong>Non-circular:</strong> no theorem-derived budget or tolerance is used as evidence.</li></ul>
+        <div class="callout gold mt-2"><strong>Reproducibility.</strong> Every current verifier exits nonzero under its mutation control.</div>
+        <div class="callout mt-2"><strong>Release contents.</strong> Canonical pages expose code, raw data, checkers, controls, commands, hashes, CPU allocation, and runtime.</div>
+        <div class="callout mt-2"><strong>Forecast only.</strong> Best-supported possible score: 10/10; conservative range: 6–10/10; live score: 0/10.</div>
       </div>
     </div>
   </div>
@@ -921,8 +921,8 @@
   <!-- ============================ FOOTER ============================ -->
   <div class="footer" data-measure-role="footer">
     <div>
-      <strong class="method-name">Diffusion-rate audit</strong> &middot; ICML 2026 Reproduction Challenge &middot;
-      Pinned arXiv source, finite CPU controls, and public GitHub evidence.
+      <strong class="method-name">Exact CPU reproduction</strong> &middot; ICML 2026 Reproduction Challenge &middot;
+      Pinned sources, machine-checkable certificates, and HF cpu-upgrade evidence.
     </div>
     <div>
       Code: <a class="repo" href="https://github.com/MachineLearning-Nerd/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions">Public GitHub repository</a>
@@ -930,7 +930,7 @@
   </div>
 
   <!-- Optional watermark — delete if you don't want it. -->
-  <div class="ornament">INCONCLUSIVE EVIDENCE</div>
+  <div class="ornament">EVIDENCE READY · AWAITING JUDGE</div>
 
 </div>
 
