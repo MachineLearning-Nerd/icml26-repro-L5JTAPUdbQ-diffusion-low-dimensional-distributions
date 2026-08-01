@@ -144,3 +144,66 @@ analytic lemma in either primary paper, which limits confidence to MEDIUM.
 """
 (claim5_out / "EVAL.md").write_text(claim5_evaluation)
 print(claim5_evaluation)
+
+claim2_out = ROOT / ".openresearch" / "artifacts" / "claim2_intrinsic_score"
+claim2_out.mkdir(parents=True, exist_ok=True)
+run("src/claim2_intrinsic_score_certificate.py")
+run(
+    "verifiers/verify_claim2_intrinsic_score.py",
+    str(claim2_out / "raw_results.json"),
+    str(claim2_out / "independent_checker.json"),
+)
+claim2_raw = json.loads((claim2_out / "raw_results.json").read_text())
+claim2_raw["cancellation_cases"][0]["k_vee_2"] = claim2_raw["cancellation_cases"][0]["d"]
+claim2_mutated = claim2_out / "mutated_evidence.json"
+claim2_mutated.write_text(json.dumps(claim2_raw, indent=2, sort_keys=True) + "\n")
+claim2_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim2_intrinsic_score.py",
+        str(claim2_mutated),
+        str(claim2_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim2_control_record = {
+    "mutation": "replace the first k vee 2 exponent by ambient d",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim2_control.returncode,
+    "passed": claim2_control.returncode != 0,
+    "checker_stderr": claim2_control.stderr.strip(),
+}
+(claim2_out / "negative_control_output.json").write_text(
+    json.dumps(claim2_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim2_control.returncode == 0:
+    raise SystemExit("Claim 2 negative control unexpectedly passed")
+
+claim2_checker = json.loads((claim2_out / "independent_checker.json").read_text())
+claim2_result = json.loads((claim2_out / "raw_results.json").read_text())
+claim2_evaluation = f"""# Claim 2 proof-certificate evaluation
+
+- Status: **PROOF_CERTIFICATE_PASS**
+- Scope: Theorem 1 conditional on exact subspace recovery
+- Exact normal/tangent cases: `{len(claim2_result['cancellation_cases'])}`
+- Source/proof markers: `{sum(claim2_result['source_checks'].values())}` of `{len(claim2_result['source_checks'])}`
+- Independent checker: `{claim2_checker['status']}`
+- Ambient-substitution checker exit: `{claim2_control.returncode}` (nonzero required)
+- Git SHA: `{claim2_result['environment']['git_sha']}`
+- Runtime: `{claim2_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim2_result['environment']['cpu_limit']}` vCPU, `{claim2_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+Exact rational arithmetic verifies that the known normal score cancels from
+the component estimation error for every tested ambient/intrinsic pair. The
+pinned proof trace places the nonparametric factor in `k_i`, retains only an
+explicit linear `d` prefactor, and states a theorem constant independent of
+`d`. This is proof-level structural evidence, not a finite scaling fit.
+
+The route does not independently re-prove every analytic concentration and
+tail lemma. A separate faithful numerical route remains required before the
+final Claim 2 verdict.
+"""
+(claim2_out / "EVAL.md").write_text(claim2_evaluation)
+print(claim2_evaluation)
