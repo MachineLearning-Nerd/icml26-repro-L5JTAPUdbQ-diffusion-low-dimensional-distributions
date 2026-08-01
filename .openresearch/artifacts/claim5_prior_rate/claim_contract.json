@@ -1,0 +1,9 @@
+{
+  "claim": 5,
+  "claim_text": "Prior work requiring beta-Holder smooth densities achieves epsilon^(-(d+2 beta)/beta) sample complexity up to logarithmic factors, exhibiting ambient-dimensional dependence that the paper's intrinsic-dimensional exponent avoids.",
+  "direct_primary_contract": "Cai and Li Theorem 1 assumes a subgaussian beta-Holder density with 0<beta<=2 and bounds expected total variation by C n^(-beta/(d+2 beta)) (log n)^((d+1)/2) log K, under its displayed K premise.",
+  "sample_complexity_interpretation": "Solving n^(-beta/(d+2 beta))=epsilon gives n=epsilon^(-(d+2 beta)/beta), with logarithmic factors suppressed on both sides.",
+  "domain": "integer ambient dimension d>=1, 0<beta<=2, and the assumptions and iteration premise of Cai and Li Theorem 1",
+  "verification_criterion": "Pin the cited source, locate its assumptions/theorem/proof chain, independently derive every polynomial exponent used in the final rate and its inversion, and show the sample exponent increases strictly with d.",
+  "non_circularity": "No experiment budget or sample count is selected from the claimed formula; the evidence is an exact symbolic derivation from the primary theorem's antecedent error terms."
+}

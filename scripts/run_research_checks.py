@@ -78,3 +78,69 @@ bound for an oracle supplied with the true subspace.
 """
 (OUT / "EVAL.md").write_text(evaluation)
 print(evaluation)
+
+claim5_out = ROOT / ".openresearch" / "artifacts" / "claim5_prior_rate"
+claim5_out.mkdir(parents=True, exist_ok=True)
+run("src/claim5_primary_proof_chain.py")
+run(
+    "verifiers/verify_claim5_primary_proof_chain.py",
+    str(claim5_out / "raw_results.json"),
+    str(claim5_out / "independent_checker.json"),
+)
+claim5_raw = json.loads((claim5_out / "raw_results.json").read_text())
+claim5_raw["rate_cases"][0]["sample_exponent"] = "999"
+claim5_mutated = claim5_out / "mutated_evidence.json"
+claim5_mutated.write_text(json.dumps(claim5_raw, indent=2, sort_keys=True) + "\n")
+claim5_control = subprocess.run(
+    [
+        sys.executable,
+        "verifiers/verify_claim5_primary_proof_chain.py",
+        str(claim5_mutated),
+        str(claim5_out / "mutated_checker.json"),
+    ],
+    cwd=ROOT,
+    text=True,
+    capture_output=True,
+)
+claim5_control_record = {
+    "mutation": "replace the first independently derived sample exponent with 999",
+    "expected_exit_nonzero": True,
+    "actual_exit_code": claim5_control.returncode,
+    "passed": claim5_control.returncode != 0,
+    "checker_stderr": claim5_control.stderr.strip(),
+}
+(claim5_out / "negative_control_output.json").write_text(
+    json.dumps(claim5_control_record, indent=2, sort_keys=True) + "\n"
+)
+if claim5_control.returncode == 0:
+    raise SystemExit("Claim 5 negative control unexpectedly passed")
+
+claim5_checker = json.loads((claim5_out / "independent_checker.json").read_text())
+claim5_result = json.loads((claim5_out / "raw_results.json").read_text())
+claim5_evaluation = f"""# Claim 5 evaluation
+
+- Verdict: **VERIFIED**
+- Confidence: **MEDIUM**
+- Direct primary source: Cai and Li, arXiv:2503.09583, Theorem 1
+- Prior TV exponent: `beta/(d+2 beta)`
+- Inverted sample exponent: `(d+2 beta)/beta`
+- `d=48, beta=2` sample exponent: `{claim5_result['comparison']['prior_sample_exponent']}`
+- Independent checker: `{claim5_checker['status']}`
+- Mutated-evidence checker exit: `{claim5_control.returncode}` (nonzero required)
+- Git SHA: `{claim5_result['environment']['git_sha']}`
+- Runtime: `{claim5_result['environment']['runtime_seconds']:.6f}` seconds
+- Allocation: `{claim5_result['environment']['cpu_limit']}` vCPU, `{claim5_result['environment']['memory_limit_bytes']}` bytes RAM, no accelerator
+
+The pinned Cai-Li source states a beta-Holder assumption and derives the TV
+rate through score-error, convergence, early-stopping, and triangle-inequality
+steps. Exact exponent arithmetic independently yields the displayed sample
+complexity and its increasing ambient-dimension exponent. Zhang et al. provide
+an independent matching TV rate under beta-Sobolev, not beta-Holder, smoothness.
+
+The certificate corrects one transparent missing `n^(-1/2)` factor in a Cai-Li
+intermediate simplified display by deriving the exponent from its immediately
+preceding unsimplified expression. It does not independently re-prove every
+analytic lemma in either primary paper, which limits confidence to MEDIUM.
+"""
+(claim5_out / "EVAL.md").write_text(claim5_evaluation)
+print(claim5_evaluation)
