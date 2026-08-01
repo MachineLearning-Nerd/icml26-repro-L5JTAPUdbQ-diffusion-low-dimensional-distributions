@@ -1,0 +1,31 @@
+{
+  "claim": 5,
+  "verdict": "verified_scoped",
+  "scope": "Pinned-source Equation (1) transcription and finite exponent arithmetic; not an independent reproduction of the cited prior-work diffusion theorems or diffusion-model training.",
+  "source_phrase_hits": {
+    "holder_condition": true,
+    "displayed_rate": true,
+    "curse_statement": true
+  },
+  "source_excerpt_sha256": "0e6d38c1cdd64c77b5bba445a676750597142d0a068f1f964b305acb934d6737",
+  "rate": {
+    "formula": "epsilon^(-(d + 2 beta)/beta) up to logarithmic factors",
+    "example": {
+      "d": 4,
+      "beta": 2.0,
+      "correct_exponent": 4.0
+    },
+    "ambient_exponents_at_beta_1": {
+      "2": 4.0,
+      "10": 12.0,
+      "100": 102.0
+    },
+    "strictly_increases_with_d": true
+  },
+  "negative_control": {
+    "description": "Dropping the divisor beta changes the claimed exponent except at beta=1.",
+    "mutated_exponent": 8.0,
+    "equals_displayed_exponent": false
+  },
+  "conclusion": "The pinned source explicitly displays the live claim's Holder smooth-density comparator rate and identifies its ambient-dimension dependence as a curse of dimensionality. The arithmetic and denominator-mutation control agree with that displayed formula."
+}

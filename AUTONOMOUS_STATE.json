@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_4_verified_scoped",
-  "next_action": "claim_5_attempt_1_prior_work_rate_source_audit",
+  "phase": "claim_5_verified_scoped",
+  "next_action": "assemble_logbook_and_run_local_validation",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -12,7 +12,8 @@
     "claim_1_attempt_1_theorem_rate_audit",
     "claim_2_attempt_1_score_error_intrinsic_dimension_audit",
     "claim_3_attempt_1_assumption_source_audit_and_finite_cpu_check",
-    "claim_4_attempt_1_regularities_scope_audit"
+    "claim_4_attempt_1_regularities_scope_audit",
+    "claim_5_attempt_1_prior_work_rate_audit"
   ],
   "failed_attempts": [],
   "claim_attempt_counts": {
@@ -20,14 +21,14 @@
     "2": 1,
     "3": 1,
     "4": 1,
-    "5": 0
+    "5": 1
   },
   "claim_1_outcome": {
     "verdict": "verified_scoped",
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T06:43:05.821896+00:00",
+  "last_checkpoint": "2026-08-01T06:45:13.561478+00:00",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -46,5 +47,11 @@
     "scope": "Pinned-source regularity-scope audit plus finite CPU singular union-of-subspaces witness; not diffusion-model training.",
     "reason": "The source explicitly removes the named smoothness, log-concavity, bounded-density, and density-lower-bound restrictions; a valid singular witness confirms ambient density is not assumed.",
     "evidence": "outputs/claim4_attempt1_audit.md"
+  },
+  "claim_5_outcome": {
+    "verdict": "verified_scoped",
+    "scope": "Pinned-source Equation (1) comparator-rate transcription and finite exponent arithmetic; not an independent prior-work theorem reproduction or diffusion-model training.",
+    "reason": "The retained source displays epsilon^(-(d+2 beta)/beta) for beta-Holder smooth-density prior work and identifies ambient-d dependence as a curse; a denominator-mutation negative control fails.",
+    "evidence": "outputs/claim5_attempt1_audit.md"
   }
 }

@@ -1,0 +1,8 @@
+Motivated by this, a growing body of statistical theory has been developed to understand the sample complexity of diffusion models \citep{shah2023learning,oko2023diffusionmodelsminimaxoptimal,chen2024learning,cole2024score,li2024good,dou2024optimalscorematchingoptimal}.
+
+For a broad class of $d$-dimensional distributions with $\beta$-H\"older smooth densities (without assuming smooth scores or log-concave/uniformly-bounded densities), state-of-the-art theory shows that both DDPM \citep{zhang2024minimaxoptimalityscorebaseddiffusion} and DDIM \citep{cai2025minimaxoptimalityprobabilityflow} require on the order of  (up to logarithmic factors)
+\begin{align}\label{eq:sample complexity general}
+\veps^{-\frac{d+2\beta}{\beta}}
+\end{align}
+training samples to generate an output within $\veps$ total variation (TV) distance to the target distribution.
+While this sample complexity is (nearly-)minimax optimal for general smooth-density classes, it suffers from the curse of dimensionality as the ambient dimension $d$ grows. Consequently, such guarantees fail to fully explain the empirical effectiveness of diffusion models in modern high-dimensional applications, suggesting that the worst-case bounds in \eqref{eq:sample complexity general} may be overly pessimistic for structured distributions arising in practice.
