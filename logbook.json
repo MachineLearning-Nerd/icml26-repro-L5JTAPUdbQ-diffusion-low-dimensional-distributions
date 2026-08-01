@@ -33,6 +33,12 @@
         "children": []
       },
       {
+        "slug": "current-claim-4-weak-regularity",
+        "title": "Current Claim 4: results without density regularity",
+        "file": "pages/current-claim-4-weak-regularity/page.md",
+        "children": []
+      },
+      {
         "slug": "historical-rejected-baseline",
         "title": "Historical rejected baseline",
         "file": "pages/index.md",
