@@ -1,0 +1,59 @@
+{
+  "scope": "clean-room theorem-rate arithmetic; not diffusion-model training",
+  "source_locations": {
+    "theorem_bound": "Results.tex lines 161-179 in pinned arXiv source",
+    "proof_rate": "Proof_Overview.tex lines 116-118 in pinned arXiv source"
+  },
+  "claim": "epsilon exponent is k vee 2, with ambient d only in the prefactor",
+  "epsilon": 0.1,
+  "rows": [
+    {
+      "ambient_dimension": 20,
+      "intrinsic_dimension": 1,
+      "published_epsilon_exponent": 2,
+      "published_epsilon_factor": 99.99999999999999,
+      "ambient_substitution_exponent": 20,
+      "ambient_substitution_factor": 9.999999999999989e+19,
+      "ambient_to_intrinsic_factor_ratio": 9.99999999999999e+17
+    },
+    {
+      "ambient_dimension": 20,
+      "intrinsic_dimension": 2,
+      "published_epsilon_exponent": 2,
+      "published_epsilon_factor": 99.99999999999999,
+      "ambient_substitution_exponent": 20,
+      "ambient_substitution_factor": 9.999999999999989e+19,
+      "ambient_to_intrinsic_factor_ratio": 9.99999999999999e+17
+    },
+    {
+      "ambient_dimension": 20,
+      "intrinsic_dimension": 3,
+      "published_epsilon_exponent": 3,
+      "published_epsilon_factor": 999.9999999999999,
+      "ambient_substitution_exponent": 20,
+      "ambient_substitution_factor": 9.999999999999989e+19,
+      "ambient_to_intrinsic_factor_ratio": 9.99999999999999e+16
+    },
+    {
+      "ambient_dimension": 20,
+      "intrinsic_dimension": 5,
+      "published_epsilon_exponent": 5,
+      "published_epsilon_factor": 99999.99999999997,
+      "ambient_substitution_exponent": 20,
+      "ambient_substitution_factor": 9.999999999999989e+19,
+      "ambient_to_intrinsic_factor_ratio": 999999999999999.1
+    }
+  ],
+  "negative_control": {
+    "description": "Substitute ambient d=20 for intrinsic k=3 while holding epsilon fixed.",
+    "correct_exponent": 3,
+    "incorrect_exponent": 20,
+    "factor_ratio": 9.99999999999999e+16,
+    "passes": true
+  },
+  "verdict": "verified_scoped",
+  "limitations": [
+    "The source theorem retains a linear ambient-dimension prefactor.",
+    "This arithmetic/source audit does not establish an end-to-end trained diffusion-model result."
+  ]
+}

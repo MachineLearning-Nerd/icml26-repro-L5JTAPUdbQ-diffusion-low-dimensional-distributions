@@ -1,0 +1,32 @@
+% Results.tex source lines 161-186
+    Suppose the target distribution $p^\star$ satisfies Assumptions~\ref{assume:multi-modal} and \ref{assump:sub-gaussian target}.
+    Let $n_0 = C_{\mathsf{sc}}M^2 k \log n$ for some large constant $C_{\mathsf{sc}} > 0$ and $N=n-n_0$. Then for sufficiently large $n$, the output $\widehat{Y}_{T-\tau}$ of Algorithm \ref{alg:reverse SDE sampling}, using the score estimator in (\ref{eq:score estimator}) constructed from $N$ samples with  $T=\log n$ and $\tau = n^{-2/k}$, satisfies
+    \begin{align}\label{eq:W_1 bound}
+        \mathbb{E}\big[W_1(p^\star,p_{\widehat{Y}_{T-\tau}})\big] \leq C d M^{3/2} n^{-\frac1{k\vee 2}} \polylog n
+    \end{align}
+    for some constant $C>0$ independent of $n$, $d$ and $M$.
+    Here the expectation is taken over the samples $\{X^{(i)}\}_{i=1}^n$.
+\end{theorem}
+
+
+Theorem~\ref{thm:high prob TV} provides the convergence rate of the $W_1$-sampling error for diffusion sampling equipped with the proposed score estimator. 
+By exploiting the intrinsic low-dimensional data structure through kernel-based score estimation, the resulting convergence rate (with respect to sample size $n$) is governed by the intrinsic dimension $k$, rather than the ambient dimension $d$, with $d$ appearing only linearly through the prefactor.
+
+Several remarks are in order:
+\begin{itemize}
+    \item \textit{(Near-)minimax optimality.} The minimax risk of estimating a $k$-dimensional density scales as $n^{-\frac{1}{k \vee 2}}$ \citep{chewi2024statisticaloptimaltransport}.
+    Since sampling is always harder than density estimation, Theorem \ref{thm:high prob TV} shows that our sampling algorithm is minimax optimal (up to logarithmic factors).
+    
+    \item \textit{Sample complexity.} The error bound in \eqref{eq:W_1 bound} demonstrates that in order to achieve an $\veps$-accurate sampling in 1-Wasserstein distance, it suffices to have $\veps^{- (k \vee 2)}$ samples, up to logarithmic factors, thereby breaking the curse of dimensionality that plagues prior results \citep{wibisono2024optimal,zhang2024minimaxoptimalityscorebaseddiffusion,dou2024optimalscorematchingoptimal,cai2025minimaxoptimalityprobabilityflow}.
+    \item \textit{Weak assumptions on the target distribution.} 
+    Our results do not rely on stringent structural conditions commonly imposed in earlier work, such as smooth densities/scores, log-concavity, or exactly Gaussian components.
+    As a consequence, our framework applies to a broader class of multi-modal distributions of practical interest. 
+    Moreover, to the best of our knowledge, even in the single low-dimensional setting, our result is the first to achieve a (near-)optimal rate under only a subgaussian assumption on the target distribution, without extra assumptions on the score or density.
+\end{itemize}
+\begin{remark}
+We believe that the linear dependence on $d$ in the prefactor of \eqref{eq:W_1 bound} is likely a proof artifact and may be improved through a sharper analysis. Determining whether this dependence is intrinsic or can be removed is an interesting direction for future work.
+
+% Proof_Overview.tex source lines 116-118
+Finally, taking $\delta = n^{-1}$ and $\tau = n^{-2/k}$, we conclude
+\begin{align*}
+    \bE\big[W_1(p^\star,p_{\widehat{Y}_{T-\tau}})\big] \lesssim \frac{dM^{3/2}}{n^{1/(k\vee 2)}} \polylog n.
