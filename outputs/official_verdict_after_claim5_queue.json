@@ -1,0 +1,42 @@
+{
+  "fetched_at_utc": "2026-08-01T13:38:56Z",
+  "url": "https://huggingface.co/datasets/ICML-2026-agent-repro/verdicts/resolve/main/verdicts.json",
+  "space": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
+  "record": {
+    "space_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
+    "orid": "L5JTAPUdbQ",
+    "paper_title": "Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions",
+    "sha": "fe1fd273934cf8568fbcc1187d857e7662313648",
+    "judged_at": "2026-08-01T07:51:30+00:00",
+    "model": "zai-org/GLM-5.2",
+    "claims": [
+      {
+        "claim": "Theorem 2 proves diffusion models require O~(\u03b5^-(k\u22282)) samples to achieve \u03b5-accuracy in 1-Wasserstein distance, where k is the intrinsic (subspace) dimension rather than the ambient dimension d (Section 3.2, Theorem 2).",
+        "verdict": "inconclusive",
+        "evidence": "The logbook only performs a source/formula audit checking that Theorem 2 displays the epsilon^-(k\u22282) exponent, explicitly stating 'This audit does not train a diffusion model or establish the full theorem independently.' No experiment or independent proof verification was conducted."
+      },
+      {
+        "claim": "Theorem 1 bounds the score estimation L2 error in terms of the intrinsic dimension k, avoiding the exponential dependence on ambient dimension d found in prior analyses (Section 3.2, Theorem 1).",
+        "verdict": "inconclusive",
+        "evidence": "The logbook only checks symbolic exponent arithmetic in the source and states 'No diffusion model was trained.' There is no experimental validation of the score-estimation bound or independent re-derivation of the proof."
+      },
+      {
+        "claim": "The analysis assumes the target distribution's support lies in a union of M low-dimensional linear subspaces with zero probability mass on their intersections, and requires only subgaussian tails within each subspace (Section 2.2, Assumption 1).",
+        "verdict": "inconclusive",
+        "evidence": "A finite CPU union-of-subspaces construction checks that the mathematical conditions (zero mass on intersections, subgaussian tails) are well-defined, but this does not verify that the paper's analysis actually relies on or correctly uses these assumptions in its theorems."
+      },
+      {
+        "claim": "The results dispense with smoothness (e.g., H\u00f6lder continuity), log-concavity, uniform density bounds, and density lower-bound assumptions required by prior sample-complexity analyses (Section 2.2).",
+        "verdict": "inconclusive",
+        "evidence": "The logbook performs a 'source/assumption audit' confirming the paper does not list smoothness, log-concavity, or density-bound assumptions, but this merely confirms what the paper states rather than verifying the results hold under these weak assumptions."
+      },
+      {
+        "claim": "Prior work requiring \u03b2-H\u00f6lder smooth densities achieves only \u03b5^-(d+2\u03b2)/\u03b2 sample complexity, exhibiting a curse of dimensionality that the paper's bound avoids (Section 1, Equation 1).",
+        "verdict": "inconclusive",
+        "evidence": "The logbook only transcribes Equation (1) and checks exponent arithmetic, explicitly stating 'This does not independently reproduce the cited prior theorem.' No comparison experiment or independent derivation was performed."
+      }
+    ],
+    "overall": "The logbook performs only source-level formula and assumption audits, confirming that the paper states certain theorems and rates, but provides no experimental validation, independent proof verification, or even toy-scale empirical testing of any theoretical prediction. All five claims remain unverified because checking that a paper displays a formula is not evidence that the formula or its proof is correct.",
+    "quality": "low"
+  }
+}
