@@ -1,0 +1,8 @@
+\begin{theorem}\label{thm:TV}
+Suppose the target distribution $p^\star$ satisfies Assumption~\ref{assume:subgaussian} and Assumption \ref{assume:smooth} with $\beta \leq 2$. If we use the score estimator in \eqref{eq:score-estimator-X} with $\tau=n^{-\frac{2}{d+2\beta}}$ and the learning rates in \eqref{eq:learning-rate} with $c_0\geq 2/\beta$ and $c_1 = 5c_0\vee 12$, then the output $Y=Y_1/\sqrt{\alpha_1}$ of Algorithm~\ref{alg:DDIM} satisfies
+	\begin{align}
+		\bE\big[\TV(p_{Y},\,p^\star)\big] \leq C\,n^{-\frac{\beta}{d+2\beta}} (\log n)^{\frac{d+1}{2}}\log K,
+	\end{align}
+	provided the iteration number satisfies $K\geq n^{\frac{\beta}{d+2\beta}}(\log K)^3$. Here, $C = C(d,\beta,L,\sigma)>0$ is a constant that depends only on the dimension $d$, smoothness parameters $(\beta,L)$, and subgaussian parameter $\sigma$.
+The expectation is taken over the training data $X^{(i)}\overset{\mathrm{i.i.d.}}{\sim} p^\star$, $1\leq i \leq n$.
+\end{theorem}

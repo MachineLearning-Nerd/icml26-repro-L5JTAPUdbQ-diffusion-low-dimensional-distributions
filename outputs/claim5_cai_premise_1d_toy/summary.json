@@ -1,0 +1,28 @@
+{
+  "verdict": "toy_pending_independent_review",
+  "scope": "Reduced d=1 finite Cai--Li Algorithm-1 toy; not a theorem verification/falsification.",
+  "protocol": {
+    "scope": "Reduced d=1 finite Cai--Li Algorithm-1 toy; not a theorem verification/falsification.",
+    "source_premise": "K >= n^(beta/(d+2beta)) (log K)^3, beta=2,d=1; K computed per n.",
+    "metric": "Normalized full-R Gaussian-KDE TV proxy interval. Fixed target-tail-certified [-12,12] overlap quadrature bounds omitted target overlap; the KDE is analytically normalized.",
+    "controls": "Threshold/unthresholded and reversed-order KDE runs share saved initial Y_K; target A/B calibration uses independent samples; translated sample tests tail accounting."
+  },
+  "n": 250,
+  "seeds": [
+    20261201,
+    20261202,
+    20261203
+  ],
+  "mean_tv_proxy_lower": 0.9999999930833573,
+  "mean_tv_proxy_upper": 0.9999999930833573,
+  "max_tail_bound": 2.0386675117424833e-29,
+  "max_permutation_error": 0.0,
+  "min_escaped_lower": 1.0,
+  "elapsed_seconds": 32.67283892631531,
+  "environment": {
+    "python": "3.14.5 (main, May 10 2026, 18:26:20) [GCC 16.1.1 20260430]",
+    "numpy": "2.5.1",
+    "platform": "Linux-7.0.9-arch2-1-x86_64-with-glibc2.43",
+    "device": "local CPU"
+  }
+}

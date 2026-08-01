@@ -38,13 +38,13 @@
     },
     "5": {
       "verdict": "toy_pending_independent_review",
-      "scope": "Independent primary-source extraction confirms the cited TV exponent/inversion under its qualifications. A direct clean-room reduced Cai & Li Algorithm-1 probability-flow ODE now uses the paper KDE, soft threshold, score transform, and DDIM update and measures finite TV across d/n cells. Its finite K=64 toy is numerically unstable (TV about 0.5), so it does not verify or falsify the asymptotic theorem; scoreability remains for independent review.",
+      "scope": "Independent primary-source extraction supports the qualified cited TV exponent. A direct reduced d=1 Cai & Li Algorithm-1 toy at n=250 uses K=5990 satisfying the cited iteration premise and a normalized full-R KDE-TV proxy interval with explicit target-tail bound, saved-common-input controls, and target-vs-target calibration. The finite escaped output is neither theorem verification nor falsification; the earlier K=64 grid remains non-scoreable provenance.",
       "evidence": [
         "evidence/claim5_attempt1/prior_sources/SHA256SUMS",
-        "outputs/claim5_cai_probability_flow_tv_toy/PROTOCOL.md",
-        "outputs/claim5_cai_probability_flow_tv_toy/results.csv",
-        "outputs/claim5_cai_probability_flow_tv_toy/summary.json",
-        "outputs/claim5_cai_probability_flow_tv_toy/SHA256SUMS"
+        "outputs/claim5_cai_premise_1d_toy/PROTOCOL.json",
+        "outputs/claim5_cai_premise_1d_toy/results.csv",
+        "outputs/claim5_cai_premise_1d_toy/summary.json",
+        "outputs/claim5_cai_premise_1d_toy/SHA256SUMS"
       ]
     }
   }
