@@ -68,6 +68,15 @@ def download_protected_file(relative: str) -> bytes:
 
 
 def draft_overlay_paths() -> list[str]:
+    tracked_paths = set(
+        subprocess.run(
+            ["git", "ls-tree", "-r", "--name-only", "HEAD"],
+            cwd=ROOT,
+            check=True,
+            stdout=subprocess.PIPE,
+            text=True,
+        ).stdout.splitlines()
+    )
     paths = {
         "README.md",
         "logbook.json",
@@ -91,7 +100,7 @@ def draft_overlay_paths() -> list[str]:
         paths.update(
             item.relative_to(ROOT).as_posix()
             for item in ROOT.glob(pattern)
-            if item.is_file()
+            if item.is_file() and item.relative_to(ROOT).as_posix() in tracked_paths
         )
     return sorted(paths)
 
