@@ -16,3 +16,4 @@
 - Next action: assemble logbook and run local validation.
 - Publication: not started
 - Logbook: fixed-order Trackio pages, pinned executive summary, trace attachment, and official validator are complete. Publication remains blocked: posterly asset/measure/strict-polish gates fail (`logbook/GATE_REPORT.json`); a simple poster draft must be repaired/rebuilt with two source figures and passing layout gates before `poster_embed.html` can be considered release-ready.
+- Poster remediation: PASS. Two source-pinned 600-DPI paper excerpts are manifested in `logbook/FIGURE_MANIFEST.json`; strict posterly preflight/style/asset/measure/polish gates have zero failures/warnings. `poster_embed.html`, local trace readback, 10 tests, evidence manifests, and the official validator all pass. State is `independent_review_ready`; publication remains blocked pending fresh independent review.

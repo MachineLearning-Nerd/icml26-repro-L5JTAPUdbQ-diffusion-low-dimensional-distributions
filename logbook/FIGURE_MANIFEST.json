@@ -1,4 +1,31 @@
 {
-  "figures": [],
-  "note": "Theory/source-audit reproduction; no paper figure is necessary for the scoped evidence. Theory waiver supplied to posterly."
+  "source": {
+    "paper": "Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions",
+    "arxiv_id": "2605.30153",
+    "source_pdf_url": "https://arxiv.org/pdf/2605.30153",
+    "source_pdf_sha256": "fca4eed2739dc7b9f202d6e22e1c08ae0a80d08401f79595ccb9b9515477e506",
+    "license_note": "Both assets are unmodified render-and-crop excerpts from the pinned arXiv PDF page 9; the theorem excerpt is labeled as an equation source excerpt rather than an experimental figure."
+  },
+  "figures": [
+    {
+      "asset_id": "paper-figure-1-score-error",
+      "file": "assets/paper_figures/figure1_score_error.png",
+      "from_paper": true,
+      "page": "PDF page 9, Figure 1",
+      "bbox": [2760, 560, 1680, 1480],
+      "dpi": 600,
+      "sha256": "fe954375de3e049b2cedf54e04ccad14c8333776892664d3827cf4952b2b2601",
+      "natural_px": [1680, 1480]
+    },
+    {
+      "asset_id": "paper-theorem-rate-excerpt",
+      "file": "assets/paper_figures/theorem_rate_excerpt_p9.png",
+      "from_paper": true,
+      "page": "PDF page 9, displayed rate derivation",
+      "bbox": [420, 1120, 2000, 720],
+      "dpi": 600,
+      "sha256": "480a3b92e82943c21bc66501a11aeef2957024972d7394b5966810297ed23302",
+      "natural_px": [2000, 720]
+    }
+  ]
 }

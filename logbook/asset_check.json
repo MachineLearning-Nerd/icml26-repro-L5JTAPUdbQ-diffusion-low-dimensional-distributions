@@ -1,18 +1,54 @@
 {
   "gate": "asset",
-  "status": "FAIL",
+  "status": "PASS",
   "checks": [
     {
       "id": "paper_fig_count",
       "severity": "hard",
-      "status": "FAIL",
-      "detail": "only 0 img[data-source=paper]; need >= 2. Pull at least 2 real figures from the paper (or use a human-checkpoint waiver per DESIGN_FINAL \\xa74)."
+      "status": "PASS",
+      "detail": "2 img[data-source=paper] (>= 2 required)"
+    },
+    {
+      "id": "asset_provenance",
+      "severity": "hard",
+      "status": "PASS",
+      "detail": "asset paper-figure-1-score-error: resolves, from_paper, fields complete, file exists, sha256 matches."
+    },
+    {
+      "id": "asset_provenance",
+      "severity": "hard",
+      "status": "PASS",
+      "detail": "asset paper-theorem-rate-excerpt: resolves, from_paper, fields complete, file exists, sha256 matches."
+    },
+    {
+      "id": "fig_area",
+      "severity": "hard",
+      "status": "PASS",
+      "detail": "asset paper-figure-1-score-error: 4.70% of poster (>= 1.50%)."
+    },
+    {
+      "id": "fig_resolution",
+      "severity": "hard",
+      "status": "PASS",
+      "detail": "asset paper-figure-1-score-error: natural 1680x1480 = 2.58x rendered (652x575); >= 2.0x target."
+    },
+    {
+      "id": "fig_area",
+      "severity": "hard",
+      "status": "PASS",
+      "detail": "asset paper-theorem-rate-excerpt: 2.45% of poster (>= 1.50%)."
+    },
+    {
+      "id": "fig_resolution",
+      "severity": "hard",
+      "status": "PASS",
+      "detail": "asset paper-theorem-rate-excerpt: natural 2000x720 = 2.71x rendered (738x265); >= 2.0x target."
     },
     {
       "id": "total_fig_area",
       "severity": "hard",
       "status": "NOTICE",
-      "detail": "total paper-image area = 0.00% of body; WAIVED via --waive-total-area (pure-theory poster)."
+      "detail": "total paper-image area = 10.68% of body; WAIVED via --waive-total-area (pure-theory poster)."
     }
   ]
 }

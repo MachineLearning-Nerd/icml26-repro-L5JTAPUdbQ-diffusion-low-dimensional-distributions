@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "logbook_assembled_poster_gate_blocked",
-  "next_action": "repair_posterly_asset_measure_and_strict_polish_gates_then_generate_poster_embed_and_revalidate",
+  "phase": "independent_review_ready",
+  "next_action": "run_fresh_independent_scientific_and_publication_compliance_review_before_publish",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -62,5 +62,15 @@
     "manifest_checks": "passed",
     "poster_gates": "failed: asset requires two paper figures; measure alignment and strict-polish require layout repair",
     "publication_allowed": false
+  },
+  "poster_remediation": {
+    "gate_report": "logbook/GATE_REPORT.json",
+    "overall": "PASS",
+    "hard_failures": 0,
+    "warnings": 0,
+    "poster_embed": "logbook/poster_embed.html",
+    "tests": "outputs/final_test_poster_remediation.log",
+    "validator": "outputs/official_validator_poster_remediation.log",
+    "trace_index": ".trackio/logbook/traces/019fbc12-567c-7718-ba3b-15786eab5af1/index.json"
   }
 }

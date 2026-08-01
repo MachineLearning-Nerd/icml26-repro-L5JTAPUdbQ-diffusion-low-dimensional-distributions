@@ -54,7 +54,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diffusion Models — ICML 2026 Reproduction</title>
+<title>Diffusion Models: Intrinsic-Dimension Rate Audit</title>
 
 <!-- MathJax v3 for inline equations. CDN by default; to go offline,
      download a MathJax v3 release into assets/mathjax/ and change the <script>
@@ -506,6 +506,8 @@
   .figure img:not([class*="w-"]) { width: 100%; }
   .figure--wide img { width: 100%; }   /* predefined variant: force full card width over any .w-NN (fix (f)) */
   .figure img {
+    max-height: calc(70 * var(--u));
+    object-fit: contain;
     /* FIGURE CONTRACT: figures must come from the paper:
          <img src="assets/paper_figures/x.png" data-source="paper"
               data-asset-id="x" class="w-100">
@@ -625,6 +627,10 @@
     line-height: 1.15;
   }
 
+
+  /* Audit-poster balance: each final takeaway card absorbs the remaining body height. */
+  .column > .card:last-child { flex: 1 1 auto; }
+
   /* =========================================================
      FOOTER — same as sibling (snapped 12u -> --fs-4).
      (no takeaways strip in portrait — final card per column carries
@@ -724,7 +730,8 @@
   /* figure--duo: two paper figures sharing one caption; each img MUST be
      a data-source="paper" asset and carry .w-45/.w-50 (42-48% each). */
   .figure--duo { display: flex; gap: calc(3 * var(--u)); align-items: flex-start; justify-content: center; }
-  .figure--duo img { max-width: 48%; min-width: 0; }  /* hard cap: duo contract is 42-48% each; an oversized w-NN cannot overflow the card */
+  .figure--duo img { max-width: 48%; min-width: 0; max-height: none; }
+  .figure img.w-55, .figure img.w-60, .figure img.w-65 { max-height: none; }  /* hard cap: duo contract is 42-48% each; an oversized w-NN cannot overflow the card */
 
   /* result-table derived column (gold-soft = DERIVED arithmetic; label it) */
   .result-table th.derived, .result-table td.derived {
@@ -787,6 +794,7 @@
   .w-45  { width: 45%; }
   .w-50  { width: 50%; }
   .w-55  { width: 55%; }
+  .w-60  { width: 60%; }
   .w-60  { width: 60%; }
   .w-65  { width: 65%; }
   .w-70  { width: 70%; }
@@ -870,162 +878,63 @@
        in portrait).
        ============================================================ -->
   <div class="body-grid" data-measure-role="body">
-
-    <!-- ============ COLUMN 1 ============ -->
     <div class="column" data-measure-role="column">
-
-      <!-- Card 1: motivation. .highlight card to anchor the reader's eye on entry. -->
       <div class="card highlight" data-measure-role="card">
-        <div class="section-title"><span class="num">1</span><span class="st-text">Motivation</span></div>
-        <p class="body-text">
-          We audit five live theorem and assumption claims from a pinned arXiv source. The audit preserves the exact displayed rates and explicitly separates them from full diffusion training. Use <span class="keyword">accent color</span>
-          for terms you want the eye to land on; <span class="highlight-text">light pills</span>
-          for short phrases.
-        </p>
-        <ul class="mt-3 fs-4">
-          <li>Scoped source audit: pain point 1.</li>
-          <li>Scoped source audit: pain point 2.</li>
-        </ul>
-        <div class="callout mt-4">
-          <strong>Q:</strong> Can intrinsic subspace dimension replace an ambient-dimensional exponent?
-        </div>
+        <div class="section-title"><span class="num">1</span><span class="st-text">Question and scope</span></div>
+        <p class="body-text">Can diffusion-model learning rates depend on intrinsic subspace dimension rather than the ambient dimension? We audit five live claims against a pinned arXiv source using finite CPU checks and explicit controls.</p>
       </div>
-
-      <!-- Card 2: key insight / setup figure. -->
       <div class="card" data-measure-role="card">
-        <div class="section-title"><span class="num">2</span><span class="st-text">Key Insight</span></div>
-        <p class="body-text">
-          The source claims intrinsic-dimensional rates under a union-of-subspaces model. Our evidence checks formulas, assumptions, and controls on CPU.
-        </p>
-        <div class="figure mt-3">
-          <!-- <img src="assets/paper_figures/key-figure.png" data-source="paper"
-                    data-asset-id="key" alt="Key insight"> -->
-          <div class="caption">
-            Scoped source audit: caption explaining (a) / (b) / (c) panels in one line each.
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3: method step 1 (equation). -->
-      <div class="card" data-measure-role="card">
-        <div class="section-title"><span class="num">3</span><span class="st-text">Method Step 1</span></div>
-        <p class="body-text">Scoped source audit: how step 1 works in 1-2 sentences.</p>
-        <div class="eqn">
-          <span class="label">Core equation</span>
-          $$f(x) \;=\; \text{Scoped source audit}$$
-        </div>
-        <p class="body-text">Scoped source audit: one-sentence interpretation of the equation.</p>
-      </div>
-
-      <!-- Card 4: method step 2 (theorem / key). .highlight + gold callout. -->
-      <div class="card highlight" data-measure-role="card">
-        <div class="section-title"><span class="num">4</span><span class="st-text">Method Step 2&nbsp;<span class="tag-key">&#9733; KEY</span></span></div>
-        <p class="body-text">Scoped source audit: how step 2 works.</p>
-        <div class="eqn">
-          <span class="label">Step 2 equation</span>
-          $$g(x) \;=\; \text{Scoped source audit}$$
-        </div>
-        <div class="callout gold">
-          <strong>Theorem.</strong> Scoped source audit: one-sentence statement, with $\varepsilon$ bounds if applicable.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ============ COLUMN 2 ============ -->
-    <div class="column" data-measure-role="column">
-
-      <!-- Card 6: main result. .highlight with headline star. -->
-      <div class="card highlight" data-measure-role="card">
-        <div class="section-title"><span class="num">6</span><span class="st-text">Main Result&nbsp;<span class="tag-key fs-3">&#9733; Headline</span></span></div>
-        <p class="body-text text-secondary fs-3 mb-1">
-          Scoped source audit: setup line — dataset, # samples, baselines.
-        </p>
+        <div class="section-title"><span class="num">2</span><span class="st-text">Source figures and rate</span></div>
         <div class="figure">
-          <!-- <img src="assets/paper_figures/main-result.png" data-source="paper"
-                    data-asset-id="main" alt="Main result"> -->
-          <div class="caption fs-2">
-            <strong>Left:</strong> Scoped source audit. <strong>Right:</strong> Scoped source audit.
-          </div>
+          <img class="w-65" src="assets/paper_figures/figure1_score_error.png" data-source="paper" data-asset-id="paper-figure-1-score-error" alt="Paper Figure 1 score error versus diffusion time">
+          <div class="caption">Paper Figure 1: source score-error decay on the synthetic union-of-subspaces setting.</div>
         </div>
-        <!-- Optional: a 3-up .keybox of headline stats. Add back if you have
-             a strong narrative around 3 numbers (best paired with a wider card). -->
+        <p class="body-text mt-2">Finite checks preserve intrinsic-dimension dependence and reject an ambient-dimension&nbsp;substitution.</p>
       </div>
-
-      <!-- Card 7: benchmark table. -->
-      <div class="card" data-measure-role="card">
-        <div class="section-title"><span class="num">7</span><span class="st-text">Benchmark Table</span></div>
-        <p class="body-text text-secondary fs-2 mb-1">
-          Scoped source audit: setup line — samples, seeds, metric description.
-        </p>
-        <table class="result-table">
-          <thead>
-            <tr>
-              <th class="method">Method</th>
-              <th>Metric A &#8593;</th>
-              <th>Metric B &#8593;</th>
-              <th>Cost &#8595;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="ref"><td class="method"><em>Reference</em></td><td>x.xx</td><td>x.xx</td><td>x.xx</td></tr>
-            <tr><td class="method">Baseline 1</td><td>x.xx</td><td>x.xx</td><td>x.xx</td></tr>
-            <tr><td class="method">Baseline 2</td><td>x.xx</td><td>x.xx</td><td>x.xx</td></tr>
-            <tr class="ours"><td class="method">Ours</td><td class="best">x.xx</td><td class="best">x.xx</td><td class="best">x.xx</td></tr>
-          </tbody>
-        </table>
-        <p class="body-text mt-2 fs-3">
-          Scoped source audit: one-sentence interpretation of the table.
-        </p>
-      </div>
-
-      <!-- Card 8: robustness / ablation / secondary axis. -->
-      <div class="card" data-measure-role="card">
-        <div class="section-title"><span class="num">8</span><span class="st-text">Ablation / Robustness</span></div>
-        <p class="body-text">Scoped source audit: 1-2 sentences on what's varied and what's measured.</p>
-        <ul class="mt-3">
-          <li><strong>Setting A</strong> — Scoped source audit.</li>
-          <li><strong>Setting B</strong> — Scoped source audit.</li>
-          <li><strong>Setting C</strong> — Scoped source audit.</li>
-        </ul>
-        <div class="callout mt-3">
-          Scoped source audit: bottom-line takeaway from the ablation study.
-        </div>
-      </div>
-
-      <!-- Card 9: conclusion / takeaways — replaces the takeaways strip used in landscape.
-           Keep this short and structured so the reader leaves with 3-4 crisp lines. -->
       <div class="card highlight" data-measure-role="card">
-        <div class="section-title"><span class="num">9</span><span class="st-text">Takeaways&nbsp;<span class="tag-key fs-3">&#9733;</span></span></div>
-        <ul>
-          <li><strong>Idea.</strong> Scoped source audit: 1-line.</li>
-          <li><strong>Method.</strong> Scoped source audit: 1-line.</li>
-          <li><strong>Result.</strong> Scoped source audit: 1-line.</li>
-          <li><strong>Practical.</strong> Scoped source audit: 1-line.</li>
-        </ul>
-        <div class="callout gold mt-3">
-          <strong>In one sentence:</strong> Scoped source audit — the elevator pitch a passer-by remembers.
+        <div class="section-title"><span class="num">4</span><span class="st-text">Verified claims</span></div>
+        <ul><li><strong>C1.</strong> Theorem 2 rate/dimension audit.</li><li><strong>C2.</strong> Theorem 1 intrinsic-dimension dependence.</li><li><strong>C3.</strong> Union-of-subspaces formulation.</li></ul>
+        <p class="body-text mt-3">Each result is a clean-room, finite CPU audit of a pinned source statement. It does not claim a trained neural diffusion model or a new empirical benchmark result.</p>
+      </div>
+    </div>
+    <div class="column" data-measure-role="column">
+      <div class="card highlight" data-measure-role="card">
+        <div class="section-title"><span class="num">5</span><span class="st-text">Assumption controls</span></div>
+        <p class="body-text">Claims 4 and 5 are scoped source-theorem checks with finite controls for required assumptions.</p>
+        <div class="figure">
+          <img class="w-75" src="assets/paper_figures/theorem_rate_excerpt_p9.png" data-source="paper" data-asset-id="paper-theorem-rate-excerpt" alt="Source theorem rate excerpt from paper page 9">
+          <div class="caption">Source-pinned page-9 rate excerpt; an equation display, not a second empirical result.</div>
         </div>
       </div>
-
+      <div class="card" data-measure-role="card">
+        <div class="section-title"><span class="num">6</span><span class="st-text">CPU reproduction route</span></div>
+        <ol class="algo"><li>Pin the paper PDF and arXiv source archive.</li><li>Extract theorem hypotheses and displayed rates.</li><li>Evaluate finite symbolic and numerical controls.</li><li>Record scoped results, hashes, and limitations.</li></ol>
+      </div>
+      <div class="card" data-measure-role="card">
+        <div class="section-title"><span class="num">7</span><span class="st-text">Limitations</span></div>
+        <p class="body-text">No author executable was available. Full neural diffusion training is outside CPU scope, so this logbook reports clean-room theorem evidence.</p>
+      </div>
+      <div class="card highlight" data-measure-role="card">
+        <div class="section-title"><span class="num">8</span><span class="st-text">Takeaway</span></div>
+        <p class="body-text">The pinned source supports intrinsic-dimensional statistical rates under its stated union-of-subspaces assumptions. The CPU audit verifies those formulas and exposes the assumptions needed for the conclusion.</p>
+        <div class="callout gold mt-3"><strong>Reproducibility.</strong> Public code, source hashes, commands, claim-level controls, and an attached agent trace are linked in the ICML logbook. The source archive and every derived result are hash-addressed for independent inspection.</div>
+      </div>
     </div>
-
   </div>
 
   <!-- ============================ FOOTER ============================ -->
   <div class="footer" data-measure-role="footer">
     <div>
-      <strong class="method-name">METHOD NAME</strong> &middot; Venue Year &middot;
-      Reproduction evidence: pinned arXiv source, finite CPU controls, and public GitHub audit.
+      <strong class="method-name">Diffusion-rate audit</strong> &middot; ICML 2026 Reproduction Challenge &middot;
+      Pinned arXiv source, finite CPU controls, and public GitHub evidence.
     </div>
     <div>
-      Code: <span class="repo">github.com/&lt;org&gt;/&lt;repo&gt;</span> &nbsp;&middot;&nbsp;
-      Contact: <span class="repo">presenter@example.com</span>
+      Code: <span class="repo">github.com/MachineLearning-Nerd/icml26-repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions</span>
     </div>
   </div>
 
   <!-- Optional watermark — delete if you don't want it. -->
-  <div class="ornament">LAB &middot; INSTITUTION</div>
+  <div class="ornament">CPU AUDIT</div>
 
 </div>
 
