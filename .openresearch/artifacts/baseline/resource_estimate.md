@@ -26,3 +26,15 @@ recorded from the HF job after completion.
 - Repair: select the installed Python 3.14 patch while retaining the same
   Python minor line and unchanged hash-locked dependency graph; print the
   actual patch and allocated core count in every bootstrap log.
+
+## Infrastructure attempt 2
+
+- HF job: `DineshAI/6a6e0bc0a00abefd4b28b8c6`
+- Run: `ba9cdf2f-754a-4a91-abe8-73ec77d405db`
+- Result: collection failure after 37 seconds; no tests executed
+- Resolved runtime: Python 3.14.2 with all 36 locked third-party packages
+- Cause: the historical `pytest` console entrypoint did not add the repository
+  root to its import path in this container
+- Cost at listed rate: approximately $0.000308
+- Repair: invoke the same suite as `python -m pytest`; record cgroup and CPU
+  affinity limits instead of the misleading host-wide processor count.

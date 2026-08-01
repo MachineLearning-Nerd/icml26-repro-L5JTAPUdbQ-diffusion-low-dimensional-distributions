@@ -29,12 +29,12 @@ run command or environment variable.
 ## Environment and compute policy
 
 The campaign uses the single repository-level `.venv` resolved by `uv.lock`
-for the Python 3.14 series. Historical baseline artifacts reported Python
-3.14.5, but no authoritative Python pin existed in the repository. The first
-HF setup attempt requested local resolver patch 3.14.6 and failed before tests
-because that patch was absent from the container; the repaired bootstrap uses
-the container's installed 3.14 interpreter and prints its exact patch version
-into the run log. All scientific computation, tests, verifiers, benchmarks,
+for Python 3.14.2, the exact interpreter present in the pinned HF job image.
+Historical baseline artifacts reported Python 3.14.5, but no authoritative
+Python pin existed in the repository. The first HF setup attempt requested
+local resolver patch 3.14.6 and failed before tests because that patch was
+absent from the container; the repaired bootstrap now pins the observed
+container patch. All scientific computation, tests, verifiers, benchmarks,
 and data generation run on Hugging Face `cpu-upgrade`; local activity is
 limited to inspection, editing, dependency resolution, and orchestration. The
 selected flavor exposes 8 vCPU, 32 GB RAM, 50 GB storage, no accelerator, at
