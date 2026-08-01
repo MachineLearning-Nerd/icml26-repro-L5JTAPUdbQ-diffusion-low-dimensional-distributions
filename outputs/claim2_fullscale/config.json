@@ -1,0 +1,25 @@
+{
+  "paper_protocol": {
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "N": 50000,
+    "eval": 10000,
+    "replicates": 20
+  },
+  "run": {
+    "seed": 20260821,
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "N": 50000,
+    "evaluation_samples": 10000,
+    "t": 0.25,
+    "mse": 3.6835647796664284,
+    "seconds": 41.498427867889404,
+    "backend": "numpy-float32-streaming",
+    "device": "CPU (torch unavailable)",
+    "classification": "non-toy full-N diagnostic"
+  },
+  "python": "3.14.5"
+}

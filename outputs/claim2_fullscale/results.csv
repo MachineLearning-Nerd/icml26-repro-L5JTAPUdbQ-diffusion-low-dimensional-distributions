@@ -1,0 +1,22 @@
+seed,d,M,k,N,evaluation_samples,t,mse,seconds,backend,device,classification
+20260801,48,128,3,50000,10000,0.25,3.704231450587871,42.19423532485962,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260802,48,128,3,50000,10000,0.25,3.726952330474463,43.042129039764404,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260803,48,128,3,50000,10000,0.25,3.6713028121468927,40.60349750518799,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260804,48,128,3,50000,10000,0.25,3.679960325139868,40.93150067329407,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260805,48,128,3,50000,10000,0.25,3.6428499479438665,45.16126608848572,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260806,48,128,3,50000,10000,0.25,3.704085668018769,42.99851179122925,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260807,48,128,3,50000,10000,0.25,3.614822451083052,40.177006483078,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260808,48,128,3,50000,10000,0.25,3.7114898238176073,44.269898891448975,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260809,48,128,3,50000,10000,0.25,3.699197989467836,42.897929430007935,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260810,48,128,3,50000,10000,0.25,3.7323891537411167,40.92106914520264,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260811,48,128,3,50000,10000,0.25,3.777172728869062,43.17597961425781,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260812,48,128,3,50000,10000,0.25,3.6878629210628495,40.098352909088135,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260813,48,128,3,50000,10000,0.25,3.7602891150979065,47.45965552330017,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260814,48,128,3,50000,10000,0.25,3.608046202531524,41.63696599006653,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260815,48,128,3,50000,10000,0.25,3.7223342679314793,41.69954538345337,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260816,48,128,3,50000,10000,0.25,3.6699714941927777,41.360902070999146,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260817,48,128,3,50000,10000,0.25,3.7029754464083204,40.9984610080719,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260818,48,128,3,50000,10000,0.25,3.769051810003072,43.99076509475708,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260819,48,128,3,50000,10000,0.25,3.6844777704522023,41.42712211608887,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260820,48,128,3,50000,10000,0.25,3.662255637019045,43.05846452713013,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic
+20260821,48,128,3,50000,10000,0.25,3.6835647796664284,41.498427867889404,numpy-float32-streaming,CPU (torch unavailable),non-toy full-N diagnostic

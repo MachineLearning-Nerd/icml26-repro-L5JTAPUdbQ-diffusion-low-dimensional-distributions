@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "published_public_readback_complete",
-  "next_action": "monitor official judge/leaderboard status; do not rerun terminal scoped claim audits",
+  "phase": "claim_2_fullscale_cleanroom_inconclusive",
+  "next_action": "run pre-registered Claim 2 t-grid and controls before independent review",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -22,7 +22,7 @@
   "failed_attempts": [],
   "claim_attempt_counts": {
     "1": 1,
-    "2": 1,
+    "2": 2,
     "3": 1,
     "4": 1,
     "5": 1
@@ -32,13 +32,13 @@
     "scope": "pinned Theorem 2 epsilon-exponent/source arithmetic and finite CPU dimension control; not diffusion-model training",
     "evidence": "outputs/claim1_attempt1_audit.md"
   },
-  "last_checkpoint": "2026-08-01T07:37:52Z",
+  "last_checkpoint": "2026-08-01T09:00:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
-    "verdict": "verified_scoped",
-    "scope": "pinned Theorem 1 symbolic/finite intrinsic-dimension audit; not diffusion-model training",
-    "evidence": "outputs/claim2_attempt1_audit.md"
+    "verdict": "inconclusive",
+    "scope": "One full protocol time cell only; no t-grid or controls yet",
+    "evidence": "outputs/claim2_fullscale/summary.json"
   },
   "claim_3_outcome": {
     "verdict": "verified_scoped",

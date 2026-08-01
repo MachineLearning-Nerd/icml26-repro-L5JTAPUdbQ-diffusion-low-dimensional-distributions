@@ -1,0 +1,19 @@
+{
+  "n_replicates": 21,
+  "t": 0.25,
+  "mean_mse": 3.695965910745524,
+  "sample_sd": 0.04452746234501316,
+  "normal_95ci": [
+    3.676921200520161,
+    3.715010620970887
+  ],
+  "full_protocol": {
+    "d": 48,
+    "M": 128,
+    "k": 3,
+    "N": 50000,
+    "evaluation_samples": 10000
+  },
+  "verdict": "inconclusive",
+  "reason": "One full-scale t cell is complete, but no t-grid, wrong-basis/reduced-N controls, or ambient diagnostic is complete; do not infer Theorem 1."
+}

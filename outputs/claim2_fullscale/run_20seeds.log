@@ -1,0 +1,300 @@
+=== 20260802 ===
+{
+  "seed": 20260802,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.726952330474463,
+  "seconds": 43.042129039764404,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260803 ===
+{
+  "seed": 20260803,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6713028121468927,
+  "seconds": 40.60349750518799,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260804 ===
+{
+  "seed": 20260804,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.679960325139868,
+  "seconds": 40.93150067329407,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260805 ===
+{
+  "seed": 20260805,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6428499479438665,
+  "seconds": 45.16126608848572,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260806 ===
+{
+  "seed": 20260806,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.704085668018769,
+  "seconds": 42.99851179122925,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260807 ===
+{
+  "seed": 20260807,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.614822451083052,
+  "seconds": 40.177006483078,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260808 ===
+{
+  "seed": 20260808,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.7114898238176073,
+  "seconds": 44.269898891448975,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260809 ===
+{
+  "seed": 20260809,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.699197989467836,
+  "seconds": 42.897929430007935,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260810 ===
+{
+  "seed": 20260810,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.7323891537411167,
+  "seconds": 40.92106914520264,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260811 ===
+{
+  "seed": 20260811,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.777172728869062,
+  "seconds": 43.17597961425781,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260812 ===
+{
+  "seed": 20260812,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6878629210628495,
+  "seconds": 40.098352909088135,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260813 ===
+{
+  "seed": 20260813,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.7602891150979065,
+  "seconds": 47.45965552330017,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260814 ===
+{
+  "seed": 20260814,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.608046202531524,
+  "seconds": 41.63696599006653,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260815 ===
+{
+  "seed": 20260815,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.7223342679314793,
+  "seconds": 41.69954538345337,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260816 ===
+{
+  "seed": 20260816,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6699714941927777,
+  "seconds": 41.360902070999146,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260817 ===
+{
+  "seed": 20260817,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.7029754464083204,
+  "seconds": 40.9984610080719,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260818 ===
+{
+  "seed": 20260818,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.769051810003072,
+  "seconds": 43.99076509475708,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260819 ===
+{
+  "seed": 20260819,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6844777704522023,
+  "seconds": 41.42712211608887,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260820 ===
+{
+  "seed": 20260820,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.662255637019045,
+  "seconds": 43.05846452713013,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+=== 20260821 ===
+{
+  "seed": 20260821,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.6835647796664284,
+  "seconds": 41.498427867889404,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}

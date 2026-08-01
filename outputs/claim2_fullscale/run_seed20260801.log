@@ -1,0 +1,18 @@
+{
+  "seed": 20260801,
+  "d": 48,
+  "M": 128,
+  "k": 3,
+  "N": 50000,
+  "evaluation_samples": 10000,
+  "t": 0.25,
+  "mse": 3.704231450587871,
+  "seconds": 42.19423532485962,
+  "backend": "numpy-float32-streaming",
+  "device": "CPU (torch unavailable)",
+  "classification": "non-toy full-N diagnostic"
+}
+
+real	0m44.811s
+user	2m27.088s
+sys	0m1.133s

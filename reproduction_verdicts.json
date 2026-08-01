@@ -6,8 +6,9 @@
       "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
     },
     "2": {
-      "verdict": "verified_scoped",
-      "scope": "CPU pinned-source/finite audit, not end-to-end diffusion training"
+      "verdict": "inconclusive",
+      "scope": "Full-scale clean-room Eq. (8)-(14) score experiment at one t=0.25 cell (d=48,M=128,k=3,N=50k, 10k heldout, 21 datasets); required t-grid and controls pending.",
+      "evidence": "outputs/claim2_fullscale/summary.json"
     },
     "3": {
       "verdict": "verified_scoped",
