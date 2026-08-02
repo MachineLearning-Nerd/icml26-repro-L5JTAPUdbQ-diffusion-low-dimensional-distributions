@@ -30,11 +30,16 @@
     },
     "3": {
       "verdict": "inconclusive",
-      "scope": "Independent local CPU d=48,M=128,k=3 normal/tangent score identity plus 100k-trial component-allocation and assumption-removal controls. This validates specific proof dependencies, not the full theorem.",
+      "scope": "Two distinct local CPU routes remain inconclusive: the d=48 dependency/concentration audit, and a finite non-toy d=12/M=3/k=2 literal-Assumptions-1--2 UoS generator with all per-component mass, separation, and subgaussian checks plus recovered-basis KDE-score execution. These audit dependencies rather than prove a theorem or falsify literal C3.",
       "evidence": [
         "outputs/claim3_fullscale/result.json",
         "outputs/claim3_fullscale/allocation_raw_min_counts.npz",
-        "outputs/claim3_fullscale/SHA256SUMS"
+        "outputs/claim3_fullscale/SHA256SUMS",
+        "src/claim3_literal_uos_estimator.py",
+        "outputs/claim3_literal_uos_estimator/config.json",
+        "outputs/claim3_literal_uos_estimator/results.csv",
+        "outputs/claim3_literal_uos_estimator/summary.json",
+        "outputs/claim3_literal_uos_estimator/SHA256SUMS"
       ]
     },
     "4": {

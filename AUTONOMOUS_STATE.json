@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_2_attempt_3_proof_dependency_mixture_inconclusive_pending_review",
-  "next_action": "independent_read_only_review_of_claim_2_proof_dependency_mixture; do_not_republish_without_reviewed_score_bearing_change",
+  "phase": "claim_3_attempt_3_literal_assumption_route_complete_inconclusive",
+  "next_action": "independent_review_claim_3_literal_uos_route_before_any_score_or_publication_change",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -27,7 +27,7 @@
   "claim_attempt_counts": {
     "1": 3,
     "2": 3,
-    "3": 2,
+    "3": 3,
     "4": 1,
     "5": 3
   },
@@ -41,7 +41,7 @@
       "outputs/claim1_threshold_stability_1d_toy/SHA256SUMS"
     ]
   },
-  "last_checkpoint": "2026-08-02T17:05:00Z",
+  "last_checkpoint": "2026-08-02T18:50:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -57,8 +57,12 @@
   },
   "claim_3_outcome": {
     "verdict": "inconclusive",
-    "scope": "Independent d=48/M=128/k=3 score-decomposition identity and 100k-trial allocation/assumption controls; not full theorem proof",
-    "evidence": "outputs/claim3_fullscale/result.json"
+    "scope": "Literal-Assumptions 1--2 finite non-toy d=12/M=3/k=2 UoS generator: checks union support, zero pairwise-intersection mass, per-component mass, and subgaussian condition, then executes recovered-basis KDE score estimator. The proof-dependency map is source-pinned; result is inconclusive, never a falsification of literal C3.",
+    "evidence": [
+      "outputs/claim3_fullscale/result.json",
+      "outputs/claim3_literal_uos_estimator/summary.json",
+      "outputs/claim3_literal_uos_estimator/SHA256SUMS"
+    ]
   },
   "claim_4_outcome": {
     "verdict": "inconclusive",
