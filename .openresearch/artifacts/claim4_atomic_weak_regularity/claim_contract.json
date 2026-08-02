@@ -1,8 +1,0 @@
-{
-  "claim": 4,
-  "claim_text": "The score and sampling results require only the union-of-subspaces and within-subspace subgaussian assumptions, not smoothness, log-concavity, uniform density bounds, or a positive density lower bound.",
-  "experimental_contract": "At paper scale d=48,M=128,k=3, use six equiprobable atoms spanning each random subspace. This target satisfies both assumptions and has no ambient or intrinsic Lebesgue density. Run the paper's score estimator at N=6250,12500,25000,50000 over 20 training datasets and exact p_t ground truth.",
-  "acceptance": "Every source and assumption audit passes; all 80 stochastic cells complete; endpoint MSE decreases; log-log slope lies in [-1.5,-0.2]; every component is observed; omitted-normal control error exceeds accepted error by 10x at N=50000; independent checker passes.",
-  "non_circularity": "The target, geometric N sweep, t=0.25, 20 seeds, exact truth, and acceptance ranges are fixed before the first run and do not use a formula-derived first-hit budget.",
-  "scope_limit": "The finite experiment validates Theorem 1's exact-recovery-conditional score mechanism on a distribution outside every named regularity class; source dependency auditing, not this finite sweep, supports the general theorem scope."
-}

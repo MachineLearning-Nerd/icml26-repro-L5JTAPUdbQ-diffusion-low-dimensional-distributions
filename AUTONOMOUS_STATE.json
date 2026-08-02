@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "publication_queued_hf_rate_limit",
-  "next_action": "do_not_retry_before_2026-08-02T09:38:38Z; check_existing_space_then_republish_and_readback",
+  "phase": "publication_held_remote_candidate_quarantined",
+  "next_action": "retain_reviewed_local_C5_only_lineage; require_fresh_local_only_release_review_before_any_HF_retry",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -35,8 +35,8 @@
     "scope": "Full d=48/M=128/k=3 reverse OU Euler/KDE sampling at N through 50k with sliced-W1, step sweep, and wrong-basis control; numerical sampler did not demonstrate convergence and cannot falsify ideal continuous-time theorem.",
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
-  "last_checkpoint": "2026-08-01T13:38:38Z",
-  "publication_allowed": true,
+  "last_checkpoint": "2026-08-02T10:30:42Z",
+  "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
     "verdict": "inconclusive",
@@ -111,7 +111,7 @@
     "retry_not_before_utc": "2026-08-02T09:38:38Z",
     "last_publish_error": "HF 429 api/space-creation limit; Retry after 64 seconds; about 20 hours for space creation; request Root=1-6a6df6bb-0fe04a095365b08421db79ef"
   },
-  "last_known_git_commit": "b2b7983f537c416078d509f63de717cfe6664751 (reviewed Claim 5 toy adoption/evidence gate commit)",
+  "last_known_git_commit": "pending_reconciliation_commit",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",
@@ -128,5 +128,29 @@
     "score_review": "outputs/L5-final-claim5-score-review.md",
     "release_review": "outputs/L5-final-release-review.md",
     "reviewed_head": "4d79a9ee9f29c4b1a8bbaa592365f690a19b92bd"
+  },
+  "concurrent_candidate_hold": {
+    "candidate_head": "1e411431b3d967272fd31147c65c41f71f2aab97",
+    "prior_reviewed_head": "5da9f5694d785e18097cddbe44bfc17a260154c5",
+    "reason": "Supervisor-directed hold after concurrent candidate changed C1-C5 verdicts; no publication or point claim.",
+    "integrity_report": "outputs/publication_divergence_integrity_20260802T1030Z.md",
+    "integrity_findings": "source manifest passed; git fsck exit 0; diff --check exit 2 on nine blank-line-at-EOF artifact files."
+  },
+  "remote_candidate_quarantine": {
+    "candidate": "1e411431b3d967272fd31147c65c41f71f2aab97",
+    "trusted_ancestor": "5da9f5694d785e18097cddbe44bfc17a260154c5",
+    "branch": "quarantine/remote-1e41143",
+    "tag": "quarantine/remote-1e41143",
+    "decision": "rejected_for_publication",
+    "reasons": [
+      "C3 claim substitution",
+      "conflicting release/status/compute narratives",
+      "paid HF cpu-upgrade violates local-only policy",
+      "missing final exact Space readback"
+    ],
+    "reviews": [
+      "../../outputs/L5-remote-10pt-scientific-review.md",
+      "../../outputs/L5-remote-10pt-compliance-review.md"
+    ]
   }
 }

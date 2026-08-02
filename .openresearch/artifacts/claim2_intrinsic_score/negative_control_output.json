@@ -1,8 +1,0 @@
-{
-  "actual_exit_code": 1,
-  "checker_stderr": "an intrinsic exponent or exact cancellation case changed",
-  "expected_exit_nonzero": true,
-  "mutation": "replace the first k vee 2 exponent by ambient d",
-  "passed": true
-}
-

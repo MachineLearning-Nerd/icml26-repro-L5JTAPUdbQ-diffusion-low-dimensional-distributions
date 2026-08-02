@@ -1,8 +1,0 @@
-{
-  "claim": 4,
-  "paper_claim": "The results hold under Assumptions 1 and 2 without smooth-density, score-smoothness, log-concavity, uniform-density, or density-lower-bound assumptions.",
-  "domain": "Every target satisfying Assumptions 1 and 2, including atomic targets without an intrinsic density.",
-  "falsification_requirement": "An exact paper-result failure for a target satisfying all stated assumptions and lacking every named regularity.",
-  "witness": "Uniform{-1,+1}, d=M=k=1, V1=R, c_p=1, sigma^2=1/log 2.",
-  "verdict_rule": "FALSIFIED only if the regularity audit, exact assumptions, exact estimator, continuous-time W1 lower bound, training expectation, and asymptotic contradiction all pass."
-}

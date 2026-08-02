@@ -1,7 +1,0 @@
-{
-  "actual_exit_code": 1,
-  "checker_stderr": "the exact rate table does not match the independently derived table",
-  "expected_exit_nonzero": true,
-  "mutation": "replace the first independently derived sample exponent with 999",
-  "passed": true
-}

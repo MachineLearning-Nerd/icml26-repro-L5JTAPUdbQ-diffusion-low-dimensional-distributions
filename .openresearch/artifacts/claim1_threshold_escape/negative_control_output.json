@@ -1,7 +1,0 @@
-{
-  "actual_exit_code": 1,
-  "checker_stderr": "tail kernel is not at the density threshold",
-  "expected_exit_nonzero": true,
-  "mutation": "double the first tail-kernel ratio so it exceeds the density threshold",
-  "passed": true
-}

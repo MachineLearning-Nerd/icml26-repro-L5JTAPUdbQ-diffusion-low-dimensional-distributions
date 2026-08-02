@@ -1,9 +1,0 @@
-% Primary source: Azangulov et al., arXiv:2409.18804, main.tex lines 256--263.
-% Retrieved 2026-08-01 with User-Agent Mozilla/5.0.
-% ar5iv HTML SHA-256: ef2e562ba4a531c5579e8727c1a64f3b8e4cb8ef78de9520920ec01df5545054
-% arXiv source response SHA-256: ee0f36028e13fe450eda9e6dd5bcc5dbc8b4fedf3af699222bc3fa00ba85be2a
-% URL: https://export.arxiv.org/e-print/2409.18804
-The score matching loss controls~\cite[Eq. (90)]{oko2023} the Wasserstein loss between the target $\mu$ and the approximation $\hat{\mu}_{\underline{T}}$.
-\label{thm:from_score_matching_to_wasserstein}
-W_1\del{\hat{\mu}, \mu} \lesssim \sqrt{D}\del{\sqrt{\underline{T}} + \sum_{k=0}^{K-1} \sqrt{\log \delta^{-1}\cdot\sigma^2_{T_{k+1}} \int_{T_k}^{T_{k+1}} \expectation\|\hat{s}\del{t,X(t)}-s\del{t,X(t)}\|^2 dt} + \delta + e^{-\overline{T}}}.
-Eq. (90) in \cite{oko2023} does not address the dependence on the ambient dimension $D$; the authors state that it follows from Lemma D.7.

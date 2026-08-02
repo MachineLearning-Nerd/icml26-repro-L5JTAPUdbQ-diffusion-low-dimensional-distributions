@@ -1,8 +1,0 @@
-{
-  "actual_exit_code": 1,
-  "checker_stderr": "the atomic target fails a paper assumption",
-  "expected_exit_nonzero": true,
-  "mutation": "change required zero intersection mass from true to false",
-  "passed": true
-}
-
