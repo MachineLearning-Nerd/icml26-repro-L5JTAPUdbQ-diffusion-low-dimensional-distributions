@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "republished_exact_c5_only_public_readback_complete_pending_official_rejudge",
-  "next_action": "monitor_official_verdicts_for_space_sha_47dad2b9bfe645cb59775632bc894efa9d65a546; do_not_claim_points_until_sha_matches",
+  "phase": "official_rejudge_recorded_score_2_of_10",
+  "next_action": "advance_only_new_local_evidence_for_claims_1_3_per_outputs/official_rejudge_score_plan_20260802.md; do_not_republish_without_reviewed_score_bearing_change",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -35,7 +35,7 @@
     "scope": "Full d=48/M=128/k=3 reverse OU Euler/KDE sampling at N through 50k with sliced-W1, step sweep, and wrong-basis control; numerical sampler did not demonstrate convergence and cannot falsify ideal continuous-time theorem.",
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
-  "last_checkpoint": "2026-08-02T10:47:01Z",
+  "last_checkpoint": "2026-08-02T10:58:24Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -56,7 +56,9 @@
     "verdict": "inconclusive",
     "scope": "Full d=48/M=128/k=3/N=50000 clean-room local CPU finite experiment on discontinuous non-log-concave singular UoS uniform-cube target; not a universal theorem proof.",
     "evidence": "outputs/claim4_fullscale/result.json",
-    "mse": 1.8611300606057062
+    "mse": 1.8611300606057062,
+    "official_verdict": "toy",
+    "official_points": 1
   },
   "claim_5_outcome": {
     "verdict": "toy",
@@ -68,7 +70,9 @@
       "outputs/claim5_cai_premise_1d_toy/summary.json",
       "outputs/claim5_cai_premise_1d_toy/SHA256SUMS",
       "outputs/L5-claim5-premise-toy-review.md"
-    ]
+    ],
+    "official_verdict": "toy",
+    "official_points": 1
   },
   "logbook_assembly": {
     "trackio_version": "0.34.0",
@@ -106,7 +110,7 @@
     "readback_evidence": "outputs/public_readback_final_20260801T0737Z.log",
     "publication_evidence": "outputs/trackio_publish_attempt_20260801T0736Z.log",
     "validator_evidence": "outputs/final_prepublication_validator.log",
-    "official_judge_leaderboard_status": "stale_verdict_for_prior_space_sha_223123ff67da24f79fcc1da6293b4108f2e60cd2; current 47dad2b9 pending rejudge",
+    "official_judge_leaderboard_status": "official_rejudge_recorded_2_of_10_for_space_sha_47dad2b9bfe645cb59775632bc894efa9d65a546",
     "queue_recorded_at_utc": "2026-08-01T13:38:38Z",
     "retry_not_before_utc": "2026-08-02T09:38:38Z",
     "last_publish_error": "HF 429 api/space-creation limit; Retry after 64 seconds; about 20 hours for space creation; request Root=1-6a6df6bb-0fe04a095365b08421db79ef",
@@ -117,7 +121,10 @@
     "public_readback_postpublish": "outputs/final_anonymous_readback_complete_20260802T104812Z.log",
     "published_space_api": "outputs/final_published_space_api_20260802T104701Z.json",
     "space_content_sync": "outputs/space_exact_sync_20260802T104635Z.log",
-    "official_verdict_check": "outputs/final_verdict_fetch_20260802T104812Z.json"
+    "official_verdict_check": "outputs/final_verdict_fetch_20260802T104812Z.json",
+    "official_rejudge_at_utc": "2026-08-02T10:58:24Z",
+    "official_score": 2,
+    "official_maximum_points": 10
   },
   "last_known_git_commit": "c1c81695192654e229ba6a4783a38e16422790ef",
   "claim_2_fullscale_checkpoint": {
@@ -184,5 +191,21 @@
     "remote_candidate": "quarantine/remote-1e41143; never publish",
     "compute_policy": "local CPU/local GTX 1050 only; no HF cpu-upgrade/Jobs/paid/remote compute",
     "published_space_sha": "47dad2b9bfe645cb59775632bc894efa9d65a546"
+  },
+  "official_rejudge": {
+    "space_sha": "47dad2b9bfe645cb59775632bc894efa9d65a546",
+    "judged_at_utc": "2026-08-02T10:58:24Z",
+    "model": "zai-org/GLM-5.2",
+    "verdicts": {
+      "1": "inconclusive",
+      "2": "inconclusive",
+      "3": "inconclusive",
+      "4": "toy",
+      "5": "toy"
+    },
+    "score": 2,
+    "maximum_points": 10,
+    "evidence": "outputs/final_verdict_fetch_20260802T104812Z.json",
+    "authoritative_note": "Official verdict is authoritative; Claim 4 official toy supersedes only the score outcome, while local evidence scope remains inconclusive."
   }
 }
