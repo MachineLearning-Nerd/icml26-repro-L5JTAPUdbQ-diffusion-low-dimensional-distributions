@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "publication_held_remote_candidate_quarantined",
-  "next_action": "retain_reviewed_local_C5_only_lineage; require_fresh_local_only_release_review_before_any_HF_retry",
+  "phase": "publication_authorized_local_only_c5_release",
+  "next_action": "publish_current_local_only_C5_only_revision_to_existing_space_then_validator_and_exact_revision_readback",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -36,7 +36,7 @@
     "evidence": "outputs/claim1_reverse_full/summary.json"
   },
   "last_checkpoint": "2026-08-02T10:30:42Z",
-  "publication_allowed": false,
+  "publication_allowed": true,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
     "verdict": "inconclusive",
@@ -95,7 +95,7 @@
   },
   "review_remediation_blockers": [],
   "publication": {
-    "status": "publication_queued_hf_quota_or_rate_limit",
+    "status": "publication_authorized_pending_trackio_republish",
     "space_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
     "space_url": "https://huggingface.co/spaces/DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
     "rendered_url": "https://dineshai-repro-l5jtapudbq-diffusion-low-dimensio-bc85f6d.static.hf.space/",
@@ -109,9 +109,11 @@
     "official_judge_leaderboard_status": "not yet confirmed",
     "queue_recorded_at_utc": "2026-08-01T13:38:38Z",
     "retry_not_before_utc": "2026-08-02T09:38:38Z",
-    "last_publish_error": "HF 429 api/space-creation limit; Retry after 64 seconds; about 20 hours for space creation; request Root=1-6a6df6bb-0fe04a095365b08421db79ef"
+    "last_publish_error": "HF 429 api/space-creation limit; Retry after 64 seconds; about 20 hours for space creation; request Root=1-6a6df6bb-0fe04a095365b08421db79ef",
+    "authorized_revision_parent": "de4fd64d9961837636203b204379644bcc6b9c14",
+    "publication_allowed": true
   },
-  "last_known_git_commit": "pending_reconciliation_commit",
+  "last_known_git_commit": "pending_publication_authorization_commit",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",
@@ -152,5 +154,28 @@
       "../../outputs/L5-remote-10pt-scientific-review.md",
       "../../outputs/L5-remote-10pt-compliance-review.md"
     ]
+  },
+  "postquarantine_release_authorization": {
+    "authorized_by": "parent_release_owner",
+    "authorized_at_utc": "2026-08-02T10:30:42Z",
+    "reviewed_lineage": "de4fd64d9961837636203b204379644bcc6b9c14-derived local-only C5-only release",
+    "outcomes": {
+      "1": "inconclusive",
+      "2": "inconclusive",
+      "3": "inconclusive",
+      "4": "inconclusive",
+      "5": "toy"
+    },
+    "reviews": [
+      "outputs/L5-postquarantine-scientific-review.md",
+      "outputs/L5-postquarantine-release-review.md"
+    ],
+    "local_gates": {
+      "pytest": "31 passed",
+      "release_manifests": "17 verified",
+      "posterly": "PASS; 0 hard failures; 0 warnings"
+    },
+    "remote_candidate": "quarantine/remote-1e41143; never publish",
+    "compute_policy": "local CPU/local GTX 1050 only; no HF cpu-upgrade/Jobs/paid/remote compute"
   }
 }
