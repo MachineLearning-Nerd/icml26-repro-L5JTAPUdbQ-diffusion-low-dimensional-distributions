@@ -1,55 +1,39 @@
 {
-  "note": "contract/live_claims.json is an immutable official input. Its status field remains challenge metadata, not this repository's result.",
-  "verdicts": {
-    "1": {
-      "verdict": "inconclusive",
-      "scope": "Clean-room literal d=48/M=128/k=3/N through 50k reverse-OU Euler and a distinct d=k=M=1 theorem-domain hard-threshold-KDE coupled-integrator audit are both inconclusive. The latter pre-registered Euler/Heun-to-fine-reference W1 tolerances fail, but a finite numerical discrepancy plus the threshold discontinuity does not falsify the idealized expected-rate theorem.",
-      "evidence": [
-        "src/claim1_reverse_diffusion.py",
-        "outputs/claim1_reverse_full/summary.json",
-        "src/claim1_threshold_stability_1d.py",
-        "outputs/claim1_threshold_stability_1d_toy/PROTOCOL.json",
-        "outputs/claim1_threshold_stability_1d_toy/DERIVATION.md",
-        "outputs/claim1_threshold_stability_1d_toy/summary.json",
-        "outputs/claim1_threshold_stability_1d_toy/SHA256SUMS"
-      ]
+  "candidate_only": true,
+  "claims": [
+    {
+      "claim": 1,
+      "confidence": "HIGH",
+      "scope": "Literal Theorem 2",
+      "verdict": "FALSIFIED"
     },
-    "2": {
-      "verdict": "inconclusive",
-      "scope": "Non-toy clean-room full-scale d=48,M=128,k=3,N=50k,eval=10k Eq. (8)-(14) t-grid and actual controls completed. Permuted-basis/reduced-N controls did not degrade as pre-registered, so no theorem verdict is justified.",
-      "evidence": [
-        "outputs/claim2_fullscale/summary.json",
-        "outputs/claim2_fullscale_grid/summary.json",
-        "outputs/claim2_controls/summary.json"
-      ]
+    {
+      "claim": 2,
+      "confidence": "MEDIUM",
+      "scope": "Theorem 1 conditional on exact subspace recovery",
+      "verdict": "VERIFIED"
     },
-    "3": {
-      "verdict": "inconclusive",
-      "scope": "Independent local CPU d=48,M=128,k=3 normal/tangent score identity plus 100k-trial component-allocation and assumption-removal controls. This validates specific proof dependencies, not the full theorem.",
-      "evidence": [
-        "outputs/claim3_fullscale/result.json",
-        "outputs/claim3_fullscale/allocation_raw_min_counts.npz",
-        "outputs/claim3_fullscale/SHA256SUMS"
-      ]
+    {
+      "claim": 3,
+      "confidence": "HIGH",
+      "scope": "Literal source-conformance statement about Assumptions 1 and 2",
+      "verdict": "VERIFIED"
     },
-    "4": {
-      "verdict": "inconclusive",
-      "scope": "Non-toy clean-room literal-scale local CPU d=48,M=128,k=3,N=50k uniform-cube UoS experiment violates comparator smoothness/log-concavity/density conditions; finite evidence does not prove universal theorem.",
-      "evidence": [
-        "outputs/claim4_fullscale/result.json",
-        "outputs/claim4_fullscale/SHA256SUMS"
-      ]
+    {
+      "claim": 4,
+      "confidence": "HIGH",
+      "scope": "Broad Theorem 2 result over the named weak-regularity domain",
+      "verdict": "FALSIFIED"
     },
-    "5": {
-      "verdict": "toy",
-      "scope": "Independent primary-source extraction supports the qualified cited TV exponent. A direct reduced d=1 Cai & Li Algorithm-1 toy at n=250 uses K=5990 satisfying the cited iteration premise and a normalized full-R KDE-TV proxy interval with explicit target-tail bound, saved-common-input controls, and normalized KDE(target-A)-versus-KDE(target-B) calibration. The finite escaped output is neither theorem verification nor falsification; the earlier K=64 grid remains non-scoreable provenance.",
-      "evidence": [
-        "evidence/claim5_attempt1/prior_sources/SHA256SUMS",
-        "outputs/claim5_cai_premise_1d_toy/PROTOCOL.json",
-        "outputs/claim5_cai_premise_1d_toy/results.csv",
-        "outputs/claim5_cai_premise_1d_toy/summary.json",
-        "outputs/claim5_cai_premise_1d_toy/SHA256SUMS"
-      ]
+    {
+      "claim": 5,
+      "confidence": "MEDIUM",
+      "scope": "Cai-Li Holder theorem, TV exponent, and sample-complexity inversion",
+      "verdict": "VERIFIED"
     }
-  }
+  ],
+  "judged_hf_sha": "47dad2b9bfe645cb59775632bc894efa9d65a546",
+  "live_judged_points": 2,
+  "maximum_points": 10,
+  "note": "Evidence verdicts are not earned leaderboard points."
 }
