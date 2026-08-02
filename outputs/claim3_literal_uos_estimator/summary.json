@@ -1,5 +1,5 @@
 {
-  "protocol": "literal Assumptions 1--2 finite UoS generator plus recovered-basis KDE score estimator",
+  "protocol": "Results.tex literal regularized estimator: psi hard threshold, clip_R, ambient q/p weights and G_t gate; unregularized is control only.",
   "seed": 20260802,
   "config": {
     "d": 12,
@@ -8,63 +8,126 @@
     "n": 6000,
     "n_eval": 512,
     "t": 0.35,
-    "weights": [
-      0.2,
-      0.3,
-      0.5
-    ],
-    "c_p": 2.0
+    "c_p": 2
   },
   "assumption_checks": {
     "union_support": true,
     "pairwise_intersections_are_origin": true,
     "intersection_mass_zero_by_construction": true,
-    "per_component_counts": [
-      1159,
-      1844,
-      2997
-    ],
-    "per_component_mass_empirical": [
-      0.19316666666666665,
-      0.30733333333333335,
-      0.4995
-    ],
     "mass_lower_bound": 0.16666666666666666,
-    "all_component_masses_pass": true,
     "subgaussian_sigma": 2.0,
     "subgaussian_mgf_upper_bound": 1.6487212707001282,
     "subgaussian_mgf_le_2": true
   },
   "estimator": {
-    "known_recovered_bases": true,
-    "exact_smoothed_mixture_score_vs_empirical_component_kde_score_mse": 0.00138315617511166,
-    "n_train": 6000,
-    "n_eval": 512
-  },
-  "proof_dependency_map": {
-    "union_support_and_zero_intersection": "problem_formulation.tex:81-101 defines unique component restriction/labels; pf-of-theorems.tex:8-10 uses c(X) in N_i.",
-    "per_component_mass": "problem_formulation.tex:92-96; pf-of-theorems.tex:8-19 supplies the count event A needed before L_i bounds.",
-    "subgaussian_within_subspace": "problem_formulation.tex:116-128; pf-of-theorems.tex:43-60 uses it for B_t tails and :101-106 for kappa_2 tail bound.",
-    "orthogonal_basis": "problem_formulation.tex:104-110; pf-of-theorems.tex:76-86 uses normal/tangent change of variables."
+    "condition": "nominal",
+    "n": 6000,
+    "n_eval": 512,
+    "weights": [
+      0.2,
+      0.3,
+      0.5
+    ],
+    "atom_mass": 0.0,
+    "eta": 0.0006593194165135702,
+    "clip_R": 7.0506391800258355,
+    "G_t_radius": 6.524210063195234,
+    "regularized_mse": 0.04248367778906641,
+    "unregularized_mse": 0.0013136629952398033,
+    "psi_pass_rates": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "gate_pass_rates": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "intersection_atom_executed": false,
+    "all_component_masses_pass": true,
+    "per_component_counts": [
+      1159,
+      1844,
+      2997
+    ]
   },
   "controls": {
     "intersection_atom": {
-      "mass": 0.1,
-      "separation_passes": false,
-      "note": "limitation/control only; not a claim falsification"
-    },
-    "low_mass": {
+      "condition": "intersection_atom",
+      "n": 6000,
+      "n_eval": 512,
       "weights": [
-        0.001,
-        0.499,
+        0.2,
+        0.3,
         0.5
       ],
-      "cp": 2.0,
-      "mass_passes": false
+      "atom_mass": 0.1,
+      "eta": 0.0007208743762372602,
+      "clip_R": 7.009621481372273,
+      "G_t_radius": 6.491642942323624,
+      "regularized_mse": 0.7718563228214628,
+      "unregularized_mse": 0.596816758808161,
+      "psi_pass_rates": [
+        1.0,
+        1.0,
+        0.998046875
+      ],
+      "gate_pass_rates": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "intersection_atom_executed": true,
+      "all_component_masses_pass": false,
+      "per_component_counts": [
+        1080,
+        1628,
+        2716
+      ]
+    },
+    "low_mass": {
+      "condition": "low_mass",
+      "n": 6000,
+      "n_eval": 512,
+      "weights": [
+        0.05,
+        0.45,
+        0.5
+      ],
+      "atom_mass": 0.0,
+      "eta": 0.0006593194165135702,
+      "clip_R": 7.0506391800258355,
+      "G_t_radius": 6.524210063195234,
+      "regularized_mse": 0.3620182543957471,
+      "unregularized_mse": 0.0016083566984436768,
+      "psi_pass_rates": [
+        1.0,
+        1.0,
+        0.99609375
+      ],
+      "gate_pass_rates": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "intersection_atom_executed": false,
+      "all_component_masses_pass": false,
+      "per_component_counts": [
+        288,
+        2691,
+        3021
+      ]
     }
   },
+  "proof_dependency_map": {
+    "union_support_and_zero_intersection": "problem_formulation.tex:81-101; pf-of-theorems.tex:8-10",
+    "per_component_mass": "problem_formulation.tex:92-96; pf-of-theorems.tex:8-19",
+    "subgaussian_within_subspace": "problem_formulation.tex:116-128; pf-of-theorems.tex:43-60",
+    "orthogonal_basis": "problem_formulation.tex:104-110; pf-of-theorems.tex:76-86"
+  },
   "verdict": "inconclusive",
-  "scope": "Finite non-toy local CPU execution checks literal source assumptions and runs a recovered-basis estimator. It cannot verify the theorem expectation/rate or falsify literal Claim 3.",
+  "scope": "Finite local CPU execution of the literal regularized estimator and executed assumption-violation controls. It neither proves a universal theorem nor falsifies literal Claim 3.",
   "environment": {
     "python": "3.14.5 (main, May 10 2026, 18:26:20) [GCC 16.1.1 20260430]",
     "numpy": "2.5.1",

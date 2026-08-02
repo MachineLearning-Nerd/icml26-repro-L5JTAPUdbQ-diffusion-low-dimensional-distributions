@@ -1,2 +1,4 @@
-seed,n,n_eval,mse,mass_pass
-20260802,6000,512,0.00138315617511166,True
+condition,atom_mass,regularized_mse,unregularized_mse,intersection_atom_executed,all_component_masses_pass
+nominal,0.0,0.04248367778906641,0.0013136629952398033,False,True
+intersection_atom,0.1,0.7718563228214628,0.596816758808161,True,False
+low_mass,0.0,0.3620182543957471,0.0016083566984436768,False,False
