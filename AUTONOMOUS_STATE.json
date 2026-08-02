@@ -41,7 +41,7 @@
       "outputs/claim1_threshold_stability_1d_toy/SHA256SUMS"
     ]
   },
-  "last_checkpoint": "2026-08-02T16:55:00Z",
+  "last_checkpoint": "2026-08-02T17:05:00Z",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -215,5 +215,23 @@
     "maximum_points": 10,
     "evidence": "outputs/final_verdict_fetch_20260802T104812Z.json",
     "authoritative_note": "Official verdict is authoritative; Claim 4 official toy supersedes only the score outcome, while local evidence scope remains inconclusive."
+  },
+  "remote_candidate_quarantine_57cc883": {
+    "candidate": "57cc883d036d3e4af64898f61545be65c60a043a",
+    "chain": [
+      "dd175f4",
+      "28c2b95",
+      "57cc883"
+    ],
+    "branch": "quarantine/remote-57cc883",
+    "tag": "quarantine/remote-57cc883",
+    "decision": "rejected_for_publication",
+    "reasons": [
+      "candidate-only verified/falsified verdict substitution",
+      "explicit HF cpu-upgrade provenance conflicts with local-only policy",
+      "no independent review or exact Space validation"
+    ],
+    "trusted_restore_head": "522a14faa6f77f1e0b04654ac65ce084fc99e0c5",
+    "space_action": "none"
   }
 }
