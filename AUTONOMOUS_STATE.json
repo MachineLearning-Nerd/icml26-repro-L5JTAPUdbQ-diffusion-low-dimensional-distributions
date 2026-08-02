@@ -140,7 +140,7 @@
     "official_score": 2,
     "official_maximum_points": 10
   },
-  "last_known_git_commit": "1d0ff04000000000000000000000000000000000",
+  "last_known_git_commit": "bf7b2440a13e4e45445f2c7f44372ee0edb2acfa",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",
