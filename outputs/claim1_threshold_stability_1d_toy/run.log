@@ -1,0 +1,59 @@
+src/claim1_threshold_stability_1d.py
+{
+  "config": {
+    "n": 512,
+    "particles": 64,
+    "fine_steps": 2048,
+    "coarse_steps": 256,
+    "seed": 20260802,
+    "out": "outputs/claim1_threshold_stability_1d_toy"
+  },
+  "preregistration": {
+    "target": "N(0,1), d=k=M=1 (subgaussian theorem-domain fixture)",
+    "tolerances": {
+      "euler_to_reference_w1_max": 0.15,
+      "heun_to_reference_w1_max": 0.15,
+      "euler_heun_w1_max": 0.15
+    },
+    "reference": "Euler-Maruyama with fine_steps",
+    "controls": "shared Brownian path; threshold-adjacency count; unthresholded score is intentionally not substituted"
+  },
+  "schedule": {
+    "T": 6.238324625039508,
+    "tau": 3.814697265625e-06
+  },
+  "metrics": {
+    "euler_to_fine_w1": 1.9316850232061964,
+    "heun_to_fine_w1": 1.0337012009501216,
+    "euler_to_heun_w1": 2.752747938118488,
+    "fine_to_target_empirical_w1": 23.74314076613105
+  },
+  "passes_fixture_tolerances": false,
+  "diagnostics": {
+    "fine": {
+      "near_threshold_evaluations": 2,
+      "max_adjacent_drift_change": 0.0,
+      "dt": 0.003046055083174923
+    },
+    "euler": {
+      "near_threshold_evaluations": 0,
+      "max_adjacent_drift_change": 0.0,
+      "dt": 0.024368440665399383
+    },
+    "heun": {
+      "near_threshold_evaluations": 1,
+      "max_adjacent_drift_change": 23.980715603535145,
+      "dt": 0.024368440665399383
+    }
+  },
+  "derivation": {
+    "reverse_drift": "b_r(y)=y+2 score_{X_s}(y), s=T-r; score_{X_s}(y)=exp(-s)^{-1} score_h(exp(s)y), h=exp(2s)-1",
+    "threshold_discontinuity": "At g_h(u)=eta_h, estimator changes from raw KDE score to 0. Unless raw score is zero on that surface, drift is discontinuous. Thus a global-Lipschitz Euler/Heun strong-error certificate is unavailable without an additional argument."
+  },
+  "verdict": "inconclusive",
+  "conclusion": "inconclusive: the independently coupled Euler and stochastic-Heun coarse paths fail the preregistered finite-fixture stability tolerances against the fine Euler reference. This numerical discrepancy plus hard-threshold discontinuity is not a defensible counterexample to the idealized theorem; no theorem-domain counterexample is demonstrated.",
+  "runtime": {
+    "python": "3.14.5",
+    "device": "local CPU numpy"
+  }
+}

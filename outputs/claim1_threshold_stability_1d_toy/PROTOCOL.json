@@ -1,0 +1,10 @@
+{
+  "target": "N(0,1), d=k=M=1 (subgaussian theorem-domain fixture)",
+  "tolerances": {
+    "euler_to_reference_w1_max": 0.15,
+    "heun_to_reference_w1_max": 0.15,
+    "euler_heun_w1_max": 0.15
+  },
+  "reference": "Euler-Maruyama with fine_steps",
+  "controls": "shared Brownian path; threshold-adjacency count; unthresholded score is intentionally not substituted"
+}

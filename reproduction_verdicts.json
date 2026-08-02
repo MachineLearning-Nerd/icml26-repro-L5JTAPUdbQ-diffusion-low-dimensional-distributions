@@ -3,11 +3,15 @@
   "verdicts": {
     "1": {
       "verdict": "inconclusive",
-      "scope": "Clean-room end-to-end local CPU reverse OU SDE using Eq. (8)-(14) KDE score at literal d=48/M=128/k=3/N up to 50k. The Euler discretization sweep is unstable/poor; it neither verifies the rate nor falsifies the idealized continuous-time theorem.",
+      "scope": "Clean-room literal d=48/M=128/k=3/N through 50k reverse-OU Euler and a distinct d=k=M=1 theorem-domain hard-threshold-KDE coupled-integrator audit are both inconclusive. The latter pre-registered Euler/Heun-to-fine-reference W1 tolerances fail, but a finite numerical discrepancy plus the threshold discontinuity does not falsify the idealized expected-rate theorem.",
       "evidence": [
         "src/claim1_reverse_diffusion.py",
         "outputs/claim1_reverse_full/summary.json",
-        "outputs/claim1_reverse_full/SHA256SUMS"
+        "src/claim1_threshold_stability_1d.py",
+        "outputs/claim1_threshold_stability_1d_toy/PROTOCOL.json",
+        "outputs/claim1_threshold_stability_1d_toy/DERIVATION.md",
+        "outputs/claim1_threshold_stability_1d_toy/summary.json",
+        "outputs/claim1_threshold_stability_1d_toy/SHA256SUMS"
       ]
     },
     "2": {
