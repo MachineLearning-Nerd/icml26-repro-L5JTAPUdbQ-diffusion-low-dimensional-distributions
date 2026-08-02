@@ -1,0 +1,17 @@
+{
+  "id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions",
+  "lastModified": "2026-08-02T10:44:15.000Z",
+  "private": false,
+  "runtime": {
+    "hardware": {
+      "current": null,
+      "requested": null
+    },
+    "replicas": {
+      "current": 1,
+      "requested": 1
+    },
+    "stage": "RUNNING"
+  },
+  "sha": "eb44868b216e7f83ade2bc295ac67d9a6303820a"
+}

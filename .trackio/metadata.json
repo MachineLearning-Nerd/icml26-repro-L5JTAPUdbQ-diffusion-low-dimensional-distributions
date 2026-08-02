@@ -6,5 +6,14 @@
   "tags": [
     "icml2026-repro",
     "paper-L5JTAPUdbQ"
-  ]
+  ],
+  "private": false,
+  "repos_public": false,
+  "embed_content": false,
+  "trace_dataset": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions-traces",
+  "artifacts_bucket": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions-artifacts",
+  "workspace_bucket": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions-artifacts",
+  "trace_publication": "private",
+  "workspace_publication": "private",
+  "local_dashboards": {}
 }

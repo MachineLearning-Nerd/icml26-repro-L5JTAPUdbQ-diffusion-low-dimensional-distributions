@@ -63,7 +63,7 @@
     "file": "workspace.json",
     "file_count": 0,
     "total_size": 0,
-    "bucket_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions-artifacts"
+    "bucket_id": null
   },
   "agent_view_tokens": 3823,
   "trace_view_tokens": 10,

@@ -1,0 +1,26 @@
+{
+  "sha": "47dad2b9bfe645cb59775632bc894efa9d65a546",
+  "siblings": [
+    ".serve.log",
+    "README.md",
+    "bucket-icon.svg",
+    "index.html",
+    "logbook.css",
+    "logbook.js",
+    "logbook.json",
+    "pages/claim-1-intrinsic-dimension-sample-rate/page.md",
+    "pages/claim-2-intrinsic-score-error-rate/page.md",
+    "pages/claim-3-union-of-subspaces-assumption/page.md",
+    "pages/claim-4-weak-regularity-assumptions/page.md",
+    "pages/claim-5-prior-ambient-dimensional-comparator/page.md",
+    "pages/conclusion/page.md",
+    "pages/executive-summary/page.md",
+    "pages/index.md",
+    "traces/index.json",
+    "trackio-logo-light.png",
+    "trackio-logo.png",
+    "trackio-wordmark-dark.png",
+    "workspace.json"
+  ],
+  "count": 20
+}

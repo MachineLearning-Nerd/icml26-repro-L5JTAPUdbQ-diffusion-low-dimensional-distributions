@@ -1,0 +1,37 @@
+{
+  "claims": [
+    {
+      "claim": "Theorem 2 proves diffusion models require O~(\u03b5^-(k\u22282)) samples to achieve \u03b5-accuracy in 1-Wasserstein distance, where k is the intrinsic (subspace) dimension rather than the ambient dimension d (Section 3.2, Theorem 2).",
+      "evidence": "An exact continuous-time counterexample on p*=Uniform{-1,+1} (d=M=k=1) shows the paper's thresholded estimator yields exactly zero score on a positive-probability tail event, causing W1 lower bounds that grow as exp(-2\u221a(2 log n)), asymptotically exceeding the theorem's C\u00b7n^{-1/2}\u00b7polylog(n) rate; verified with exact arithmetic, independent checker, and mutation controls.",
+      "verdict": "falsified"
+    },
+    {
+      "claim": "Theorem 1 bounds the score estimation L2 error in terms of the intrinsic dimension k, avoiding the exponential dependence on ambient dimension d found in prior analyses (Section 3.2, Theorem 1).",
+      "evidence": "A proof-structure certificate verifies the normal/tangent score identity with exact rational arithmetic across 12 (d,k) pairs, confirming ambient squared error equals intrinsic squared error, and a faithful KDE study on M=1 Gaussian subspaces shows k-dependent MSE invariant across d=4,8,16,48 with proper negative controls (omitting normal score introduces d-dependence).",
+      "verdict": "verified"
+    },
+    {
+      "claim": "The analysis assumes the target distribution's support lies in a union of M low-dimensional linear subspaces with zero probability mass on their intersections, and requires only subgaussian tails within each subspace (Section 2.2, Assumption 1).",
+      "evidence": "The source audit with pinned SHA-256 hashes confirms the paper defines a union of M low-dimensional linear subspaces with zero intersection mass, non-trivial component mass, and subgaussian tails within each subspace (Assumption 1); a finite CPU construction validates these conditions. The identifiability counterexample addresses Lemma 3's sufficiency claim, not the descriptive content of this claim about what the paper assumes.",
+      "verdict": "verified"
+    },
+    {
+      "claim": "The results dispense with smoothness (e.g., H\u00f6lder continuity), log-concavity, uniform density bounds, and density lower-bound assumptions required by prior sample-complexity analyses (Section 2.2).",
+      "evidence": "The same Uniform{-1,+1} counterexample satisfies all paper assumptions while lacking every named regularity (no density, no H\u00f6lder continuity, not log-concave, no density bounds), yet Theorem 2 fails on this target with the same threshold-escape mechanism, directly contradicting the claim that the results dispense with these regularity assumptions.",
+      "verdict": "falsified"
+    },
+    {
+      "claim": "Prior work requiring \u03b2-H\u00f6lder smooth densities achieves only \u03b5^-(d+2\u03b2)/\u03b2 sample complexity, exhibiting a curse of dimensionality that the paper's bound avoids (Section 1, Equation 1).",
+      "evidence": "A primary-source proof-chain certificate pins Cai and Li (arXiv:2503.09583), extracts 12 source markers, and verifies the complete exponent chain from TV rate n^{-\u03b2/(d+2\u03b2)} through inversion to sample complexity \u03b5^{-(d+2\u03b2)/\u03b2} across 20 (d,\u03b2) pairs with exact arithmetic, confirming strictly increasing dependence on d (derivative 1/\u03b2 > 0) with mutation controls.",
+      "verdict": "verified"
+    }
+  ],
+  "judged_at": "2026-08-01T19:26:29+00:00",
+  "model": "zai-org/GLM-5.2",
+  "orid": "L5JTAPUdbQ",
+  "overall": "The logbook provides exact mathematical counterexamples that falsify Theorem 2 on an atomic target (Claims 1 and 4) by showing the thresholded estimator produces zero scores on positive-probability events, while verifying the intrinsic-dimension score-error dependence (Claim 2) and the prior ambient-dimensional rate formula (Claim 5) through proof certificates with exact arithmetic and faithful numerical studies.",
+  "paper_title": "Diffusion Models Are Statistically Optimal for Learning Low-Dimensional Multi-Modal Distributions",
+  "quality": "medium",
+  "sha": "223123ff67da24f79fcc1da6293b4108f2e60cd2",
+  "space_id": "DineshAI/repro-L5JTAPUdbQ-diffusion-low-dimensional-distributions"
+}
