@@ -1,0 +1,15 @@
+{
+  "N": 1800,
+  "M": 3,
+  "k": 2,
+  "k_vee_2": 2,
+  "t": 0.6,
+  "sigma": 1.0,
+  "time_factor_left": 4.4444444444444455,
+  "time_factor_expanded": 4.444444444444445,
+  "algebra_abs_error": 8.881784197001252e-16,
+  "component_minimum_N_over_2M": 300.0,
+  "source_A_complement_upper_bound_cp_1": 1.1160227928062509e-43,
+  "conditional_bound_shape_without_C_or_polylog": 0.4,
+  "checks_pass": true
+}

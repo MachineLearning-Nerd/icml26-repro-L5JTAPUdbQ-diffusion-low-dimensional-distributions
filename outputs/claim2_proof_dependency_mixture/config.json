@@ -1,0 +1,8 @@
+{
+  "command": "src/claim2_proof_dependency_mixture.py",
+  "python": "3.14.5",
+  "device": "local CPU / numpy",
+  "seeds": "171,172,173",
+  "method": "hard-threshold KDE conditional on exact recovered bases",
+  "not_reused": "No d=48/M=128 grid result is used."
+}

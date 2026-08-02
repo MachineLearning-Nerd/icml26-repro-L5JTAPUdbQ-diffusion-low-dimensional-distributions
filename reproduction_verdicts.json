@@ -16,11 +16,16 @@
     },
     "2": {
       "verdict": "inconclusive",
-      "scope": "Non-toy clean-room full-scale d=48,M=128,k=3,N=50k,eval=10k Eq. (8)-(14) t-grid and actual controls completed. Permuted-basis/reduced-N controls did not degrade as pre-registered, so no theorem verdict is justified.",
+      "scope": "Two distinct routes are inconclusive: the literal-scale d=48/M=128/k=3/N=50k grid had non-separating controls; a new local CPU conditional proof-dependency audit checks source algebra and an analytic d=6,M=3,k=2 recovered-versus-wrong-basis Gaussian-mixture fixture, but finite known-label evidence cannot establish the theorem expectation or hidden constants/polylogs.",
       "evidence": [
         "outputs/claim2_fullscale/summary.json",
         "outputs/claim2_fullscale_grid/summary.json",
-        "outputs/claim2_controls/summary.json"
+        "outputs/claim2_controls/summary.json",
+        "outputs/claim2_proof_dependency_mixture/DERIVATION.md",
+        "outputs/claim2_proof_dependency_mixture/proof_checks.json",
+        "outputs/claim2_proof_dependency_mixture/results.csv",
+        "outputs/claim2_proof_dependency_mixture/summary.json",
+        "outputs/claim2_proof_dependency_mixture/SHA256SUMS"
       ]
     },
     "3": {

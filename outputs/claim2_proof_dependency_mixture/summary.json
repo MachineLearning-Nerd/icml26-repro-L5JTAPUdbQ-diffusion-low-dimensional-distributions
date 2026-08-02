@@ -1,0 +1,39 @@
+{
+  "classification": "distinct local CPU analytic M>1 proof-dependency diagnostic; not literal-scale theorem verification",
+  "source_mapping": {
+    "theorem": "Results.tex:135-150",
+    "conditional_proof": "pf-of-theorems.tex:3-161",
+    "component_event": "pf-of-theorems.tex:6-19",
+    "tail_and_KDE_terms": "pf-of-theorems.tex:34-123",
+    "mixture_weight_term": "pf-of-theorems.tex:126-140"
+  },
+  "proof_checks": {
+    "N": 1800,
+    "M": 3,
+    "k": 2,
+    "k_vee_2": 2,
+    "t": 0.6,
+    "sigma": 1.0,
+    "time_factor_left": 4.4444444444444455,
+    "time_factor_expanded": 4.444444444444445,
+    "algebra_abs_error": 8.881784197001252e-16,
+    "component_minimum_N_over_2M": 300.0,
+    "source_A_complement_upper_bound_cp_1": 1.1160227928062509e-43,
+    "conditional_bound_shape_without_C_or_polylog": 0.4,
+    "checks_pass": true
+  },
+  "controls": {
+    "positive": "exact recovered labels/bases",
+    "negative": "same data with cyclically wrong bases",
+    "shared_seeds": [
+      171,
+      172,
+      173
+    ]
+  },
+  "recovered_mse_mean": 0.017759518195334726,
+  "wrong_basis_mse_mean": 0.7330441197259617,
+  "paired_wrong_minus_recovered_mean": 0.715284601530627,
+  "verdict": "inconclusive",
+  "verdict_reason": "The algebra and analytic M>1 fixture check conditional dependencies, but unknown theorem constants/polylogs, finite three-seed MSE, and known labels cannot verify or falsify the expectation bound."
+}
