@@ -1,0 +1,8 @@
+{
+  "claim": 2,
+  "claim_text": "Under Assumptions 1 and 2, conditional on exact subspace recovery and for t<=N^{O(1)}, Theorem 1 bounds expected L2 score error by C_score d M^3/N [1/t + sigma^(k vee 2)/t^((k vee 2)/2+1)] polylog(N), with C_score independent of N,d,M,t.",
+  "domain": "Every target satisfying Assumptions 1 and 2, conditional on the theorem's exact-recovery event",
+  "verification_criterion": "Pin and extract the exact statement; independently prove that the known ambient normal score cancels, verify the k-dimensional analytic factor and every d/k dependency transition, and reject ambient substitution.",
+  "non_circularity": "No sample size, time, tolerance, or slope is selected from the theorem formula.",
+  "scope_limit": "The certificate does not remove the theorem's exact-recovery condition or repair Appendix B.1 Lemma 3."
+}

@@ -1,0 +1,8 @@
+{
+  "actual_exit_code": 1,
+  "checker_stderr": "a reported projector-control ratio changed",
+  "expected_exit_nonzero": true,
+  "mutation": "remove ambient error from every d=48 broken-projector control",
+  "passed": true
+}
+

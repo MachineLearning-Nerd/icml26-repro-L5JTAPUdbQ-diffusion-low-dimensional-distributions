@@ -1,0 +1,13 @@
+{
+  "controls": [
+    {
+      "name": "intersection_atom",
+      "result": "REJECTED"
+    },
+    {
+      "name": "missing_subgaussian_bound",
+      "result": "REJECTED"
+    }
+  ],
+  "status": "PASS"
+}

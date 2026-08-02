@@ -1,0 +1,72 @@
+{
+  "assumption_checks": {
+    "M1_intersection_condition": "vacuous",
+    "bounded_support": true,
+    "component_mass": 1,
+    "dimension_k1": 1,
+    "exact_recovery": "trivial because the only one-dimensional subspace of R is R",
+    "required_component_mass": 1,
+    "sigma_squared": 1.4426950408889634,
+    "support_in_V1_equals_R": true,
+    "worst_direction_exponential_square_moment": 2
+  },
+  "claim": 4,
+  "confidence": "HIGH",
+  "environment": {
+    "accelerator": null,
+    "cpu_affinity_count": 64,
+    "cpu_limit": 8,
+    "deterministic": true,
+    "git_sha": "7075b338d13fd488ec0a556e05fd0954f4e5f712",
+    "memory_limit_bytes": "32000000000",
+    "python": "3.14.2",
+    "runtime_seconds": 0.009268834022805095,
+    "seed": null,
+    "selected_flavor": "cpu-upgrade"
+  },
+  "exact_contract": {
+    "failed_result": "Theorem 2 and its n^{-1/(k vee 2)} polylog(n) Wasserstein bound",
+    "falsification_rule": "An exact theorem failure on a target satisfying Assumptions 1 and 2 and lacking every named regularity falsifies the broad claim.",
+    "paper_claim": "The results hold under Assumptions 1 and 2 without smooth-density, score-smoothness, log-concavity, uniform-density, or density-lower-bound assumptions."
+  },
+  "regularity_audit": {
+    "atomic_measure": true,
+    "no_ambient_lebesgue_density": true,
+    "no_holder_density_or_score": true,
+    "no_intrinsic_lebesgue_density": true,
+    "no_positive_density_lower_bound": true,
+    "no_uniform_density_upper_bound": true,
+    "nonconvex_support_witness": "-1 and +1 are support points while their midpoint 0 is not",
+    "not_log_concave": true
+  },
+  "source_checks": {
+    "log_concavity_excluded": true,
+    "only_subgaussian_claim": true,
+    "smooth_density_excluded": true,
+    "theorem_2_uses_only_assumptions_1_and_2": true,
+    "theorem_2_wasserstein_conclusion": true,
+    "weak_assumptions_remark": true
+  },
+  "source_hash": "07430c702d35e6dc7d6e34a79d32881a8f08cf48b1d855bf9cfb99c8a6981dc7",
+  "target": {
+    "M": 1,
+    "V1": "R",
+    "c_p": 1,
+    "d": 1,
+    "k": 1,
+    "law": "Uniform{-1,+1}",
+    "sigma_squared": 1.4426950408889634
+  },
+  "theorem_failure": {
+    "asymptotic_cells": 6,
+    "asymptotic_contradiction": "For every fixed A, log[W1/(n^-1/2 (log n)^A)] >= 0.5 log n-2 sqrt(2 log n)-O_A(log log n), which tends to +infinity",
+    "claim1_confidence": "HIGH",
+    "claim1_verdict": "FALSIFIED",
+    "finite_cells": 18,
+    "raw_evidence": ".openresearch/artifacts/claim1_threshold_escape/raw_results.json",
+    "threshold_persistence": "On the event z_r>nb, while h(T-r)<=h(T)=n^2-1, every KDE kernel is below eta_h for every training realization; hence the estimated score remains exactly zero",
+    "training_expectation": "The lower bound holds for every training realization, so it also holds after expectation over training data"
+  },
+  "verdict": "FALSIFIED",
+  "why_falsified": "The Rademacher target has none of the named density regularities, satisfies every stated theorem assumption, and contradicts Theorem 2 under the exact paper estimator. Thus the paper's results do not hold over the claimed weak domain."
+}

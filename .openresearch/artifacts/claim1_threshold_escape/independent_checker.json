@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "all_paper_assumptions": true,
+    "asymptotic_rate_contradiction": true,
+    "continuous_time_amplification": true,
+    "exact_theorem_contract": true,
+    "historical_numerical_failure_labeled": true,
+    "positive_event_probability": true,
+    "threshold_disabled_control": true,
+    "training_expectation": true,
+    "trivial_exact_recovery": true,
+    "wasserstein_lower_bound": true,
+    "zero_score_tail_persistence": true
+  },
+  "claim": 1,
+  "confidence": "HIGH",
+  "status": "PASS",
+  "verdict": "FALSIFIED"
+}

@@ -1,0 +1,74 @@
+{
+  "claim": 3,
+  "claim_text": "The analysis assumes support on a union of M low-dimensional linear subspaces, zero mass on their intersections, and only subgaussian tails within each subspace.",
+  "independent_witness": {
+    "ambient_dimension": 4,
+    "atom_masses": [
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    ],
+    "c_p": 1.0,
+    "component_masses": [
+      0.5,
+      0.5
+    ],
+    "intersection_mass": 0.0,
+    "intrinsic_dimensions": [
+      1,
+      1
+    ],
+    "pairwise_intersection": "{0}",
+    "required_component_mass": 0.5,
+    "sigma_squared": 1.4426950408889634,
+    "subgaussian_bound": 2.0,
+    "subspaces": [
+      "span(e1)",
+      "span(e2)"
+    ],
+    "support": [
+      "-e1",
+      "+e1",
+      "-e2",
+      "+e2"
+    ],
+    "support_in_union": true,
+    "worst_direction_exponential_square_moment": 2.0
+  },
+  "negative_controls": {
+    "intersection_atom": {
+      "expected": "REJECT",
+      "intersection_mass": 0.1
+    },
+    "missing_subgaussian_bound": {
+      "expected": "REJECT",
+      "subgaussian_bound": null
+    }
+  },
+  "scope": "Literal source-conformance statement about Assumptions 1 and 2 only",
+  "separate_limitation": "Appendix B.1 exact-recovery sufficiency is not part of the literal live claim and is neither used to verify nor used to falsify Claim 3.",
+  "source_anchors": {
+    "assumption_1": "assume:multi-modal",
+    "assumption_2": "assump:sub-gaussian target",
+    "theorem_1": "thm:score estimation error",
+    "theorem_2": "thm:high prob TV"
+  },
+  "source_checks": {
+    "component_mass": true,
+    "linear_subspaces": true,
+    "low_dimensions": true,
+    "subgaussian_heading": true,
+    "subgaussian_moment": true,
+    "support_union": true,
+    "theorem_1_invokes_both": true,
+    "theorem_2_invokes_both": true,
+    "zero_intersection_mass": true
+  },
+  "source_members": [
+    "problem_formulation.tex",
+    "Results.tex"
+  ],
+  "source_sha256": "07430c702d35e6dc7d6e34a79d32881a8f08cf48b1d855bf9cfb99c8a6981dc7",
+  "verdict": "VERIFIED"
+}

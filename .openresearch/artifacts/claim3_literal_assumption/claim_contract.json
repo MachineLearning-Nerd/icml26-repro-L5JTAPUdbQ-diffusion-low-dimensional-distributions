@@ -1,0 +1,7 @@
+{
+  "claim": 3,
+  "falsification_criterion": "A cited analysis theorem does not invoke the stated structural and tail assumptions, or the source definitions omit any named property.",
+  "literal_claim": "The analysis assumes support on a union of M low-dimensional linear subspaces, zero mass on their intersections, and only subgaussian tails within each subspace.",
+  "scope": "Source conformance of Assumptions 1 and 2 and their invocation by Theorems 1 and 2; no claim about Appendix B.1 recovery sufficiency.",
+  "verification_criterion": "Pinned source text contains every named property, both main theorems invoke Assumptions 1 and 2, an independent exact witness satisfies them, and controls violating intersection mass or the tail bound are rejected."
+}

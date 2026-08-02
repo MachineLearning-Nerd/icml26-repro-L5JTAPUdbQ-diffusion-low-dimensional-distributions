@@ -1,0 +1,8 @@
+{
+  "claim": 2,
+  "route": "faithful numerical corroboration",
+  "contract": "For the M=1 Gaussian subspace case satisfying Assumptions 1 and 2, conditional on the supplied exact basis, run the paper's low-dimensional KDE, density threshold, tangent clipping, and exact normal score. Measure integrated squared score error over independent p_t queries across independently fixed geometric N and d/k sweeps.",
+  "acceptance": "Complete all cells and 12 seeds; positive MSE; decreasing endpoint MSE; log-log N slopes in [-1.5,-0.4]; exact correct-projector ambient invariance; broken-projector d=48/d=4 error ratio above 10.",
+  "non_circularity": "The sweep, fixed t, seeds, slope interval, and controls are committed before results; no sample count or tolerance is selected from an observed first hit or theorem constant.",
+  "scope_limit": "Finite M=1 corroboration cannot prove the universal theorem and does not test mixture-weight estimation."
+}

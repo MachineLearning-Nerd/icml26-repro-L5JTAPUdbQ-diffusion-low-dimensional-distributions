@@ -1,0 +1,23 @@
+{
+  "broken_projector_d48_over_d4": {
+    "1": 15.597472247702697,
+    "2": 22.780486204394485,
+    "3": 38.946592282835105
+  },
+  "checks": {
+    "ambient_normal_cancellation": true,
+    "broken_projector_control": true,
+    "complete_geometric_sweep": true,
+    "independent_statistics": true,
+    "prespecified_slope_range": true,
+    "twelve_seed_uncertainty": true
+  },
+  "claim": 2,
+  "log_log_slopes": {
+    "1": -0.8643906777940809,
+    "2": -0.6682967849197552,
+    "3": -0.5162315007754312
+  },
+  "scope": "M=1 exact-recovery component-estimator corroboration",
+  "status": "PASS"
+}
