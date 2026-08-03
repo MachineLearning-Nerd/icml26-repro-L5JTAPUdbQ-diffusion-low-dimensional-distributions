@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "openreview_id": "L5JTAPUdbQ",
-  "phase": "claim_3_attempt_4_literal_regularized_estimator_controls_complete_inconclusive",
-  "next_action": "independent_review_claim_3_literal_regularized_route_before_any_score_or_publication_change",
+  "phase": "claim_3_attempt_5_source_clipping_and_C_R_sensitivity_complete_inconclusive",
+  "next_action": "independent_review_claim_3_source_clipping_C_R_sensitivity_before_any_score_or_publication_change",
   "active_run_ids": [],
   "completed_milestones": [
     "live_duplicate_gate",
@@ -22,13 +22,14 @@
     "claim_5_attempt_2_cai_probability_flow_direct_tv_toy",
     "claim_5_attempt_3_premise_compliant_1d_cai_toy",
     "claim_2_attempt_3_conditional_proof_dependency_M3_analytic_mixture",
-    "claim_3_attempt_4_literal_regularized_estimator_and_executed_controls"
+    "claim_3_attempt_4_literal_regularized_estimator_and_executed_controls",
+    "claim_3_attempt_5_source_low_dimensional_clipping_C_R_sensitivity"
   ],
   "failed_attempts": [],
   "claim_attempt_counts": {
     "1": 3,
     "2": 3,
-    "3": 4,
+    "3": 5,
     "4": 1,
     "5": 3
   },
@@ -42,7 +43,7 @@
       "outputs/claim1_threshold_stability_1d_toy/SHA256SUMS"
     ]
   },
-  "last_checkpoint": "2026-08-02T22:55:00Z",
+  "last_checkpoint": "2026-08-03T02:33:39+00:00",
   "publication_allowed": false,
   "cpu_feasibility": "Theorem/source audit and finite toy calculations are CPU feasible. Any full diffusion-model training is non-CPU and must be recorded as CPU-infeasible rather than attempted.",
   "claim_2_outcome": {
@@ -58,9 +59,11 @@
   },
   "claim_3_outcome": {
     "verdict": "inconclusive",
-    "scope": "Literal-Assumptions 1--2 finite non-toy d=12/M=3/k=2 UoS generator remediated to execute Results.tex hard psi threshold, clip_R, ambient q/p mixture weight and G_t gate. Raw arrays/pointwise errors and actual intersection-atom/low-mass controls are retained. It remains finite dependency evidence, not a theorem proof or literal-C3 falsification.",
+    "scope": "Literal-Assumptions 1--2 finite non-toy d=12/M=3/k=2 UoS generator executes Results.tex hard psi threshold, clips only the low-dimensional KDE score before adding the normal-space term, uses ambient q/p mixture weights, and sweeps the source-unspecified G_t constant C_R={0.5,1,2}. Raw arrays/pointwise errors and executed intersection-atom/low-mass controls are retained. It remains finite dependency evidence, not a theorem proof or literal-C3 falsification.",
     "evidence": [
       "outputs/claim3_fullscale/result.json",
+      "outputs/claim3_literal_uos_estimator/config.json",
+      "outputs/claim3_literal_uos_estimator/results.csv",
       "outputs/claim3_literal_uos_estimator/summary.json",
       "outputs/claim3_literal_uos_estimator/raw_arrays.npz",
       "outputs/claim3_literal_uos_estimator/SHA256SUMS"
@@ -140,7 +143,7 @@
     "official_score": 2,
     "official_maximum_points": 10
   },
-  "last_known_git_commit": "bf7b2440a13e4e45445f2c7f44372ee0edb2acfa",
+  "last_known_git_commit": "8f6a4918efd63bfd817af4aa4425c49846002a9d",
   "claim_2_fullscale_checkpoint": {
     "completed": [
       "full t-grid t=.1/.25/.5/1.0 (20,21,20,20 runs)",

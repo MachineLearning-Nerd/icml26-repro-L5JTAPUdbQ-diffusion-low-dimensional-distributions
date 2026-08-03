@@ -30,7 +30,7 @@
     },
     "3": {
       "verdict": "inconclusive",
-      "scope": "Three local CPU routes remain inconclusive: the d=48 dependency audit; and a remediated finite non-toy d=12/M=3/k=2 literal-Assumptions-1--2 UoS generator. The latter executes the source hard-density psi threshold, clip_R, ambient q/p component-weight estimator and G_t gate, retains raw arrays/pointwise errors, and executes intersection-atom/low-mass controls. Finite dependency evidence cannot prove a universal theorem or falsify literal C3.",
+      "scope": "Three local CPU routes remain inconclusive: the d=48 dependency audit; and a finite non-toy d=12/M=3/k=2 literal-Assumptions-1--2 UoS generator. The latter executes source hard-density psi, clips only the low-dimensional KDE score before normal-space addition, uses ambient q/p component weights, and sweeps source-unspecified G_t constant C_R={0.5,1,2}; raw arrays/pointwise errors and intersection-atom/low-mass controls are retained. Finite dependency evidence cannot prove a universal theorem or falsify literal C3.",
       "evidence": [
         "outputs/claim3_fullscale/result.json",
         "outputs/claim3_fullscale/allocation_raw_min_counts.npz",

@@ -1,4 +1,10 @@
-condition,atom_mass,regularized_mse,unregularized_mse,intersection_atom_executed,all_component_masses_pass
-nominal,0.0,0.04248367778906641,0.0013136629952398033,False,True
-intersection_atom,0.1,0.7718563228214628,0.596816758808161,True,False
-low_mass,0.0,0.3620182543957471,0.0016083566984436768,False,False
+condition,C_R,atom_mass,regularized_mse,unregularized_mse,intersection_atom_executed,all_component_masses_pass
+nominal,0.5,0.0,0.001354399461464515,0.0013136629952398033,False,True
+nominal,1.0,0.0,0.0013136629952398033,0.0013136629952398033,False,True
+nominal,2.0,0.0,0.0013136629952398033,0.0013136629952398033,False,True
+intersection_atom,0.5,0.1,0.6562428002157896,0.596816758808161,True,False
+intersection_atom,1.0,0.1,0.6519814601429407,0.596816758808161,True,False
+intersection_atom,2.0,0.1,0.6519814601429407,0.596816758808161,True,False
+low_mass,0.5,0.0,0.17482508176689682,0.0016083566984436768,False,False
+low_mass,1.0,0.0,0.16776510361902755,0.0016083566984436768,False,False
+low_mass,2.0,0.0,0.16776510361902755,0.0016083566984436768,False,False
